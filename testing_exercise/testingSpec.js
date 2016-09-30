@@ -1,3 +1,3 @@
-var expect = chai.expect
+var expect = chai.expect;
 
 // WRITE YOUR TESTS HERE!
