@@ -1,0 +1,3 @@
+function Board() {
+  this.board = [];
+}
