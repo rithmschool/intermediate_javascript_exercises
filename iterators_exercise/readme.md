@@ -71,7 +71,9 @@ var users = [
 ]
 ```
 
-- Write a function called `printEmails` which console.log's each emails for the users.
+- Write a function called `printEmails` which console.log's each email for the users.
+
+function printEmails(users.email)
 
 ```javascript
 printEmails()

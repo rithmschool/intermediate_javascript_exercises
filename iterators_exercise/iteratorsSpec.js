@@ -1,5 +1,5 @@
 var expect = chai.expect
-
+ 
 describe("#allLanguages", function(){
   it("returns an array of all the unique programming languages", function(){
     expect(allLanguages()).to.deep.equal(["Perl", "Java", "C++", "Haskell", "Clojure", "PHP", "JavaScript", "Ruby", "Python", "Go", "C#", "F#", "Swift"])
@@ -17,12 +17,13 @@ describe("#hasFavoriteEditor", function(){
 
 describe("#findByUsername", function(){
   it("finds a user by a username", function(){
+    console.log(findByUsername("david"));
     expect(findByUsername("david")).to.deep.equal({
   username: "david",
   email: "david@test.com",
-  yearsExperience: 12.5,
-  favoriteLanguages: ["JavaScript", "C#", "Swift"],
-  favoriteEditor: "Sublime Text",
+  years_experience: 12.5,
+  favorite_languages: ["JavaScript", "C#", "Swift"],
+  favorite_editor: "Sublime Text",
   hobbies: ["Volunteering", "Biking", "Coding"],
   hometown: {
     city: "Los Angeles",

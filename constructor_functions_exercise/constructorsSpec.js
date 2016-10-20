@@ -7,16 +7,17 @@ beforeEach(function(){
 
 describe("Person", function(){
   it("has a firstName", function(){
-    expect(person.hasOwnProperty(firstName)).to.equal(true);
+    console.log(person);
+    expect(person.hasOwnProperty("firstName")).to.equal(true);
   });
   it("has a lastName", function(){
-    expect(person.hasOwnProperty(lastName)).to.equal(true);
+    expect(person.hasOwnProperty("lastName")).to.equal(true);
   });
   it("has a favoriteColor", function(){
-    expect(person.hasOwnProperty(favoriteColor)).to.equal(true);
+    expect(person.hasOwnProperty("favoriteColor")).to.equal(true);
   });
   it("has a favoriteNumber", function(){
-    expect(person.hasOwnProperty(favoriteNumber)).to.equal(true);
+    expect(person.hasOwnProperty("favoriteNumber")).to.equal(true);
   });
 });
 
