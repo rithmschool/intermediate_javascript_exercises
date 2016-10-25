@@ -1,12 +1,10 @@
 $(function(){
-	// var tempArray =[["Gladiator", 8],["Thor",4],["Mad Max",10],["Suicide Squad",3],["Terminator", 8]];
-	// console.log(tempArray);
-
 
 	var tableArray =[];
 	var lastSort = 1; // 1 = ascending 0=descending
 
 	var $tableBody = $("tbody");
+	
 	var $movieInput = $("#inputMovieName");
 	var $ratingInput = $("#inputRating");
 
@@ -15,10 +13,23 @@ $(function(){
 
 	$titleSort.on("click", function(e){
 		sortByTitle(lastSort);
+		updateTable();
 	});
 	$ratingSort.on("click", function(e){
 		sortByRating(lastSort);
+		updateTable();
 	});
+
+
+	function updateTable(){
+		var $tableRows = $("tbody>tr");
+		$tableRows.children(".movieColumn").map(function(idx,value){
+			value.innerText = tableArray[idx][0];
+		});
+		$tableRows.children(".ratingColumn").map(function(idx,value){
+			value.innerText = tableArray[idx][1];
+		});
+	}
 
 	function sortByTitle(){
 		if(lastSort===0){
@@ -28,7 +39,6 @@ $(function(){
 			tableArray.sort(sortTitleHighToLow);
 			lastSort = 0;
 		}
-		console.log(tableArray);
 	}
 	function sortByRating(){
 		if(lastSort===0){
@@ -38,7 +48,6 @@ $(function(){
 			tableArray.sort(sortRatingHighToLow);
 			lastSort = 0;
 		}
-		console.log(tableArray);
 	}
 
 	function sortTitleLowToHigh(a,b){
@@ -83,26 +92,25 @@ $(function(){
 			text: "Delete"
 		});
 
-		$tableBody.append($($newRow)
+		$tableBody.prepend($($newRow)
 				  .append($($newMovieCol))
 				  .append($($newRatingCol))
 				  .append($($newDeleteCol)
 				  .append($($newDeleteBtn))));
-		tableArray.push([$movieInput.val(), parseInt($ratingInput.val())]);
+		tableArray.unshift([$movieInput.val(), parseInt($ratingInput.val())]);
 		console.log(tableArray);
 		$movieInput.val("");
 		$ratingInput.val("");
-
 	});
 
 	$tableBody.on("click", "button", function(e){
+		var $tableRows = $("tbody>tr");
 		var $clickedOn = $(e.target).parent().parent();
+		tableArray.splice($tableRows.index($clickedOn),1);
 		$clickedOn.remove();
 	});
 
 
-
-	// Bonus portion
 
 
 
