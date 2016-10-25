@@ -19,7 +19,7 @@ describe("Person", function(){
     expect(person.hasOwnProperty("favoriteNumber")).to.equal(true);
   });
   it("has a favoriteFoods", function(){
-    expect(person.hasOwnProperty("favoriteNumber")).to.equal(true);
+    expect(person.hasOwnProperty("favoriteFoods")).to.equal(true);
     expect(person.favoriteFoods).to.deep.equal([]);
   });
 });
@@ -89,13 +89,13 @@ describe("#toString", function() {
 describe("Array.prototype.map", function(){
   var arr = [1,2,3,4]
   it("returns a new array of values with a callback run on each value", function(){
-    expect(arr.map(v => v*2)).to.deep.equal([2,4,6,8])
+    expect(arr.map(function(v) { return  v*2;})).to.deep.equal([2,4,6,8])
   });
   it("allows access to the index as a second parameter", function(){
-    expect(arr.map((v,i) => i*2)).to.deep.equal([0,2,4,6])
+    expect(arr.map(function(v,i) { return  i*2;})).to.deep.equal([0,2,4,6])
   });
   it("allows access to the array as the third parameter", function(){
-    expect(arr.map((v,i,a) => a.length)).to.deep.equal([4,4,4,4])
+    expect(arr.map(function(v,i,a) { return a.length})).to.deep.equal([4,4,4,4])
   });
 });
 
@@ -111,10 +111,13 @@ describe("Function.prototype.bind", function(){
     return a+b
   }
   it("returns a function with the context set", function(){
-    expect(add.bind(this)).to.be("function");
+    // expect(add.bind(this)).to.be("function");
+    expect(add.bind(this)).to.be.a("function");
   });
   it("returns a function with the context set", function(){
-    expect(add.bind(this,3)(4)).to.be(7);
-    expect(add.bind(this)(3,4)).to.be(7);
+    // expect(add.bind(this,3)(4)).to.be(7);
+    // expect(add.bind(this)(3,4)).to.be(7);
+    expect(add.bind(this,3)(4)).to.equal(7);
+    expect(add.bind(this)(3,4)).to.equal(7); // this works
   });
 });
