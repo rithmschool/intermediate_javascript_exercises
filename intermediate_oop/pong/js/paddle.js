@@ -1,7 +1,8 @@
-function Paddle(x, y, paddleSpeed, paddleWidth, paddleHeight, humanControllable=false) {
+function Paddle(x, y, paddleSpeed, paddleWidth, paddleHeight, canvasHeight, humanControllable=false) {
   this.velocityUp = new Velocity(0, paddleSpeed * -1);
   this.velocityDown = new Velocity(0, paddleSpeed);
   this.component = new CanvasComponent(x, y, paddleWidth, paddleHeight);
+  this.canvasHeight = canvasHeight;
   this.keydown = undefined;
   this.humanControllable = humanControllable;
   this.upKeyCode = 38;
@@ -17,10 +18,20 @@ Paddle.PADDLE_SPEED = 15;
 
 Paddle.prototype.update = function() {
   this.component.update();
+  this.__boundsChecking();
 }; 
 
 Paddle.prototype.draw = function(context) {
   this.component.draw(context);
+};
+
+
+Paddle.prototype.__boundsChecking = function() {
+  if (this.component.y + this.component.height >= this.canvasHeight) {
+    this.component.y = this.canvasHeight-this.component.height;
+  } else if (this.component.y <= 0){
+    this.component.y = 0;
+  }
 };
 
 Paddle.prototype.__setupArrowBindings = function() {
@@ -28,6 +39,7 @@ Paddle.prototype.__setupArrowBindings = function() {
     if (event.which === this.upKeyCode) {
       this.keyDown = this.upKeyCode;
       this.component.velocity = this.velocityUp;
+
     } else if (event.which === this.downKeyCode) {
       this.keyDown = this.downKeyCode;
       this.component.velocity = this.velocityDown;

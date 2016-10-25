@@ -6,14 +6,15 @@ function CanvasNumbersComponent(x, y) {
 
 CanvasNumbersComponent.prototype.update = function(number,x,y) {
   this.number = number;
-  // this.x = x;
-  // this.y = y;
+  this.x = x;
+  this.y = y;
 };
 
 CanvasNumbersComponent.prototype.draw = function(context) {
   // context.fillStyle = this.color;
   // context.fillRect(this.x, this.y, this.width, this.height);  
   // console.log(this.x, this.y);
+  // console.log(this.number)
   switch(this.number){
     case 0:
       drawZero(context,this.x,this.y);
@@ -52,10 +53,11 @@ CanvasNumbersComponent.prototype.draw = function(context) {
 
 function drawZero(context,x,y){
   context.fillStyle = "white";
-  context.fillRect(x, y, 10, 60);
+  context.fillRect(x, y, 10, 70);
   context.fillRect(x+40, y, 10, 60);
-  context.fillRect(x, y, 40, y);
-  context.fillRect(x, y+60, 50, y);
+  context.fillRect(x, y, 40, 10);
+  context.fillRect(x, y+60, 50, 10);
+  // context.fillRect(x, y+30, 40, 10);
 }
 
 function drawOne(context,x,y){

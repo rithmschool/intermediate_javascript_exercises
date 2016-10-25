@@ -19,9 +19,18 @@ ScoreKeeper.prototype.updateScoreBoard = function(){
 	messageConsole.innerText = message;
 };
 
+ScoreKeeper.prototype.getRightScore = function(){
+	return this.rightScore;
+};
+
+ScoreKeeper.prototype.getLeftScore = function(){
+	return this.leftScore;
+};
+
+
 ScoreKeeper.prototype.__checkForWinner = function(){
 	if(this.leftScore>=this.scoreToWin || this.rightScore>=this.scoreToWin){
-		this.rightScore = 0;
-		this.leftScore = 0;
+		// this.rightScore = 0;
+		// this.leftScore = 0;
 	}
 };

@@ -7,15 +7,15 @@ function Pong(canvasId) {
 
   this.ball = new Ball(10, 10, undefined, this.width, this.height, this.pointScored.bind(this));
   this.ball.randomVelocityAndPosition();
-  this.paddleL = new Paddle(15, 350, Paddle.PADDLE_SPEED, Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, true);
+  this.paddleL = new Paddle(15, 350, Paddle.PADDLE_SPEED, Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, this.height, true);
   this.paddleL.upKeyCode = 83;
   this.paddleL.downKeyCode = 90;
-  this.paddleR = new Paddle(970, 350, Paddle.PADDLE_SPEED, Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, true);
+  this.paddleR = new Paddle(970, 350, Paddle.PADDLE_SPEED, Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, this.height, true);
   this.dashes = [];
   this.__createDashes();
 
   this.messageConsole = document.getElementById("messageConsole");
-  this.scorekeeper = new ScoreKeeper(50);
+  this.scorekeeper = new ScoreKeeper(12);
   this.leftScore = new NumberScore(400,15);
   this.rightScore = new NumberScore(550,15);
 }
@@ -26,19 +26,18 @@ Pong.prototype.startGameLoop = function() {
 
 Pong.prototype.pointScored = function(pointType) {
   if (pointType === Ball.DIRECTION_LEFT) {
-    console.log("point for Right");
-    this.scorekeeper.pointForRight();
-    this.rightScore.scoreOnePoint();
 
-    this.rightScore.update();
+    this.scorekeeper.pointForRight();
+    this.rightScore.update(this.scorekeeper.getRightScore()); 
+    if(this.scorekeeper.getRightScore()>9){
+      this.rightScore.changeXPos(610);
+    }
 
     this.ball.randomVelocityAndPosition(Ball.DIRECTION_RIGHT);
   } else if (pointType === Ball.DIRECTION_RIGHT) {
-    console.log("Point for left");
-    this.scorekeeper.pointForLeft();
-    this.leftScore.scoreOnePoint();
 
-    this.leftScore.update();
+    this.scorekeeper.pointForLeft();
+    this.leftScore.update(this.scorekeeper.getLeftScore());
     
     this.ball.randomVelocityAndPosition(Ball.DIRECTION_LEFT);
   }
@@ -54,7 +53,6 @@ Pong.prototype.update = function() {
   this.ball.update();
   this.paddleL.update();
   this.paddleR.update();
-  
   
   this.paddleL.handleCollision(this.ball);
   this.paddleR.handleCollision(this.ball);

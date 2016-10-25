@@ -12,10 +12,10 @@ CanvasComponent.prototype.update = function() {
     this.x += this.velocity.x;
     this.y += this.velocity.y;
   }
-}
+};
 
 CanvasComponent.prototype.draw = function(context) {
   
   context.fillStyle = this.color;
   context.fillRect(this.x, this.y, this.width, this.height);  
-}
+};

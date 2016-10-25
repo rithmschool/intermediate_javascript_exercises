@@ -98,7 +98,6 @@ $(function(){
 				  .append($($newDeleteCol)
 				  .append($($newDeleteBtn))));
 		tableArray.unshift([$movieInput.val(), parseInt($ratingInput.val())]);
-		console.log(tableArray);
 		$movieInput.val("");
 		$ratingInput.val("");
 	});
@@ -109,7 +108,6 @@ $(function(){
 		tableArray.splice($tableRows.index($clickedOn),1);
 		$clickedOn.remove();
 	});
-
 
 
 
