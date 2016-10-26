@@ -6,10 +6,12 @@ Here are some ideas (you can build more than one!):
 
 - A music app with the iTunes or Spotify API
 - A movie search + info app using the OMDB API
-- Endless GIFs with the Giphy API
+- Endless GIFs with the Giphy API 
 - A card game using the Deck of Cards API
 - A random Ron Swanson quote generator
 - A fun word game with the Wordnik API
 - A video search application using the YouTube API
 - A Netflix suggestion with the Netflix Roulette API
 - All the Pokemon or Starwars data you could ever want with the Pokeapi or SWAPI
+
+If you want to see an example, open up the index.html page in the [Giphy Example](./giphy_example).

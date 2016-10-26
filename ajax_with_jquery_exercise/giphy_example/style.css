@@ -1,0 +1,12 @@
+.form-inline {
+  text-align: center;
+}
+
+#giphy-area {
+  margin-top: 30px;
+}
+
+#giphy-area img {
+  margin: 5px;
+  width: 31%;
+}
