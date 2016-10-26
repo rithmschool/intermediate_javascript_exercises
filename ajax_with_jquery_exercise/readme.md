@@ -14,4 +14,4 @@ Here are some ideas (you can build more than one!):
 - A Netflix suggestion with the Netflix Roulette API
 - All the Pokemon or Starwars data you could ever want with the Pokeapi or SWAPI
 
-If you want to see an example, open up the index.html page in the [Giphy Example](./giphy_example).
+If you want to see an example, open up the `index.html` page in the [Giphy Example](./giphy_example).
