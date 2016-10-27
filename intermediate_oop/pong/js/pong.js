@@ -14,8 +14,10 @@ function Pong(canvasId) {
   this.dashes = [];
   this.__createDashes();
 
+  this.winTitle = new CanvasWinTitle(30,30);
+
   this.messageConsole = document.getElementById("messageConsole");
-  this.scorekeeper = new ScoreKeeper(12);
+  this.scorekeeper = new ScoreKeeper(10);
   this.leftScore = new NumberScore(400,15);
   this.rightScore = new NumberScore(550,15);
 }
@@ -33,16 +35,28 @@ Pong.prototype.pointScored = function(pointType) {
       this.rightScore.changeXPos(610);
     }
 
-    this.ball.randomVelocityAndPosition(Ball.DIRECTION_RIGHT);
+    if(this.scorekeeper.checkForWinner()==="rightWins"){
+      this.winTitle.update("rightWins");
+    } else {
+      this.ball.randomVelocityAndPosition(Ball.DIRECTION_RIGHT);
+    }
+
   } else if (pointType === Ball.DIRECTION_RIGHT) {
 
     this.scorekeeper.pointForLeft();
     this.leftScore.update(this.scorekeeper.getLeftScore());
     
-    this.ball.randomVelocityAndPosition(Ball.DIRECTION_LEFT);
+    if(this.scorekeeper.checkForWinner()==="leftWins"){
+      this.winTitle.update("leftWins");
+    } else {
+      this.ball.randomVelocityAndPosition(Ball.DIRECTION_LEFT);
+    }
+    
   }
 
 };
+
+
 
 Pong.prototype.clearCanvas = function() {
   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -64,7 +78,7 @@ Pong.prototype.update = function() {
 
   this.leftScore.draw(this.context);
   this.rightScore.draw(this.context);
-  this.scorekeeper.updateScoreBoard();
+  this.winTitle.draw(this.context);
 };
 
 
