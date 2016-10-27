@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Get Weather</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="main.css">
+	<script src="app.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<h2>See the local weather.</h2>
+		<form id="searchForm">
+			<div class="form-group">
+				<label for="inputCity">Search for City</label>
+				<input type="text" class="form-control" id="inputCity" placeholder="City">
+			</div>
+			<button type="submit" id="submitBtn" class="btn btn-default pull-right">Submit</button>
+		</form>
+		<div id="weatherList">
+			<!-- <div class="row">
+				<div class="boxBorder cityBox col-xs-8">San Francisco</div>
+				<div class="boxBorder tempBox col-xs-4">75℉</div>
+				<div class="boxBorder conditionBox col-xs-4">cloudy sky</div>
+			</div> -->
+		</div>
+	</div>
+</body>
+</html>
