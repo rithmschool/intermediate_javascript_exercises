@@ -72,3 +72,15 @@ curl -H "Content-Type: application/json" \
      -d '{"hacker_news_story":{"by":"Ray","story_id":48382,"title":"How to be an Animator","url":"https://www.rithmschool.com"}}' \
      https://hn-favorites.herokuapp.com/stories.json
 ```
+
+To delete a favorite story, you will need the id created by the api.  For example, a delete request might to the following url:
+
+```
+https://hn-favorites.herokuapp.com/stories/2.json
+```
+
+Here is the curl command to delete:
+
+```
+curl -H "Content-Type: application/json" -X DELETE https://hn-favorites.herokuapp.com/stories/2.json
+```
