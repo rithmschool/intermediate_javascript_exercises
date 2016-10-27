@@ -63,3 +63,12 @@ To create a favorite story, make a POST request to:
 ```
 https://hn-favorites.herokuapp.com/stories.json
 ```
+
+Here is a potential curl request:
+
+```
+curl -H "Content-Type: application/json" \
+     -X POST \
+     -d '{"hacker_news_story":{"by":"Ray","story_id":48382,"title":"How to be an Animator","url":"https://www.rithmschool.com"}}' \
+     https://hn-favorites.herokuapp.com/stories.json
+```
