@@ -114,8 +114,7 @@ https://hn-favorites.herokuapp.com/stories/2.json
 Here is the curl command to delete:
 
 ```
-curl -H "Content-Type: application/json" \
-     -H "Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE0Nzg1NTg5NzZ9.p-t2FDi3EndJWI892lijvaJoV3O7I9CMTHC6pKAcScw" \
+curl -H "Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE0Nzg1NTg5NzZ9.p-t2FDi3EndJWI892lijvaJoV3O7I9CMTHC6pKAcScw" \
      -X DELETE \
      https://hn-favorites.herokuapp.com/stories/2.json
 ```
