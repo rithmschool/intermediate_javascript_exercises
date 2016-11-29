@@ -5,3 +5,9 @@
     width: 1000px;
 }
 
+#messageConsole {
+	width: 1000px;
+	height: 30px;
+	border: 1px solid black;
+	text-align: center;
+}

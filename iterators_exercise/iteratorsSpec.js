@@ -17,18 +17,7 @@ describe("#hasFavoriteEditor", function(){
 
 describe("#findByUsername", function(){
   it("finds a user by a username", function(){
-    expect(findByUsername("david")).to.deep.equal({
-  username: "david",
-  email: "david@test.com",
-  yearsExperience: 12.5,
-  favoriteLanguages: ["JavaScript", "C#", "Swift"],
-  favoriteEditor: "Sublime Text",
-  hobbies: ["Volunteering", "Biking", "Coding"],
-  hometown: {
-    city: "Los Angeles",
-    state: "CA"
-  }
-})
+    expect(findByUsername("david")).to.deep.equal(users[users.length-1])
   });
 });
 

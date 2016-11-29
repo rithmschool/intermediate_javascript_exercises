@@ -1,0 +1,29 @@
+body{
+	
+}
+
+.boxBorder{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	border-bottom: 1px solid #CCCCCC;
+
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+#weatherList{
+	border-top: 1px solid #CCCCCC;
+	margin-top: 90px;
+	position:relative;
+}
+
+.cityBox{
+	font-size: 2em;
+}
+.tempBox, .conditionBox{
+	text-align: center;
+}
+.tempBox {
+	font-size: 1.3em;
+}
