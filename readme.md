@@ -2,6 +2,7 @@
 
 - [Testing Exercise](./testing_exercise)
 - [Recursion Exercise](./recursion_exercise)
+- [Lodash Functions Exercise](./lodash_exercise)
 - [ES2015 Exercises](./es2015_exercise)
 - [Call Apply and Bind Exercises](./call_apply_bind_exercise)
 - [Constructor Function Exercises](./constructor_functions_exercise)
