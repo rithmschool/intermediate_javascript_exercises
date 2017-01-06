@@ -54,23 +54,7 @@ function sample(){
 
 }
 
-function before(){
-
-}
-
 function flip(){
-
-}
-
-function overArgs(){
-
-}
-
-function partial(){
-
-}
-
-function clone(){
 
 }
 
@@ -82,7 +66,7 @@ function sumBy(){
 
 }
 
-function assign(){
+function inRange(){
 
 }
 
