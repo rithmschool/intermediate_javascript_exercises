@@ -98,10 +98,6 @@ function repeat(){
 
 }
 
-function snakeCase(){
-
-}
-
 function upperFirst(){
 
 }

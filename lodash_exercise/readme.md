@@ -27,6 +27,5 @@ For this assignment, you will be re-implementing functions from the popular Loda
 - [omitBy](https://lodash.com/docs/4.17.4#omitBy)
 - [pad](https://lodash.com/docs/4.17.4#pad)
 - [repeat](https://lodash.com/docs/4.17.4#repeat)
-- [snakeCase](https://lodash.com/docs/4.17.4#snakeCase)
 - [upperFirst](https://lodash.com/docs/4.17.4#upperFirst)
 

@@ -1,7 +1,12 @@
 describe("#chunk", function(){
-  it("should", function(){
+  it("should break up an array into subarrays", function(){
     expect(chunk(['a', 'b', 'c', 'd'], 2)).to.deep.equal([['a', 'b'], ['c', 'd']])
+  });
+  it("should leave remaining chunks as subarrays", function(){
     expect(chunk(['a', 'b', 'c', 'd'], 3)).to.deep.equal([['a', 'b', 'c'], ['d']])
+  });
+  it("returns an array of arrays if the second parameter is greater or equal to the length", function(){
+    expect(chunk(['a', 'b', 'c', 'd'], 10)).to.deep.equal([['a', 'b', 'c','d']])
   });
 });
 
@@ -100,20 +105,26 @@ describe("#union", function(){
 });
 
 describe("#zip", function(){
-  it("should", function(){
+  it("should Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.", function(){
     expect(zip(['a', 'b'], [1, 2], [true, false])).to.deep.equal([['a', 1, true], ['b', 2, false]])
+  });
+  it("should handle different length arrays", function(){
+    expect(zip(['a', 'b','c'], [1, 2], [true, false])).to.deep.equal([['a', 1, true], ['b', 2, false], ['c', undefined, undefined]])
   });
 });
 
 describe("#unzip", function(){
-  it("should", function(){
+  it("should accept an array of grouped elements and create an array regrouping the elements to their pre-zip configuration.", function(){
     expect(unzip([['a', 1, true], ['b', 2, false]])).to.deep.equal([['a', 'b'], [1, 2], [true, false]])
   });
 });
 
 describe("#zipObject", function(){
-  it("should", function(){
+  it("should create an object with key value pairs of each array", function(){
     expect(zipObject(['a', 'b'], [1, 2])).to.deep.equal({ 'a': 1, 'b': 2 })
+  });
+  it("should create keys and values if a value in the first array is specified", function(){
+    expect(zipObject(['a', 'b','c','d'], [1, 2, 3])).to.deep.equal({a: 1, b: 2, c: 3, d: 10})
   });
 });
 
@@ -134,25 +145,28 @@ describe("#every", function(){
 });
 
 describe("#includes", function(){
-  it("should", function(){
+  it("should return true if a value exists in an array", function(){
     expect(includes([1, 2, 3], 1)).to.equal(true)
-
+  });
+  it("should be able to start from an index in an array as a third parameter", function(){
     expect(includes([1, 2, 3], 1, 2)).to.equal(false)
-
+  });
+  it("should return true if a value exists in an object", function(){
     expect(includes({ 'a': 1, 'b': 2 }, 1)).to.equal(true)
-
+  });
+  it("should work with strings as well", function(){
     expect(includes('abcd', 'bc')).to.equal(true)
   });
 });
 
 describe("#sample", function(){
-  it("should", function(){
+  it("should select a sample from an array", function(){
     expect(sample([1, 2, 3, 4])).to.be.within(1,4);
   });
 });
 
 describe("#flip", function(){
-  it("should", function(){
+  it("should return a new function with the arguments flipped", function(){
     function subtract(a,b,c){
       return a-b-c
     }
@@ -162,10 +176,12 @@ describe("#flip", function(){
 });
 
 describe("#cloneDeep", function(){
-  it("should", function(){
+  it("should create a deep copy of an array", function(){
     var objects = [{ 'a': 1 }, { 'b': 2 }];
     var deep = cloneDeep(objects);
     expect(deep[0] === objects[0]).to.equal(false)
+  });
+  it("should create a deep copy of an object", function(){
     o = {}
     o2 = deepClone(o)
     expect(o === o2).to.equal(false)
@@ -173,57 +189,60 @@ describe("#cloneDeep", function(){
 });
 
 describe("#sumBy", function(){
-  it("should", function(){
+  it("should sum values based on a condition in a callback function", function(){
     var objects = [{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }];
-
     expect(sumBy(objects, function(o) { return o.n; })).to.equal(20)
-
+  });
+  it("should work with keys in an object as well", function(){
     expect(sumBy(objects, 'n')).to.equal(2)
   });
 });
 
 describe("#inRange", function(){
-  it("should", function(){
+  it("should return true if the value is in a range", function(){
     expect(inRange(3, 2, 4)).to.equal(true)
-
+  });
+  it("it should default the start to 0 when there are only two parameters", function(){
     expect(inRange(4, 8)).to.equal(true)
-
     expect(inRange(4, 2)).to.equal(false)
-
     expect(inRange(2, 2)).to.equal(false)
-
-    expect(inRange(1.2, 2)).to.equal(true)
-
-    expect(inRange(5.2, 4)).to.equal(false)
-
+  });
+  it("should handle negative numbers as well", function(){
     expect(inRange(-3, -2, -6)).to.equal(true)
+  });
+  it("should work with decimals as well", function(){
+    expect(inRange(1.2, 2)).to.equal(true)
+    expect(inRange(5.2, 4)).to.equal(false)
   });
 });
 
 describe("#has", function(){
-  it("should", function(){
-    var object = { 'a': { 'b': 2 } };
+  var object = { 'a': { 'b': 2 } };
+  it("should return true if an object contains a key", function(){
     expect(has(object, 'a')).to.equal(true)
+  });
+  it("should handle an array of keys as a parameter as well", function(){
     expect(has(object, ['a', 'b'])).to.equal(true)
   });
+
 });
 
 describe("#omit", function(){
-  it("should", function(){
+  it("should return a new object with all keys omitted", function(){
     var object = { 'a': 1, 'b': '2', 'c': 3 };
     expect(omit(object, ['a', 'c'])).to.deep.equal({ 'b': '2' })
   });
 });
 
 describe("#pick", function(){
-  it("should", function(){
+  it("should return a new object with all keys picked", function(){
     var object = { 'a': 1, 'b': '2', 'c': 3 };
     expect(pick(object, ['a', 'c'])).to.deep.equal({ 'a': 1, 'c': 3 })
   });
 });
 
 describe("#pickBy", function(){
-  it("should", function(){
+  it("should return a new object with all keys picked by a truthy condition in a callback function", function(){
     function isNumber(val){
       return typeof val === 'number';
     }
@@ -233,7 +252,7 @@ describe("#pickBy", function(){
 });
 
 describe("#omitBy", function(){
-  it("should", function(){
+  it("should return a new object with all keys omitted by a truthy condition in a callback function", function(){
     function isNumber(val){
       return typeof val === 'number';
     }
@@ -244,50 +263,42 @@ describe("#omitBy", function(){
 });
 
 describe("#pad", function(){
-  it("should", function(){
+  it("should pad with whitespace if no second parameter is passed in", function(){
     expect(pad('abc', 8)).to.equal('  abc   ')
-
+  });
+  it("should pad both directions evenly", function(){
     expect(pad('abc', 8, '_-')).to.equal('_-abc_-_')
-
+  });
+  it("should not pad with anything if the length is less than or equal", function(){
     expect(pad('abc', 3)).to.equal('abc')
   });
 });
 
 describe("#repeat", function(){
-  it("should", function(){
+  it("should repeat a string n number of times", function(){
     expect(repeat('*', 3)).to.equal('***')
-
     expect(repeat('abc', 2)).to.equal('abcabc')
-
+  });
+  it("should return an empty string if the second parameter is 0", function(){
     expect(repeat('abc', 0)).to.equal('')
   });
 });
 
-describe("#snakeCase", function(){
-  it("should", function(){
-    expect(snakeCase('Foo Bar')).to.equal('foo_bar')
-
-    expect(snakeCase('fooBar')).to.equal('foo_bar')
-
-    expect(snakeCase('--FOO-BAR--')).to.equal('foo_bar')
-  });
-});
-
 describe("#upperFirst", function(){
-  it("should", function(){
+  it("should return the same string with the first letter captialized", function(){
     expect(upperFirst('fred')).to.equal('Fred')
     expect(upperFirst('FRED')).to.equal('FRED')
   });
 });
 
 describe("#flatten", function(){
-  it("should", function(){
+  it("should flatten an array once", function(){
     expect(flatten([1, [2, [3, [4]], 5]])).to.deep.equal([1, 2, [3, [4]], 5])
   });
 });
 
 describe("#flattenDeep", function(){
-  it("should", function(){
+  it("should flatten a nested array completely", function(){
     expect(flattenDeep([1, [2, [3, [4]], 5]])).to.deep.equal([1, 2, 3, 4, 5])
   });
 });
