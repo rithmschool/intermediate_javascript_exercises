@@ -1,4 +1,4 @@
-function chunk(){
+function chunk(arr,param){
 
 }
 
@@ -98,10 +98,14 @@ function repeat(){
 
 }
 
-function upperFirst(){
+function upperFirst(str){
 
 }
 
-function shuffle(){
+function flatten(){
+
+}
+
+function flattenDeep(){
 
 }
