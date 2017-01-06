@@ -1,3 +1,5 @@
+var expect = chai.expect
+
 describe("#chunk", function(){
   it("should break up an array into subarrays", function(){
     expect(chunk(['a', 'b', 'c', 'd'], 2)).to.deep.equal([['a', 'b'], ['c', 'd']])
