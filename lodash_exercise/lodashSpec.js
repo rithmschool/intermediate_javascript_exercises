@@ -185,18 +185,18 @@ describe("#cloneDeep", function(){
   });
   it("should create a deep copy of an object", function(){
     o = {}
-    o2 = deepClone(o)
+    o2 = cloneDeep(o)
     expect(o === o2).to.equal(false)
   });
 });
 
 describe("#sumBy", function(){
+  var objects = [{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }];
   it("should sum values based on a condition in a callback function", function(){
-    var objects = [{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }];
     expect(sumBy(objects, function(o) { return o.n; })).to.equal(20)
   });
   it("should work with keys in an object as well", function(){
-    expect(sumBy(objects, 'n')).to.equal(2)
+    expect(sumBy(objects, 'n')).to.equal(20)
   });
 });
 
@@ -303,4 +303,4 @@ describe("#flattenDeep", function(){
   it("should flatten a nested array completely", function(){
     expect(flattenDeep([1, [2, [3, [4]], 5]])).to.deep.equal([1, 2, 3, 4, 5])
   });
-});
+});;
