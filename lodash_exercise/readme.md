@@ -2,7 +2,6 @@
 
 For this assignment, you will be re-implementing functions from the popular Lodash library. Examine each of these functions in detail and see how they are used before you try to implement them:
 
-- [chunk](https://lodash.com/docs/4.17.4#chunk)
 - [drop](https://lodash.com/docs/4.17.4#drop)
 - [fromPairs](https://lodash.com/docs/4.17.4#fromPairs)
 - [head](https://lodash.com/docs/4.17.4#head)
@@ -13,7 +12,6 @@ For this assignment, you will be re-implementing functions from the popular Loda
 - [zip](https://lodash.com/docs/4.17.4#zip)
 - [unzip](https://lodash.com/docs/4.17.4#unzip)
 - [zipObject](https://lodash.com/docs/4.17.4#zipObject)
-- [every](https://lodash.com/docs/4.17.4#every)
 - [includes](https://lodash.com/docs/4.17.4#includes)
 - [sample](https://lodash.com/docs/4.17.4#sample)
 - [flip](https://lodash.com/docs/4.17.4#flip)

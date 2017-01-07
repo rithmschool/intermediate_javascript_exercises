@@ -1,17 +1,5 @@
 var expect = chai.expect
 
-describe("#chunk", function(){
-  it("should break up an array into subarrays", function(){
-    expect(chunk(['a', 'b', 'c', 'd'], 2)).to.deep.equal([['a', 'b'], ['c', 'd']])
-  });
-  it("should leave remaining chunks as subarrays", function(){
-    expect(chunk(['a', 'b', 'c', 'd'], 3)).to.deep.equal([['a', 'b', 'c'], ['d']])
-  });
-  it("returns an array of arrays if the second parameter is greater or equal to the length", function(){
-    expect(chunk(['a', 'b', 'c', 'd'], 10)).to.deep.equal([['a', 'b', 'c','d']])
-  });
-});
-
 describe("#drop", function(){
   it("should remove the first element of an array when no second parameter is passed", function(){
     expect(drop([1,2,3])).to.deep.equal([2,3])
@@ -75,7 +63,7 @@ describe("#takeRight", function(){
     expect(takeRight([1, 2, 3], 2)).to.deep.equal([2, 3])
   });
   it("copies the entire array if the second parameter is greater or equal to the length of the array", function(){
-    expect(takeRight([1, 2, 3], 5)).to.deep.equal([1, 2])
+    expect(takeRight([1, 2, 3], 5)).to.deep.equal([1, 2,3])
   });
   it("returns an empty array if the second parameter is 0", function(){
     expect(takeRight([1, 2, 3], 0)).to.deep.equal([])
@@ -126,23 +114,7 @@ describe("#zipObject", function(){
     expect(zipObject(['a', 'b'], [1, 2])).to.deep.equal({ 'a': 1, 'b': 2 })
   });
   it("should create keys and values if a value in the first array is specified", function(){
-    expect(zipObject(['a', 'b','c','d'], [1, 2, 3])).to.deep.equal({a: 1, b: 2, c: 3, d: 10})
-  });
-});
-
-describe("#every", function(){
-  it("should", function(){
-    expect(every([true, 1, null, 'yes'], Boolean)).to.equal(false)
-
-    var users = [
-      { 'user': 'barney', 'age': 36, 'active': false },
-      { 'user': 'fred',   'age': 40, 'active': false }
-    ];
-
-    expect(every(users, { 'user': 'barney', 'active': false })).to.equal(false)
-
-    expect(every(users, ['active', false])).to.equal(true)
-    expect(every(users, 'active')).to.equal(false)
+    expect(zipObject(['a', 'b','c','d'], [1, 2, 3])).to.deep.equal({a: 1, b: 2, c: 3, d: undefined})
   });
 });
 
@@ -264,15 +236,15 @@ describe("#omitBy", function(){
   });
 });
 
-describe("#pad", function(){
-  it("should pad with whitespace if no second parameter is passed in", function(){
-    expect(pad('abc', 8)).to.equal('  abc   ')
+describe("#padEnd", function(){
+  it("should pad with whitespace if no third parameter is passed in", function(){
+    expect(padEnd('abc', 6)).to.equal('abc   ')
   });
   it("should pad both directions evenly", function(){
-    expect(pad('abc', 8, '_-')).to.equal('_-abc_-_')
+    expect(padEnd('abc', 6, '_-')).to.equal('abc_-_')
   });
   it("should not pad with anything if the length is less than or equal", function(){
-    expect(pad('abc', 3)).to.equal('abc')
+    expect(padEnd('abc', 3)).to.equal('abc')
   });
 });
 
@@ -303,4 +275,4 @@ describe("#flattenDeep", function(){
   it("should flatten a nested array completely", function(){
     expect(flattenDeep([1, [2, [3, [4]], 5]])).to.deep.equal([1, 2, 3, 4, 5])
   });
-});;
+});

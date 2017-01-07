@@ -1,7 +1,3 @@
-function chunk(arr,param){
-
-}
-
 function drop(){
 
 }
@@ -39,10 +35,6 @@ function unzip(){
 }
 
 function zipObject(){
-
-}
-
-function every(){
 
 }
 
