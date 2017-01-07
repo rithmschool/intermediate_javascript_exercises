@@ -23,7 +23,7 @@ For this assignment, you will be re-implementing functions from the popular Loda
 - [pick](https://lodash.com/docs/4.17.4#pick)
 - [pickBy](https://lodash.com/docs/4.17.4#pickBy)
 - [omitBy](https://lodash.com/docs/4.17.4#omitBy)
-- [pad](https://lodash.com/docs/4.17.4#pad)
+- [padEnd](https://lodash.com/docs/4.17.4#padEnd)
 - [repeat](https://lodash.com/docs/4.17.4#repeat)
 - [upperFirst](https://lodash.com/docs/4.17.4#upperFirst)
 
