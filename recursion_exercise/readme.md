@@ -32,6 +32,12 @@ contains(nestedObject, 44) // true
 contains(nestedObject, "foo") // false
 ```
 
+Complete the following CodeWars problems:
+
+- [https://www.codewars.com/kata/the-real-size-of-a-multi-dimensional-array/train/javascript](https://www.codewars.com/kata/the-real-size-of-a-multi-dimensional-array/train/javascript)
+- [https://www.codewars.com/kata/sum-squares-of-numbers-in-list-that-may-contain-more-lists/train/javascript](https://www.codewars.com/kata/sum-squares-of-numbers-in-list-that-may-contain-more-lists/train/javascript)
+- [https://www.codewars.com/kata/recursive-replication](https://www.codewars.com/kata/recursive-replication)
+
 **BONUS**
 
 - Write a function called search that finds a value in an array and returns the index where the value is at. If the value is not found, the function should return negative 1.
@@ -77,3 +83,5 @@ stringifyNumbers()
 }
 /*/
 ```
+
+Complete [this](https://www.codewars.com/kata/mutual-recursion/train/javascript) codewars problem! 
