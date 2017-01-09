@@ -11,36 +11,6 @@ productOfArray([1,2,3]) // 6
 productOfArray([1,2,3,10]) // 60
 ```
 
-- Write a function called `stringifyNumbers` which takes in an object and finds all of the values which are numbers and converts them to strings. Recursion would be a great way to solve this!
-
-```javascript
-var obj = {
-    num: 1,
-    test: [],
-    data: {
-        val: 4,
-        info: {
-            isRight: true,
-            random: 66
-        }
-    }
-}
-stringifyNumbers()
-/*/
-{
-    num: "1",
-    test: [],
-    data: {
-        val: "4",
-        info: {
-            isRight: true,
-            random: "66"
-        }
-    }
-}
-/*/
-```
-
 - Write a function called `contains` that searches for a value in a nested object. It returns true if the object contains that value.
 
 ```javascript
@@ -76,4 +46,34 @@ search([1,2,3,4,5],15) // -1
 ```javascript
 binarySearch([1,2,3,4,5],5) // 4
 binarySearch([1,2,3,4,5],15) // -1
+```
+
+- Write a function called `stringifyNumbers` which takes in an object and finds all of the values which are numbers and converts them to strings. Recursion would be a great way to solve this!
+
+```javascript
+var obj = {
+    num: 1,
+    test: [],
+    data: {
+        val: 4,
+        info: {
+            isRight: true,
+            random: 66
+        }
+    }
+}
+stringifyNumbers()
+/*/
+{
+    num: "1",
+    test: [],
+    data: {
+        val: "4",
+        info: {
+            isRight: true,
+            random: "66"
+        }
+    }
+}
+/*/
 ```
