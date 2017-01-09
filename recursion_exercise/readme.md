@@ -62,14 +62,14 @@ contains(nestedObject, 44) // true
 contains(nestedObject, "foo") // false
 ```
 
+**BONUS**
+
 - Write a function called search that finds a value in an array and returns the index where the value is at. If the value is not found, the function should return negative 1.
 
 ```javascript
 search([1,2,3,4,5],5) // 4
 search([1,2,3,4,5],15) // -1
 ```
-
-**BONUS**
 
 - Refactor your search function to use a faster algorithm called binary search [https://www.youtube.com/watch?v=JQhciTuD3E8](https://www.youtube.com/watch?v=JQhciTuD3E8). 
 

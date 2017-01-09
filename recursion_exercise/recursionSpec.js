@@ -29,6 +29,49 @@ describe("#collectStrings", function(){
   });
 });
 
+describe("#contains", function(){
+  it("should return true if a value is found in an object", function(){
+    var nestedObject = {
+        data: {
+            info: {
+                stuff: {
+                    thing: {
+                        moreStuff: {
+                            magicNumber: 44
+                        }
+                    }
+                }
+            }
+        }
+    }
+    expect(contains(nestedObject, 44)).to.equal(true) // true)
+  });
+});
+
+describe("#search", function(){
+  it("should find the index of a value in an array", function(){
+    expect(search([1,2,3,4],4)).to.equal(3)
+    expect(search([1,2],1)).to.equal(0)
+    expect(search([1,2,3,4,5,6,7],6)).to.equal(5)
+  });
+  it("should return -1 if the value is not found", function(){
+    expect(search([1,2,3,4]),0).to.equal(-1)
+    expect(search([1,2]),11).to.equal(-1)
+  });
+});
+
+describe("#binarySearch", function(){
+  it("should find the index of a value in an array", function(){
+    expect(binarySearch([1,2,3,4],4)).to.equal(3)
+    expect(binarySearch([1,2],1)).to.equal(0)
+    expect(binarySearch([1,2,3,4,5,6,7],6)).to.equal(5)
+  });
+  it("should return -1 if the value is not found", function(){
+    expect(binarySearch([1,2,3,4],0)).to.equal(-1)
+    expect(binarySearch([1,2],11)).to.equal(-1)
+  });
+});
+
 describe("#stringifyNumbers", function(){
   it("should convert all numbers in a nested object to strings", function(){
     var obj = {
@@ -53,49 +96,8 @@ describe("#stringifyNumbers", function(){
         }
       }
     }
+    console.log("obj", stringifyNumbers(obj))
+    console.log("answer", answer)
     expect(stringifyNumbers(obj)).to.deep.equal(answer)
-  });
-});
-
-describe("#contains", function(){
-  it("should return true if a value is found in an object", function(){
-    var nestedObject = {
-        data: {
-            info: {
-                stuff: {
-                    thing: {
-                        moreStuff: {
-                            magicNumber: 44
-                        }
-                    }
-                }
-            }
-        }
-    }
-    expect(contains(nestedObject, 44)).to.equal(true) // true)
-  });
-});
-
-describe("#search", function(){
-  it("should find the index of a value in an array", function(){
-    expect(search([1,2,3,4]),4).to.equal(3)
-    expect(search([1,2]),1).to.equal(0)
-    expect(search([1,2,3,4,5,6,7]),6).to.equal(5)
-  });
-  it("should return -1 if the value is not found", function(){
-    expect(search([1,2,3,4]),0).to.equal(-1)
-    expect(search([1,2]),11).to.equal(-1)
-  });
-});
-
-describe("#binarySearch", function(){
-  it("should find the index of a value in an array", function(){
-    expect(binarySearch([1,2,3,4]),4).to.equal(3)
-    expect(binarySearch([1,2]),1).to.equal(0)
-    expect(binarySearch([1,2,3,4,5,6,7]),6).to.equal(5)
-  });
-  it("should return -1 if the value is not found", function(){
-    expect(binarySearch([1,2,3,4]),0).to.equal(-1)
-    expect(binarySearch([1,2]),11).to.equal(-1)
   });
 });
