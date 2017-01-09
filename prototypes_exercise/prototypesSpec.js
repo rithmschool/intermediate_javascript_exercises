@@ -111,10 +111,10 @@ describe("Function.prototype.bind", function(){
     return a+b
   }
   it("returns a function with the context set", function(){
-    expect(add.bind(this)).to.be("function");
+    expect(add.bind(this)).to.be.a("function");
   });
   it("returns a function with the context set", function(){
-    expect(add.bind(this,3)(4)).to.be(7);
-    expect(add.bind(this)(3,4)).to.be(7);
+    expect(add.bind(this,3)(4)).to.equal(7);
+    expect(add.bind(this)(3,4)).to.equal(7);
   });
 });
