@@ -64,22 +64,6 @@ function add(a,b){
 }
 ```
 
-```javascript
-function Person(firstName, lastName, favoriteColor){
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.favoriteColor = favoriteColor;
-}
-
-Person.prototype.fullName = function(){
-    return this.firstName + " " + this.lastName;
-}
-
-Person.isPerson = function(person){
-    return person.constructor === Person;
-}
-```
-
 Research the following functions - what do they do?
 
 `Array.from` -
