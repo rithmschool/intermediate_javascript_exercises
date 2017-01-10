@@ -73,6 +73,33 @@ describe("#binarySearch", function(){
 });
 
 describe("#stringifyNumbers", function(){
+  it("should not modify an existing object", function(){
+    var obj = {
+      num: 1,
+      test: [],
+      data: {
+        val: 4,
+        info: {
+          isRight: true,
+          random: 66
+        }
+      }
+    }
+    var answer = {
+      num: "1",
+      test: [],
+      data: {
+        val: "4",
+        info: {
+          isRight: true,
+          random: "66"
+        }
+      }
+    }
+    stringifyNumbers(obj)
+    expect(obj.num).to.be.a('number')
+    expect(obj.num).to.equal(1)
+  });
   it("should convert all numbers in a nested object to strings", function(){
     var obj = {
       num: 1,
@@ -96,6 +123,49 @@ describe("#stringifyNumbers", function(){
         }
       }
     }
+    expect(stringifyNumbers(obj)).to.deep.equal(answer)
+  });
+  it("should convert all numbers in a highly nested object to strings", function(){
+    var obj = {
+      num: 1,
+      test: [],
+      data: {
+        val: 4,
+        info: {
+          isRight: true,
+          random: 66,
+          nested: {
+            inner: {
+              nestedInner: {
+                another: {
+                  num: 10
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    var answer = {
+       num: '1',
+       test: [],
+       data: {
+         val: '4',
+         info: {
+           isRight: true,
+           random: '66',
+           nested: {
+             inner: {
+               nestedInner: {
+                 another: {
+                   num: '10'
+                 }
+               }
+             }
+           }
+         }
+       }
+     }
     expect(stringifyNumbers(obj)).to.deep.equal(answer)
   });
 });
