@@ -13,7 +13,7 @@ You should not need to modify anything in the `index.html` file - we have alread
 - Write a function called `replaceWith` that takes in a string, a character to replace and a character to replace it with and returns the string with the replacements. Write tests to make sure this is case **sensitive**
 
 ```javascript
-replaceWith("awesome", "a", "z") // "zwesomz"
+replaceWith("awesome", "e", "z") // "awzsomz"
 replaceWith("Foo", "F", "B") // "Boo"
 ```
 
