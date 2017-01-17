@@ -52,6 +52,21 @@ function contains(obj, val){
     return false
 }
 
+// With helper method recursion
+function linearSearch(arr, val){
+
+    function search(arr,val,idx){
+        if(idx === arr.length) return -1
+        else if(arr[idx] !== val){
+            return search(arr, val, idx+1)
+        } 
+        return idx;
+    }
+
+    return search(arr, val, 0)
+
+}
+
 function search(arr, val, start=0, end=arr.length-1){
     if(start > end){
         return -1
@@ -59,6 +74,27 @@ function search(arr, val, start=0, end=arr.length-1){
         return search(arr, val, start+1, end)
     }
     return start
+}
+
+// With helper method recursion
+function binarySearch(arr, val){
+
+    function binarySearchHelper(array, value, left, right){
+        
+        if(left > right) return -1;
+
+        var middle = Math.floor((right + left) / 2);
+
+        if(array[middle] === value) return middle;
+        
+        else if(array[middle] > value) {
+            return binarySearchHelper(array,value,left,middle-1)
+        } 
+        
+        return binarySearchHelper(array,value,middle+1,right)
+    }
+
+    return binarySearchHelper(arr, val, 0, arr.length)
 }
 
 function binarySearch(array, key, left=0, right=array.length) {
