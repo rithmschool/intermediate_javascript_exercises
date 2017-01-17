@@ -11,6 +11,28 @@ productOfArray([1,2,3]) // 6
 productOfArray([1,2,3,10]) // 60
 ```
 
+- Write a function called `collectStrings` which accepts an object and returns an array of all the values in the object that have a typeof string
+
+```javascript
+var obj = {
+    stuff: "foo",
+    data: {
+        val: {
+            thing: {
+                info: "bar",
+                moreInfo: {
+                    evenMoreInfo: {
+                        weMadeIt: "baz"
+                    }
+                }
+            }
+        }
+    }
+}
+
+collectStrings(obj) // ["foo", "bar", "baz"])
+```
+
 - Write a function called `contains` that searches for a value in a nested object. It returns true if the object contains that value.
 
 ```javascript
@@ -31,6 +53,12 @@ var nestedObject = {
 contains(nestedObject, 44) // true
 contains(nestedObject, "foo") // false
 ```
+
+Complete the following CodeWars problems:
+
+- [https://www.codewars.com/kata/the-real-size-of-a-multi-dimensional-array/train/javascript](https://www.codewars.com/kata/the-real-size-of-a-multi-dimensional-array/train/javascript)
+- [https://www.codewars.com/kata/sum-squares-of-numbers-in-list-that-may-contain-more-lists/train/javascript](https://www.codewars.com/kata/sum-squares-of-numbers-in-list-that-may-contain-more-lists/train/javascript)
+- [https://www.codewars.com/kata/recursive-replication](https://www.codewars.com/kata/recursive-replication)
 
 **BONUS**
 
@@ -77,3 +105,5 @@ stringifyNumbers()
 }
 /*/
 ```
+
+Complete [this](https://www.codewars.com/kata/mutual-recursion/train/javascript) codewars problem! 
