@@ -55,20 +55,11 @@
     }
 
 
-
     function mergeObjects(obj1, obj2){
-    	var obj = {};
-    	for(var key in obj1){
-    		obj[key] = obj1[key];
-    	}
-    	for(var key in obj2){
-    		if(obj[key] === undefined){
-    			obj[key] = obj2[key];
-    		}else{
-    			obj[key] = obj2[key];
-    		}
-    	}
-    	return obj;
+        for(var key in obj2){
+            obj1[key] = obj2[key];
+        }
+        return obj1;
     }
 
 
