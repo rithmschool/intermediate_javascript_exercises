@@ -11,6 +11,28 @@ productOfArray([1,2,3]) // 6
 productOfArray([1,2,3,10]) // 60
 ```
 
+- Write a function called `collectStrings` which returns all the strings in a nested object.
+
+```javascript
+var obj = {
+    stuff: "foo",
+    data: {
+        val: {
+            thing: {
+                info: "bar",
+                moreInfo: {
+                    evenMoreInfo: {
+                        weMadeIt: "baz"
+                    }
+                }
+            }
+        }
+    }
+}
+
+collectStrings(obj) // ["foo", "bar", "baz"]
+```
+
 - Write a function called `contains` that searches for a value in a nested object. It returns true if the object contains that value.
 
 ```javascript
