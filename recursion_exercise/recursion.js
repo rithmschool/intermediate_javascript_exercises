@@ -83,6 +83,42 @@ function search(arr, val){
    return count; 
 }
 
+function binarySearch(arr, target){
+    var max = arr.length - 1;
+    var min = 1;
+    var index;
+
+
+    
+    function helper(arr, target, max, min){
+        var avg = (max + min) / 2;
+        index =  Math.floor(avg);
+
+    
+      
+       
+       if(arr[index] === target ){
+           return index;
+       } 
+        
+
+       if(arr[index] < target){
+           min = index + 1;
+           helper(arr, target, max, min);
+       } else {
+            max = index - 1;
+            helper(arr, target, max, min);
+       }
+        if(max < min){
+         return -1;
+       }
+
+    }
+
+    helper(arr, target, max, min);
+    return index;
+
+}
 
 
 
