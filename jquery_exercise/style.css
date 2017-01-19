@@ -28,6 +28,18 @@
   padding: 5px 0;
 }
 
+#submit:active,
+#submit:focus,
+#favorites:active,
+#favorites:focus {
+  text-decoration: none;
+}
+
+#submit:hover,
+#favorites:hover {
+  text-decoration: underline;
+}
+
 #stories > li > a, 
 #stories > li > a:hover {
   color: #000000;
@@ -43,16 +55,10 @@ small {
   text-decoration: underline;
 }
 
-.navbar-right {
-  margin-right: 5px;
-  display: none;
-}
-
-.navbar-right:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
 .hide-numbers {
   list-style: none;
+}
+
+.glyphicon:hover {
+  cursor: pointer;
 }

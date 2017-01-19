@@ -41,13 +41,25 @@ $(function() {
     }).hide();
     $stories.addClass('hide-numbers');
     $clearFilter.show();
+    $favorites.text('all');
   });
 
-  $clearFilter.on('click', function() {
-    $stories.children('li').show()
-    $stories.removeClass('hide-numbers');
-    $(this).hide();
-  })
+  $stories.on('click', '.glyphicon', function(e) {
+    $(e.target).toggleClass('glyphicon-star-empty glyphicon-star');
+  });
 
+  $favorites.on('click', function(e) {
+    if ($favorites.text() === 'favorites') {
+      $stories.children('li').filter(function(i, el) {
+        return $(el).children('.glyphicon').hasClass('glyphicon-star-empty');
+      }).hide();
+      $stories.addClass('hide-numbers');
+      $favorites.text('all');
+    } else {
+      $stories.children('li').show();
+      $stories.removeClass('hide-numbers');
+      $favorites.text('favorites');
+    }
+  });
 
 });
