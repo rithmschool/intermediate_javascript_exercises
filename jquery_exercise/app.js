@@ -26,7 +26,10 @@ $(function() {
     var $small = $("<small>", {
       text: "(" + hostname + ")"
     });
-    var $newStory = $("<li>").append($newLink, $small);
+    var $star = $("<span>", {
+      "class": "glyphicon glyphicon-star-empty"
+    });
+    var $newStory = $("<li>").append($star, $newLink, $small);
     $submit.trigger('click');
     $title.val('');
     $url.val('');

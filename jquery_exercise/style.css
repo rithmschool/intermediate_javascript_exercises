@@ -1,3 +1,7 @@
+body {
+  margin: 8px;
+}
+
 .navbar-default .navbar-brand,
 .navbar-default .navbar-text,
 .navbar-default .navbar-brand:hover,
