@@ -94,31 +94,30 @@ function binarySearch(arr, target){
         var avg = (max + min) / 2;
         index =  Math.floor(avg);
 
-    
-      
-       
-       if(arr[index] === target ){
+          
+       if(arr[index] === target){
            return index;
        } 
-        
 
-       if(arr[index] < target){
+       if(max < min){
+         return -1;
+       }
+     
+        if(arr[index] < target){
            min = index + 1;
-           helper(arr, target, max, min);
+          return helper(arr, target, max, min);
        } else {
             max = index - 1;
-            helper(arr, target, max, min);
-       }
-        if(max < min){
-         return -1;
+           return helper(arr, target, max, min);
        }
 
     }
 
-    helper(arr, target, max, min);
-    return index;
+      return helper(arr, target, max, min);
+    
 
 }
+
 
 
 
