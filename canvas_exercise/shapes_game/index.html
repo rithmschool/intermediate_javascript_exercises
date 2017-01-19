@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shapes!!</title>
+  <link rel="stylesheet" type="text/css" href="vendor/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script type="text/javascript" src="vendor/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript" src="vendor/bootstrap.min.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="col-xs-10 canvas-container">
+      <canvas id="shapes-game" height="750" width="800"></canvas>
+    </div>
+    <div class="col-xs-2 scores">
+      <h1>Score</h1>
+      <h3><span id="score-val">0</span></h3>
+      <h1>Timer</h1>
+      <h3><span id="time-remaining">30</span></h3>
+      <div class="legend">
+        <h1>Legend</h1>
+        <div class="legend-contents">
+          <div class="triangle-bottomleft-red">
+          </div>
+          <h4>Left</h4>
+          <div class="white-square">
+          </div>
+          <h4>Right</h4>
+          <div class="triangle-bottomleft-black">
+            <div class="triangle-inner-white"></div>
+          </div>
+          <h4>Up</h4>
+          <div class="red-square">
+          </div>
+          <h4>Down</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
