@@ -1,0 +1,58 @@
+.navbar-default .navbar-brand,
+.navbar-default .navbar-text,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-link,
+.navbar-default .navbar-link:hover {
+	color: #000000;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.form-horizontal {
+  padding: 20px 0;
+}
+
+#new-form, 
+#stories {
+	background-color: #f6f6ef;
+}
+
+#new-form {
+  display: none;
+}
+
+#stories > li {
+  color: #828282;
+  padding: 5px 0;
+}
+
+#stories > li > a, 
+#stories > li > a:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+small {
+  margin-left: 3px;
+}
+
+#stories > li > small:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.navbar-right {
+  margin-right: 5px;
+  display: none;
+}
+
+.navbar-right:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.hide-numbers {
+  list-style: none;
+}

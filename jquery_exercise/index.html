@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link 
+	  rel="stylesheet" 
+	  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+	  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+	>
+<!-- 	<link 
+	  rel="stylesheet" 
+	  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"
+	> -->
+	<link 
+	  rel="stylesheet" 
+	  href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/united/bootstrap.min.css" 
+	  integrity="sha384-pVJelSCJ58Og1XDc2E95RVYHZDPb9AVyXsI8NoVpB2xmtxoZKJePbMfE4mlXw7BJ" 
+	  crossorigin="anonymous"
+	>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="container">
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <span class="navbar-brand">
+	        <b>Slacker News</b>
+	      </span>
+	    </div>
+	    <p class="navbar-text">
+	    	<a href="javascript:void(0)" class="navbar-link" id="submit">submit</a> | 
+	    	<a href="javascript:void(0)" class="navbar-link" id="favorites">favorites</a>
+	    </p>
+	    <p class="navbar-text navbar-right">clear filter</p>
+	  </div>
+	</nav>
+	<div id="new-form">
+		<form class="form-horizontal">
+		  <div class="form-group">
+		    <label for="title" class="col-sm-2 control-label">title</label>
+		    <div class="col-sm-6">
+		      <input type="text" class="form-control" id="title">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="url" class="col-sm-2 control-label">url</label>
+		    <div class="col-sm-6">
+		      <input type="url" class="form-control" id="url">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-default">submit</button>
+		    </div>
+		  </div>
+		</form>
+	</div>
+	<ol id="stories">
+		<li>
+			<a href="https://visualgo.net/">Visualizing Algorithms</a>
+			<small>(visualgo.net)</small>
+		</li>
+		<li>
+			<a href="https://www.rithmschool.com/blog/problem-solving-strategies-01">Problem Solving with Rithm</a>
+			<small>(rithmschool.com)</small>
+		</li>
+		<li>
+			<a href="https://www.amazon.com/Power-Up-Unlocking-Hidden-Mathematics-Video/dp/0691161518/">Buy this book!</a>
+			<small>(amazon.com)</small>
+		</li>
+		<li>
+			<a href="https://github.com/whiskey-the-dog">Dogs on GitHub</a>
+			<small>(github.com)</small>
+		</li>
+		<li>
+			<a href="https://www.rithmschool.com/blog/problem-solving-strategies-02">MOAR PROBELM SOLVING</a>
+			<small>(rithmschool.com)</small>
+		</li>
+	</ol>
+	<script
+	  src="https://code.jquery.com/jquery-3.1.1.js"
+	  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+	  crossorigin="anonymous">
+	</script>
+  <script src="app.js"></script>
+</body>
+</html>
