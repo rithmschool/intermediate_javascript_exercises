@@ -1,29 +1,45 @@
-function drop(){
-
+function drop(array, n){
+    if(n === undefined){n = 1}
+    return array.slice(n);
 }
 
-function fromPairs(){
-
+function fromPairs(arrArr){
+    var obj = {};
+    arrArr.forEach(function(val){
+        obj[val[0]] = val[1];
+    });
+    return obj;
 }
 
-function head(){
-
+function head(array){
+    return array.shift();
 }
 
-function take(){
-
+function take(array, n){
+    if(n === undefined){n = 1}
+    return array.slice(0, n);
 }
 
-function takeRight(){
-
+function takeRight(array, n){
+    if(n === undefined){n = 1}
+    if(n === 0){return []}
+    return array.slice(-n);
 }
 
-function takeWhile(){
-
+function takeWhile(array, callback){
+    return array.filter(callback)   
 }
 
-function union(){
-
+function union(arrays){
+    var unique = [];
+    for(var i = 0; i < arguments.length; i++){
+        for(var j = 0; j < arguments[i].length; j++){
+            if(!unique.includes(arguments[i][j])){
+                unique.push(arguments[i][j]);
+            } 
+        }
+    }
+    return unique;
 }
 
 function zip(){
