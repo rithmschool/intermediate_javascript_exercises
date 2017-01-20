@@ -1,28 +1,17 @@
 window.addEventListener("load", function() {
 
-
-    // function clear(ctx, width, heigt) {}
-
-    // function drawRandomShape(ctx, width, height) {}
-
-    // function drawGameStartText(ctx, width, height, score) {}
-
-    // function restartGame(ctx, width, height) {}
-
-
-
     var canvas = document.getElementById("shapes-game"),
         height = canvas.scrollHeight,
         width = canvas.scrollWidth,
         gameOn = false,
         expectedKey = undefined,
         ctx = canvas.getContext('2d'),
-        // white triangle = up, red square = down,
-        // red triangle = left, white square = right
         expectedKeysMap = { white0: 38, red1: 40, red0: 37, white1: 39 },
-        timerSpan = document.getElementById("time-remaining"),
-        scoreSpan = document.getElementById("score-val"),
+        time = document.getElementById("time-remaining"),
+        score = document.getElementById("score-val"),
         seconds = 3,
+        bestScore = 0,
+        expectedValue = 32,
         intervalId;
 
     canvas.width = width;
@@ -32,7 +21,9 @@ window.addEventListener("load", function() {
         draw: function() {
             ctx.font = "35px Comic Sans MS";
             ctx.fillStyle = "White";
-            ctx.fillText("Press Space Bar to Start the Game!", 100, 400);
+            ctx.fillText("When the shapes come on the screen,", 100, 200);
+            ctx.fillText("use the corresponding arrows --->", 100, 250);
+            ctx.fillText("Press Space Bar to Start the Game!", 100, 450);
         }
     }
 
@@ -85,32 +76,27 @@ window.addEventListener("load", function() {
             ctx.fillRect(Math.random() * this.corner[0], Math.random() * this.corner[1], this.width, this.height);
         }
     }
-    var bestScore = 0;
-    var expectedValue = 32;
 
     function pickRandomShape() {
         var choice = Math.random();
         if (choice <= 0.25) {
-            redTriangle.draw();
             expectedValue = 37
+            return redTriangle.draw();
         }
-        if (choice > 0.25 && choice <= 0.5) {
-            whiteTriangle.draw();
-            expectedValue = 38
+        if (choice <= 0.5) {
+            expectedValue = 38;
+            return whiteTriangle.draw();
+
         }
-        if (choice > 0.5 && choice <= 0.75) {
-            redSquare.draw();
-            expectedValue = 40
+        if (choice <= 0.75) {
+            expectedValue = 40;
+            return redSquare.draw();
         }
-        if (choice > 0.75 && choice <= 1) {
-            whiteSquare.draw();
-            expectedValue = 39
+        if (choice <= 1) {
+            expectedValue = 39;
+            return whiteSquare.draw();
         }
     }
-
-
-    // var scoreValue = 0
-    var score = document.getElementById("score-val");
 
     function correctScore() {
         score.innerText = Number(score.innerText) + 100;
@@ -120,8 +106,7 @@ window.addEventListener("load", function() {
         score.innerText = Number(score.innerText) - 100;
     }
 
-    var gameOn = false;
-    var time = document.getElementById("time-remaining");
+
 
 
     function timer() {
@@ -131,16 +116,22 @@ window.addEventListener("load", function() {
         }, 1000);
         setTimeout(function() {
             clearInterval(timerId);
-            if (bestScore === 0 || bestScore === Number(score.innerText)) { alert("Game Over! Wanna try again? You current best score: " + Number(score.innerText));
-                bestScore = Number(score.innerText); }
-            if (bestScore > Number(score.innerText)) { alert("Not your best, buddy. You should try again! Your current best score is: " + bestScore); }
-            if (bestScore < Number(score.innerText)) { alert("You've beaten your best score!! Think you can do better? Your current best score is: " + Number(score.innerText));
-                bestScore = Number(score.innerText); }
+            if (bestScore === 0 || bestScore === Number(score.innerText)) {
+                alert("Game Over! Wanna try again? You current best score: " + Number(score.innerText));
+                bestScore = Number(score.innerText);
+            }
+            if (bestScore > Number(score.innerText)) {
+                alert("Not your best, buddy. You should try again! Your current best score is: " + bestScore);
+            }
+            if (bestScore < Number(score.innerText)) {
+                alert("You've beaten your best score!! Think you can do better? Your current best score is: " + Number(score.innerText));
+                bestScore = Number(score.innerText);
+            }
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             score.innerText = 0;
             time.innerText = 30;
-            openingText.draw();
             gameOn = false;
+            return openingText.draw();
         }, 30999)
     }
 
@@ -149,15 +140,15 @@ window.addEventListener("load", function() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             gameOn = true;
             timer();
-            pickRandomShape();
+            return pickRandomShape();
         } else if (event.which != 32 && event.which === expectedValue) {
             correctScore();
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            pickRandomShape()
+            return pickRandomShape();
         } else if (event.which != 32) {
             wrongScore();
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            pickRandomShape()
+            return pickRandomShape();
         }
     })
 
