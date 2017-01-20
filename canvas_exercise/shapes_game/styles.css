@@ -1,14 +1,43 @@
 body {
   padding-bottom: 50px;
+   
 }
-
 #shapes-game {
   border: 4px solid grey;
   background-color: black;
 }
+#restart-button{
+    display: none;
+    position: absolute; 
+    right: 0;
+    left: 60px;
+    margin: 0 auto;
+    top: 20vh;
+    width: 400px;
+    height: 200px;
+    color: purple;
+    background: gray;
+    text-outline: none;
+    font-size: 30px;
+    }
+#start-game{
+   text-align: center;
+    position: absolute; 
+    right: 0;
+    left: 60px;
+    margin: 0 auto;
+    top: 20vh;
+    width: 400px;
+    height: 200px;
+    color: purple;
+    background: gray;
+    text-outline: none;
+    font-size: 30px;
+}
 
 .canvas-container {
   padding: 10px;
+  position: relative;
 }
 .canvas-container, #shapes-game {
   height: 750px;

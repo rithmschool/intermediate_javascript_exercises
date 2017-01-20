@@ -29,9 +29,7 @@ window.addEventListener("load", function() {
   canvas.width = width;
   canvas.height = height;
 
-  document.addEventListener("keyup", function() {
- 
-  });
+  
     
     
     //******************SHAPE FUNCTIONS***********************//
@@ -108,19 +106,19 @@ function drawSquareWhite() {
       
      if(random === drawTriangleRed){
           current = 37;
-         console.log(current);
      } else if(random === drawSquareWhite){
           current = 39;
-         console.log(current);
+         
      } else if(random === drawTriangleWhite){
           current = 38;
-         console.log(current);
+        
      } else if(random === drawSquareRed){
           current = 40;
-         console.log(current);
+         
      } 
      return random();
     }
+   
     
   
     
@@ -129,15 +127,20 @@ function drawSquareWhite() {
     
     
 
-
+var score = 0;
+var scoreId = document.getElementById('score-val');
 //****************************CHECK IF KEYPRESS CORRESPONDS WITH CURRENT**************************??
 window.addEventListener("keyup", function(event){
+    if(event.keyCode !== 32){
       event.preventDefault();
-        if(event.keyCode === current){
-       
-        alert("You pressed a arrow");
-    }
     
+        if(event.keyCode === current){
+         scoreId.innerHTML = score+=1;
+       
+    } else if(event.keyCode !== current) {
+        scoreId.innerHTML = score-=1;
+    }
+}
 });
 
 
@@ -146,27 +149,50 @@ window.addEventListener("keyup", function(event){
 //**********************GAME COUNTDOWN TIMER ***************************//                  
       var count = 30;
     function countdown(){
+       stopGame();
         var timer = document.getElementById('time-remaining');
+        if(count === 30){
+            pickRandomShape();
+        }
         count--;
         timer.innerHTML = count;
     }
-   var gameTimer = setInterval(countdown(), 1000);
-   var shapeTimer = setInterval(function(){
+    
+    function stopGame(){
+        if(count === 0){
+            clearInterval(gameTimer);
+            clearInterval(shapeTimer);
+             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            document.getElementById('restart-button').style.display = "block";
+            alert("GAME OVER. Your score is " + scoreId.innerHTML );
+        }
+    }
+    
+    var gameTimer;
+    var shapeTimer;
+    //****************SET INTERVAL ************************************//
+    window.addEventListener('keyup', function(){
+    if(event.keyCode === 32){
+        
+    
+     gameTimer = setInterval(countdown, 1000);
+     shapeTimer = setInterval(function(){
           pickRandomShape();
     }, 3000);
+    document.getElementById('start-game').style.display = "none";
+    }
+    });
+   
+
     
+   
+    //*********************RELOAD GAME **************************************//
+     document.getElementById('restart-button').addEventListener('click', function(){
+       location.reload();
+         });
     
 
 
-//if arrayOfShapes[random] ==== drawTriangleRed 
- // current = 18;
-// if keypress === current then score goes up
-// if keypress !== current score goes down
-  //while(count > 0){
-        //start counting down
-        //run setInterval function
-        //event Listener for keypress. If keypress value === current then score up.
-        // when count alert game over
-        //display restart button
-  //  } 
+
+
 });
