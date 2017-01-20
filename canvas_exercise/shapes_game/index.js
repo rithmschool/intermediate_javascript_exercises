@@ -122,7 +122,7 @@ window.addEventListener("load", function() {
 
     var gameOn = false;
     var time = document.getElementById("time-remaining");
-    
+
 
     function timer() {
         var start = 29;
@@ -131,9 +131,11 @@ window.addEventListener("load", function() {
         }, 1000);
         setTimeout(function() {
             clearInterval(timerId);
-            if (bestScore === 0 || bestScore === Number(score.innerText)) {alert("Game Over! Wanna try again? You current best score: " + Number(score.innerText)); bestScore = Number(score.innerText);}
-            if (bestScore > Number(score.innerText)) {alert("Not your best, buddy. You should try again! Your current best score is: " + bestScore);}
-            if (bestScore < Number(score.innerText)) {alert("You've beaten your best score!! Think you can do better? Your current best score is: " + Number(score.innerText)); bestScore = Number(score.innerText);}
+            if (bestScore === 0 || bestScore === Number(score.innerText)) { alert("Game Over! Wanna try again? You current best score: " + Number(score.innerText));
+                bestScore = Number(score.innerText); }
+            if (bestScore > Number(score.innerText)) { alert("Not your best, buddy. You should try again! Your current best score is: " + bestScore); }
+            if (bestScore < Number(score.innerText)) { alert("You've beaten your best score!! Think you can do better? Your current best score is: " + Number(score.innerText));
+                bestScore = Number(score.innerText); }
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             score.innerText = 0;
             time.innerText = 30;
@@ -148,11 +150,7 @@ window.addEventListener("load", function() {
             gameOn = true;
             timer();
             pickRandomShape();
-        }
-    })
-
-    document.addEventListener("keyup", function(event) {
-        if (event.which != 32 && event.which === expectedValue) {
+        } else if (event.which != 32 && event.which === expectedValue) {
             correctScore();
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             pickRandomShape()
