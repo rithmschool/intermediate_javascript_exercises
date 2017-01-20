@@ -34,11 +34,11 @@ window.addEventListener("load", function() {
   });
     
     
-    
+    //******************SHAPE FUNCTIONS***********************//
     var randomSquareCorner = Math.floor(Math.random() * 300 + 50);
     //SHAPES
     var squareRed = {
-    corner: [Math.floor(Math.random() * 300 + 50), Math.floor(Math.random() * 300 + 50)],
+    corner: [Math.floor(Math.random() * 650 + 50), Math.floor(Math.random() * 650 + 50)],
     width: 50,
     height: 50,
     color: "red",
@@ -49,7 +49,7 @@ window.addEventListener("load", function() {
 }
     
     var squareWhite = {
-    corner: [Math.floor(Math.random() * 300 + 50),Math.floor(Math.random() * 300 + 50)],
+    corner: [Math.floor(Math.random() * 650 + 50),Math.floor(Math.random() * 650 + 50)],
     width: 50,
     height: 50,
     color: "white",
@@ -74,26 +74,99 @@ function drawSquareWhite() {
 
    
    function drawTriangleWhite(){
-     var x = Math.floor(Math.random() * 300 + 50);
-     var y = Math.floor(Math.random() * 300 + 50);
+     ctx.clearRect(0, 0, canvas.width, canvas.height);
+     var x = Math.floor(Math.random() * 650 + 50);
+     var y = Math.floor(Math.random() * 650 + 50);
+     ctx.beginPath();
      ctx.fillStyle = "white";
      ctx.moveTo(x, y);
      ctx.lineTo(x + 50, y + 50);
      ctx.lineTo(x, y + 50);
      ctx.fill();
+     ctx.closePath();
         }
      function drawTriangleRed(){
-     var x = Math.floor(Math.random() * 300 + 50);
-     var y = Math.floor(Math.random() * 300 + 50);
+     ctx.clearRect(0, 0, canvas.width, canvas.height);
+     var x = Math.floor(Math.random() * 650 + 50);
+     var y = Math.floor(Math.random() * 650 + 50);
+     ctx.beginPath();
      ctx.fillStyle = "red";
      ctx.moveTo(x, y);
      ctx.lineTo(x + 50, y + 50);
      ctx.lineTo(x, y + 50);
      ctx.fill();
+     ctx.closePath();
         }
     
-    var arrayOfShapes = [drawTriangleRed, drawTriangleWhite, drawSquareRed, drawSquareWhite];
-    setInterval(arrayOfShapes[Math.floor(Math.random() * 3)], );
+    
+    
+    //*********************PICK RANDOM SHAPE EVERY 3 SECONDS *****************************//
+    var current = 0;
+    function pickRandomShape(){
+     var arrayOfShapes = [drawTriangleRed, drawTriangleWhite, drawSquareRed, drawSquareWhite];
+     var random = arrayOfShapes[Math.floor(Math.random() * 4)];
+      
+     if(random === drawTriangleRed){
+          current = 37;
+         console.log(current);
+     } else if(random === drawSquareWhite){
+          current = 39;
+         console.log(current);
+     } else if(random === drawTriangleWhite){
+          current = 38;
+         console.log(current);
+     } else if(random === drawSquareRed){
+          current = 40;
+         console.log(current);
+     } 
+     return random();
+    }
+    
+  
+    
+    
+    
+    
+    
+
+
+//****************************CHECK IF KEYPRESS CORRESPONDS WITH CURRENT**************************??
+window.addEventListener("keyup", function(event){
+      event.preventDefault();
+        if(event.keyCode === current){
+       
+        alert("You pressed a arrow");
+    }
     
 });
 
+
+    
+                       
+//**********************GAME COUNTDOWN TIMER ***************************//                  
+      var count = 30;
+    function countdown(){
+        var timer = document.getElementById('time-remaining');
+        count--;
+        timer.innerHTML = count;
+    }
+   var gameTimer = setInterval(countdown(), 1000);
+   var shapeTimer = setInterval(function(){
+          pickRandomShape();
+    }, 3000);
+    
+    
+
+
+//if arrayOfShapes[random] ==== drawTriangleRed 
+ // current = 18;
+// if keypress === current then score goes up
+// if keypress !== current score goes down
+  //while(count > 0){
+        //start counting down
+        //run setInterval function
+        //event Listener for keypress. If keypress value === current then score up.
+        // when count alert game over
+        //display restart button
+  //  } 
+});
