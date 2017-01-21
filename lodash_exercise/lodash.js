@@ -123,16 +123,36 @@ function sample(){
 
 }
 
-function flip(){
 
+ function flip(fn){
+    return function reverseArgs(){
+        var args = Array.from(arguments).reverse()//getting arguments and reversing them
+        //arguments refers to inner function arguments which when outer function stored in variable , the variable arguments = inner function arguments
+        return fn(...args)//spread array values into their own parameter
+    }
 }
+
+
 
 function cloneDeep(){
 
 }
 
-function sumBy(){
-
+function sumBy(arr, callback){
+    var objTotal = 0;
+    for(var i = 0; i < arr.length; i++){
+        if (typeof arr[i] === "number") {
+    objTotal += callback(arr[i]);
+    } 
+        if(typeof(arr[i] === "object")){
+        for(var key in arr[i]){
+            if(typeof(arr[i][key] === "object")){
+                objTotal += arr[i][key];
+            } 
+        }
+    } 
+}
+   return objTotal;
 }
 
 function inRange(){
