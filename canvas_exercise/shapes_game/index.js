@@ -1,6 +1,6 @@
 window.addEventListener("load", function() {
 
-    var canvas = document.getElementById("shapes-game"),
+    let canvas = document.getElementById("shapes-game"),
         height = canvas.scrollHeight,
         width = canvas.scrollWidth,
         gameOn = false,
@@ -9,6 +9,7 @@ window.addEventListener("load", function() {
         expectedKeysMap = { white0: 38, red1: 40, red0: 37, white1: 39 },
         time = document.getElementById("time-remaining"),
         score = document.getElementById("score-val"),
+        best = document.getElementById("best-score"),
         seconds = 3,
         bestScore = 0,
         expectedValue = 32,
@@ -17,7 +18,7 @@ window.addEventListener("load", function() {
     canvas.width = width;
     canvas.height = height;
 
-    var openingText = {
+    const openingText = {
         draw: function() {
             ctx.font = "35px Comic Sans MS";
             ctx.fillStyle = "White";
@@ -29,11 +30,11 @@ window.addEventListener("load", function() {
 
     openingText.draw();
 
-    var redTriangle = {
+    let redTriangle = {
         draw: function() {
             ctx.beginPath();
-            var start = Math.random() * 650;
-            ctx.fillStyle = "red";
+            let start = Math.random() * 650;
+            ctx.fillStyle = "#3951d6";
             ctx.moveTo(start, start);
             ctx.lineTo(start, start + 100);
             ctx.lineTo(start + 100, start + 100);
@@ -41,10 +42,10 @@ window.addEventListener("load", function() {
         }
     }
 
-    var whiteTriangle = {
+    let whiteTriangle = {
         draw: function() {
             ctx.beginPath();
-            var start = Math.random() * 650;
+            let start = Math.random() * 650;
             ctx.fillStyle = "white";
             ctx.moveTo(start, start);
             ctx.lineTo(start, start + 100);
@@ -53,11 +54,11 @@ window.addEventListener("load", function() {
         }
     }
 
-    var redSquare = {
+    let redSquare = {
         corner: [650, 650],
         width: 100,
         height: 100,
-        color: "red",
+        color: "#3951d6",
         draw: function() {
             ctx.beginPath();
             ctx.fillStyle = this.color;
@@ -65,7 +66,7 @@ window.addEventListener("load", function() {
         }
     }
 
-    var whiteSquare = {
+    let whiteSquare = {
         corner: [650, 650],
         width: 100,
         height: 100,
@@ -78,7 +79,7 @@ window.addEventListener("load", function() {
     }
 
     function pickRandomShape() {
-        var choice = Math.random();
+        let choice = Math.random();
         if (choice <= 0.25) {
             expectedValue = 37
             return redTriangle.draw();
@@ -110,8 +111,8 @@ window.addEventListener("load", function() {
 
 
     function timer() {
-        var start = 29;
-        var timerId = setInterval(function() {
+        let start = 29;
+        let timerId = setInterval(function() {
             time.innerText = start--;
         }, 1000);
         setTimeout(function() {
@@ -131,6 +132,7 @@ window.addEventListener("load", function() {
             score.innerText = 0;
             time.innerText = 30;
             gameOn = false;
+            best.innerText = bestScore;
             return openingText.draw();
         }, 30999)
     }
