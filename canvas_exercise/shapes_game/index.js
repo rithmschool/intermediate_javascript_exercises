@@ -75,7 +75,6 @@ window.addEventListener("load", function() {
 
   }
 
-
   function drawGameStartText(ctx, score) {
     ctx.fillStyle = "white";
     ctx.font = "bold 30px Papyrus";
@@ -83,8 +82,11 @@ window.addEventListener("load", function() {
     if(score.innerText !== "0"){ctx.fillText("Score: " + score.innerText, 320, height/2 + 40)};
   }
 
-  function restartGame(ctx, width, height) {
-  }
+  // function restartGame(ctx, width, height) {
+  //   if(gameOn === "complete" && ){
+
+  //   }
+  // }
 
   var canvas = document.getElementById("shapes-game"),
       height = canvas.scrollHeight,
@@ -117,7 +119,9 @@ window.addEventListener("load", function() {
         }
       },1000);
       setTimeout(function(){
-        ctx.fillText("Final Score: " + scoreSpan.innerText,300,400)
+        clear(ctx,width,height);
+        ctx.fillText("Final Score: " + scoreSpan.innerText, 300, 330)
+        gameOn === "complete";
       },30000);
     }
 
@@ -134,9 +138,6 @@ window.addEventListener("load", function() {
   });
   drawGameStartText(ctx, scoreSpan);
 });
-
-
-
 
 
 
