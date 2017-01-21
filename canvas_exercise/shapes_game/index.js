@@ -79,9 +79,10 @@ window.addEventListener("load", function() {
     ctx.fillText("You aren't having fun?!", canvas.width/2, canvas.height/3); 
     ctx.fillStyle = "white";
     ctx.fillText("Well, press space to start having fun! ", canvas.width/2, canvas.height/2); 
-        image();
+    image();
 
   }
+
 
     var time = document.getElementById("time-remaining");
 
@@ -90,17 +91,19 @@ window.addEventListener("load", function() {
       var timerId = setInterval(function() {
         time.innerText = start--;
       }, 1000);
+
       setTimeout(function() {
         clearInterval(timerId);
-        alert("Game Over! Your score was " + scoreSpan.innerText);
+        alert(`Game Over! Your score was ${scoreSpan.innerText}`);
+        drawGameStartText();
+        gameOn == false;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         score.innerText = 0;
         time.innerText = 30;
-        openingText.draw();
-      }, 30999)
-    }
 
-  function gameEnd(){}
+      }, 30999)
+
+    }
 
   var canvas = document.getElementById("shapes-game"),
     height = canvas.scrollHeight,
