@@ -155,16 +155,53 @@ function sumBy(arr, callback){
    return objTotal;
 }
 
-function inRange(){
 
+function inRange(target, start, end) {
+    if (target > start && target < end) {
+        return true;
+    } else if (end === undefined) {
+        end = start;
+        start = 0;
+        if (target > start && target < end) {
+            return true;
+        }
+    } else if (start > end) {
+        [start, end] = [end,start];
+        /*var temp = start;
+        start = end;
+        end = temp;*/
+        if (target > start && target < end) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function has(){
 
 }
 
-function omit(){
-
+function omit(obj, arr) {
+    var newObj = {};
+    function helper(obj, arr) {
+        for (let key in obj) {
+            for (let i = 0; i < arr.length; i++) {
+                if (key !== arr[i]) {
+                    newObj[key] = obj[key];
+                    delete obj[key];
+                    arr.shift();
+                    return helper(obj, arr);
+                } else {
+                    console.log('do nothing');
+                    delete obj[arr[i]];
+                    arr.shift();
+                    return helper(obj, arr);
+                }
+            }
+        }
+    }
+    helper(obj, arr);
+    return newObj;
 }
 
 function pick(){
