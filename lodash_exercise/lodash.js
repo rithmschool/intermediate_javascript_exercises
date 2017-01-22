@@ -1,161 +1,164 @@
-
-function drop(arr, index){
-  if(index === undefined){
-      return arr.slice(1);
-  } else {
-      return arr.slice(index);
-  }
+function drop(arr, index) {
+    if (index === undefined) {
+        return arr.slice(1);
+    } else {
+        return arr.slice(index);
+    }
 }
-
-
-function fromPairs(arr){
+function fromPairs(arr) {
     var newObj = {};
-    arr.forEach(function(item){
+    arr.forEach(function(item) {
         newObj[item[0]] = item[1];
     })
     return newObj;
 }
-
-
-
-function head(arr){
+function head(arr) {
     return arr[0];
 }
-
-
-function take(arr, index){
-    if(index === undefined){
-        return arr.slice(0,1);
+function take(arr, index) {
+    if (index === undefined) {
+        return arr.slice(0, 1);
     } else {
         return arr.slice(0, index);
     }
 }
-
-function takeRight(arr, index){
-    
-    if(index === undefined){
-        return arr.slice(arr.length -1);
-    }  else if(index > arr.length){
+function takeRight(arr, index) {
+    if (index === undefined) {
+        return arr.slice(arr.length - 1);
+    } else if (index > arr.length) {
         return arr.slice();
-    } else  {
+    } else {
         return arr.slice(arr.length - index);
     }
-        }
-
-
-
-function takeWhile(arr, callback){
+}
+function takeWhile(arr, callback) {
     var newArr = [];
-    arr.forEach(function(item){
-        if(callback(item)){
+    arr.forEach(function(item) {
+        if (callback(item)) {
             newArr.push(item);
         }
     })
     return newArr;
 }
-
-function union(arr1, arr2){
+function union(arr1, arr2) {
     var newArr = arr1.concat(arr2);
     var lastArr = [];
-    newArr.forEach(function(item){
-      if(lastArr.indexOf(item) === -1){
-          lastArr.push(item);
-      }
+    newArr.forEach(function(item) {
+        if (lastArr.indexOf(item) === -1) {
+            lastArr.push(item);
+        }
     })
     return lastArr;
 }
+function zip(args) {
+    let argArray = Array.from(arguments);
+    let newArray = [];
 
-
-function zip(arr1, arr2, arr3){
-   
- 
- }
-
-function unzip(){
-
+    function findMaxLength(arr) {
+    return arr.reduce(function(acc, next) {
+        if (acc.length <= next.length) {
+            acc = next;
+            }
+        return acc;
+    }).length;
+}
+    for (let j = 0; j < findMaxLength(argArray); j++) {
+        let innerArray = [];
+        for (let i = 0; i < argArray.length; i++) {
+            innerArray.push(argArray[i][j]);
+        }
+        newArray.push(innerArray);
+    }
+    return newArray;
+}
+function unzip(args) {
+    let arrayArgs = Array.from(args);
+    let newArr = [];
+    function findMax(arr) {
+        return arr.reduce(function(acc, next) {
+            if (acc.length <= next.length) {
+                acc = next;
+            }
+            return acc;
+        }).length;
+    }
+    for (let i = 0; i < findMax(arrayArgs); i++) {
+        let innerArr = [];
+        for (let j = 0; j < arrayArgs.length; j++) {
+            innerArr.push(arrayArgs[j][i]);
+        }
+        newArr.push(innerArr);
+    }
+    return newArr;
 }
 
-
-   function zipObject(arr1,arr2){
-    var obj={};
-    for(var i = 0; i < arr1.length; i++){
+function zipObject(arr1, arr2) {
+    var obj = {};
+    for (var i = 0; i < arr1.length; i++) {
         obj[arr1[i]] = arr2[i];
     }
-
     return obj;
 }
-
-
-function includes(collection, target, startIndex){
-    if(typeof(collection) === 'string'){
-    if(collection.indexOf(target) !== -1){
-        return true;
-    } else {
-        return false;
-    }
-   }
-   if(Array.isArray(collection)){
-       if(startIndex !== undefined){
-           var slicedArr = collection.slice(startIndex);
-           if(slicedArr.indexOf(target) !== -1){
-           return true;
-       } else{
-           return false;
-       }
-
-       }else if(collection.indexOf(target) !== -1){
-           return true;
-       } else{
-           return false;
-       }
-   }
-
-   if(typeof(collection) === "object"){
-       for(var key in collection){
-           if(collection[key] === target){
-               return true;
-           } 
-       }
-   }
-}
-
-function sample(){
-
-}
-
-
- function flip(fn){
-    return function reverseArgs(){
-        var args = Array.from(arguments).reverse()//getting arguments and reversing them
-        //arguments refers to inner function arguments which when outer function stored in variable , the variable arguments = inner function arguments
-        return fn(...args)//spread array values into their own parameter
-    }
-}
-
-
-
-function cloneDeep(){
-
-}
-
-function sumBy(arr, callback){
-    var objTotal = 0;
-    for(var i = 0; i < arr.length; i++){
-        if (typeof arr[i] === "number") {
-    objTotal += callback(arr[i]);
-    } 
-        if(typeof(arr[i] === "object")){
-        for(var key in arr[i]){
-            if(typeof(arr[i][key] === "object")){
-                objTotal += arr[i][key];
-            } 
+function includes(collection, target, startIndex) {
+    if (typeof (collection) === 'string') {
+        if (collection.indexOf(target) !== -1) {
+            return true;
+        } else {
+            return false;
         }
-    } 
+    }
+    if (Array.isArray(collection)) {
+        if (startIndex !== undefined) {
+            var slicedArr = collection.slice(startIndex);
+            if (slicedArr.indexOf(target) !== -1) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (collection.indexOf(target) !== -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    if (typeof (collection) === "object") {
+        for (var key in collection) {
+            if (collection[key] === target) {
+                return true;
+            }
+        }
+    }
 }
-   return objTotal;
+function sample(arr) {
+    let rando = Math.floor(Math.random() * arr.length);
+    return arr[rando];
 }
-
-
+function flip(fn) {
+    return function reverseArgs() {
+        var args = Array.from(arguments).reverse()
+        //getting arguments and reversing them
+        //arguments refers to inner function arguments which when outer function stored in variable , the variable arguments = inner function arguments
+        return fn(...args)
+        //spread array values into their own parameter
+    }
+}
+function cloneDeep() {}
+function sumBy(arr, callback) {
+    var objTotal = 0;
+    for (var i = 0; i < arr.length; i++) {
+        if (typeof arr[i] === "number") {
+            objTotal += callback(arr[i]);
+        }
+        if (typeof (arr[i] === "object")) {
+            for (var key in arr[i]) {
+                if (typeof (arr[i][key] === "object")) {
+                    objTotal += arr[i][key];
+                }
+            }
+        }
+    }
+    return objTotal;
+}
 function inRange(target, start, end) {
     if (target > start && target < end) {
         return true;
@@ -166,7 +169,7 @@ function inRange(target, start, end) {
             return true;
         }
     } else if (start > end) {
-        [start, end] = [end,start];
+        [ start , end ] = [end, start];
         /*var temp = start;
         start = end;
         end = temp;*/
@@ -176,11 +179,7 @@ function inRange(target, start, end) {
     }
     return false;
 }
-
-function has(){
-
-}
-
+function has() {}
 function omit(obj, arr) {
     var newObj = {};
     function helper(obj, arr) {
@@ -203,7 +202,6 @@ function omit(obj, arr) {
     helper(obj, arr);
     return newObj;
 }
-
 function pick(obj, arr) {
     let newObj = {};
     for (var key in obj) {
@@ -213,7 +211,6 @@ function pick(obj, arr) {
     }
     return newObj;
 }
-
 function pickBy(obj, callback) {
     var newObj = {};
     for (var key in obj) {
@@ -223,9 +220,6 @@ function pickBy(obj, callback) {
     }
     return newObj;
 }
-
-
-
 function omitBy(obj, callback) {
     var newObj = {};
     for (var key in obj) {
@@ -235,30 +229,26 @@ function omitBy(obj, callback) {
     }
     return newObj;
 }
-
 function padEnd(str, strLength, padChar) {
     let diff = 0;
     let resultString = "";
     let strRepeat = "";
-    let padding =" ";
-     if(str.length >= strLength){
+    let padding = " ";
+    if (str.length >= strLength) {
         return str;
     } else {
-        
         diff = strLength - str.length;
-    
-     if (padChar === undefined) {
-        padChar = " ".repeat(3);
-         resultString = str + padChar;
-    } else {
-         padding = strRepeater(padChar);
-         resultString = str + padding;
+        if (padChar === undefined) {
+            padChar = " ".repeat(3);
+            resultString = str + padChar;
+        } else {
+            padding = strRepeater(padChar);
+            resultString = str + padding;
+        }
     }
-}
-   
     function strRepeater(str) {
         for (let i = 0; i < diff - 1; i++) {
-            if (i === diff - 2 ) {
+            if (i === diff - 2) {
                 i = 0;
                 strRepeat += str[i];
                 break;
@@ -269,9 +259,6 @@ function padEnd(str, strLength, padChar) {
     }
     return resultString;
 }
-
-
-
 function repeat(str, num) {
     let newStr = "";
     for (let i = 0; i < num; i++) {
@@ -279,15 +266,25 @@ function repeat(str, num) {
     }
     return newStr;
 }
-
-function upperFirst(str){
-
+function upperFirst(str) {
+    return str[0].toUpperCase() + str.slice(1);
 }
-
-function flatten(){
-
+function flatten(arr) {
+    return arr.reduce(function(acc, next) {
+        return acc.concat(next);
+    }, []);
 }
-
-function flattenDeep(){
-
+function flattenDeep(arr) {
+    var newArr = [];
+    function helper(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            if (Array.isArray(arr[i])) {
+                helper(arr[i]);
+            } else {
+                newArr.push(arr[i]);
+            }
+        }
+    }
+    helper(arr);
+    return newArr;
 }
