@@ -204,24 +204,80 @@ function omit(obj, arr) {
     return newObj;
 }
 
-function pick(){
-
+function pick(obj, arr) {
+    let newObj = {};
+    for (var key in obj) {
+        if (arr.indexOf(key) !== -1) {
+            newObj[key] = obj[key];
+        }
+    }
+    return newObj;
 }
 
-function pickBy(){
-
+function pickBy(obj, callback) {
+    var newObj = {};
+    for (var key in obj) {
+        if (callback(obj[key])) {
+            newObj[key] = obj[key]
+        }
+    }
+    return newObj;
 }
 
-function omitBy(){
 
+
+function omitBy(obj, callback) {
+    var newObj = {};
+    for (var key in obj) {
+        if (!callback(obj[key])) {
+            newObj[key] = obj[key]
+        }
+    }
+    return newObj;
 }
 
-function pad(){
-
+function padEnd(str, strLength, padChar) {
+    let diff = 0;
+    let resultString = "";
+    let strRepeat = "";
+    let padding =" ";
+     if(str.length >= strLength){
+        return str;
+    } else {
+        
+        diff = strLength - str.length;
+    
+     if (padChar === undefined) {
+        padChar = " ".repeat(3);
+         resultString = str + padChar;
+    } else {
+         padding = strRepeater(padChar);
+         resultString = str + padding;
+    }
+}
+   
+    function strRepeater(str) {
+        for (let i = 0; i < diff - 1; i++) {
+            if (i === diff - 2 ) {
+                i = 0;
+                strRepeat += str[i];
+                break;
+            }
+            strRepeat += str;
+        }
+        return strRepeat;
+    }
+    return resultString;
 }
 
-function repeat(){
 
+
+function repeat(str, num) {
+    let newStr = "";
+    for (let i = 0; i < num; i++) {
+        newStr += str;
+    }
+    return newStr;
 }
 
 function upperFirst(str){
