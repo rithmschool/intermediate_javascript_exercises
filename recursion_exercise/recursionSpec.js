@@ -55,8 +55,8 @@ describe("#search", function(){
     expect(search([1,2,3,4,5,6,7],6)).to.equal(5)
   });
   it("should return -1 if the value is not found", function(){
-    expect(search([1,2,3,4]),0).to.equal(-1)
-    expect(search([1,2]),11).to.equal(-1)
+    expect(search([1,2,3,4],0)).to.equal(-1)
+    expect(search([1,2],11)).to.equal(-1)
   });
 });
 

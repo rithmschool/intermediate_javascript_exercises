@@ -8,36 +8,36 @@ function productOfArray(arr){
 
 
 function contains(nestedObject, value){
-    
-    function containsHelper(obj, value){
-        for(var key in obj){
-            if(typeof obj[key] === "object"){
-               return containsHelper(obj[key], value);
-            }
-            else{
-               return obj[key] === value;
-            }
-        }
-    }
-    return containsHelper(nestedObject, value);
+
+  function containsHelper(obj, value){
+      for(var key in obj){
+          if(typeof obj[key] === "object"){
+             return containsHelper(obj[key], value);
+          }
+          else{
+             return obj[key] === value;
+          }
+      }
+  }
+  return containsHelper(nestedObject, value);
 }
 
 
 
 function collectStrings(obj){
-    var arr = [];
-    function collectStringsHelper(obj){
-        for(var key in obj){
-            if(typeof obj[key] === "object"){
-                collectStringsHelper(obj[key]);
-            }
-            else{
-                arr.push(obj[key]);
-            }
-        }
-    }
-    collectStringsHelper(obj);
-    return arr;
+  var arr = [];
+  function collectStringsHelper(obj){
+      for(var key in obj){
+          if(typeof obj[key] === "object"){
+              collectStringsHelper(obj[key]);
+          }
+          else{
+              arr.push(obj[key]);
+          }
+      }
+  }
+  collectStringsHelper(obj);
+  return arr;
 }
 
 
@@ -72,7 +72,7 @@ function SumSquares(l){
         }
       }
     }
-//    sumSquaresHelper(l);
+    sumSquaresHelper(l);
     return sum;
 }
 
@@ -91,3 +91,60 @@ function replicate(times, number){
 }
 
 //replicate(3, 5);
+
+
+
+function search(arr, n, count){
+  if(arguments.length === 2) {var count = 0;}
+  if(arr.length === count){
+    return -1;
+  }
+  else if(arr[count] === n){
+      return count;
+  }
+  else{
+      return search(arr, n, ++count);
+  }
+
+}
+
+//search([1,2,3,4,5], 1);
+
+
+function binarySearch(arr, search){
+  function binarySearchHelper(arr,search, l, r){
+      if(l <= r){
+         var mid = Math.floor((l + r) / 2);
+          if(arr[mid] > search){
+              return binarySearchHelper(arr, search, l, mid-1);
+          }
+          else if(arr[mid] < search){
+              return binarySearchHelper(arr, search, mid+1, r);
+          }
+          else{
+              return mid;
+          }
+      } 
+      else{
+        return -1;
+      }  
+  }
+    return binarySearchHelper(arr, search, 0, arr.length-1);
+}
+
+
+function stringifyNumbers(obj){
+  var newObj = {};
+  for(var key in obj){
+    if(typeof obj[key] === "object" && !Array.isArray(obj[key])){
+      newObj[key] = stringifyNumbers(obj[key]);
+    }else if(typeof obj[key] === "number"){
+       newObj[key] = obj[key].toString();
+    }else{
+      newObj[key] = obj[key];
+    }   
+  }
+  return newObj;
+}
+
+
