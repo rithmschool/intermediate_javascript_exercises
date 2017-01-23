@@ -32,3 +32,20 @@ form {
 .glyphicon {
     cursor: pointer;
 }
+
+#all {
+    display: none;
+}
+
+#error {
+    color: red;
+    display: none;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+a {
+    color: black;
+}

@@ -19,19 +19,21 @@
             <div id="submit-div">
                 <span id="submit">Submit | </span>
                 <span id="favorites">Favorites</span>
+                <span id="all">All</span>
 
             </div>
         </div>
         <form>
             <div class="form-group">
                 <label for="title-input">Title</label>
-                <input type="title" class="form-control" id="title-input" aria-describedby="" placeholder="Enter Title">
+                <input type="text" class="form-control" id="title-input" aria-describedby="" placeholder="Enter Title">
             </div>
             <div class="form-group">
                 <label for="url-input">Url</label>
-                <input type="url" class="form-control" id="url-input" placeholder="Enter URL">
+                <input type="text" class="form-control" id="url-input" placeholder="Enter URL">
             </div>
-            <button>Submit</button>
+            <button class="btn btn-secondary">Submit</button>
+            <div id="error">Please enter a valid URL!</div>
         </form>
         <ol id="links-ol"></ol>
     </div>
