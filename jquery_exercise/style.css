@@ -1,0 +1,29 @@
+.container {
+    padding: 0;
+}
+
+#header-div {
+    width: 100%;
+    background: red;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    margin: 0;
+    padding: 0;
+}
+
+#header-div h3 {
+    margin: 0;
+    padding: 20px;
+}
+
+#submit-div {
+    width: 200px;
+    cursor: pointer;
+}
+
+form {
+    width: 80%;
+    margin: 0 0 0 50px;
+    padding: 0;
+}
