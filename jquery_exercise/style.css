@@ -26,4 +26,9 @@ form {
     width: 80%;
     margin: 0 0 0 50px;
     padding: 0;
+    /*display: none;*/
+}
+
+.glyphicon {
+    cursor: pointer;
 }
