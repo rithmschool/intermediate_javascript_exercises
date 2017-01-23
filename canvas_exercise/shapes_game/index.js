@@ -1,6 +1,10 @@
 window.addEventListener("load", function() {
 
+<<<<<<< HEAD
   function clear(ctx, width, height) {
+=======
+  function clear(ctx, width, heigt) {
+>>>>>>> 14056facdfa58b3e06b572e1f423e75b437afea4
   }
 
   function drawRandomShape(ctx, width, height) {
@@ -29,6 +33,7 @@ window.addEventListener("load", function() {
   canvas.width = width;
   canvas.height = height;
 
+<<<<<<< HEAD
   
     
     
@@ -196,3 +201,10 @@ window.addEventListener("keyup", function(event){
 
 
 });
+=======
+  document.addEventListener("keyup", function() {
+ 
+  });
+});
+
+>>>>>>> 14056facdfa58b3e06b572e1f423e75b437afea4

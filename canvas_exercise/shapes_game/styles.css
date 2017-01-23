@@ -1,11 +1,14 @@
 body {
   padding-bottom: 50px;
-   
+
 }
+
+
 #shapes-game {
   border: 4px solid grey;
   background-color: black;
 }
+
 #restart-button{
     display: none;
     position: absolute; 
@@ -38,6 +41,11 @@ body {
 .canvas-container {
   padding: 10px;
   position: relative;
+}
+
+.canvas-container {
+  padding: 10px;
+
 }
 .canvas-container, #shapes-game {
   height: 750px;
