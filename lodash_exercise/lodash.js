@@ -42,9 +42,22 @@ function union(arrays){
     return unique;
 }
 
-function zip(){
-
+function zip(arr1, arr2, arr3){
+   var length = 0;
+   var newArr = [];
+   for(var i=0; i<arguments.length; i++){
+       var length = Math.max(length, arguments[i].length);
+   }
+   for(var i=0; i<length; i++){
+       var arr = [];
+       for(var j=0; j<arguments.length; j++){
+           arr.push(arguments[j][i]);
+       }
+       newArr.push(arr);
+   }
+   return newArr;
 }
+zip(['a', 'b'], [1, 2], [true, false]);
 
 function unzip(){
 
