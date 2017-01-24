@@ -14,15 +14,12 @@ $(document).ready(function () {
             let $domain = $url.slice($domainIndex + 1);
 
 
-            $('#links-ol').append('<li> <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span><a href =' + $url + '>' + $title + '</a><span class="domain-span">(' + $domain + ')</span></li>');
+            $('#links-ol').append(`<li> <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span><a href = ${$url} target="_blank"><span class="title-span"> ${$title} </a></span><span class="domain-span">( ${$domain} )</span></li>`);
 
 
             $('#title-input').val("");
             $('#url-input').val("");
             $('#error').hide();
-
-            //Show Domain Name in Li
-
 
         } else {
             $('#error').show();
@@ -30,8 +27,6 @@ $(document).ready(function () {
 
 
     });
-
-
 
     //Show Form On click
     $('#submit').click(function () {
@@ -58,24 +53,23 @@ $(document).ready(function () {
 
     //Show All
     $('#all').click(function () {
-
-        $("li").each(function (index) {
-            if ($("span").hasClass("glyphicon-star") === true) {
-                $('.glyphicon-star-empty').parent().show();
-                $('#favorites').show();
-                $('#all').hide();
-            }
-        });
+        $('.glyphicon-star-empty').parent().show();
+        $('.domain-span').parent().show();
+        $('#favorites').show();
+        $('#all').hide();
     })
 
     //Show only Items of clicked domain
     $('body').on('click', '.domain-span', function () {
-        console.log('clicked');
+        //hide all the domains
+        $('.domain-span').parent().hide();
+        $('#favorites').hide();
+        $('#all').show();
+        //Get current domain text then loop through domains and if it's a match show all matches. 
         let $domainName = $(this).text();
-        console.log($domainName);
-        $(".domain-name").each(function (index) {
-            if (index.text() === $domainName) {
-                console.log('we have a match');
+        $(".domain-span").each(function (index) {
+            if ($(this).text() === $domainName) {
+                $(this).parent().show();
             }
         });
 
