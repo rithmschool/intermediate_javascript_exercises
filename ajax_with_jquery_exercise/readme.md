@@ -1,23 +1,24 @@
 ## AJAX With jQuery Exercise
 
-Now that we have done something with a HTTP GET, let's work on modifying data on the server.  The next application will be a hacker news story site.  Use the hacker news api to get the first 10 top stories and dispaly them on the screen.  Next, use the stories api here to save your favorite story.  The stories api has authentication, so you must login first in order to make requests to it.  You will have to make a POST request to post a new favorite to the api.
+In this exercise, we'll rework our Hacker News clone to use AJAX. We'll use a couple of APIs: one is the Hacker News API itself, and the other is a custom stories API used to log in users and track their favorites. The stories api has authentication, so you must login first in order to make requests to it.  You will have to make a POST request to post a new favorite to the api.
 
 __Requirements__
 
-* Uses the [Hacker News API](https://github.com/HackerNews/API) to display top 10 stories
-* The top 10 stories page should have a button to favorite each story.
-* In order to do anything with the favorites api, you must login first
+* Uses the [Hacker News API](https://github.com/HackerNews/API) to display top stories (up to some limit, say 10 or 20).
+* The top stories page should have a button to log in or sign up for an account.
+* When the user logs in or signs up succesfully, a token sent back from the server should get stored in `localStorage`. This token will be used to authenticate the user on subsequent requests to the stories API. (Examples of requests to this API are below.)
+* When a user is logged in, each top story should have a button to favorite it. This sends a POST request to the stories API creating a new favorite for the logged-in user.
 * On a separate page, use the stories api to display a list of favorites.
-* Allow the user to delete a favorite from the list of favorites
-* Have navigation between the favorites page and the top 10 page.
-* A favorite should save the story id, story title, who the story is by, and the url of the story
-* The list of stories on the favorite page or on the top 10 page, should link to the actual story.
+* Allow the user to delete a favorite from the list of favorites.
+* Have navigation between the favorites page and the top stories page.
+* A favorite should save the story id, story title, who the story is by, and the url of the story.
+* The list of stories on the favorite page or on the top stories page, should link to the actual story.
+
+Here are examples of requests to send to the stories API:
 
 __Stories API - POST /login__
 
 In order to use the stories api, you must first be authenticated.  Here is a sample request for authenticating with the server:
-
-
 
 ```
 curl -H "Content-Type: application/json" \
@@ -32,9 +33,11 @@ Sample http response body:
 {"auth_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE0Nzg1NTg5NzZ9.p-t2FDi3EndJWI892lijvaJoV3O7I9CMTHC6pKAcScw"}
 ```
 
+The syntax for `/signup` is similar. As with `/login`, upon successful signup the server will respond with an auth token.
+
 __Stories API - GET /stories.json__
 
-The stories api allows creating, editing, updating, and deleting of a favorite story.  To see all of the stories that have been favorited, make a GET request to:
+The stories api allows creating and deleting of a favorite story.  To see all of the stories that have been favorited, make a GET request to:
 
 ```
 https://hn-favorites.herokuapp.com/stories.json
