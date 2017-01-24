@@ -1,0 +1,89 @@
+body {
+  margin: 8px;
+}
+
+.navbar-default .navbar-brand a,
+.navbar-default .navbar-text,
+.navbar-default .navbar-brand a:hover,
+.navbar-default .navbar-link,
+.navbar-default .navbar-link:hover {
+	color: #000000;
+}
+
+.navbar-right {
+  margin-right: 5px;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.form-horizontal {
+  padding: 20px 0;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+#login-forms, 
+#stories {
+	background-color: #f6f6ef;
+}
+
+#login-forms {
+  display: none;
+}
+
+#stories > li {
+  color: #828282;
+  padding: 5px 0;
+}
+
+#login:active,
+#login:focus,
+#favorites:active,
+#favorites:focus,
+.navbar-default .navbar-brand a:hover {
+  text-decoration: none;
+}
+
+#login:hover,
+#favorites:hover {
+  text-decoration: underline;
+}
+
+#stories > li > a, 
+#stories > li > a:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+small {
+  margin-left: 3px;
+}
+
+#stories > li > small:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.hide-numbers {
+  list-style: none;
+}
+
+.glyphicon {
+  display: none;
+}
+
+.glyphicon:hover {
+  cursor: pointer;
+}
+
+.form-horizontal {
+  padding-bottom: 0;
+}
+
+li > p {
+  margin-bottom: 0;
+}

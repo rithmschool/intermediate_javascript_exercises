@@ -4,7 +4,7 @@ Now that we have done something with a HTTP GET, let's work on modifying data on
 
 __Requirements__
 
-* Uses the hacker news api to display top 10 stories
+* Uses the [Hacker News API](https://github.com/HackerNews/API) to display top 10 stories
 * The top 10 stories page should have a button to favorite each story.
 * In order to do anything with the favorites api, you must login first
 * On a separate page, use the stories api to display a list of favorites.
