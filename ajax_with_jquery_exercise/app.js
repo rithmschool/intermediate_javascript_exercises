@@ -1,35 +1,56 @@
 $(function() {
 
   const HN_BASE_URL = "https://hacker-news.firebaseio.com/v0";
-  const FAVORITES_BASE_URL = "https://hn-favorites.herokuapp.com"
+  const FAVORITES_BASE_URL = "https://hn-favorites.herokuapp.com";
 
-  var $login = $("#login");
-  var $loginForms = $("#login-forms");
+  let $login = $("#login");
+  let $loginForms = $("#login-forms");
+  let $stories = $("#stories");
+  let onFavorites = $(location).prop('pathname').match('favorites');
 
-  // pre-populate from HN
-  $.get(`${HN_BASE_URL}/topstories.json`)
-  .then(function(ids) {
-    var requests = ids.slice(0, 25).map(id => $.get(`${HN_BASE_URL}/item/${id}.json`));
-    return Promise.all(requests);
-  })
-  .then(function(stories) {
-    return stories.forEach(story => addStory(story));
-  })
-  .then(function() {
-    checkLoginStatus();
-  });
+  if (onFavorites && !localStorage.getItem('token')) {
+    $(location).attr('href', '/');
+  }
+
+  // pre-populate 
+
+  if (onFavorites) {
+    getCurrentUserFavorites()
+    .then(function(stories) {
+      stories.forEach(story => addStory(story));
+      $(".glyphicon").toggleClass('glyphicon-star glyphicon-star-empty').show()
+    });
+  } else {
+    $.get(`${HN_BASE_URL}/topstories.json`)
+    .then(function(ids) {
+      let requests = ids.slice(0, 25).map(id => $.get(`${HN_BASE_URL}/item/${id}.json`));
+      return Promise.all(requests);
+    })
+    .then(function(stories) {
+      stories.forEach(story => addStory(story));
+      if (localStorage.getItem('token')) {
+        return getCurrentUserFavorites()
+      }
+    })
+    .then(function(userFavorites) {
+      if (userFavorites) {
+        let ids = userFavorites.map(favorite => favorite.story_id);
+        $stories.children().each(function(idx, story) {
+          if (ids.indexOf($(story).children('a').data('id')) > -1) {
+            $(story).children('.glyphicon').toggleClass('glyphicon-star glyphicon-star-empty');
+          } 
+        })
+      }
+      checkLoginStatus();
+    });
+  }
 
   checkLoginStatus();
-
-  // old version
-  var $favorites = $("#favorites");
-  var $stories = $("#stories");
-  var $title = $("#title");
-  var $url = $("#url");
 
   $login.on('click', function() {
     if (localStorage.getItem('token')) {
       localStorage.removeItem('token');
+      if (onFavorites) $(location).attr('href', '/');
       checkLoginStatus();
     } else {
       $loginForms.slideToggle();
@@ -38,9 +59,9 @@ $(function() {
 
   $loginForms.on('submit', 'form', function(e) {
     e.preventDefault();
-    var $form = $(e.target);
-    var path = $form.find('button').text();
-    var $inputs = $form.find('input');
+    let $form = $(e.target);
+    let path = $form.find('button').text();
+    let $inputs = $form.find('input');
 
     $.post({
       url: `${FAVORITES_BASE_URL}/${path}`,
@@ -55,28 +76,19 @@ $(function() {
       checkLoginStatus();
       $inputs.val('');
       $loginForms.slideToggle();
-      console.log(data);
     }, function(e) {
-      // show error message to user
+      // log error
       console.log(e);
     });
   });
-  
-  $stories.on('click', 'small', function(e) {
-    var currentHostname = $(e.target).text()
-    $stories.children('li').filter(function(i, el) {
-      return $(el).children('small').text() !== currentHostname;
-    }).hide();
-    $stories.addClass('hide-numbers');
-    $favorites.text('all');
-  });
 
+  // adding a favorite
   $stories.on('click', '.glyphicon-star-empty', function(e) {
-    var $tgt = $(e.target);
-    var author = $tgt.next().next().next().text().split(" ")[1];
-    var title = $tgt.next().text();
-    var url = $tgt.next().attr('href');
-    var story_id = $tgt.next().data('id');
+    let $tgt = $(e.target);
+    let author = $tgt.next().next().next().text().split(" ")[1];
+    let title = $tgt.next().text();
+    let url = $tgt.next().attr('href');
+    let story_id = $tgt.next().data('id');
     $.ajax({
       url: `${FAVORITES_BASE_URL}/stories.json`,
       method: "POST",
@@ -94,27 +106,32 @@ $(function() {
       dataType: "json",
       contentType: "application/json"
     }).then(function(d) {
-      console.log(d);
-      $(e.target).toggleClass('glyphicon-star-empty glyphicon-star');
+      $(e.target).toggleClass('glyphicon-star-empty glyphicon-star')
+                 .data('id', d.id);
     });
   });
 
-  $favorites.on('click', function(e) {
-    if ($favorites.text() === 'favorites') {
-      $stories.children('li').filter(function(i, el) {
-        return $(el).children('.glyphicon').hasClass('glyphicon-star-empty');
-      }).hide();
-      $stories.addClass('hide-numbers');
-      $favorites.text('all');
-    } else {
-      $stories.children('li').show();
-      $stories.removeClass('hide-numbers');
-      $favorites.text('favorites');
-    }
-  });
+  // deleting a favorite
+  $stories.on('click', '.glyphicon-star', function(e) {
+    let id = $(e.target).data('id');
+    $.ajax({
+      url: `${FAVORITES_BASE_URL}/stories/${id}.json`,
+      method: "DELETE",
+      headers: {
+        "Authorization": localStorage.getItem('token')
+      },
+      contentType: "application/json"
+    }).then(function(d) {
+      if (onFavorites) {
+        $(e.target).parent().remove();
+      } else {
+        $(e.target).toggleClass('glyphicon-star-empty glyphicon-star');
+      }
+    });
+  })
 
   function addStory(story) {
-    var $newLink = $("<a>", {
+    let $newLink = $("<a>", {
       text: story.title,
       href: story.url,
       target: "_blank",
@@ -122,35 +139,45 @@ $(function() {
         id: story.id
       }
     })
-    var formattedTime = moment.unix(story.time).fromNow()
-    var hostname = $newLink.prop('hostname');
-    var shortHostname = hostname.match(/\w+.\w+$/) ? hostname.match(/\w+.\w+$/)[0] : hostname;
-    var $small = $("<small>", {
+    let formattedTime = onFavorites ? '' : moment.unix(story.time).fromNow();
+    let hostname = $newLink.prop('hostname');
+    let shortHostname = hostname.match(/\w+.\w+$/) ? hostname.match(/\w+.\w+$/)[0] : hostname;
+    let $small = $("<small>", {
       text: "(" + shortHostname + ")"
     });
-    var $star = $("<span>", {
-      "class": "glyphicon glyphicon-star-empty"
+    let $star = $("<span>", {
+      "class": "glyphicon glyphicon-star-empty",
+      data: {
+        id: story.id
+      }
     });
-    var $credit = $("<p>").append($("<small>", {
+    let $credit = $("<p>").append($("<small>", {
       text: `by ${story.by} ${formattedTime}` 
     }));
-    var $newStory = $("<li>").append($star, $newLink, $small, $credit);
+    let $newStory = $("<li>").append($star, $newLink, $small, $credit);
     $stories.append($newStory);
   }
 
   function checkLoginStatus() {
-    var $stars = $(".glyphicon");
+    let $stars = $(".glyphicon");
     if (localStorage.getItem('token')) {
       $login.text('logout');
       $stars.show();
     } else {
       $login.text('login');
-      $stars.hide()
+      $stars.hide();
     }
   }
 
-});
+  function getCurrentUserFavorites() {
+    return $.ajax({
+      url: `${FAVORITES_BASE_URL}/stories.json`,
+      headers: {
+        "Authorization": localStorage.getItem('token')
+      },
+      dataType: "json",
+      contentType: "application/json"
+    });
+  }
 
-// show flash messages
-// no stars on index
-// favorites page
+});

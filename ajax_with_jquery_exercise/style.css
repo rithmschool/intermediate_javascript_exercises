@@ -63,11 +63,6 @@ small {
   margin-left: 3px;
 }
 
-#stories > li > small:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
 .hide-numbers {
   list-style: none;
 }
