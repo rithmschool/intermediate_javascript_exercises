@@ -114,29 +114,44 @@ $(document).ready(function () {
     });
 
 
-    /* //Post data and get response token on signup
-     $.post("https://hn-favorites.herokuapp.com/signup", {
-         "email": "tostaylo1@gmail.com",
-         "password": "aaaaa"
-     }).then(function (auth) {
-         console.log(auth)
-         var setToken = localStorage.setItem('token ', auth);
-     }).catch(function (error) {
-         console.log(error);
-     });*/
+    //Post data and get response token on signup
+    $('#signup-submit').click(function (e) {
+        e.preventDefault();
+
+        let $email = $('#email').val();
+        let $password = $('#password').val();
+        $.post("https://hn-favorites.herokuapp.com/signup", {
+            "email": $email,
+            "password": $password
+        }).then(function (auth) {
+            console.log(auth)
+            localStorage.removeItem('token');
+            var setToken = localStorage.setItem('token ', auth.auth_token);
+
+        }).catch(function (error) {
+            console.log(error);
+        });
+    });
 
 
     //Login
-    /*  $.post("https://hn-favorites.herokuapp.com/login", {
-          "email": "tostaylo1@gmail.com",
-          "password": "aaaaa"
-      }).then(function (auth) {
-          console.log(auth.auth_token)
-          localStorage.setItem('token', auth.auth_token);
-      }).catch(function (error) {
-          console.log(error);
-      });*/
+    $('#login-submit').click(function (e) {
+        e.preventDefault();
 
+        let $email = $('#email').val();
+        let $password = $('#password').val();
+
+        $.post("https://hn-favorites.herokuapp.com/login", {
+            "email": $email,
+            "password": $password
+        }).then(function (auth) {
+            console.log(auth.auth_token)
+            console.log(auth);
+            localStorage.setItem('token', auth.auth_token);
+        }).catch(function (error) {
+            console.log(error);
+        });
+    });
 
 
 
