@@ -24,8 +24,15 @@
 
 form {
     width: 400px;
-    margin: 0 0 50px 50px;
+    margin: 50px 0 50px 50px;
     padding: 0;
+}
+
+#story-form {
+    display: none;
+}
+
+#signup-form {
     display: none;
 }
 

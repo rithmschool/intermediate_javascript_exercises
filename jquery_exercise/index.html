@@ -18,13 +18,14 @@
             <h3>Hack or Snooze</h3>
             <div id="submit-div">
                 <span id="submit">Submit | </span>
-                <span id="favorites">Favorites</span>
+                <span id="favorites">Favorites |</span>
+                <span id="login">Login</span>
                 <span id="all">All</span>
 
             </div>
         </div>
-        <form>
-            <div id="close-form"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></div>
+        <form id="story-form">
+            <div id="close-story" class="close-form"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></div>
             <div class="form-group">
                 <label for="title-input">Title</label>
                 <input type="text" class="form-control" id="title-input" aria-describedby="" placeholder="Enter Title">
@@ -35,7 +36,9 @@
             </div>
             <button class="btn btn-secondary">Submit</button>
             <div id="error">Please enter a valid URL!</div>
-
+        </form>
+        <form id="signup-form">
+            <div id="close-login" class="close-form"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></div>
             <div class="form-group">
                 <div id="login-h2">
                     <h3>Login</h3></div>
@@ -46,8 +49,9 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Password">
             </div>
-            <button class="btn btn-secondary">Submit</button>
-            <div id="error">Please enter a valid URL!</div>
+            <button class="btn btn-secondary" id="signup">Signup</button>
+            <button class="btn btn-secondary" id="login">Login</button>
+            <div id="error">Please enter a valid id and password</div>
         </form>
         <ol id="links-ol"></ol>
     </div>

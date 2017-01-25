@@ -30,14 +30,26 @@ $(document).ready(function () {
 
     //Show Form On click
     $('#submit').click(function () {
-        $('form').slideToggle();
+        $('#story-form').slideToggle();
         $(this).hide();
     })
 
     //Close Form
-    $('#close-form').click(function () {
-        $('form').slideToggle();
+    $('#close-story').click(function () {
+        $('#story-form').slideToggle();
         $('#submit').show();
+    });
+
+    //Show Form On click
+    $('#login').click(function () {
+        $('#signup-form').slideToggle();
+        $(this).hide();
+    })
+
+    //Close Form
+    $('#close-login').click(function () {
+        $('#signup-form').slideToggle();
+        $('#login').show();
     });
 
     //Toggle Star Functionality
@@ -59,10 +71,18 @@ $(document).ready(function () {
 
     //Show All
     $('#all').click(function () {
-        $('.glyphicon-star-empty').parent().show();
-        $('.domain-span').parent().show();
         $('#favorites').show();
         $('#all').hide();
+        $('ol').empty();
+        $.get('https://hacker-news.firebaseio.com/v0/topstories.json', function (data) {
+            var topStories = data.slice(0, 20);
+            topStories.forEach(function (story_id) {
+                $.get('https://hacker-news.firebaseio.com/v0/item/' + story_id + '.json', function (story) {
+                    $('#links-ol').append(`<li data-id= ${story.id} data-by= ${story.by}> <span class=" star glyphicon glyphicon-star-empty" aria-hidden="true"></span><a href = ${story.url} target="_blank"><span class="title-span"> ${story.title} </a></span><span class="domain-span">( ${story.url} )</span></li>`);
+
+                });
+            });
+        });
     })
 
     //Show only Items of clicked domain
@@ -87,7 +107,7 @@ $(document).ready(function () {
         var topStories = data.slice(0, 20);
         topStories.forEach(function (story_id) {
             $.get('https://hacker-news.firebaseio.com/v0/item/' + story_id + '.json', function (story) {
-                $('#links-ol').append(`<li data-id= ${story.id} data-by= ${story.by}> <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span><a href = ${story.url} target="_blank"><span class="title-span"> ${story.title} </a></span><span class="domain-span">( ${story.url} )</span></li>`);
+                $('#links-ol').append(`<li data-id= ${story.id} data-by= ${story.by}> <span class="star glyphicon glyphicon-star-empty" aria-hidden="true"></span><a href = ${story.url} target="_blank"><span class="title-span"> ${story.title} </a></span><span class="domain-span">( ${story.url} )</span></li>`);
 
             });
         });
@@ -124,13 +144,13 @@ $(document).ready(function () {
 
 
     //IF Star is clicked set item into favorites in hackernews
-    $('body').on('click', '.glyphicon', function () {
+    $('body').on('click', '.star', function () {
         let $titleElement = $(this).next('a').find('span');
         let $url = $(this).next('a').attr('href');
         let $title = $titleElement.text();
         let $by = $(this).parent().attr('data-by');
         let $id = $(this).parent().attr('data-id');
-        console.log($id);
+
         $(this).toggleClass('glyphicon-star-empty glyphicon-star');
         var getToken = localStorage.getItem('token');
         if ($(this).hasClass("glyphicon-star") === true) {
@@ -156,6 +176,32 @@ $(document).ready(function () {
             }).catch(function (error) {
                 console.log(error);
             });
+        } else {
+            //Delete Favorite
+
+
+            $(this).removeClass('glyphicon-star');
+            $(this).addClass('glyphicon-star-empty');
+            $.ajax({
+                dataType: 'json',
+                url: "https://hn-favorites.herokuapp.com/stories/2.json",
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: getToken
+                },
+                data: JSON.stringify({
+                    id: $id
+                })
+            }).then(function (data) {
+                console.log("succes");
+
+            }).catch(function (error) {
+                console.log(error);
+                console.log('fail');
+            });
+
+
         }
 
     });
@@ -163,6 +209,8 @@ $(document).ready(function () {
     //Get Favorites
 
     $('#favorites').click(function () {
+        $('#favorites').hide();
+        $('#all').show();
         $.ajax({
             url: 'https://hn-favorites.herokuapp.com/stories.json',
             dataType: 'json',
@@ -183,7 +231,6 @@ $(document).ready(function () {
             console.log(error);
         });
     });
-
 
 
 
