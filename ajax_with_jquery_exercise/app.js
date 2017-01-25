@@ -8,36 +8,40 @@ $(function() {
   let $stories = $("#stories");
   let onFavorites = $(location).prop('pathname').match('favorites');
 
+  // if you try to access the favorites page but you're not logged in, go back to index.html
   if (onFavorites && !localStorage.getItem('token')) {
     $(location).attr('href', '/');
   }
 
-  // pre-populate 
-
   if (onFavorites) {
+    // if we're on favorites.html and are logged in, grab the current user's favorites
     getCurrentUserFavorites()
     .then(function(stories) {
       stories.forEach(story => addStory(story));
       $(".glyphicon").toggleClass('glyphicon-star glyphicon-star-empty').show()
     });
   } else {
+    // we're on index.html, so grab the top stories from Hacker News
     $.get(`${HN_BASE_URL}/topstories.json`)
     .then(function(ids) {
       let requests = ids.slice(0, 25).map(id => $.get(`${HN_BASE_URL}/item/${id}.json`));
       return Promise.all(requests);
     })
     .then(function(stories) {
+      // add the stories from hacker news to the page
       stories.forEach(story => addStory(story));
       if (localStorage.getItem('token')) {
+        // if we're logged in, also grab the user's favorites so we know which stars to mark as favorite
         return getCurrentUserFavorites()
       }
     })
     .then(function(userFavorites) {
       if (userFavorites) {
+        // if the current user has favorites, go through the stars and mark any favorites as such
         let story_ids = userFavorites.map(favorite => favorite.story_id);
         let db_ids =  userFavorites.map(favorite => favorite.id);
         $stories.children().each(function(idx, story) {
-          var story_idx = story_ids.indexOf($(story).children('a').data('id')) 
+          let story_idx = story_ids.indexOf($(story).children('a').data('id')) 
           if (story_idx > -1) {
             $(story)
               .children('.glyphicon')
@@ -50,14 +54,14 @@ $(function() {
     });
   }
 
-  checkLoginStatus();
-
   $login.on('click', function() {
     if (localStorage.getItem('token')) {
+      // if logged in, log out
       localStorage.removeItem('token');
       if (onFavorites) $(location).attr('href', '/');
       checkLoginStatus();
     } else {
+      // if logged out, show the login/signup forms
       $loginForms.slideToggle();
     }
   });
@@ -68,6 +72,7 @@ $(function() {
     let path = $form.find('button').text();
     let $inputs = $form.find('input');
 
+    // signup or login, depending on which form was submitted
     $.post({
       url: `${FAVORITES_BASE_URL}/${path}`,
       dataType: 'json',
@@ -90,10 +95,14 @@ $(function() {
   // adding a favorite
   $stories.on('click', '.glyphicon-star-empty', function(e) {
     let $tgt = $(e.target);
+    
+    // get relevant data to send along with the POST request
     let author = $tgt.next().next().next().text().split(" ")[1];
     let title = $tgt.next().text();
     let url = $tgt.next().attr('href');
     let story_id = $tgt.next().data('id');
+
+    // create POST request to add a new story
     $.ajax({
       url: `${FAVORITES_BASE_URL}/stories.json`,
       method: "POST",
@@ -111,6 +120,7 @@ $(function() {
       dataType: "json",
       contentType: "application/json"
     }).then(function(d) {
+      // mark the story as being favorited, and keep track of the ID for potential deletion
       $(e.target).toggleClass('glyphicon-star-empty glyphicon-star')
                  .data('id', d.id);
     });
@@ -118,6 +128,7 @@ $(function() {
 
   // deleting a favorite
   $stories.on('click', '.glyphicon-star', function(e) {
+    // necessary ID is stored as a data attribute on the star
     let id = $(e.target).data('id');
     $.ajax({
       url: `${FAVORITES_BASE_URL}/stories/${id}.json`,
@@ -127,6 +138,7 @@ $(function() {
       },
       contentType: "application/json"
     }).then(function(d) {
+      // how the page gets updated depends on whether we're on favorites.html or index.html
       if (onFavorites) {
         $(e.target).parent().remove();
       } else {
@@ -135,6 +147,7 @@ $(function() {
     });
   })
 
+  // helper responsible for adding a new story li do the DOM
   function addStory(story) {
     let $newLink = $("<a>", {
       text: story.title,
@@ -163,6 +176,7 @@ $(function() {
     $stories.append($newStory);
   }
 
+  // helper to check current login status and update the view
   function checkLoginStatus() {
     let $stars = $(".glyphicon");
     if (localStorage.getItem('token')) {
@@ -174,6 +188,7 @@ $(function() {
     }
   }
 
+  // helper to get a current user's favorite stories
   function getCurrentUserFavorites() {
     return $.ajax({
       url: `${FAVORITES_BASE_URL}/stories.json`,
