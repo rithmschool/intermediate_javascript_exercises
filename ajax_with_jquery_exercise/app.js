@@ -34,10 +34,15 @@ $(function() {
     })
     .then(function(userFavorites) {
       if (userFavorites) {
-        let ids = userFavorites.map(favorite => favorite.story_id);
+        let story_ids = userFavorites.map(favorite => favorite.story_id);
+        let db_ids =  userFavorites.map(favorite => favorite.id);
         $stories.children().each(function(idx, story) {
-          if (ids.indexOf($(story).children('a').data('id')) > -1) {
-            $(story).children('.glyphicon').toggleClass('glyphicon-star glyphicon-star-empty');
+          var story_idx = story_ids.indexOf($(story).children('a').data('id')) 
+          if (story_idx > -1) {
+            $(story)
+              .children('.glyphicon')
+              .toggleClass('glyphicon-star glyphicon-star-empty')
+              .data('id', db_ids[story_idx]);
           } 
         })
       }
