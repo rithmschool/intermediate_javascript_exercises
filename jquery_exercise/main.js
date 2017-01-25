@@ -127,6 +127,8 @@ $(document).ready(function () {
             console.log(auth)
             localStorage.removeItem('token');
             var setToken = localStorage.setItem('token ', auth.auth_token);
+            $('#logout').show();
+            $('#signup-form').hide();
 
         }).catch(function (error) {
             console.log(error);
@@ -148,6 +150,9 @@ $(document).ready(function () {
             console.log(auth.auth_token)
             console.log(auth);
             localStorage.setItem('token', auth.auth_token);
+            $('#logout').show();
+            $('#signup-form').hide();
+            checkAndDisplayFavorites();
         }).catch(function (error) {
             console.log(error);
         });
@@ -155,7 +160,7 @@ $(document).ready(function () {
 
 
 
-    var getToken = localStorage.getItem('token');
+
 
 
     //IF Star is clicked set item into favorites in hackernews
@@ -165,6 +170,7 @@ $(document).ready(function () {
         let $title = $titleElement.text();
         let $by = $(this).parent().attr('data-by');
         let $id = $(this).parent().attr('data-id');
+        console.log(localStorage.getItem('token'));
 
         $(this).toggleClass('glyphicon-star-empty glyphicon-star');
         var getToken = localStorage.getItem('token');
@@ -175,7 +181,7 @@ $(document).ready(function () {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: getToken
+                    Authorization: localStorage.getItem('token')
                 },
                 data: JSON.stringify({
                     hacker_news_story: {
@@ -194,20 +200,18 @@ $(document).ready(function () {
         } else {
             //Delete Favorite
 
-
+            let id = $(this).parent().data('id');
             $(this).removeClass('glyphicon-star');
             $(this).addClass('glyphicon-star-empty');
             $.ajax({
-                dataType: 'json',
-                url: "https://hn-favorites.herokuapp.com/stories/2.json",
+
+                url: `https://hn-favorites.herokuapp.com/stories/${id}.json`,
                 method: "DELETE",
                 headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: getToken
+                    "Authorization": localStorage.getItem('token')
                 },
-                data: JSON.stringify({
-                    id: $id
-                })
+                contentType: "application/json"
+
             }).then(function (data) {
                 console.log("succes");
 
@@ -221,23 +225,64 @@ $(document).ready(function () {
 
     });
 
-    //Get Favorites
+    //Get Favorites and start current list item favorites if favorite is on list
+    // if Logged in
+    if (localStorage.getItem('token')) {
+        function checkAndDisplayFavorites() {
+            $.ajax({
+                url: 'https://hn-favorites.herokuapp.com/stories.json',
+                dataType: 'json',
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem('token')
+                }
+            }).then(function (story) {
+
+
+                let favStories = story.slice(0, 20);
+                let favIdArray = favStories.map(function (story) {
+                    return story.story_id;
+                })
+
+                let currentShowing = $('li').map(function (idx, item) {
+                    console.log(item);
+                    return $(item).data('id');
+                })
+                console.log(currentShowing);
+
+                currentShowing.forEach(function (id) {
+                    if (favIdArray.indexOf(id) !== -1) {
+                        $(id).children('.glyphicon').toggleClass('glyphicon-star glyphicon-star-empty');
+                    }
+                });
+
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+        checkAndDisplayFavorites();
+    }
+
+    //Get Favorites on click and display in 'ol'
 
     $('#favorites').click(function () {
-        $('#favorites').hide();
-        $('#all').show();
+
         $.ajax({
             url: 'https://hn-favorites.herokuapp.com/stories.json',
             dataType: 'json',
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: getToken
+                Authorization: localStorage.getItem('token')
             }
         }).then(function (story) {
-
+            $('#favorites').hide();
+            $('#all').show();
             let favStories = story.slice(0, 20);
             $("ol").empty();
+
+
 
             favStories.forEach(function (item) {
                 $('#links-ol').append(`<li data-id= ${item.id} data-by= ${item.by}> <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span><a href = ${item.url} target="_blank"><span class="title-span"> ${item.title} </a></span><span class="domain-span">( ${item.url} )</span></li>`);
@@ -247,7 +292,29 @@ $(document).ready(function () {
         });
     });
 
+    //Login / Logout
+    if (!localStorage.getItem('token')) {
+        $('#login').show();
+        $('#logout').hide();
+    } else {
+        $('#login').hide();
+        $('#logout').show();
+    }
+    console.log(localStorage.getItem('token'));
 
+    $('#logout').click(function () {
+        if (localStorage.getItem('token')) {
+            localStorage.removeItem('token');
+            $('#login').show();
+            $('#logout').hide();
+            console.log(localStorage.getItem('token'));
+
+        } else {
+            $('#login').show();
+            $('#logout').hide();
+        }
+
+    })
 
 
 
