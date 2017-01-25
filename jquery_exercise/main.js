@@ -87,7 +87,8 @@ $(document).ready(function () {
         var topStories = data.slice(0, 20);
         topStories.forEach(function (story_id) {
             $.get('https://hacker-news.firebaseio.com/v0/item/' + story_id + '.json', function (story) {
-                $('#links-ol').append(`<li> <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span><a href = ${story.url} target="_blank"><span class="title-span"> ${story.title} </a></span><span class="domain-span">( ${story.url} )</span></li>`);
+                $('#links-ol').append(`<li data-id= ${story.id} data-by= ${story.by}> <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span><a href = ${story.url} target="_blank"><span class="title-span"> ${story.title} </a></span><span class="domain-span">( ${story.url} )</span></li>`);
+
             });
         });
     });
@@ -106,28 +107,30 @@ $(document).ready(function () {
 
 
     //Login
-    $.post("https://hn-favorites.herokuapp.com/login", {
-        "email": "tostaylo1@gmail.com",
-        "password": "aaaaa"
-    }).then(function (auth) {
-        console.log(auth.auth_token)
-        localStorage.setItem('token', auth.auth_token);
-    }).catch(function (error) {
-        console.log(error);
-    });
+    /*  $.post("https://hn-favorites.herokuapp.com/login", {
+          "email": "tostaylo1@gmail.com",
+          "password": "aaaaa"
+      }).then(function (auth) {
+          console.log(auth.auth_token)
+          localStorage.setItem('token', auth.auth_token);
+      }).catch(function (error) {
+          console.log(error);
+      });*/
 
 
 
 
     var getToken = localStorage.getItem('token');
-    console.log(getToken);
+
 
     //IF Star is clicked set item into favorites in hackernews
     $('body').on('click', '.glyphicon', function () {
         let $titleElement = $(this).next('a').find('span');
         let $url = $(this).next('a').attr('href');
         let $title = $titleElement.text();
-        console.log($url);
+        let $by = $(this).parent().attr('data-by');
+        let $id = $(this).parent().attr('data-id');
+        console.log($id);
         $(this).toggleClass('glyphicon-star-empty glyphicon-star');
         var getToken = localStorage.getItem('token');
         if ($(this).hasClass("glyphicon-star") === true) {
@@ -141,8 +144,8 @@ $(document).ready(function () {
                 },
                 data: JSON.stringify({
                     hacker_news_story: {
-                        by: "Ray",
-                        story_id: 48382,
+                        by: $by,
+                        story_id: $id,
                         title: $title,
                         url: $url
                     }
@@ -156,6 +159,31 @@ $(document).ready(function () {
         }
 
     });
+
+    //Get Favorites
+
+    $('#favorites').click(function () {
+        $.ajax({
+            url: 'https://hn-favorites.herokuapp.com/stories.json',
+            dataType: 'json',
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: getToken
+            }
+        }).then(function (story) {
+
+            let favStories = story.slice(0, 20);
+            $("ol").empty();
+
+            favStories.forEach(function (item) {
+                $('#links-ol').append(`<li data-id= ${item.id} data-by= ${item.by}> <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span><a href = ${item.url} target="_blank"><span class="title-span"> ${item.title} </a></span><span class="domain-span">( ${item.url} )</span></li>`);
+            })
+        }).catch(function (error) {
+            console.log(error);
+        });
+    });
+
 
 
 
