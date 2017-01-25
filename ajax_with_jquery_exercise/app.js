@@ -3,6 +3,10 @@ $(function() {
     var FAVORITES_BASE_URL = "https://hn-favorites.herokuapp.com";
 
 
+
+
+
+
     $("#submit").click(function() {
         if (!localStorage.getItem("token")) {
             $("#login-forms").slideToggle();
@@ -74,7 +78,11 @@ $(function() {
             stories.forEach(story => {
                 let $newLink = $("<a>", { href: story.url });
                 let host = $newLink.prop('hostname').replace(/^(https?:\/\/)?(www\.)?/, '');
-                $("ol").append(`<li><span></span><a href=${story.url} target="_blank" id="${story.id}">${story.title}</a><small> (${host})</small><br><small>by ${story.by} </small><small><a href="http://news.ycombinator.com/item?id=${story.id}">| comments</a></small></li>`)
+                $("ol").append(`<li><span></span><a href=${story.url} target="_blank" id="${story.id}">${story.title}</a><small> (${host})</small><br><small>by ${story.by} </small><small><a href="http://news.ycombinator.com/item?id=${story.id}">| comments</a></small></li>`);
+                if (localStorage.getItem("token")) {
+                    $("#submit").text("Logout ");
+                    $("li > span").addClass("glyphicon glyphicon-star-empty");
+                }
             });
 
 
@@ -110,7 +118,7 @@ $(function() {
         }).then(function(data) {
             localStorage.setItem('token', data.auth_token);
             $("#login-forms").slideToggle();
-            $("#submit").text("Logout");
+            $("#submit").text("Logout ");
             $("#submit").toggleClass("white");
             $("li > span").addClass("glyphicon glyphicon-star-empty");
 
