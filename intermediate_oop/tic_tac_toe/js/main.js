@@ -24,7 +24,8 @@ document.addEventListener("DOMContentLoaded", function() {
       col = Number(squareInfo[2]);
       var val = g.makeMove(row, col)
       if (val !== undefined) {
-        event.target.innerHTML = Square.stateToString(val);
+        let stateValue = Square.stateToString(val);
+        event.target.innerHTML = `<span class=${stateValue}>${stateValue}</span>`;
       }
       var state = g.winner();
 
