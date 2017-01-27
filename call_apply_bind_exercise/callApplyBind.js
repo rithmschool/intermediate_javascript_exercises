@@ -50,7 +50,7 @@ function guessingGame(amount) {
         if (guesses >= amount) {
             return "You are all done playing!"
         } else {
-            if (guess = answer) {
+            if (guess === answer) {
                 return "You got it!"
             }
             if (guess > answer) {
