@@ -45,9 +45,7 @@ function guessingGame(num) {
         }
     }
 }
-
-
 // guessingGame(5)
 // var game1 = guessingGame(2);
 
-var game1 = guessingGame(4);
+// var game1 = guessingGame(4);

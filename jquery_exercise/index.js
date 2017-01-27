@@ -1,8 +1,6 @@
 $(document).ready(function() {
 var top25obj = {};
-if(favoriteOpen) {
-	openFavorites()
-}
+//only load favorites on reload
 //Imediately checks for login/logout and adjusts accordingly
 if (localStorage.getItem("hackerToken") !== null) {
 	$('#login').text('Logout');
