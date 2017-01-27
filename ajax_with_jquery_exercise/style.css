@@ -1,0 +1,73 @@
+body {
+	background-color: #FDFAE0;
+	counter-reset: item;
+}
+
+.navbar-default {
+	background-color: #ff6600;
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+#navbar-brand {
+	text-decoration: none;
+	color: #000000;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 3px 10px;
+}
+
+#nav-links a {
+	text-decoration: none;
+	color: #000000;
+	font-size: 13px;
+	margin: 3px 10px;
+}
+
+h4 {
+	color: gray;
+	text-indent: 50px;
+}
+
+p {
+	text-align: left;
+}
+
+#login, #logout {
+	float: right;
+}
+
+.glyphicon {
+	display: none;
+}
+
+button {
+	background-color: lightgray;
+	color: white;
+	font-weight: bold;
+}
+
+ol {
+	list-style: none;
+}
+
+ol, li {
+	padding-left: 0em;
+	margin-left: 0em;
+}
+
+li {
+	counter-increment: item;
+	margin-bottom: 5px;
+}
+
+li:before {
+	content: counter(item);
+	color: gray;
+	margin-right: 10px;
+	font-weight: bold;
+}
+
+#listLinks {
+	font-size: 12px;
+	color: gray;
+}
