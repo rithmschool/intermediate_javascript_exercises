@@ -37,3 +37,14 @@ String.prototype.reverse = function () {
     }
     return newStr;
 }
+
+Function.prototype.bind = function (theThisArg) {
+    let outerArgs = [].slice.call(arguments, 1);
+    //get outer args after first argument
+    let that = this;
+    //cache this
+    return function innerFunction(...innerArgs) {
+        let concatted = innerArgs.concat(...outerArgs);
+        return that.apply(theThisArg, concatted);
+    }
+}
