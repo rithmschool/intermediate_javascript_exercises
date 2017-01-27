@@ -1,3 +1,8 @@
+
+
+
+
+
 function Person (firstName,lastName,favoriteColor, favoriteNumber, favoriteFoods) {
     this.firstName = firstName;
     this.lastName = lastName;

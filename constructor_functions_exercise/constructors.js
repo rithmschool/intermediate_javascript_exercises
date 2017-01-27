@@ -7,13 +7,13 @@
 //that object the result each time we create and use that new class. Instatiating ten copies of one 
 //class should give us ten objects of a single class.
 
-function Person(firstName, lastName, favoriteNumber, favoriteColor) {
+function Person(firstName, lastName, favoriteColor, favoriteNumber) {
 	this.firstName = firstName,
 	this.lastName = lastName,
 	this.favoriteNumber = favoriteNumber
 	this.favoriteColor = favoriteColor
 	this.multiplyFavoriteNumber = function multiplyFavoriteNumber (num) {
-	return (this.favoriteNumber)*(num);
+	return this.favoriteNumber*num; 
 }
     
 }
