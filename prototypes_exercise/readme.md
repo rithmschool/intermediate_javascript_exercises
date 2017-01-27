@@ -18,7 +18,7 @@ p.fullName(); // Shana Malarkin
 
 ```javascript
 var p = new Person("Shana", "Malarkin", "Green", 38);
-p.toString(); // Shana Malarkin, Favorite Color: Green, Age: 38
+p.toString(); // Shana Malarkin, Favorite Color: Green, Favorite Number: 38
 ```
 
 - Add a property on the Person object called `family` which is an empty array.

@@ -19,7 +19,7 @@ describe("Person", function(){
     expect(person.hasOwnProperty("favoriteNumber")).to.equal(true);
   });
   it("has a favoriteFoods", function(){
-    expect(person.hasOwnProperty("favoriteNumber")).to.equal(true);
+    expect(person.hasOwnProperty("favoriteFoods")).to.equal(true);
     expect(person.favoriteFoods).to.deep.equal([]);
   });
 });
