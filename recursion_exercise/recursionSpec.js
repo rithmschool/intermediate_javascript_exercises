@@ -46,6 +46,29 @@ describe("#contains", function(){
     }
     expect(contains(nestedObject, 44)).to.equal(true) // true)
   });
+  it("should work if there are multiple objects", function(){
+    var nestedObject = {
+        stuff: {
+          things: {
+            moreThings: {
+                awesome: "Yup!"
+            }
+          }
+        },
+        data: {
+            info: {
+                stuff: {
+                    thing: {
+                        moreStuff: {
+                            magicNumber: 44
+                        }
+                    }
+                }
+            }
+        }
+    }
+    expect(contains(nestedObject, 44)).to.equal(true) // true)
+  });
 });
 
 describe("#search", function(){
