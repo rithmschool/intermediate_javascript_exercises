@@ -46,7 +46,9 @@ function contains(obj, val){
             return true
         }
         if(typeof obj[key] === 'object'){
-            return contains(obj[key], val)
+            if(contains(obj[key], val)){
+                return true
+            }
         }
     }
     return false
@@ -59,7 +61,7 @@ function linearSearch(arr, val){
         if(idx === arr.length) return -1
         else if(arr[idx] !== val){
             return search(arr, val, idx+1)
-        } 
+        }
         return idx;
     }
 
@@ -80,17 +82,17 @@ function search(arr, val, start=0, end=arr.length-1){
 function binarySearch(arr, val){
 
     function binarySearchHelper(array, value, left, right){
-        
+
         if(left > right) return -1;
 
         var middle = Math.floor((right + left) / 2);
 
         if(array[middle] === value) return middle;
-        
+
         else if(array[middle] > value) {
             return binarySearchHelper(array,value,left,middle-1)
-        } 
-        
+        }
+
         return binarySearchHelper(array,value,middle+1,right)
     }
 
