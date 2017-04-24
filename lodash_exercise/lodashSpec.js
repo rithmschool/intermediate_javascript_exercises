@@ -70,42 +70,9 @@ describe("#takeRight", function(){
   });
 });
 
-describe("#takeWhile", function(){
-
-  var instructors = [
-    { 'name': 'tim',  'petOwner': false },
-    { 'name': 'matt', 'petOwner': true },
-    { 'name': 'elie', 'petOwner': true }
-  ];
-
-  function filterPetOwners(instructor){
-    return instructor.petOwner;
-  }
-
-  it("should return a new array based on the callback function", function(){
-    expect(takeWhile(instructors, filterPetOwners)).to.deep.equal([{ 'name': 'matt', 'petOwner': true },
-      { 'name': 'elie', 'petOwner': true }])
-  });
-});
-
 describe("#union", function(){
   it("returns a new array of combined values.", function(){
     expect(union([2], [1, 2])).to.deep.equal([2, 1])
-  });
-});
-
-describe("#zip", function(){
-  it("should Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.", function(){
-    expect(zip(['a', 'b'], [1, 2], [true, false])).to.deep.equal([['a', 1, true], ['b', 2, false]])
-  });
-  it("should handle different length arrays", function(){
-    expect(zip(['a', 'b','c'], [1, 2], [true, false])).to.deep.equal([['a', 1, true], ['b', 2, false], ['c', undefined, undefined]])
-  });
-});
-
-describe("#unzip", function(){
-  it("should accept an array of grouped elements and create an array regrouping the elements to their pre-zip configuration.", function(){
-    expect(unzip([['a', 1, true], ['b', 2, false]])).to.deep.equal([['a', 'b'], [1, 2], [true, false]])
   });
 });
 
@@ -136,16 +103,6 @@ describe("#includes", function(){
 describe("#sample", function(){
   it("should select a sample from an array", function(){
     expect(sample([1, 2, 3, 4])).to.be.within(1,4);
-  });
-});
-
-describe("#flip", function(){
-  it("should return a new function with the arguments flipped", function(){
-    function subtract(a,b,c){
-      return a-b-c
-    }
-    var flipped = flip(subtract)
-    expect(flipped(5,2,3)).to.equal(-4)
   });
 });
 
@@ -268,6 +225,31 @@ describe("#upperFirst", function(){
 describe("#flatten", function(){
   it("should flatten an array once", function(){
     expect(flatten([1, [2, [3, [4]], 5]])).to.deep.equal([1, 2, [3, [4]], 5])
+  });
+});
+
+describe("#zip", function(){
+  it("should Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.", function(){
+    expect(zip(['a', 'b'], [1, 2], [true, false])).to.deep.equal([['a', 1, true], ['b', 2, false]])
+  });
+  it("should handle different length arrays", function(){
+    expect(zip(['a', 'b','c'], [1, 2], [true, false])).to.deep.equal([['a', 1, true], ['b', 2, false], ['c', undefined, undefined]])
+  });
+});
+
+describe("#unzip", function(){
+  it("should accept an array of grouped elements and create an array regrouping the elements to their pre-zip configuration.", function(){
+    expect(unzip([['a', 1, true], ['b', 2, false]])).to.deep.equal([['a', 'b'], [1, 2], [true, false]])
+  });
+});
+
+describe("#flip", function(){
+  it("should return a new function with the arguments flipped", function(){
+    function subtract(a,b,c){
+      return a-b-c
+    }
+    var flipped = flip(subtract)
+    expect(flipped(5,2,3)).to.equal(-4)
   });
 });
 
