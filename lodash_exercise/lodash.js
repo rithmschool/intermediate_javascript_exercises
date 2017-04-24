@@ -65,59 +65,6 @@ function union(){
     return newArr;
 }
 
-function zip(){
-    var zippedArr = [];
-    var args = arguments;
-
-    function calculateNumberOfArrays(){
-        var maxLen = 0;
-        for(var i = 0; i < args.length; i++){
-            if(args[i].length > maxLen){
-                maxLen = args[i].length;
-            }
-        }
-        return maxLen;
-    }
-
-    var zipLength = args.length;
-    var numArrays = calculateNumberOfArrays();
-    for(var i = 0; i < numArrays; i++){
-        var newArr = [];
-        for(var j = 0; j < zipLength; j++){
-            newArr.push(arguments[j][i]);
-        }
-        zippedArr.push(newArr);
-    }
-
-    return zippedArr;
-}
-
-function unzip(){
-    var unZippedArr = [];
-    var args = arguments;
-
-    function calculateNumberOfArrays(){
-        var maxLen = 0;
-        for(var i = 0; i < args.length; i++){
-            if(args[i][i].length > maxLen){
-                maxLen = args[i][i].length;
-            }
-        }
-        return maxLen;
-    }
-    var zipLength = args[0].length;
-    var numArrays = calculateNumberOfArrays();
-    for(var i = 0; i < numArrays; i++){
-        var newArr = [];
-        for(var j = 0; j < zipLength; j++){
-            newArr.push(arguments[0][j][i]);
-        }
-        unZippedArr.push(newArr);
-    }
-
-    return unZippedArr;
-}
-
 function zipObject(){
     var obj = {};
     for(var i = 0; i < arguments[0].length; i++){
@@ -146,16 +93,6 @@ function includes(item,val,startIdx){
 
 function sample(arr){
     return arr[Math.floor(Math.random()*arr.length)]
-}
-
-function flip(fn){
-    return function(){
-        var reversedArgs = [];
-        for(var i = arguments.length-1; i >= 0; i--){
-            reversedArgs.push(arguments[i])
-        }
-        return fn(...reversedArgs)
-    }
 }
 
 function cloneDeep(item){
@@ -309,6 +246,59 @@ function flatten(arr){
     return newArr;
 }
 
+function zip(){
+    var zippedArr = [];
+    var args = arguments;
+
+    function calculateNumberOfArrays(){
+        var maxLen = 0;
+        for(var i = 0; i < args.length; i++){
+            if(args[i].length > maxLen){
+                maxLen = args[i].length;
+            }
+        }
+        return maxLen;
+    }
+
+    var zipLength = args.length;
+    var numArrays = calculateNumberOfArrays();
+    for(var i = 0; i < numArrays; i++){
+        var newArr = [];
+        for(var j = 0; j < zipLength; j++){
+            newArr.push(arguments[j][i]);
+        }
+        zippedArr.push(newArr);
+    }
+
+    return zippedArr;
+}
+
+function unzip(){
+    var unZippedArr = [];
+    var args = arguments;
+
+    function calculateNumberOfArrays(){
+        var maxLen = 0;
+        for(var i = 0; i < args.length; i++){
+            if(args[i][i].length > maxLen){
+                maxLen = args[i][i].length;
+            }
+        }
+        return maxLen;
+    }
+    var zipLength = args[0].length;
+    var numArrays = calculateNumberOfArrays();
+    for(var i = 0; i < numArrays; i++){
+        var newArr = [];
+        for(var j = 0; j < zipLength; j++){
+            newArr.push(arguments[0][j][i]);
+        }
+        unZippedArr.push(newArr);
+    }
+
+    return unZippedArr;
+}
+
 function flattenDeep(arr){
     var newArr = [];
     for(var i = 0; i<arr.length; i++){
@@ -321,3 +311,12 @@ function flattenDeep(arr){
     return newArr;
 }
 
+function flip(fn){
+    return function(){
+        var reversedArgs = [];
+        for(var i = arguments.length-1; i >= 0; i--){
+            reversedArgs.push(arguments[i])
+        }
+        return fn(...reversedArgs)
+    }
+}
