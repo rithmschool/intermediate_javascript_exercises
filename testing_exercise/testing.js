@@ -69,5 +69,13 @@ built in function called Object.assign - research it, but do not use it,
 try to do this on your own!
 */
 function mergeObjects(obj1, obj2){
-	return Object.assign({}, obj1, obj2);
+	var mergeObj = {};
+	for (var prop in obj1){
+		mergeObj[prop] = obj1[prop];
+	}
+	for (var prop in obj2){
+		mergeObj[prop] = obj2[prop];
+	}
+	return mergeObj;
+	//return Object.assign({}, obj1, obj2);
 }
