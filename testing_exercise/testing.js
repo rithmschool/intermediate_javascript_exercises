@@ -45,9 +45,9 @@ function mergeObjects(obj1, obj2) {
     for (var key2 in obj2) {
 
       if (key1 === key2) {
-        obj1[key1] = val2;
+        obj1[key1] = obj2[key2];
       } else {
-        obj1[key2] = val2;
+        obj1[key2] = obj2[key2];
       }
     }
   }
