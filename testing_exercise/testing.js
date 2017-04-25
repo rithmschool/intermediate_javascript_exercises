@@ -10,10 +10,7 @@ function replaceWith(str, charOut, charIn) {
 
 function expand(arr,num) {
 	var newArr = [];
-	if(Math.floor(num) !== num) {
-		num = Math.floor(num);
-	}
-	for(var i = 0; i<num; i++) {
+	for(var i = 0; i<Math.floor(num); i++) {
 		newArr = newArr.concat(arr);
 	}
 	return newArr;
@@ -24,10 +21,7 @@ function acceptNumbersOnly() {
 		return false;
 	}
 	for(var i = 0; i<arguments.length; i++) {
-		if(typeof arguments[i] !== "number") {
-			return false;
-		}
-		if(isNaN(arguments[i])) {
+		if(typeof arguments[i] !== "number" || isNaN(arguments[i])) {
 			return false;
 		}
 	}
