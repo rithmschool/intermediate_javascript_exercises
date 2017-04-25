@@ -4,7 +4,7 @@ body {
 
 #shapes-game {
   border: 4px solid grey;
-  background-color: black;
+  background: linear-gradient(to bottom, #161616 0%,#2d2d2d 100%);
 }
 
 .canvas-container {
@@ -39,18 +39,18 @@ body {
 .triangle-bottomleft-black {
   width: 0;
   height: 0;
-  border-bottom: 54px solid black;
-  border-right: 58px solid transparent;
+  border-bottom: 52px solid black;
+  border-right: 59px solid transparent;
 }
 
 .triangle-inner-white {
     position: relative;
     top: 2px;
-    left: 2px;
+    left: 1px;
     width: 0;
     height: 0;
-    border-bottom: 50px solid white;
-    border-right: 50px solid transparent;
+    border-bottom: 49px solid white;
+    border-right: 55px solid transparent;
 }
 
 .triangle-left {

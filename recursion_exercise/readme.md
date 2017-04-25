@@ -11,25 +11,8 @@ productOfArray([1,2,3]) // 6
 productOfArray([1,2,3,10]) // 60
 ```
 
-- Write a function called `collectStrings` which accepts an object and returns an array of all the values in the object that have a typeof string
-
-```javascript
-var obj = {
-    stuff: "foo",
-    data: {
-        val: {
-            thing: {
-                info: "bar",
-                moreInfo: {
-                    evenMoreInfo: {
-                        weMadeIt: "baz"
-                    }
-                }
-            }
-        }
-    }
-}
-
+```
+- Write a function called `collectStrings` which returns all the strings in a nested object.
 collectStrings(obj) // ["foo", "bar", "baz"])
 ```
 
