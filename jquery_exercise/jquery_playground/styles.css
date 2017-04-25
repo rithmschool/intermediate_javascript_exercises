@@ -1,0 +1,17 @@
+#first-div, #second-div {
+	width: 100px;
+	height: 100px;
+
+}
+
+#first-div {
+	background-color: blue;
+}
+
+#second-div {
+	background-color: orange;
+}
+
+.col-md-4:nth-child(odd) {
+	background: yellow;
+}

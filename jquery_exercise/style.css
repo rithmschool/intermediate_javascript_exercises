@@ -1,0 +1,115 @@
+
+#drop-down-form,#sign-up-form{
+	display: none;
+}
+
+.links {
+    font-size: 12px;
+    color: gray;
+}
+
+#submit-button {
+	margin-left: 90%;
+}
+
+.navbar-test {
+	margin: 0;
+}
+
+.body {
+	background: rgb(246, 246, 239);
+	font-family: verdana, sans-serif;
+}
+
+nav > .container-fluid {
+	background: rgb(255, 102, 0);
+}
+
+nav .container-fluid > p {
+	display: inline-block;
+	/*font-family: verdana, sans-serif;*/
+}
+
+#big-text {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-family: verdana, sans-serif;
+  font-size: 20px;
+  color: #000000;
+  font-style: normal;
+  font-weight: bold;
+  font-variant: normal;
+  text-align: left;
+  letter-spacing: 0px;
+  line-height: 20px;
+  margin-right:20px;
+}
+
+.list {
+	font-family: verdana, sans-serif;
+}
+
+.container {
+	background: rgb(246, 246, 239);;
+}
+
+#favorites, #submit {
+  font-style: normal;
+  font-weight: bold;
+  font-variant: normal;
+  /*text-align: left;
+  letter-spacing: 0px;
+  line-height: 20px;
+  margin-right:20px;*/
+  margin-right:3px;
+  margin-left: 3px;
+  color: blue;
+  text-decoration: underline;
+}
+
+#login  {
+  font-style: normal;
+  font-weight: bold;
+  font-variant: normal;
+  /*text-align: left;
+  letter-spacing: 0px;
+  line-height: 20px;
+  margin-right:20px;*/
+  margin-right:3px;
+  margin-left: 3px;
+  color: blue;
+  text-decoration: underline;
+  float:right;
+}
+
+#create-account-button {
+  float: right;
+}
+
+#create-account {
+    font-style: normal;
+  font-weight: bold;
+  font-variant: normal;
+  /*text-align: left;
+  letter-spacing: 0px;
+  line-height: 20px;
+  margin-right:20px;*/
+  margin-right:3px;
+  margin-left: 3px;
+  color: blue;
+  text-decoration: underline;
+}
+
+#login-button {
+  float: right;
+}
+
+.glyphicon-star-empty, 
+.glyphicon-star {
+  display: none;
+}
+
+.title {
+  color: black;
+  font-family: verdana, sans-serif;
+}
