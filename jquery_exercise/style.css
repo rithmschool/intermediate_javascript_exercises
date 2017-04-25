@@ -1,0 +1,36 @@
+/*.navbar-default .navbar .navbar-header>a {
+	background-color: #d41d1d;
+	color: black;
+	font-weight: bold;
+
+}
+
+.navbar-default .navbar-nav>li>a{
+	background-color: #d41d1d;
+	font-weight: bold;
+	color: black;
+}*/
+
+/*.light {
+	background-color: red;
+}
+*/
+
+.navbar-default  {
+	background-color: #d41d1d;
+}
+
+.navbar-default .navbar-brand {
+	font-weight: bold;
+	color: black;
+}
+
+/*while combining this with up overrides color*/
+.navbar-default .navbar-nav>li>a{
+	font-weight: bold;
+	color: black;
+}
+
+.submit-story {
+	padding-left: 50px;
+}

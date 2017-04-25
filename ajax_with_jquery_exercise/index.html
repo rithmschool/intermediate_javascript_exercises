@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hack or Snooze</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- Optional theme -->
+
+	<link rel="stylesheet" href="style.css">
+	
+	<!-- Latest compiled and minified JavaScript -->
+</head>
+<body class="container-fluid">
+
+	<nav class="navbar navbar-default">
+		<div class="container">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="#">Hack or Snooze</a>
+		    </div>
+		   	<div>
+			    <ul class="nav navbar-nav">
+			        <li><a href="#" id="favorites" class="hover">favorites</a></li>
+			    </ul>
+			</div> 
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#" id="login" class="hover">Login</a></li>
+				<li><a href="#" id="logout" class="hover">Logout</a></li>
+			</ul>	
+		</div>
+
+	</nav>
+
+	<div id="signUp-form">
+		<form class="signUp-form form-horizontal">
+	      <div class="form-group row">
+  			<label for="title" class="col-md-1 col-form-label">Email</label>
+  			<div class="col-md-6">
+    			<input type="text" class="email" class="form-control" placeholder="email"/>
+    		</div>	
+  		  </div>
+  		  <div class="form-group row">
+  			<label for="url" class="col-md-1 col-form-label">password</label>
+  			<div class="col-md-6">
+    			<input type="text" class="password" class="form-control" placeholder="password">
+    		</div>
+  		  </div class="form-group row">
+  		    <div class="col-md-2">
+  				<button type="submit" id="signUp" class="btn btn-default">SignUp</button>
+  			</div>	
+  		  </div>
+		</form>
+    </div>
+
+	<br>
+	<div id="login-form">
+		<form class="login-form form-horizontal">
+	      <div class="form-group row">
+  			<label for="title" class="col-md-1 col-form-label">Email</label>
+  			<div class="col-md-6">
+    			<input type="text" class="email" class="form-control" placeholder="email"/>
+    		</div>	
+  		  </div>
+  		  <div class="form-group row">
+  			<label for="url" class="col-md-1 col-form-label">password</label>
+  			<div class="col-md-6">
+    			<input type="text" class="password" class="form-control" placeholder="password">
+    		</div>
+  		  </div class="form-group row">
+  		    <div class="col-md-2">
+  				<button type="submit" id="loginId" class="btn btn-default">Login</button>
+
+  			</div>	
+  		  </div>
+		</form>
+    </div>
+	
+	<ol id="stories">
+	</ol>
+
+	<ol id="fav">
+	</ol>
+
+
+	<script
+	  src="http://code.jquery.com/jquery-3.1.1.js"
+	  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+	  crossorigin="anonymous">
+	</script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+	</script>
+
+	<script src="app.js"></script>
+
+</body>
+</html>
