@@ -4,7 +4,7 @@ body {
 
 #shapes-game {
   border: 4px solid grey;
-  background-color: black;
+  background-color: #a939d6;
 }
 
 .canvas-container {
@@ -32,7 +32,7 @@ body {
 .triangle-bottomleft-red {
   width: 0;
   height: 0;
-  border-bottom: 50px solid red;
+  border-bottom: 50px solid #3951d6;
   border-right: 50px solid transparent;
 }
 
@@ -58,7 +58,7 @@ body {
     height: 0;
     border-top: 23px solid transparent;
     border-bottom: 23px solid transparent;
-    border-right: 23px solid red;
+    border-right: 23px #34acdb;
 }
 
 .inner-triangle {
@@ -75,7 +75,7 @@ body {
 .red-square {
   width: 50px;
   height: 50px;
-  background-color: red;
+  background-color: #3951d6;
 }
 
 .white-square {

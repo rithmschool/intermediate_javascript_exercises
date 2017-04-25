@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hacker News</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <br>
+    <div>
+        <nav>
+            <div class="container" id="header">
+                <div class="row">
+                    <div class="col-md-12"><span id="icon"><img src="https://news.ycombinator.com/y18.gif" width="18" height="18" style="border:1px white solid;"></span><b>  Hacker News</b>
+                        <span id="submit">Login </span>|
+                        <span id="favorites"><a href="favorites.html">Favorites</a></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container" id="login-forms">
+            <form>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-1">
+                        <h4>Login</h4>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">email</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" id="email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">pw</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" id="password">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-offset-1 col-sm-4">
+                        <button type="submit" class="btn btn-default" id="loginbutton">Login</button>
+                    </div>
+                </div>
+            </form>
+            <form>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-1">
+                        <h4>Create Account</h4>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">email</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" id="email2">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">pw</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" id="password2">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-offset-1 col-sm-4">
+                        <button type="submit" class="btn btn-default" id="createbutton">Create Account</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="container">
+            <ol id="stories" class="col-md-12">
+            </ol>
+            <br>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+        <script src="app.js"></script>
+</body>
+
+</html>
