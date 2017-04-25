@@ -3,9 +3,9 @@ function replaceWith(string, letter1, letter2) {
 	var replacedString = "";
 	for (var i = 0; i < string.length; i++) {
 		if (string[i] === letter1) {
-			replacedString = replacedString + letter2;
+			replacedString += letter2;
 		} else {
-			replacedString = replacedString + string[i];
+			replacedString += string[i];
 		}
 	}
 	return replacedString;
@@ -25,7 +25,7 @@ function expand(array, num) {
 
 function acceptNumbersOnly() {
 	return [].every.call(arguments, function(value) {
-		return typeof(value) === "number" && !(isNaN(value));
+		return Number.isFinite(value);
 	})
 }
 
