@@ -10,23 +10,17 @@ function replaceWith(str, char1, char2) {
 		return "";
 	} else {
 		var splitStr = str.split("");
-		console.log("original char2: " + char2);
 		for (var i = 0; i < splitStr.length; i++) {
 			if (char1 === char1.toUpperCase()) {
-				if(splitStr[i].toUpperCase() === char1.toUpperCase()) {
-					console.log("char2 in uppercase loop: " + char2);
-					splitStr[i] = char2;	
-					console.log("splitStr[i]: " + splitStr[i]);			
+				if(splitStr[i] === char1) {
+					splitStr[i] = char2;			
 				}
 			} else if (char1 === char1.toLowerCase()) {
-				if(splitStr[i].toLowerCase() === char1.toLowerCase()) {
-					console.log("char2 in lowercase loop: " + char2);
+				if(splitStr[i] === char1) {
 					splitStr[i] = char2;
-					console.log("splitStr[i]: " + splitStr[i]);	
 				}
 			}
 		}
-		console.log("splitStr full: " + splitStr);
 		str = splitStr.join("");
 		return str;
 	}
@@ -40,7 +34,16 @@ expand(["foo", "test"],1) //["foo","test"]
 */
 
 function expand(arr, num) {
-
+	if (num <= 0) {
+		return [];
+	} else {
+		for (var i = 0; i < num; i++) {
+			for (var j = 0; j < arr.length; j++) {
+				arr.push(arr[j]);
+			}
+		}
+	}
+	return arr;
 }
 
 /* 
@@ -52,7 +55,14 @@ acceptNumbersOnly(1,2,3,4,5,6,NaN) // false
 */
 
 function acceptNumbersOnly() {
-
+	for (var i = 0; i < arguments.length; i++) {
+		if (arguments[i] === NaN) {
+			return false;
+		} else if (typeof arguments[i] !== "number") {
+			return false;
+		}
+	}
+	return true;
 }
 
 /* 
@@ -62,7 +72,14 @@ mergeArrays([2,1],[3,4]) // [1,2,3,4]
 */
 
 function mergeArrays(arr1, arr2) {
-
+	if (!(typeof arr1.isArray) || !(typeof arr2.isArray)) {
+		return [];
+	} else {
+		for (var i = 0; i < arr2.length; i++) {
+			arr1.push(arr2[i]);
+		}
+		return arr1.sort();
+	}
 }
 
 /* 
@@ -89,7 +106,15 @@ mergeObjects(obj1, obj2)
 */
 
 function mergeObjects(obj1, obj2) {
-
+	if (!(typeof obj1 === "object") || !(typeof obj2 === "object")) {
+		return {};
+	} else {
+		for (var key in obj2) {
+			// add key to obj1 if doesn't exist, otherwise update w/ obj2's value
+			key = obj2[key];
+		}
+		return obj1;
+	}
 }
 
 

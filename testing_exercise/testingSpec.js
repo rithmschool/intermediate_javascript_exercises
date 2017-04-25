@@ -28,13 +28,13 @@ describe("replaceWith()", function() {
 		expect(replaceWith("awesome", "E", "z")).to.not.equal("awzsomz"); // b !== B
 	});
 	it("is case sensitive 2", function() {
-		expect(replaceWith("awesome", "e", "Z")).to.not.equal("awzsomz"); // z !== Z
+		expect(replaceWith("awesome", "e", "Z")).to.equal("awZsomZ"); // z !== Z
 	});
 	it("is case sensitive 3", function() {
 		expect(replaceWith("Foo", "f", "B")).to.not.equal("Boo"); // f !== F
 	});
 	it("is case sensitive 4", function() {
-		expect(replaceWith("Foo", "F", "b")).to.not.equal("Boo"); // b !== B
+		expect(replaceWith("Foo", "F", "b")).to.equal("boo"); // b !== B
 	});
 });
 
@@ -143,9 +143,9 @@ mergeObjects(obj1, obj2)
 
 describe("mergeObjects()", function() {
 	it("isn't valid if not called on objects", function() {
-		expect(mergeObjects([], 3)).to.equal(undefined);
-		expect(mergeObjects(1, 2)).to.equal(undefined);
-		expect(mergeObjects(["hi"], "what")).to.equal(undefined);
+		expect(mergeObjects([], 3)).to.equal({});
+		expect(mergeObjects(1, 2)).to.equal({});
+		expect(mergeObjects(["hi"], "what")).to.equal({});
 	});
 	it("combines two objects", function() {
 		var obj1= {
