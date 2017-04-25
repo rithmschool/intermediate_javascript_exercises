@@ -1,0 +1,103 @@
+.container {
+    padding: 0;
+}
+
+#header-div {
+    width: 100%;
+    background: lightgray;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    margin: 0;
+    padding: 0;
+}
+
+#header-div h3 {
+    margin: 0;
+    padding: 20px;
+}
+
+#submit-div {
+    width: 200px;
+    cursor: pointer;
+}
+
+form {
+    width: 400px;
+    margin: 50px 0 50px 50px;
+    padding: 0;
+}
+
+#story-form {
+    display: none;
+}
+
+#signup-form {
+    display: none;
+}
+
+.glyphicon {
+    cursor: pointer;
+}
+
+#all {
+    display: none;
+}
+
+#error {
+    color: red;
+    display: none;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:hover {
+    background: darkred;
+    color: white;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+li span {
+    padding: 30px 0;
+}
+
+.domain-span {
+    color: gray;
+    cursor: pointer;
+}
+
+.title-span {
+    color: black;
+    font-size: 1.7em;
+    font-weight: 400;
+    margin: 0 30px;
+}
+
+.title-span:hover {
+    color: darkred;
+    text-decoration: none;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+#close-form {
+    margin-top: 20px;
+    width: 100%;
+    text-align: right;
+}
+
+.glyphicon-menu-up {
+    font-size: 2em;
+}
