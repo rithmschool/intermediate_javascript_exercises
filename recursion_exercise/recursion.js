@@ -20,41 +20,35 @@ function productOfArray (arr){
 function collectStrings (obj){
     var arr = [];
     
-    function checkForString (element){
+    function checkForString (object){
 
     	// Handle base case first. When do we stop recursion? When we've gone through every element in obj, return false ??
     	// If we check the typeof of something that doesn't exist in object, we get undefined...but typeof(null) === "object"
 
-    	if (typeof(element) === null) {  //undefined?
-    		return ;
-    	}
+	    for (var key in object) {	
 
-    	// need mechanism for evaluating whether each element is a string. 
-    	// if result of test is true; ---> push that element into our array called arr
+	    	if (typeof object[key] === "string")  {  
+	    		arr.push(object[key]);
 
-    	if (typeof(element) === "string"){
-    		arr.push(element);
+	    	// loop through every key in the object, if the typeof that value is a string, then push that value to the arr array
 
+	    	}
 
-    	}
+	    	if (typeof object[key] === "object"){
+	    		checkForString(object[key]);
+	    	}
 
-    	return checkForString(obj[element]);
-
-    	// how do I make my object "smaller" each recursion? Can I 
-    	// my brain's stack is overflowing :(
-    	
-
-    	// need to call checkForString using multiple inputs  i.e. recursively, 
-    	
-
+	    	// if the typeof of the value in that object equivalent to an object? If yes, then call the function again.
+			// use object[key] as the mechanism for running through the object. at every point object[key] is different...
+	    	// need mechanism for evaluating whether each element is a string. 
+	   
+	    }
+  	
+    	// 
     	// return checkForString(element);
+    }
 
-
-        }
-
-    checkForString(); //Need to call the function helper to get it build our array
+     //Need to call the function helper to get it build our array
 
     return arr;
-
-
 }
