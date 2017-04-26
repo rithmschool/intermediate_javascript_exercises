@@ -125,3 +125,69 @@ function search(arr, searchVal){
 
 	//return arr.indexOf(searchVal);
 }
+
+/*
+Refactor your search function to use a faster algorithm called binary search
+*/
+function binarySearch(arr, searchVal){
+	var index = 0;
+
+	function binarySearchHelper(arr){
+		if (arr.length === 1) {
+			if (arr[0] === searchVal){
+				return index
+			}
+			else {
+				return -1;
+			}
+		}
+		var midPoint = Math.floor(arr.length / 2);
+		if (arr[midPoint] === searchVal){
+			return index + midPoint;
+		}
+		else if (arr[midPoint] > searchVal){
+			return binarySearchHelper(arr.slice(0, midPoint));
+		}
+		else {
+			index += midPoint;
+			return binarySearchHelper(arr.slice(midPoint));
+		}
+	}
+	return binarySearchHelper(arr);
+}
+
+/*
+- Write a function called `stringifyNumbers` which takes in an object and 
+finds all of the values which are numbers and converts them to strings. 
+Recursion would be a great way to solve this!
+*/
+function stringifyNumbers(obj){
+	var objNew = {};
+
+	function stringifyNumbersHelper(obj){
+		var objNew = {};
+		for (var key in obj){
+			if (typeof(obj[key]) === 'number'){
+			  objNew[key] = obj[key].toString();
+			}
+			else if (Array.isArray(obj[key])){
+			  objNew[key] = obj[key];
+			}
+			else if (typeof(obj[key]) === 'object'){
+			  objNew[key] = stringifyNumbersHelper(obj[key]);
+			}
+			else {
+			  objNew[key] = obj[key];
+			}
+		}
+		return objNew;
+	}
+	objNew = stringifyNumbersHelper(obj);
+	return objNew;
+}
+
+/*
+Complete 
+https://www.codewars.com/kata/mutual-recursion/train/javascript) codewars problem! 
+*/
+
