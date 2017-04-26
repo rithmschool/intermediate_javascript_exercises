@@ -18,10 +18,6 @@ function takeRight(){
 
 }
 
-function takeWhile(){
-
-}
-
 function union(){
 
 }
