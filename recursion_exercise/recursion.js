@@ -82,12 +82,12 @@ function binarySearch(array, value) {
 		}
 		if (array[Math.floor(array.length/ 2)] < value) {
 			totalLength = totalLength - Math.floor(totalLength/ 2);
-			indexValue = indexValue + (Math.ceil(totalLength/2));
+			indexValue = indexValue + (Math.floor((totalLength/2) + 0.5));
 			return binarySearchGo(array.splice(Math.floor(array.length/2) + 1,array.length - Math.floor(array.length/2)), value);
 		}
 		if (array[Math.floor(array.length/ 2)] > value) {
 			totalLength = totalLength - Math.floor(totalLength/ 2);
-			indexValue = indexValue - (Math.floor(totalLength/2));
+			indexValue = indexValue - (Math.floor((totalLength/2) + 0.5));
 			return binarySearchGo(array.splice(0, Math.floor(array.length/2)), value);
 		}
 	}
