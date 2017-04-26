@@ -38,15 +38,12 @@ function contains(obj, target){
 
 		var keys = Object.keys(obj);
 
-		//if (keys.length === 0) return false;
-
 		for (var i =0; i<keys.length; i++){
 			if (typeof obj[keys[i]] !== 'object'){
 				//look compare value
 				// if value is what we're looking for, return true.
 				if ( obj[keys[i]] === target){
 					successFlag = true;
-					// return true;
 				} 
 			} else{
 				containHelp(obj[keys[i]]);
@@ -58,32 +55,63 @@ function contains(obj, target){
 	return successFlag;
 
 }
-/*
-function contains(obj, target){
-	var keys = Object.keys(obj);
 
-	for (var i = 0; i<keys.length; i++){
-		if (typeof obj[keys[i]] !== 'object'){
-			if (obj[keys[i]] === target){
-				return true;
+function search(arr, val){
+	var myArr = arr;
+	foundFlag = -1;
+
+	function searchHelp(arr){
+		if (arr[arr.length-1] === val){
+			foundFlag = arr.length-1;
+		} else {
+			if (arr.length > 1){
+				arr.pop()
+				searchHelp(arr);
 			}
-		} else{
-			contains(obj[keys[i]]);
 		}
 	}
-	return false;
+
+	searchHelp(myArr);
+	return foundFlag;
+
 }
-*/
-var nestedObject = {
-    data: {
-        info: {
-            stuff: {
-                thing: {
-                    moreStuff: {
-                        magicNumber: 44
-                    }
-                }
-            }
-        }
-    }
+
+function binarySearch(arr,val){
+	console.log(arr);
+	//var myArr = arr.sort();
+	var indexOffset = 0;
+	var foundFlag = -1;
+
+	function searchHelp(arr){
+		// determine middlepoint of arr.length
+		var middlepoint = Math.floor(arr.length/2);
+
+		if (arr[middlepoint] === val){
+			foundFlag = middlepoint + indexOffset;
+			return;
+		} 
+
+		if (arr[middlepoint] < val && arr.length > 2){
+			indexOffset += middlepoint;
+			searchHelp(arr.slice(middlepoint));
+		}
+
+		if (arr[middlepoint] > val){
+			searchHelp(arr.slice(0,middlepoint));
+		}
+	}
+
+	searchHelp(arr);
+	return foundFlag;
 }
+
+search([1,2,3,4,5],5) // 4
+search([1,2,3,4,5],15) // -1
+
+
+
+
+
+
+
+
