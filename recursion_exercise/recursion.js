@@ -73,7 +73,7 @@ function collectStrings(obj) {
 function contains (obj, val) {
     var result = false;
 
-    function helper (obj, val) {
+    function helper (obj, val) { 
         for (var key in obj) {
             if (obj[key] === val) {
                 result = true;

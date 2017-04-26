@@ -57,12 +57,12 @@ describe("expand()", function() {
 	it("returns multiples", function() {
 		expect(expand([1,2,3],3)).to.deep.equal([1,2,3,1,2,3,1,2,3]);
 	});
-	it("doesn't work if second arg isn't a number", function() {
-		var result = expand(arr, num);
-		expect(arguments[]).to.be.a("number");
-		expect(arr).to.be.instanceof(Array);
+	// it("doesn't work if second arg isn't a number", function() {
+	// 	var result = expand(arr, num);
+	// 	expect(arguments[]).to.be.a("number");
+	// 	expect(arr).to.be.instanceof(Array);
 
-	});
+	// });
 	/*it("doesn't work if first arg isn't an array", function() {
 
 	});*/
@@ -143,9 +143,9 @@ mergeObjects(obj1, obj2)
 
 describe("mergeObjects()", function() {
 	it("isn't valid if not called on objects", function() {
-		expect(mergeObjects([], 3)).to.equal({});
-		expect(mergeObjects(1, 2)).to.equal({});
-		expect(mergeObjects(["hi"], "what")).to.equal({});
+		expect(mergeObjects([], 3)).to.deep.equal({});
+		expect(mergeObjects(1, 2)).to.deep.equal({});
+		expect(mergeObjects(["hi"], "what")).to.deep.equal({});
 	});
 	it("combines two objects", function() {
 		var obj1= {
