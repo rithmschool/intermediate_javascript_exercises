@@ -22,14 +22,6 @@ function union(){
 
 }
 
-function zip(){
-
-}
-
-function unzip(){
-
-}
-
 function zipObject(){
 
 }
@@ -39,10 +31,6 @@ function includes(){
 }
 
 function sample(){
-
-}
-
-function flip(){
 
 }
 
@@ -78,7 +66,7 @@ function omitBy(){
 
 }
 
-function pad(){
+function padEnd(){
 
 }
 
@@ -91,6 +79,18 @@ function upperFirst(str){
 }
 
 function flatten(){
+
+}
+
+function zip(){
+
+}
+
+function unzip(){
+
+}
+
+function flip(){
 
 }
 
