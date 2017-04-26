@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row main sidepane">
+        <h1>
+            <p class="row foo"></p>
+            <div class="row main sidepane">
+                <h2>
+                    <div class="row test">1</div>
+                </h2>
+            </div>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="main">
+            <h2 class="row">
+                <div id="foo" class="row main sidepane">
+                    2
+                </div>
+            </h2>
+        </div>
+    </div>
+    <div class="row"></div>
+    <script>
+    // to select an element with an ID of 'foo'.
+
+        function findID(str) {
+
+            var result = null; // replace with element name when ID foo is found
+
+            function inner(obj) {
+                for(var i=0; i<obj.length; i++) {
+                    if (obj[i].id === str) {
+                        result = obj[i];
+                    } else {
+                        if(obj[i].children !== undefined) {
+                            inner(obj[i].children);
+                        }
+                    }
+                }
+            }
+            
+            inner(document.body.children); 
+            console.log(result); // just so we can see it
+            return result;
+        }
+        
+        // findID("foo"); // uncomment this to find element with ID 'foo'
+
+        function findAllDivs(str) {
+
+            var result = []; // push in each div element found
+
+            function inner(obj) {
+                for(var i=0; i<obj.length; i++) {
+                    if (obj[i].localName === str) {
+                        result.push(obj[i]);
+                    } 
+                    if(obj[i].children !== undefined) {
+                        inner(obj[i].children);
+                    }
+                }
+            }
+            
+            inner(document.body.children); 
+            console.log(result); // just so we can see it
+            return result;
+        }
+
+        // findAllDivs("div"); // uncomment this to find all div elements
+
+        function findClassName(str) {
+
+            var result = []; // push in each div element found
+
+            function inner(obj) {
+                for(var i=0; i<obj.length; i++) {
+                    for (var j = 0; j<obj[i].classList.length; j++) {
+                        if (obj[i].classList[j] === str) {
+                            result.push(obj[i]);
+                        }
+                    } 
+                    if(obj[i].children !== undefined) {
+                        inner(obj[i].children);
+                    }
+                }
+            }
+            
+            inner(document.body.children); 
+            console.log(result); // just so we can see it
+            return result;
+        }
+
+        // findClassName("row"); // uncomment this to find all div elements
+
+
+    </script>
+</body>
+</html>
