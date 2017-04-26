@@ -107,6 +107,12 @@ describe("#sample", function(){
 });
 
 describe("#cloneDeep", function(){
+  it("should create a copy of an array when passed one", function(){
+    expect(cloneDeep([1,2,3])).to.be.instanceof(Array);
+  });
+  it("should create a copy of an array when passed one", function(){
+    expect(cloneDeep({})).to.be.instanceof(Object);
+  });
   it("should create a deep copy of an array", function(){
     var objects = [{ 'a': 1 }, { 'b': 2 }];
     var deep = cloneDeep(objects);

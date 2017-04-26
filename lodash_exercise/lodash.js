@@ -99,7 +99,7 @@ function cloneDeep(item){
     if(Array.isArray(item)){
         var newArr = [];
         for(var i = 0; i < item.length; i++){
-            newArr.push(Object.assign({}, item[i]))
+            newArr = newArr.concat(cloneDeep(item[i]))
         }
         return newArr;
     }
