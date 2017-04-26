@@ -1,6 +1,7 @@
 
 
 function replaceWith (word, charRemove, charReplace){
+  // Hello Elie - this is yourself!
  // Two approaches: 
 
  // 1) if charRemove is a character in word, find the indexOf charRemove. 
