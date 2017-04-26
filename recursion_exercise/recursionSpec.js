@@ -74,8 +74,12 @@ describe("#contains", function(){
 describe("#search", function(){
   it("should find the index of a value in an array", function(){
     expect(search([1,2,3,4],4)).to.equal(3)
-    expect(search([1,2],1)).to.equal(0)
+    expect(search([1,2,3,4],3)).to.equal(2)
+    expect(search([1,2,3,4,5],5)).to.equal(4)
     expect(search([1,2,3,4,5,6,7],6)).to.equal(5)
+    expect(search([1,2],2)).to.equal(1)
+    expect(search([1,2],1)).to.equal(0)
+
   });
   it("should return -1 if the value is not found", function(){
     expect(search([1,2,3,4]),0).to.equal(-1)
