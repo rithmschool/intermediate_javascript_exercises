@@ -59,7 +59,7 @@ describe("expand()", function() {
 	});
 	it("doesn't work if second arg isn't a number", function() {
 		var result = expand(arr, num);
-		expect(num).to.be.a("number");
+		expect(arguments[]).to.be.a("number");
 		expect(arr).to.be.instanceof(Array);
 
 	});
