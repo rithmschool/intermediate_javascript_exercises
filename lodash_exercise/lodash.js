@@ -93,26 +93,47 @@ function sample(arr){
 	return arr[Math.floor(Math.random() * (arr.length - 1))];
 }
 
-// function cloneDeep(thing){
-// 	// array of objects or empty object
-// 	// make sure each object is ALSO a new one
-// 	if (Array.isArray(thing)) {
-// 		var newThing = thing.map(function(val) {
-// 			return val;
-// 		});
-// 	} else if (typeof thing === "object") {
-// 		for (var key in thing) {
-// 			var newThing = {};
-// 			newThing[key] = thing[key];
-// 		}
-// 	} 
-// 	return newThing;
-// }
+function cloneDeep(thing){
+	// array of objects or empty object
+	// make sure each object is ALSO a new one
+	if (Array.isArray(thing)) {
+		var newThing = thing.map(function(val) {
+			return Object.assign({}, thing);
+		});
+	} else if (typeof thing === "object") {
+		for (var key in thing) {
+			var newThing = {};
+			newThing[key] = thing[key];
+		}
+	} 
+	return newThing;
+}
 
-// function sumBy(arr, fun){
-// 	// sums with a callback function
-// 	// complicated part is the object shorthand
-// }
+function sumBy(thing, fun){
+	// sums with a callback function
+	// complicated part is the object shorthand
+	var sum = 0;
+	if (Array.isArray(thing)) {
+		if (typeof fun !== "function") {
+			for (var i = 0; i < thing.length; i++) {
+				for (var key in thing[i]){
+					if (key === fun) {
+						sum += thing[i][key];
+					}
+				}
+			}
+		} else {
+			return thing.reduce(function(acc, cur) {
+				return acc + fun(cur);
+		}, 0);
+		}
+	} else if (typeof thing === "object") {
+		for (var key in thing) {
+			sum += fun(thing[key]);
+		}
+	}
+	return sum;
+}
 
 function inRange(n, start = 0, end){
 	// checks if start <= n < end 
@@ -135,9 +156,29 @@ function inRange(n, start = 0, end){
 	}
 }
 
-// function has(){
-// 	// also complicated; handles array of keys as a parameter
-// }
+function has(obj1, keys){
+	// return true if obj contains key (or all keys)
+	// even if nested
+	// handles array of keys as a parameter as well
+    var returnVal;
+	function helper (obj2) { // returns true or false
+		for (var k in obj2) {
+		    if (k === keys) {
+		        returnVal = true;
+		    } else if (typeof obj2[k] === "object") {
+				helper(obj2[k]);
+			} else {
+				if (Array.isArray(keys)) {
+					returnVal = (keys.includes(k));
+				} else {
+					returnVal = (k === keys);
+				}
+			}
+		}
+	}
+	helper(obj1);
+	return returnVal;
+}
 
 function omit(obj, arr){
 	// return new object with all specified keys omitted
@@ -186,21 +227,27 @@ function omitBy(obj, fun){
 	return newObj;
 }
 
-// function padEnd(str, len, chars){
-// 	// pads str on right side if it's shorter than len
-// 	// so that entire return string has length of len
-// 	// if chars specified, pads chars to end
-// 	// otherwise pads spaces
-// 	var newStr;
-// 	if (str >= len) {
-// 		newStr = str.slice(0, len+1);
-// 		return newStr;
-// 	} else if (!chars) {
-// 		chars = " ";
-// 	}
-
-// 	// more stuff here
-// }
+function padEnd(str, len, chars){
+	// pads str on right side if it's shorter than len
+	// so that entire return string has length of len
+	// if chars specified, pads chars to end
+	// otherwise pads spaces
+	var newStr = str;
+	if (str.length >= len) {
+		newStr = str.slice(0, len+1);
+		return newStr;
+	} 
+	if (chars === undefined) {
+		chars = " ";
+	}
+	// more stuff here
+	while (newStr.length < len) {
+		for (var i = 0; i < chars.length; i++) {
+			newStr = newStr.concat(chars[i]);
+		}
+	}
+	return newStr;	
+}
 
 function repeat(str, n){
 	// returns new string with repeated str n times
