@@ -147,14 +147,14 @@ function flip(func){
 	// BONUS
     // creates a function that invokes func with arguments reversed.
     
-    oldArgs = func || null;
+    oldArgs = func.arguments || null;
 
     return function subtract(a,b,c){
 
         var args = Array.from(arguments);
         var argsRev = args.reverse();
 
-        if(args === oldArgs.arguments) {
+        if(args === oldArgs) {
             return a-b-c; 
         }
         
