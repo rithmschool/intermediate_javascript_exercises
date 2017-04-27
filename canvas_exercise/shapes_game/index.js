@@ -77,7 +77,7 @@ window.addEventListener("load", function() {
         redTri: "ArrowLeft", whiteSq: "ArrowRight"},
       timerSpan = document.getElementById("time-remaining"),
       scoreSpan = document.getElementById("score-val"),
-      secondsStart = 5; 
+      secondsStart = 30; 
       seconds = secondsStart;
       timerSpan.innerText = seconds;
       timeLeft = seconds;
