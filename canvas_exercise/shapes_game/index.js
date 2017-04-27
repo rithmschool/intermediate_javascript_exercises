@@ -24,7 +24,7 @@ window.addEventListener("load", function() {
 
   function drawRedSquare (x,y){
     dropId = setInterval(function(){
-      if(y === canvas.height - 50){
+      if(y === canvas.height){
         clearInterval(dropId);
         scoreDown();
         drawRandomShape(ctx, canvas.width, canvas.height);
@@ -38,7 +38,7 @@ window.addEventListener("load", function() {
 
   function drawWhiteSquare (x,y){
     dropId = setInterval(function(){
-      if(y === canvas.height - 50){
+      if(y === canvas.height){
         clearInterval(dropId);
         scoreDown();
         drawRandomShape(ctx, canvas.width, canvas.height);
@@ -52,7 +52,7 @@ window.addEventListener("load", function() {
 
   function drawTriangle(x,y){
     dropId = setInterval(function(){
-      if(y === canvas.height - 50){
+      if(y === canvas.height){
         clearInterval(dropId);
         scoreDown();
         drawRandomShape(ctx, canvas.width, canvas.height);
@@ -72,7 +72,7 @@ window.addEventListener("load", function() {
 
   function drawWhiteTriangle(x,y){
     dropId = setInterval(function(){
-      if(y === canvas.height - 50){
+      if(y === canvas.height){
         clearInterval(dropId);
         scoreDown();
         drawRandomShape(ctx, canvas.width, canvas.height);
@@ -98,7 +98,7 @@ window.addEventListener("load", function() {
     clear(ctx, canvas.width, canvas.height);
     var random = Math.floor(Math.random() * 4);
     var x = Math.floor(Math.random() * (width - 50));
-    var y = Math.floor(Math.random() * (height - 50));
+    var y = Math.floor(Math.random() * (height/2 - 50));
     if(random === 1){
       expectedKey = 1;
       drawRedSquare(x,y);
