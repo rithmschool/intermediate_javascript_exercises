@@ -147,16 +147,20 @@ function flip(func){
 	// BONUS
     // creates a function that invokes func with arguments reversed.
     
+    oldArgs = func || null;
 
-    // NOT WORKING BUT AS FAR AS I COULD GET...
-    // obviously this just keeps calling functions...
-    
-    // return function subtract(a,b,c){
-    //     var args = Array.from(arguments);
-    //     var argsRev = args.reverse();
-    //     return func.apply(argsRev);
-    // }
+    return function subtract(a,b,c){
 
+        var args = Array.from(arguments);
+        var argsRev = args.reverse();
+
+        if(args === oldArgs.arguments) {
+            return a-b-c; 
+        }
+        
+        return func.apply(func, argsRev);
+        
+    }
 }
 
 function cloneDeep(arr){
