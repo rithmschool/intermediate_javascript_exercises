@@ -69,7 +69,6 @@ function binarySearch(array, value) {
 		if (array.length <= 1) {
 			if (array[0] === value) {
 				indexValue = indexValue;
-				console.log("found!");
 				return indexValue;
 			} else {
 				indexValue = -1;
@@ -77,7 +76,6 @@ function binarySearch(array, value) {
 			}
 		}
 		if (array[Math.floor(array.length/ 2)] === value) {
-			console.log("found!");
 			return indexValue;
 		}
 		if (array[Math.floor(array.length/ 2)] < value) {
