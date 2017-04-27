@@ -158,8 +158,15 @@ function omitBy(obj, toTest){
 	return newObj;
 }
 
-// function padEnd(){
+// function padEnd(str, numPad, padStr){
+// 	//base case: numPad = 0
+// 	function padEndHelper(str, numPad, padStr) {
+// 		if(numPad === 0) {
 
+// 		} else {
+			
+// 		}
+// 	}	
 // }
 
 function repeat(str, times){
@@ -176,18 +183,12 @@ function upperFirst(str){
 	return str[0].toUpperCase() + str.slice(1);
 }
 
-// function flatten(multiArr){
-// 	newArr = [];
-// 	keepChecking = true;
-// 	for(i=0; i<multiArr.length; i++) {
-// 		if(Array.isArray(multiArr[i])) {
-// 			while(keepChecking) {
-// 				newArr.concat(multiArr[i]);
-// 				keepChecking = false;
-// 			} newArr.push(multiArr[i]);
-// 		}	
-// 	}
-// }
+function flatten(multiArr){
+	return multiArr.reduce(function(acc, cur) {
+		return acc.concat(cur);
+	}, [])
+}
+
 
 ////
 
