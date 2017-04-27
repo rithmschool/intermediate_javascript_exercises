@@ -63,7 +63,7 @@ describe("#takeRight", function(){
     expect(takeRight([1, 2, 3], 2)).to.deep.equal([2, 3])
   });
   it("copies the entire array if the second parameter is greater or equal to the length of the array", function(){
-    expect(takeRight([1, 2, 3], 5)).to.deep.equal([1, 2,3])
+    expect(takeRight([1, 2, 3], 5)).to.deep.equal([1, 2, 3])
   });
   it("returns an empty array if the second parameter is 0", function(){
     expect(takeRight([1, 2, 3], 0)).to.deep.equal([])
@@ -71,7 +71,7 @@ describe("#takeRight", function(){
 });
 
 describe("#union", function(){
-  it("returns a new array of combined values.", function(){
+  it("returns a new array of combined unique values.", function(){
     expect(union([2], [1, 2])).to.deep.equal([2, 1])
   });
 });
