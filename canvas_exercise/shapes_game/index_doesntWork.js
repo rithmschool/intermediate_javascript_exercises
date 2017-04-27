@@ -3,7 +3,8 @@ window.addEventListener("load", function() {
   var canvas = document.getElementById("shapes-game"),
       height = canvas.scrollHeight,
       width = canvas.scrollWidth,
-      gameOn = true,  //change back to FALSE!!!!
+      // gameOn = true,
+      gameOn, 
       choiceShape = undefined,
       ctx = canvas.getContext('2d'),
           // white triangle = up, red square = down,
@@ -29,27 +30,29 @@ window.addEventListener("load", function() {
   // }
 
   function changeScore() {
-    var num = +(document.getElementById("score-val").innerText)
+    var num = +(scoreSpan.innerText)
     if(correct) {
-      document.getElementById("score-val").innerText = num + 1;
+      scoreSpan.innerText = num + 1;
       correct = false;
     } else {
-      document.getElementById("score-val").innerText = num - 1;
+      scoreSpan.innerText = num - 1;
     }
   }
 
   function advanceTime() {
-    time = +(document.getElementById("time-remaining").innerText)
+    time = +(timerSpan.innerText)
     if(time > 0) {
-      document.getElementById("time-remaining").innerText = time - 1;
+      timerSpan.innerText = time - 1;
     } else {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        gameEnd();
     }
   }
 
   function gameStatus() {
     if(time > 0) {
       drawRandomShape();
+    } else {
+      gameEnd();
     }
   }
 
@@ -70,10 +73,20 @@ window.addEventListener("load", function() {
     }
   }
 
-  // function drawGameStartText(ctx, width, height, score) {
-    
-  // }
+  function drawGameStartText(ctx, width, height, score) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    ctx.font = '48px serif';
+    ctx.fillText('Press the space bar to begin play!', 10, 50);       
+  }
 
+  function gameEnd() {
+    gameOn = false;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.font = '48px serif';
+    ctx.fillText('Game over. Press space if you want to play again.', 10, 50);    
+  }
+
+/////// THIS NEEDS TO BE COMBINED WITH ABOVE
   function restartGame(ctx, width, height) {
     gameOn = true;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -98,9 +111,8 @@ window.addEventListener("load", function() {
 
   document.addEventListener("keyup", function(e) {
     if (e.keyCode == 32 && !gameOn) {
-      restartGame();
-      //
-      //
+      gameOn = true;
+      drawRandomShape();
     } else if (e.keyCode == 37 && gameOn) {
       if(choiceShape == 3) {
         correct = true;
@@ -141,10 +153,9 @@ window.addEventListener("load", function() {
     }    
   });
 
-  // drawGameStartText();
-  drawRandomShape();
+  drawGameStartText();
+  // drawRandomShape();
   setInterval(advanceTime, 1000/10);   //change back to 1!!!
 
 
 });
-
