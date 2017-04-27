@@ -108,17 +108,17 @@ mergeObjects(obj1, obj2)
 */
 
 function mergeObjects(obj1, obj2) {
-	if (!(typeof obj1 === "object") || !(typeof obj2 === "object")) {
+	if (typeof obj1 !== "object" || typeof obj2 !== "object") {
 		return {};
 	} else {
 		var newObj = {};
 		for (var key in obj1) {
 			// add key to obj1 if doesn't exist, otherwise update w/ obj2's value
-			key = obj2[key];
+			newObj[key] = obj1[key];
 		}
-		// for (var key in obj2) {
-		// 	obj1[key] = obj2[key];
-		// }
+		for (var key in obj2) {
+			newObj[key] = obj2[key];
+		}
 		return newObj;
 	}
 }
