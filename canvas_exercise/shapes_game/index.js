@@ -12,7 +12,8 @@ window.addEventListener("load", function() {
       timerSpan = document.getElementById("time-remaining"),
       scoreSpan = document.getElementById("score-val"),
       seconds = 3,
-  intervalId;
+      intervalId,
+      dropId;
   canvas.width = width;
   canvas.height = height;
   ctx.font = "30px Arial";
@@ -22,35 +23,72 @@ window.addEventListener("load", function() {
 
 
   function drawRedSquare (x,y){
-    ctx.fillStyle = 'red'
-    ctx.fillRect(x, y, 50, 50);
+    dropId = setInterval(function(){
+      if(y === canvas.height - 50){
+        clearInterval(dropId);
+        scoreDown();
+        drawRandomShape(ctx, canvas.width, canvas.height);
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'red';
+      y++;
+      ctx.fillRect(x, y, 50, 50);
+    }, 5)
   }
 
   function drawWhiteSquare (x,y){
-    ctx.fillStyle = 'white';
-    ctx.fillRect(x, y, 50, 50);
+    dropId = setInterval(function(){
+      if(y === canvas.height - 50){
+        clearInterval(dropId);
+        scoreDown();
+        drawRandomShape(ctx, canvas.width, canvas.height);
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'white';
+      y++;
+      ctx.fillRect(x, y, 50, 50);
+    }, 5)
   }
+
   function drawTriangle(x,y){
-    ctx.fillStyle = "red";
-    ctx.beginPath();
-    ctx.moveTo(x,y);
-    ctx.lineTo(x + 50,y +50);
-    ctx.lineTo(x, y + 50);
-    ctx.fill();
-    ctx.closePath();
+    dropId = setInterval(function(){
+      if(y === canvas.height - 50){
+        clearInterval(dropId);
+        scoreDown();
+        drawRandomShape(ctx, canvas.width, canvas.height);
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "red";
+      y++;
+      ctx.beginPath();
+      ctx.moveTo(x,y);
+      ctx.lineTo(x + 50,y +50);
+      ctx.lineTo(x, y + 50);
+      ctx.fill();
+      ctx.closePath();
+    })
+
   }
 
   function drawWhiteTriangle(x,y){
-    ctx.fillStyle = "white";
-    ctx.beginPath();
-    ctx.moveTo(x,y);
-    ctx.lineTo(x +50, y + 50);
-    ctx.lineTo(x, y + 50);
-    ctx.fill();
-    ctx.closePath();
+    dropId = setInterval(function(){
+      if(y === canvas.height - 50){
+        clearInterval(dropId);
+        scoreDown();
+        drawRandomShape(ctx, canvas.width, canvas.height);
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "white";
+      y++;
+      ctx.beginPath();
+      ctx.moveTo(x,y);
+      ctx.lineTo(x + 50,y +50);
+      ctx.lineTo(x, y + 50);
+      ctx.fill();
+      ctx.closePath();
+    });
+
   }
-
-
 
   function clear(ctx, width, height) {
     ctx.clearRect(0, 0, width, height);
@@ -59,8 +97,8 @@ window.addEventListener("load", function() {
   function drawRandomShape(ctx, width, height) {
     clear(ctx, canvas.width, canvas.height);
     var random = Math.floor(Math.random() * 4);
-    var x = Math.floor(Math.random() * 750)
-    var y = Math.floor(Math.random() * 700)
+    var x = Math.floor(Math.random() * (width - 50));
+    var y = Math.floor(Math.random() * (height - 50));
     if(random === 1){
       expectedKey = 1;
       drawRedSquare(x,y);
@@ -92,17 +130,17 @@ window.addEventListener("load", function() {
     timerSpan.innerText = 30;
     clear(ctx, canvas.width, canvas.height);
     intervalId = setInterval(countDown, 1000);
+    setTimeout(function(){
+      drawGameStartText(ctx, canvas.width,canvas.height,scoreSpan.innerText);
+      clearInterval(intervalId);
+      clearInterval(dropId);
+      expectedKey = undefined;
+    }, 30000);
     gameOn = true;
   }
 
   function countDown(){
     var timer = timerSpan.innerText;
-    if(timer == 0){
-      drawGameStartText(ctx, canvas.width,canvas.height,scoreSpan.innerText);
-      clearInterval(intervalId);
-      expectedKey = undefined;
-      return;
-    }
     timer--;
     timerSpan.innerText = timer;
   }
@@ -129,6 +167,7 @@ window.addEventListener("load", function() {
         } else {
           scoreDown();
         }
+        clearInterval(dropId);
         drawRandomShape(ctx, canvas.width, canvas.height);
       } else if (e.keyCode === 40 && gameOn) {
         //down
@@ -137,6 +176,7 @@ window.addEventListener("load", function() {
         } else {
           scoreDown();
         }
+        clearInterval(dropId);
         drawRandomShape(ctx, canvas.width, canvas.height);
       } else if (e.keyCode === 37 && gameOn) {
         //left
@@ -145,6 +185,7 @@ window.addEventListener("load", function() {
         } else {
           scoreDown();
         }
+        clearInterval(dropId);
         drawRandomShape(ctx, canvas.width, canvas.height);
       } else if (e.keyCode === 39 && gameOn) {
         //right
@@ -153,6 +194,7 @@ window.addEventListener("load", function() {
         } else {
           scoreDown();
         }
+        clearInterval(dropId);
         drawRandomShape(ctx, canvas.width, canvas.height);
       } else if (e.keyCode === 32 && !gameOn) {
         restartGame(ctx, canvas.width, canvas.height);
