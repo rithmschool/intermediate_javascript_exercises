@@ -11,6 +11,8 @@ window.addEventListener("load", function() {
       // expectedKeysMap = {white0: 38, red1: 40, red0: 37, white1: 39},
       timerSpan = document.getElementById("time-remaining"),
       scoreSpan = document.getElementById("score-val"),
+      statusSpan = document.getElementById("status-msg"),
+      correctSpan = document.getElementById('correct-msg'),
       seconds = 30,
       intervalId;
 
@@ -33,7 +35,6 @@ window.addEventListener("load", function() {
 
   var numShapes = 4;
 
-
   canvas.width = width;
   canvas.height = height;
 
@@ -46,9 +47,13 @@ window.addEventListener("load", function() {
     else if (gameOn){
       if(e.keyCode === pieceArr[currentPieceIndex][2]){
         score++;
+        correctSpan.style.color = "green";
+        correctSpan.innerHTML = " - Correct!";
       }
       else {
         score--;
+        correctSpan.style.color = "red";
+        correctSpan.innerHTML = " - Wrong!";
       }
       scoreSpan.innerHTML = score;
       clear(ctx,width,height);
@@ -114,6 +119,8 @@ window.addEventListener("load", function() {
     clear(ctx,width,height);
     drawGameStartText(ctx,width,height,score);
     gameOn = false;
+    statusSpan.innerHTML = "Game Over!";
+    correctSpan.innerHTML = "";
   }
 
   function runTimer(){
@@ -131,6 +138,7 @@ window.addEventListener("load", function() {
     gameOn = true;
     score = 0;
     seconds = 30;
+    statusSpan.innerHTML = "Playing";
     timerSpan.innerHTML = seconds;
     hasPlayedYet = true;
     clear(ctx,width,height);
