@@ -131,8 +131,11 @@ function sample(arr){
 	return arr[Math.floor(Math.random() * arr.length)];
 }
 
-function flip(){
-
+function flip(callback){
+	return function (){
+		var args = [].reverse.call(arguments);
+		return callback.apply(callback, args);
+	}
 }
 
 function cloneDeep(arr){
