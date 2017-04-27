@@ -54,12 +54,27 @@ function union(){
 
 /*bonus*/
 function zip(){
-
+    var args = Array.from(arguments);
+    var newArr = [];
+    while(args[0].length > 0){
+        newArr.push(args.map(function(el){
+            return el.shift();
+        }));
+    }
+    return newArr;
 }
 
 /*bonus*/
 function unzip(){
-
+    var args = Array.from(arguments);
+    var newArr = [];
+    while(args[0][0].length > 0){
+        var subArr = args[0].map(function(el){
+            return el.shift();
+        });
+        newArr.push(subArr);
+    }
+    return newArr;
 }
 
 function zipObject(arrProps, arrVals){
@@ -86,10 +101,15 @@ function sample(arr){
 }
 
 /*bonus*/
-function flip(){
-
+function flip(fn){
+    return function(){
+      var args = Array.from(arguments);
+      args.reverse();
+      return fn.apply(this, args);
+    }
 }
 
+//NEED TO WORK ON DOING THIS RECURSIVELY
 function cloneDeep(val){
     if (Array.isArray(val)){
         var arrCopy = val.slice();
@@ -226,6 +246,21 @@ function flatten(arr){
 }
 
 /*bonus*/
-function flattenDeep(){
+function flattenDeep(arr){
+    var flatArr = [];
+  
+    function flattenDeepHelper(arr){
+        arr.forEach(function(el){
+          if (!Array.isArray(el)){
+            flatArr.push(el);
+          }
+          else {
+            flattenDeepHelper(el);
+          }
+        })
+    }
+    
+    flattenDeepHelper(arr);
 
+    return flatArr;
 }
