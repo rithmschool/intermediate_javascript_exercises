@@ -243,7 +243,9 @@ function padEnd(str, len, chars){
 	// more stuff here
 	while (newStr.length < len) {
 		for (var i = 0; i < chars.length; i++) {
-			newStr = newStr.concat(chars[i]);
+			if (newStr.length < len) {
+				newStr = newStr.concat(chars[i]);
+			}
 		}
 	}
 	return newStr;	
