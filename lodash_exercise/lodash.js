@@ -139,7 +139,23 @@ function flip(callback){
 }
 
 function cloneDeep(arr){
-	return arr.slice();
+	var newArray = [];
+	for(var i = 0; i < arr.length; i++){
+		newArray.push(newObj(arr[i]));
+	}
+
+	function newObj(obj){
+		var copyObj = {};
+		for (var prop in obj){
+			if(typeof(obj[prop]) === 'object'){
+				copyObj[prop] = newObj(obj[prop]);
+			} else {
+				copyObj[prop] = obj[prop];
+			}
+		}
+		return copyObj;
+	}
+	return newArray;
 }
 
 function sumBy(obj, arg2){
