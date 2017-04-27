@@ -2,7 +2,7 @@ window.addEventListener("load", function () {
   function clear(ctx, width, height) {
     ctx.clearRect(0, 0, width, height);
   }
-  
+
   function drawRandomShape(ctx, width, height) {
     currentShape.shape = shapePicker();
     currentShape.color = colorPicker();
@@ -24,8 +24,8 @@ window.addEventListener("load", function () {
     // expectedKeysMap = { white0: 38, red1: 40, red0: 37, white1: 39 },
     timerSpan = document.getElementById("time-remaining"),
     scoreSpan = document.getElementById("score-val");
-    // seconds = 3,
-    // intervalId;
+  // seconds = 3,
+  // intervalId;
   canvas.width = width;
   canvas.height = height;
   var currentShape = {
@@ -35,6 +35,7 @@ window.addEventListener("load", function () {
   var secondsLeft;
   var gameScore;
   var gamePlay = false;
+  var animateShape; // to be used by functions inside the draw functions.
   startGame();
 
 
@@ -59,6 +60,7 @@ window.addEventListener("load", function () {
     if (gamePlay && shapeGuess.color === currentShape.color && shapeGuess.shape === currentShape.shape) {
       // clear
       clear(ctx, canvas.width, canvas.height);
+      clearInterval(animateShape);
       // score something
       gameScore++;
       // next round
@@ -83,7 +85,6 @@ window.addEventListener("load", function () {
       drawRandomShape();
       var countDownTimer = setInterval(function () {
         secondsLeft--;
-        console.log("seconds left:", secondsLeft);
         timerSpan.innerText = secondsLeft;
         if (secondsLeft <= 0) {
           clearInterval(countDownTimer);
@@ -104,6 +105,7 @@ window.addEventListener("load", function () {
   }
 
   function endGame() {
+    if (animateShape) clearInterval(animateShape);
     clear(ctx, canvas.width, canvas.height);
     ctx.fillStyle = "red";
     ctx.font = '48px serif';
@@ -133,7 +135,7 @@ window.addEventListener("load", function () {
   function drawSquare(color) {
     var square = {
       //corner: [50,50],
-      corner: [Math.random() * 700, Math.random() * 650],
+      corner: [Math.random() * 700, Math.random() * 500],
       width: 50,
       height: 50,
       color: color,
@@ -143,11 +145,18 @@ window.addEventListener("load", function () {
       }
     }
     square.draw();
+    animateShape = setInterval(function () {
+      // clear
+      clear(ctx, canvas.width, canvas.height);
+      //draw square in new position.
+      square.corner[1] += 1;
+      square.draw();
+    }, 50)
   }
 
   function drawTriangle(color) {
     var xRange = Math.random() * 700;
-    var yRange = Math.random() * 650;
+    var yRange = Math.random() * 500;
     var triangle = {
       x1: 0 + xRange,
       y1: 0 + yRange,
@@ -168,6 +177,16 @@ window.addEventListener("load", function () {
       }
     }
     triangle.draw();
+    animateShape = setInterval(function () {
+      // clear
+      clear(ctx, canvas.width, canvas.height);
+      //draw square in new position.
+      //square.corner[1] += 5;
+      triangle.y1 += 1;
+      triangle.y2 += 1;
+      triangle.y3 += 1;
+      triangle.draw();
+    }, 50)
   }
 
 });
