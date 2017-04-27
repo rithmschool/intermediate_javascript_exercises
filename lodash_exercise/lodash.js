@@ -48,20 +48,59 @@ function takeRight(arr,n){
 
 function union(arr1,arr2){
 // creates an array of unique values, in order
-	var arr1 = arr1;
 	var arrOut = arr1.concat(arr2.filter(function(val){
 		return !arr1.includes(val);
 	}));
 	return arrOut;
 }
 
-function zip(){
+function zip(array1, array2, array3){
 //BONUS
+// takes an array of arrays
+// returns an array of arrays, the first containing all the first elements,
+// the second containing all of the second, and so on
+// zip(['a', 'b'], [1, 2], [true, false]); // [['a', 1, true], ['b', 2, false]]
+    var newArr = [];
+    
+    function zipHelper(arr1, arr2, arr3){
+        var innerArr = [];
+        var args = Array.from(arguments); // array of arguments
+        for (var i=0; i<arguments.length; i++) {
+            innerArr[i] = args[i].shift();          
+        }
+        newArr.push(innerArr);
+        if (args[0].length > 0) {
+            zipHelper(args[0],args[1],args[2]);
+        }
+    }
+    
+    zipHelper(array1, array2, array3);
+    return newArr; 
 }
 
-function unzip(){
+function unzip(array){
 //BONUS
+// opposite of zip
+// unzip([['a', 1, true], ['b', 2, false]]) // ['a', 'b'], [1, 2], [true, false]
+       
+    var newArr = [];
+    
+    function unzipHelper(arr){
+        var innerArr = [];
+        for (var i=0; i<arr.length; i++) {
+            innerArr[i] = arr[i].shift();        
+        }
+        newArr.push(innerArr);
+        if (arr[0].length > 0) {
+            unzipHelper([arr[0],arr[1]]);
+        }
+    }
+    
+    unzipHelper(array);
+    return newArr;   
+
 }
+
 
 function zipObject(arr1,arr2){
 	var obj = {};
@@ -104,8 +143,20 @@ function sample(arr){
 	return arr[Math.floor(Math.random())*arr.length];
 }
 
-function flip(){
-//BONUS
+function flip(func){
+	// BONUS
+    // creates a function that invokes func with arguments reversed.
+    
+
+    // NOT WORKING BUT AS FAR AS I COULD GET...
+    // obviously this just keeps calling functions...
+    
+    // return function subtract(a,b,c){
+    //     var args = Array.from(arguments);
+    //     var argsRev = args.reverse();
+    //     return func.apply(argsRev);
+    // }
+
 }
 
 function cloneDeep(arr){
@@ -301,6 +352,24 @@ function flatten(arr){
     return newArr;
 }
 
-function flattenDeep(){
+function flattenDeep(arr){
 //BONUS
+    var newArr = [];
+
+    function flattenDeepHelper(array){
+        for (var i=0; i<array.length; i++){
+            if(Array.isArray(array[i])) {
+                flattenDeepHelper(array[i]);
+            } else {
+                newArr.push(array[i]);
+            }
+        }
+        return newArr;
+    }
+
+    flattenDeepHelper(arr);
+    return newArr;
 }
+
+
+
