@@ -143,23 +143,33 @@ function sample(arr){
 	return arr[Math.floor(Math.random())*arr.length];
 }
 
-function flip(func){
-	// BONUS
-    // creates a function that invokes func with arguments reversed.
+// function flipOLD(func){
+// 	// BONUS
+//     // creates a function that invokes func with arguments reversed.
        
-    var oldArgs = func.arguments || null;
+//     var oldArgs = func.arguments || null;
     
-    return function callback(a,b,c){
+//     return function callback(a,b,c){
 
-        var args = Array.from(arguments);
-        var argsRev = args.reverse();
+//         var args = Array.from(arguments);
+//         var argsRev = args.reverse();
 
-        if(args === oldArgs) {
-            return func.apply(args); 
-        }
+//         if(args === oldArgs) {
+//             console.log("here?");
+//             return func.apply(args); 
+//         }
         
-        return func.apply(func, argsRev);
+//         return func.apply(func, argsRev);
         
+//     }
+// }
+
+// refactored: 
+function flip(func){
+    // BONUS
+    // creates a function that invokes func with arguments reversed.
+    return function callback(){
+        return func(...Array.from(arguments).reverse());
     }
 }
 
