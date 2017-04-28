@@ -30,31 +30,31 @@ window.addEventListener("load", function() {
   // }
 
   function changeScore() {
-    var num = +(scoreSpan.innerText)
+    var num = +(document.getElementById("score-val").innerText)
     if(correct) {
-      scoreSpan.innerText = num + 1;
+      document.getElementById("score-val").innerText = num + 1;
       correct = false;
     } else {
-      scoreSpan.innerText = num - 1;
+      document.getElementById("score-val").innerText = num - 1;
     }
   }
 
   function advanceTime() {
-    time = +(timerSpan.innerText)
+    time = +(document.getElementById("time-remaining").innerText)      //// Reset TIME 
     if(time > 0) {
-      timerSpan.innerText = time - 1;
+      document.getElementById("time-remaining").innerText = time - 1;
     } else {
         gameEnd();
     }
   }
 
-  function gameStatus() {
-    if(time > 0) {
-      drawRandomShape();
-    } else {
-      gameEnd();
-    }
-  }
+  // function gameStatus() {
+  //   if(time > 0) {
+  //     drawRandomShape();
+  //   } else {
+  //     gameEnd();    //////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*******
+  //   }
+  // }
 
   function drawRandomShape() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -73,17 +73,22 @@ window.addEventListener("load", function() {
     }
   }
 
-  function drawGameStartText(ctx, width, height, score) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); 
-    ctx.font = '48px serif';
-    ctx.fillText('Press the space bar to begin play!', 10, 50);       
+  function drawGameStartText() {      
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.font = '18px serif';
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.fillText('Press the space bar to begin play!', width/2, height/2);      
   }
 
   function gameEnd() {
-    gameOn = false;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.font = '48px serif';
-    ctx.fillText('Game over. Press space if you want to play again.', 10, 50);    
+    gameOn = false;   
+    ctx.clearRect(0, 0, canvas.width, canvas.height);      
+    ctx.font = '18px serif';
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.fillText('Your score = ' + document.getElementById("score-val").innerText + '.', width/2, (height/2+18px));  
+    ctx.fillText('Game over. Press space if you want to play again.', width/2, (height/2-18px));  
   }
 
 /////// THIS NEEDS TO BE COMBINED WITH ABOVE
@@ -112,50 +117,53 @@ window.addEventListener("load", function() {
   document.addEventListener("keyup", function(e) {
     if (e.keyCode == 32 && !gameOn) {
       gameOn = true;
-      drawRandomShape();
+      document.getElementById("score-val").innerText = 0;
+      document.getElementById("time-remaining").innerText = 30;
+      drawRandomShape();       
+      setInterval(advanceTime, 1000/10);
     } else if (e.keyCode == 37 && gameOn) {
       if(choiceShape == 3) {
         correct = true;
         changeScore();
-        gameStatus();
+        drawRandomShape();
       } else {
         changeScore();
-        gameStatus();
+        drawRandomShape();
       }
     } else if (e.keyCode == 38 && gameOn) {
-      debugger;
       if(choiceShape == 0) {
         correct = true;
         changeScore();
-        gameStatus();
+        drawRandomShape();
       } else {
         changeScore();
-        gameStatus();
+        drawRandomShape();
       }
     } else if (e.keyCode == 39 && gameOn) {
       if(choiceShape == 2) {
         correct = true;
         changeScore();
-        gameStatus();
+        drawRandomShape();
       } else {
         changeScore();
-        gameStatus();
+        drawRandomShape();
       }
     } else if (e.keyCode == 40 && gameOn) {
       if(choiceShape == 1) {
         correct = true;
         changeScore();
-        gameStatus();
+        drawRandomShape();
       } else {
         changeScore();
-        gameStatus();
+        drawRandomShape();
       }
     }    
   });
 
-  drawGameStartText();
-  // drawRandomShape();
-  setInterval(advanceTime, 1000/10);   //change back to 1!!!
+ 
+  drawGameStartText();        //////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*******
+  // drawRandomShape();       //////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*******
+  
 
 
 });
