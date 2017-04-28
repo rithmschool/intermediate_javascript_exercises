@@ -58,36 +58,34 @@ function search(array,value){
     return counter;
 }
 
-function binarySearch(array, value) {
+function binarySearch(arr, val, start, end) {
     // assume array is already sorted (as in the test cases)
 
-    var counter = 0;
+    var start = start || 0;
+    var end = end || arr.length-1;
 
-    function helper5(arr,val) {
-        var middlePosition = Math.floor(arr.length / 2); // 2
-        var middle = arr[middlePosition];
-        
-        if(arr.length === 0){
-            counter = -1;
-        } 
+    var middlePosition = Math.floor(arr.length / 2); // 2
+    var middleValue = arr[middlePosition];
 
-        if(middle === val) {
-            counter += middlePosition;
-        }
-    
-        if(middle < val){ 
-            counter += middlePosition + 1;
-            helper5(arr.slice(middlePosition+1),val);
-        }
+    if(arr.length === 0){
+        return -1;
+    } 
 
-        if(middle > val){ 
-            helper5(arr.slice(0,middlePosition),val);
-        }
+    if(middleValue === val) {
+        return start + middlePosition;
     }
 
-    helper5(array,value);
-    return counter;
+    if(val > middleValue){ 
+        start += middlePosition + 1;
+        return binarySearch(arr.slice(middlePosition+1),val,start,end);
+    }
+
+    if(val < middleValue){
+        end -= middlePosition - 1; 
+        return binarySearch(arr.slice(0,middlePosition),val,start,end);
+    }
 }
+
 
 function stringifyNumbers(object) {
     
