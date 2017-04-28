@@ -33,13 +33,34 @@ window.addEventListener("load", function () {
     color: ""
   }
   var secondsLeft;
-  var gameScore;
+  var gameScore = 0;
   var gamePlay = false;
+  var countDownTimer;
   var animateShape; // to be used by functions inside the draw functions.
+  var cBuff = "xxxxxxxxxxxx";
+  var konami = "abbarlrldduu";
+
   startGame();
 
-
   document.addEventListener("keyup", function (e) {
+
+    // konami code
+    // last char off
+    // add result to beginning.
+    if (gamePlay) {
+      cBuff = keyToChar(e.keyCode) + cBuff.substring(0, 11);
+
+      // compare to konami
+      if (cBuff === konami) {
+        console.log("you are the big winner");
+
+        endGame();
+        gameScore += 10000000;
+        scoreSpan.innerText = gameScore
+        clearInterval(countDownTimer);
+      }
+    }
+
     var shapeGuess = { shape: "", color: "" };
     if (gamePlay && e.keyCode === 37) { // left
       shapeGuess.shape = "triangle";
@@ -67,6 +88,7 @@ window.addEventListener("load", function () {
       drawRandomShape()
     } else {
       // decrement the score.
+      debugger;
       if (gamePlay) gameScore--;
     }
     scoreSpan.innerText = gameScore;
@@ -83,7 +105,7 @@ window.addEventListener("load", function () {
       secondsLeft = 30;
       timerSpan.innerText = secondsLeft;
       drawRandomShape();
-      var countDownTimer = setInterval(function () {
+      countDownTimer = setInterval(function () {
         secondsLeft--;
         timerSpan.innerText = secondsLeft;
         if (secondsLeft <= 0) {
@@ -94,6 +116,31 @@ window.addEventListener("load", function () {
     }
   });
 
+  function keyToChar(keyPress) {
+    switch (keyPress) {
+      case 65:
+        return "a";
+        break;
+      case 66:
+        return "b";
+        break;
+      case 38:
+        return "u";
+        break;
+      case 40:
+        return "d";
+        break;
+      case 37:
+        return "l";
+        break;
+      case 39:
+        return "r";
+        break;
+      default:
+        return "x"
+    }
+
+  }
 
   function startGame() {
     clear(ctx, canvas.width, canvas.height);
@@ -106,6 +153,7 @@ window.addEventListener("load", function () {
 
   function endGame() {
     if (animateShape) clearInterval(animateShape);
+    //if (countDownTimer) clearInterval(countDownTimer);
     clear(ctx, canvas.width, canvas.height);
     ctx.fillStyle = "red";
     ctx.font = '48px serif';
@@ -119,17 +167,15 @@ window.addEventListener("load", function () {
   function shapePicker() {
     if (Math.random() < .5) {
       return "square";
-    } else {
-      return "triangle"
     }
+      return "triangle"
   }
 
   function colorPicker() {
     if (Math.random() < .5) {
       return "red";
-    } else {
-      return "white";
     }
+      return "white";
   }
 
   function drawSquare(color) {
