@@ -29,6 +29,9 @@ describe("JavaScript Testing Exercise tests", function(){
 			expect(expand(["foo", "test"],1)).to.deep.equal(['foo', 'test']);
 			expect(expand([1,"Julia"],4)).to.deep.equal([1,"Julia",1,"Julia",1,"Julia",1,"Julia"]);
 		});
+		it('returns empty array if second argument is 0', function(){
+			expect(expand([1,2,3],0)).to.deep.equal([]);
+		});
 	});
 
 	describe('acceptNumbersOnly', function(){
@@ -92,15 +95,15 @@ describe("JavaScript Testing Exercise tests", function(){
 
 		it('merges the objects & if same keys, 2nd obj key overrides 1st', function(){
 			expect(mergeObjects(obj1,obj2)).to.deep.equal({
-					name: "Foo",
-					test: "thing",
-					num: 55
+				name: "Foo",
+				test: "thing",
+				num: 55
 			});
 			expect(mergeObjects(obj3,obj4)).to.deep.equal({
-					name: "Julia",
-					birthMonth: 'January',
-					interests: ['hiking', 'reading', 'guitar'],
-					num: 30
+				name: "Julia",
+				birthMonth: 'January',
+				interests: ['hiking', 'reading', 'guitar'],
+				num: 30
 			});
 		});
 	});

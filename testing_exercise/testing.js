@@ -43,10 +43,8 @@ Watch out for NaN - it is a typeof "number"!
 */
 function acceptNumbersOnly(){
 	for (var i = 0; i < arguments.length; i++){
-		if (typeof(arguments[i]) !== 'number'){
-			return false;
-		}
-		else if(isNaN(arguments[i])){
+		if (typeof(arguments[i]) !== 'number' ||
+			isNaN(arguments[i])){
 			return false;
 		}
 	}
