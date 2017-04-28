@@ -12,6 +12,7 @@ function replaceWith(string, char1, char2){
 
 function expand(arr, num){
 	var copyArr = arr;
+	if(num < 1) return [];
 	if(num === 1){
 		return arr;
 	}

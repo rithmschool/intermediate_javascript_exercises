@@ -23,6 +23,14 @@ describe("Testing expand on an array", function(){
 	it("repeats array n times on a array of stings", function(){
 		expect(expand(["foo", "test"], 1)).to.deep.equal(["foo","test"]);
 	});
+	it("repeats the array 0 times on a array of numbers should return empty array", function(){
+		expect(expand([1,2,3],0)).to.deep.equal([]);
+	});
+  	it("should NOT alter the original array", function(){
+	    var arr = [1,2,3];
+	    expand(arr,2);
+	    expect(arr).to.deep.equal([1,2,3]);
+  });
 });
 
 describe("Testing acceptNumbersOnly to accept numbers only in arguments", function(){
