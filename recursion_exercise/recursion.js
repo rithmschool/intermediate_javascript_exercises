@@ -37,18 +37,77 @@ function collectStrings (obj){
 	    	if (typeof object[key] === "object"){
 	    		checkForString(object[key]);
 	    	}
-
-	    	// if the typeof of the value in that object equivalent to an object? If yes, then call the function again.
-			// use object[key] as the mechanism for running through the object. at every point object[key] is different...
-	    	// need mechanism for evaluating whether each element is a string. 
 	   
 	    }
-  	
-    	// 
-    	// return checkForString(element);
     }
-
-     //Need to call the function helper to get it build our array
-
     return arr;
 }
+
+// similar approach to the code for collectStrings. 
+// however, in this case, we're searching whether each key in obj 
+// is our value i.e. 2nd argument
+
+function contains (object, value){
+    var result = false; 
+
+    function evaluator (obj, val){
+        for (var key in obj){
+            if (obj[key] === val){
+                result = true; 
+            } else return evaluator(obj[key], val)
+        }
+    }
+    evaluator(object, value);
+    return result; 
+}
+
+function stringifyNumbers (obj){
+
+    // 3 possibilities when we evaluate each value in our obj
+    /// 1) value could be a number --> so we convert to string
+    // 2) value could be an object which needs to be recursed through
+    // 3) value could be a value that is neither a number nor an object that needs to be recursed through, so we just assign this in our new object
+
+    var newObj = {}
+    for (var key in obj){
+        if (typeof obj[key] === "number"){
+            newObj[key] = obj[key].toString()
+        }else if (typeof obj[key] === "object" && Array.isArray(!obj[key]))  // checks each value to see whether, it is an object that is NOT an array
+            {newObj[key] = stringifyNumbers(obj[key]);
+        }else {newObj[key] = obj[key]}
+
+        }
+        return newObj;
+    }
+
+// basic idea for search, we first define our pointers i.e. index of array
+// if the value has not been found, then we move our pointers so we can check other elements in the array
+function linearSearch (array, value, startIndex = 0, endIndex = array.length -1) {
+    if (startIndex > endIndex){
+        return -1;
+    }
+    else if (array[startIndex] !== value){
+        linearSearch(array, value, startIndex + 1, endIndex); // if value not found, call linearSearch starting from the next element in array
+    }
+    
+}
+
+
+function binarySearch (array, value, low = 0, high = array.length -1){
+     // use default parameters to set initial values for our low pointer and high pointer
+
+    var mid = Math.floor((low + high)/2);  // define a midpoint 
+    if (low > high){
+        return - 1;
+    } else if (array[mid] === value) {   
+        return mid;
+    } else if (array[mid] > value) {
+        // move your pointer so you get rid of values that are to the right of mid and apply BinarySearch again
+       return binarySearch(array,value, low , mid - 1);
+
+    } else return binarySearch(array, value, mid + 1, high)     // move pointer to get rid of values to the left of midpoint and apply BS again           
+
+    // if our value is bigger than values at the left of
+}
+
+

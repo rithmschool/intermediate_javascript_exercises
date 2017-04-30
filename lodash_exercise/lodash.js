@@ -252,7 +252,10 @@ function pick(obj, arr){
 
 	arr.forEach(function(val){
 		  if (val in obj){
-		    Object.assign(newObj, obj);  // Object.assign copies the entire object instead of the key-value pairs you want!
+		    
+		  	newObj[val] = obj[val]
+
+		    // Object.assign(newObj, obj);  // Object.assign copies the entire object instead of the key-value pairs you want!
 		  }
 	})	
 	return newObj;
