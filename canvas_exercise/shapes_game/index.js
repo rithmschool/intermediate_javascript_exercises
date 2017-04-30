@@ -1,33 +1,27 @@
 window.addEventListener("load", function() {
 
-  var shapeIndex = [0, 1, 2, 3];
-  var shapes = ["orangeRec", "whiteRec", "orangeTri", "whiteTri"];
-
-  function getRandomIndex(arr) {
-      return arr[Math.floor(Math.random() * arr.length)]
-  }
+  const ORANGE_REC = 0;
+  const WHITE_REC = 1; 
+  const ORANGE_TRI = 2;
+  const WHITE_TRI = 3; 
 
   function drawRandomShape(ctx, width, height, func){
 
-      index = getRandomIndex(shapeIndex); // gets a random number from our list 
+      index = Math.floor(Math.random() * 3) // returns a random whole number between 0 and 3
 
-      var xInt = Math.random()*500;
+      var xInt = Math.random()*500;  // need these for generating randomly positioned triangles
       var yInt = Math.random()*500;
-        // for generating randomly positioned triangles
-
+        
       if (index === 0){
         // Execute drawRandomRectangle and sets fill style to orange
          drawRandomRectangle(ctx, 100, 100, "orange");
-      }
-      else if (index === 1){
+      } else if (index === 1){
         // Execute drawRandomRectangle ();
         drawRandomRectangle(ctx, 100, 100, "white");
-      }
-      else if (index === 2){
+      } else if (index === 2){
         // Execute drawTriangle and pass "orange" as the color
         drawRandomTriangle(ctx, xInt, yInt, "orange");
-      }
-      else {
+      } else {
         // execute drawTriangle and pass "white" as the color ();
         drawRandomTriangle(ctx, xInt, yInt,"white");
       }
@@ -61,15 +55,15 @@ window.addEventListener("load", function() {
     ctx.fillStyle = color;
     ctx.font = '30px sans-serif';
     ctx.fillText('Press the spacebar to start a new game', 150, 350); 
-
   }
-
 
   function restartGame(ctx, width, height) {
     // when timer === 0, call clearRec (entire screen)
     // invoke draw function with score and saying bye
-    timer = 30;
+    timer  = 30
+    timerSpan.innerHTML = timer;
     score = 0;
+    scoreSpan.innerHTML = score;
   }
 
   var canvas = document.getElementById("shapes-game"),
@@ -77,80 +71,78 @@ window.addEventListener("load", function() {
       width = canvas.scrollWidth,
       gameOn = false,
       ctx = canvas.getContext('2d'),
-      index;   
+      index,
+      timer;   
 
   canvas.width = width;
   canvas.height = height;
 
   drawGameStartText("salmon");   // invoke function to put text on screen
+                                // consider usinstart a gameOn function --when DOM loads, invoke drawGameStart
 
   function clear(ctx, width, height) {
     ctx.clearRect(0, 0, width, height);
   }
 
   document.addEventListener("keyup", function(){
-      if (event.keyCode === 32) {// i.e. if spacebar is pressed {
-        gameOn = true;
+    if (event.keyCode === 32) {// i.e. if spacebar is pressed {
+      gameOn = true;
 
-        clear();
-        drawRandomShape(ctx, 100, 100);
+      clear(ctx, width, height);
+      drawRandomShape(ctx, 100, 100);
+    }
 
-        // grab the timer element from HTML, start timer and 
-        // set timer value to display on screen
-        
-        var timerSpan = document.getElementById("time-remaining"),
-            intervalId,
-            timer = parseInt(timerSpan.innerText);
+    // grab the timer element from HTML, start timer and 
+    // set timer value to display on screen
+    
+    var timerSpan = document.getElementById("time-remaining"),
+        intervalId,
+        timer = parseInt(timerSpan.innerText);
 
-        intervalId = setInterval(function(){
-              timer = timer - 1 ;
-              timerSpan.innerHTML = timer; 
+    intervalId = setInterval(function(){
+          timer = timer - 1 ;
+          timerSpan.innerHTML = timer; 
 
-              if (timer <= 0){
-                clearInterval(intervalId);
+          if (timer < 1){
+            clearInterval(intervalId);
+            restartGame();
+          }
+      }, 1000);
 
-                restartGame();
-              }
-          }, 1000);
-
-        // code below keeps track of the score and updates as the game progresses by accessing
+    // code below keeps track of the score and updates as the game progresses by accessing
         // the value of each keyup and comparing with the shape currently on the screen (via the shape's index)
 
-        // white triangle = up, red square = down,
-        // red triangle = left, white square = right
+        // white triangle = up, red square = down,  // left = 37, right = 39, up = 38, down = 40
+        // red triangle = left, white square = right // 
      
     var scoreSpan = document.getElementById("score-val");
-        score = parseInt(scoreSpan.innerText);
+    var score = parseInt(scoreSpan.innerText);
+    var correct;
         
+    if (index === 0 && event.keyCode === 38 ||
+        index === 1 && event.keyCode === 39 ||
+        index === 2 && event.keyCode === 37 ||
+        index === 3 && event.keyCode === 40) {
+      correct = true;
+    } else if (event.keyCode <= 40 && event.keyCode >= 38)  {
+      correct = false;
+    }
 
-        if (index === 0 && event.keyCode === 37 )  {
-          score ++ ;
-          scoreSpan.innerHTML = score;
-        }
-        else  if (index === 1 && event.keyCode === 40) {
-          score ++ ;
-          scoreSpan.innerHTML = score;
-        }
-
-        else  if (index === 2 && event.keyCode === 38) {
-              score ++ ;
-              scoreSpan.innerHTML = score;
-        }
-            
-        else if (index === 3 && event.keyCode === 39) {
-              score ++ ;
-              scoreSpan.innerHTML = score;
-          }
-
-        else   {
-          score -- ;
-          scoreSpan.innerHTML = score;
-        }
-
+    if (correct !== undefined) {
+      if (correct) {
+        score++;
+      } else {
+        score--;
       }
-    })
+      scoreSpan.innerHTML = score;
+      clear(ctx, width, height);
+      drawRandomShape(ctx, 100, 100);
 
-  })
+    }
+    
+  });
+
+});
 
 
 
