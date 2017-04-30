@@ -34,12 +34,24 @@ function takeRight(arr, num) {
     return arr.slice(-num);
 }
 
-function union(arr1, arr2) {
-    return arr1.concat(arr2.filter(function (el) {
-        if (!arr1.includes(el)) {
-            return el;
+function union(array) {
+    // with arr1, arr2 as arguments
+    // return arr1.concat(arr2.filter(function (el) {
+    //     if (!arr1.includes(el)) {
+    //         return el;
+    //     }
+    // }));
+
+    var flatArr = Array.from(arguments).reduce(function (acc, cur) {
+        return acc.concat(cur);
+    }, []);
+    var uniqArr = [];
+    flatArr.forEach(function (el) {
+        if (!uniqArr.includes(el)) {
+            uniqArr.push(el);
         }
-    }));
+    });
+    return uniqArr;
 }
 
 function zipObject(arr1, arr2) {
@@ -213,16 +225,59 @@ function flatten(array) { // one level only
 }
 
 // BONUS 
-function zip() {
+// try to make this be less complex?
+function zip(array) {
+    var args = Array.from(arguments);
+    return args[0].reduce(function (acc, cur, idx0) {
+        var temp = [];
+        args.forEach(function (a, idx) {
+            temp.push(args[idx][idx0]);
+        });
+        acc.push(temp);
+        return acc;
+    }, []);
 
+    // with two forEach-es
+    // var newArr = [];
+    // args[0].forEach(function (a0, idx0){
+    //     var temp = [];
+    //     args.forEach(function(a, idx){
+    //         temp.push(args[idx][idx0]);
+    //     });
+    //     newArr.push(temp);
+    // });
+    // return newArr;
 }
 
-function unzip() {
+function unzip(array) {
+    var args = Array.from(arguments[0]);
+    return args[0].reduce(function (acc, cur, idx0) {
+        var temp = [];
+        args.forEach(function (a, idx) {
+            temp.push(args[idx][idx0]);
+        });
+        acc.push(temp);
+        return acc;
+    }, []);
 
+    // with two forEach-es
+    // var newArr = [];
+    // args[0].forEach(function (a0, idx0){
+    //     var temp = [];
+    //     args.forEach(function(a, idx){
+    //         temp.push(args[idx][idx0]);
+    //     });
+    //     newArr.push(temp);
+    // });
+    // return newArr;
 }
 
-function flip() {
-
+function flip(fn) {
+    return function () {
+        var reversed = Array.from(arguments).reverse();
+        // var reversed = Array.prototype.slice.call(arguments).reverse();
+        return fn.apply(this, reversed);
+    }
 }
 
 function flattenDeep(array) {
@@ -243,6 +298,15 @@ function flattenDeep(array) {
 }
 
 // bonus? with no test
-function takeWhile() {
-
+function takeWhile(array, predicateFn) {
+    var arr = [];
+    var val = 0;
+    if (typeof predicateFn === "function") { 
+        while (predicateFn(array[val])) { // predicateFn(val, idx, arr)
+            arr.push(array[val]);
+            val++;
+        }
+    }
+    // incomplete for iteratee objects and arrays
+    return arr;
 }
