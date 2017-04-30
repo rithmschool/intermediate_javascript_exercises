@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> My movie app</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="page-header text-center">
+			 <h3>my favourite players </h3>
+		</div>
+		<div class="form">
+		
+			<label>Player</label>
+			<input class="user_input" type="text" >  
+
+			<label>Position</label>
+			<input class="user_input" type="text" >
+
+			 <label> Rating</label>
+			<input class="user_input" id="player_rating" type="number" min="0" max="10" step="1" placeholder="Rate the player from 1 to 10" > 
+    
+			<button class="btn btn-primary btn-s" id= "addPlayer_button" type="button">Add player!</button> 
+			
+		</div>
+		<br>
+
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+				  
+				    <th class="col-md-5"> Name </th>
+				    <th class="col-md-5"> Position </th>
+				    <th class="col-md-1"> Rating </th>
+				    <th class="col-md-1"> Delete </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td> Phillipe Coutinho </td>
+					<td> Attacking midfield </td>
+					<td> 7 </td>
+					<td> <button class="btn btn-danger" type="button"> Delete </button> </td>		
+				</tr>
+				<tr>
+					<td> Isco </td>
+					<td> Attacking midfield </td>
+					<td> 8 </td>
+					<td> <button class="btn btn-danger" type="button"> Delete </button> </td>		
+				</tr>
+			
+			</tbody>
+		</table>
+		
+
+
+		
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src ="script.js"></script>
+</body>
+</html>

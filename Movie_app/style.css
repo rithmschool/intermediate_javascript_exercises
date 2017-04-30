@@ -1,0 +1,8 @@
+.table, th {
+	text-align: center;
+}
+
+#player_rating{
+	width: 200px;
+	text-align: center;
+}
