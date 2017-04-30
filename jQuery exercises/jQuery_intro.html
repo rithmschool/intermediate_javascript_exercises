@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Exercise</title>
+</head>
+<body>
+    <div id="container">
+        <h1 id="welcome"></h1>
+        <div class="list-container">
+            <ul class="nav">
+                <li class="nav-item">Home</li>
+                <li class="nav-item">About Us</li>
+                <li class="nav-item">Contact</li>
+                <li class="nav-item">Careers</li>
+                <li class="nav-item">Apply</li>
+            </ul>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <ul class="footer-nav">
+                <li class="footer-nav-item">Learn More</li>
+                <li class="footer-nav-item">Blog</li>
+                <li class="footer-nav-item">Email Us</li>
+            </ul>
+        </div>
+    </footer>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script>
+        $(function() {
+            var $footer = $("footer");
+
+            // This is jQuery's way of retrieving the footer from the HTML 
+
+            var $containerDiv = $("#container")
+
+            // Retrieving the HTML div called container
+
+            var $listItems = $(".nav-item")
+            // All list items in the 1st list
+
+
+            // Select the third li inside of the div with a class of list-container.
+
+            var $thirdListItem = $(".list-container li: nth-child(3)")
+
+            // Select only the last li in each of the uls.
+
+            $("ul li: last-child");
+
+            // 
+
+        });
+
+     
+
+
+    </script>
+</body>
+</html>
