@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Tobi's Giphy App</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet"href="style.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="page-header text-center">
+			<h2 class="header_text">It's a Giphy party<small> Go on, you know you want to</small></h2>
+		</div>
+		<br>
+		<form class="form-inline text-center">
+			<label class="sr-only">Name</label>
+		 	<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="searchText" placeholder="Enter a search term">
+
+  			<button type="button" class="btn btn-success" id="searchButton">Search GIPHY</button>
+  			<button type="button" class="btn btn-danger" id="deleteButton">Remove Images</button>
+  		</form>
+  		<div class="gifHolder"></div>
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src ="script.js"></script>
+</body>
+</html>
