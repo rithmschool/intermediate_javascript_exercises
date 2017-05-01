@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Hack or Snooze</title>
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Hack or Snooze</title>
+    <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
-	<div id="header">
-		<span>Hack or Snooze</span> 
-		<ul>
-			<li>submit</li>
-			<li>favorites</li>
-		</ul>
-	</div>
+    <div id="header">
+        <span>Hack or Snooze</span>
+        <ul>
+            <li id="submission">submit</li>
+            <li id="favs">favorites</li>
+        </ul>
+    </div>
 
-	<div id="submit">
-		<form action="#">
-			<label for="title">title</label><input type="text" name="title" placeholder="title"><br>
-			<label for="url">url</label><input type="url" name="url" placeholder="url"><br>
-			<input type="submit" value="submit">
-		</form>
-	</div>
+    <div id="submit" class="hidden">
+        <form action="#">
+            <label for="title">title</label> <input type="text" name="title" placeholder="title" id="post-title"><br>
+            <label for="url">url</label> <input type="url" name="url" placeholder="url" id="post-url"><br>
+            <input type="submit" value="submit" id="post-submit">
+        </form>
+    </div>
 
-	<div id="main">
-		<ol>
-			<li><span class="star"></span><span class="link-title"><a href="http://fontmap.ideo.com/">Font Map by IDEO</a></span><span class="link-url">(ideo.com)</span></li>
-			<li><span class="star"></span><span class="link-title"><a href="https://www.reddit.com/r/aww/">Reddit /Aww</a></span><span class="link-url">(reddit.com)</span></li>
-		</ol>
-	</div>
+    <div id="main">
+        <ol>
+            <li><span class="star"></span><span class="link-title"><a href="http://fontmap.ideo.com/">Font Map by IDEO</a></span>
+                <span class="link-url">(ideo.com)</span>
+            </li>
+            <li><span class="star"></span><span class="link-title"><a href="https://www.reddit.com/r/aww/">Reddit /Aww</a></span>
+                <span class="link-url">(reddit.com)</span>
+            </li>
+        </ol>
+    </div>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-	<script src="script.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
