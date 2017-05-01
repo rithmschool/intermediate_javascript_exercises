@@ -15,11 +15,6 @@ $("form").validate({
 
 
 $(document).ready(function () {
-    // the DOM has now loaded
-    // $(function () {
-    //     $('#submit').hide();
-    // });
-
     // toggling submit form (WRONG)
     $("#submission").on("click", function () {
         $("#submit").toggle();
@@ -31,6 +26,7 @@ $(document).ready(function () {
         e.preventDefault();
         var $postTitle = $("#post-title").val();
         var $postUrl = $("#post-url").val();
+        var $partialUrl = $portUrl
 
         var $mainList = $("#main ol");
         if (($postUrl.includes('http://') || $postUrl.includes('https://')) && (/\w+\./).test($postUrl)) {
