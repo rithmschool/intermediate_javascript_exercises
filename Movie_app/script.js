@@ -7,7 +7,6 @@ $(function(){
 
 		// retrieve the player's name, position and rating and store them in variables 
 
-
 		let $newTableRow = $("<tr>");
 		let	$firstTableCell = $("<td>");
 		let	$secondTableCell = $("<td>");
@@ -17,7 +16,7 @@ $(function(){
 		$firstTableCell.text($playerName);
 		$secondTableCell.text($playerPosition);
 		$thirdTableCell.text($playerRating); 
-		$fourthTableCell.html("<button class='btn btn-danger'id= 'Delete_button'type='button'> Delete </button>");
+		$fourthTableCell.html("<button class='btn btn-danger' type='button'> Delete </button>");
 
 		$newTableRow.append($firstTableCell);  //append table cells to new table row
 		$newTableRow.append($secondTableCell);
@@ -27,11 +26,10 @@ $(function(){
 		$(".table").append($newTableRow);  //Append new table row to our table
 	})
 
-	$(function(){
-		$("#Delete_button").on("click", function(event){
+	
+		$(".table").on("click", ".btn-danger", function(event){
 			//find parent table row; and use remove() to get rid of that element
-			var $parentRow = $(event.target).find("tr").parent();
-			$parentRow.remove();
+			$(event.target).parent().parent().remove();
 
 			// button is nested in td
 			// td is nested in tr
@@ -46,7 +44,7 @@ $(function(){
 
 
 
-	})
+
 
 
 
