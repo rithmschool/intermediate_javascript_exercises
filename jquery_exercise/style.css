@@ -7,7 +7,7 @@ body {
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-link,
 .navbar-default .navbar-link:hover {
-	color: #000000;
+  color: #000000;
 }
 
 .navbar {
@@ -20,7 +20,7 @@ body {
 
 #new-form, 
 #stories {
-	background-color: #f6f6ef;
+  background-color: #f6f6ef;
 }
 
 #new-form {
