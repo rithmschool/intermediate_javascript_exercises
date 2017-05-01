@@ -61,7 +61,7 @@ function search(array, number) {
 }
 
 //binarySearch function
-function binarySearch(array, value) {
+/*function binarySearch(array, value) {
 	var indexValue = Math.floor(array.length/ 2);
 	var totalLength = array.length;
 	var dummyArray = array.concat();
@@ -91,6 +91,21 @@ function binarySearch(array, value) {
 	}
 	binarySearchGo(dummyArray,value);
 	return indexValue;
+}*/
+
+function binarySearch(array,value,start,end) {
+	var start = start || 0;
+	var end = end || array.length - 1;
+	var midpoint = Math.floor((start + end)/2);
+	if(value < array[start] || value > array[end]) {
+		return -1;
+	} else if (array[midpoint] === value) {
+		return midpoint;
+	} else if (array[midpoint] < value) {
+		return binarySearch(array,value,midpoint+1,end);
+	} else if (array[midpoint] > value) {
+		return binarySearch(array,value,start,midpoint);
+	}
 }
 
 //stringifyNumbers function

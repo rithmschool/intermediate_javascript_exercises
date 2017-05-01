@@ -6,15 +6,12 @@ window.addEventListener("load", function() {
       gameOn = false,
       expectedKey = undefined,
       ctx = canvas.getContext('2d'),
-      // white triangle = up, red square = down,
-      // red triangle = left, white square = right
-      expectedKeysMap = {white0: 38, red1: 40, red0: 37, white1: 39},
       timerSpan = document.getElementById("time-remaining"),
       scoreSpan = document.getElementById("score-val"),
       score = 0,
       seconds = 30,
       intervalId;
-
+  
   canvas.width = width;
   canvas.height = height;
 
@@ -22,22 +19,38 @@ window.addEventListener("load", function() {
     var randomiser = Math.floor(Math.random() * 4);
     var randomX = 50 + Math.floor(Math.random() * 650);
     var randomY = 50 + Math.floor(Math.random() * 600);
-    var whiteTriangle = {
-      color: "white",
+    if (randomiser < 1) {
+      drawTriangle("white",randomX,randomY);
+      expectedKey = 38;
+    } else if (randomiser < 2) {
+      drawTriangle("red",randomX,randomY);
+      expectedKey = 37
+    } else if (randomiser < 3) {
+      drawSquare("white",randomX,randomY);
+      expectedKey = 39;
+    } else {
+      drawSquare("red",randomX,randomY);
+      expectedKey = 40;
+    }
+  }
+
+  function drawSquare(col, x, y) {
+    var square = {
+      width: 50,
+      height: 50,
+      color: col,
       draw: function(x,y) {
-        ctx.beginPath();
-        ctx.moveTo(x,y);
-        ctx.lineTo(x,y+60);
-        ctx.lineTo(x+60,y+60);
-        ctx.lineTo(x,y);
         ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.closePath();
-        expectedKey = 38;
+        ctx.fillRect(x,y, this.width, this.height);
+        expectedKey = 40;
       }
     };
-    var redTriangle = {
-      color: "red",
+    square.draw(x,y);
+  }
+
+  function drawTriangle(col, x, y) {
+      var triangle = {
+      color: col,
       draw: function(x,y) {
         ctx.beginPath();
         ctx.moveTo(x,y);
@@ -49,50 +62,19 @@ window.addEventListener("load", function() {
         ctx.closePath();
         expectedKey = 37;
       }
-    };;
-    var whiteSquare = {
-      width: 50,
-      height: 50,
-      color: "white",
-      draw: function(x,y) {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(x, y, this.width, this.height);
-        expectedKey = 39;
-      }
     };
-    var redSquare = {
-      width: 50,
-      height: 50,
-      color: "red",
-      draw: function(x,y) {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(x,y, this.width, this.height);
-        expectedKey = 40;
-      }
-    };
-    if (randomiser < 1) {
-      whiteTriangle.draw(randomX,randomY);
-    } else if (randomiser < 2) {
-      redTriangle.draw(randomX,randomY)
-    } else if (randomiser < 3) {
-      whiteSquare.draw(randomX,randomY);
-    } else {
-      redSquare.draw(randomX,randomY);
-    }
+    triangle.draw(x,y);
   }
-
   function drawGameStartText() {
     var startBar = {
-      width: 800,
-      height: 600,
       color: "#292929",
       draw: function() {
         ctx.fillStyle = this.color;
-        ctx.fillRect(0, 70, this.width, this.height);
+        ctx.fillRect(0, 70, 800, 600);
       }
     };
     var gameText = {
-      color: "red",
+      color: "white",
       draw: function() {
         ctx.fillStyle = this.color;
         ctx.font = '48px serif';
@@ -122,16 +104,14 @@ window.addEventListener("load", function() {
 
   function restartGame() {
     var endBar = {
-      width: 800,
-      height: 600,
       color: "#292929",
       draw: function() {
         ctx.fillStyle = this.color;
-        ctx.fillRect(0, 70, this.width, this.height);
+        ctx.fillRect(0, 70, 800, 600);
       }
     };
     var endText = {
-      color: "red",
+      color: "white",
       draw: function() {
         ctx.fillStyle = this.color;
         ctx.font = '48px serif';
@@ -139,7 +119,7 @@ window.addEventListener("load", function() {
       }
     }
     var restartText = {
-      color: "red",
+      color: "white",
       draw: function() {
         ctx.fillStyle = this.color;
         ctx.font = '36px serif';
