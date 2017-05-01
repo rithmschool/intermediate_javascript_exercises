@@ -101,13 +101,21 @@ function sample(arr){
 }
 
 /*bonus*/
+// function flip(fn){
+//     return function(){
+//       var args = Array.from(arguments);
+//       args.reverse();
+//       return fn.apply(this, args);
+//     }
+// }
+
+
 function flip(fn){
     return function(){
-      var args = Array.from(arguments);
-      args.reverse();
-      return fn.apply(this, args);
+      return fn(...Array.from(arguments).reverse());
     }
 }
+
 
 //NEED TO WORK ON DOING THIS RECURSIVELY
 function cloneDeep(val){

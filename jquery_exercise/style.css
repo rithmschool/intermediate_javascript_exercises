@@ -1,0 +1,53 @@
+body {
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+/******* HEADER NAVBAR *******/
+header {
+	background-color: #FF6600;
+	border-radius: 10px;
+	padding: 10px 0;
+	font-weight: bold;
+	color: #222222;
+}
+
+header div {
+	display: inline;
+	padding: 30px;
+}
+
+header div#links {
+	padding: 0px;
+}
+
+header div#brand {
+	font-size: 1.5em;
+}
+
+header a,
+header a:active,
+header a:visited {
+	color: #222222;
+	text-decoration: none;
+}
+
+header a:hover {
+	color: #222222;
+	text-decoration: underline;
+}
+
+/******* CONTENT *******/
+#content {
+	background-color: #F6F6EF;
+	color: #828282;
+	padding: 15px;
+}
+
+#resultList .name {
+	color: #222222;
+}
+
+#resultList .url:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}

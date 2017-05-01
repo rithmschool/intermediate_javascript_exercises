@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hack or Snooze</title>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Custom stylesheet -->
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<header>
+		<div id="brand">Hack or Snooze</div>
+		<div id="links">
+			<a href="" id="submitLink">submit</a> | 
+			<a href="" id="favLink">favorites</a>
+		</div>
+	</header>
+	
+	<div id="content">
+		<div id="submitForm" class="container">
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label for="formTitle" class="col-sm-2 col-form-label text-right">
+						Title
+					</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="formTitle">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="formUrl" class="col-sm-2 col-form-label text-right">
+						URL
+					</label>
+					<div class="col-sm-10">
+						<input type="url" class="form-control" id="formUrl">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-10 col-sm-offset-2">
+						<button type="submit" class="btn btn-secondary">
+							Submit
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		
+		<div id="resultList" class="container">
+			<ol>
+				<li>
+					<span>
+						<span class="star glyphicon glyphicon-star-empty" 
+							aria-hidden="true"></span> 
+					</span> 
+					<span class='name'>Visualizing Algorithms</span>
+					<span class='url'>
+						(visualgo.net)
+					</span>
+				</li>
+				<li>
+					<span>
+						<span class="star glyphicon glyphicon-star-empty" 
+							aria-hidden="true"></span> 
+					</span>
+					<span class='name'>Problem Solving with Rithm</span> 
+					<span class='url'>
+						(rithmschool.com)
+					</span>
+				</li>
+				<li>
+					<span>
+						<span class="star glyphicon glyphicon-star-empty" 
+							aria-hidden="true"></span> 
+					</span>
+					<span class='name'>Buy this book!</span> 
+					<span class='url'>
+						(amazon.com)
+					</span>
+				</li>
+				<li>
+					<span>
+						<span class="star glyphicon glyphicon-star-empty" 
+							aria-hidden="true"></span> 
+					</span>
+					<span class='name'>Dogs on GitHub</span> 
+					<span class='url'>
+						(github.com)
+					</span>
+				</li>
+			</ol>
+		</div>
+	</div>
+
+	<!-- jQuery -->
+	<script
+	src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+	<!-- Bootstrap js -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- Custom JavaScript -->
+	<script src="script.js"></script>
+</body>
+</html>

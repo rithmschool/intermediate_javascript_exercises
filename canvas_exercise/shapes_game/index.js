@@ -97,7 +97,7 @@ window.addEventListener("load", function() {
   }
 
   function drawSquare(color, startX, startY) {
-    ctx.fillStyle = color
+    ctx.fillStyle = color;
     ctx.fillRect(startX, startY, length, length);
   }
 
