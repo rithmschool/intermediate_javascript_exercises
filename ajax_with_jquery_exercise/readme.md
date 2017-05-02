@@ -14,6 +14,12 @@ __Requirements__
 * A favorite should save the story id, story title, who the story is by, and the url of the story.
 * The list of stories on the favorite page or on the top stories page, should link to the actual story.
 
+__BONUS__
+
+* Implement infinite scroll! When you scroll to the bottom of the page, make an AJAX request to get more top stories from Hacker News.
+* Add links for new stories and best stories, not just top stories. These should also pull from the Hacker News API.
+* Come up with some other features you can build using what the Hacker News API makes available to you!
+
 Here are examples of requests to send to the stories API:
 
 __Stories API - POST /login__
