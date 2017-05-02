@@ -1,22 +1,43 @@
 .glyphicon {
-    padding-left: .5rem;
-    padding-right: 1.5rem;
+	padding-left: .5rem;
+	padding-right: 1.5rem;
 }
 
 .container-fluid {
-    margin-top: 2rem;
+	margin-top: 2rem;
+
 }
 
 header {
-    background-color: orange;
-    padding: 1rem;
-    margin-bottom: 1rem;
+	background-color: orange;
+	padding: 1rem;
 }
 
 header > span:nth-child(2) {
-    margin-left: 3rem;
+	margin-left: 3rem;
 }
 
 #listContent{
-    display: none;
+	display: none;
+}
+
+#favorites, #submit{
+	cursor: pointer;
+}
+
+small {
+	padding-left: 1rem;
+	color: gray;
+}
+
+a {
+	color: black;
+}
+
+section{
+	background-color: beige;
+}
+
+#theList {
+	padding: 1rem;
 }
