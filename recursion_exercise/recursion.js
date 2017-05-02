@@ -24,17 +24,24 @@ function collectStrings(obj) {
 
 
 function contains(obj, value) {
-    for(var key in obj) {
-        if(typeof obj[key] != 'object') {
-            if(obj[key] === value) {
-                return true;
-            }
-        } else {
-            contains(obj[key], value);
-        }    
+    var result = false;
+
+    function containsHelper(obj, value) {
+        for(var key in obj) {
+            if(typeof obj[key] !== 'object') {
+                if(obj[key] === value) {
+                    return true;
+                }
+            } else {
+                contains(obj[key], value);
+            }    
+        }
     }
-    return false;
+
+    containsHelper(obj, value);
+    return result;
 }
+
 
 function search(arr, val) {
     var i = 0

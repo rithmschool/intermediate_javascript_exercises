@@ -1,0 +1,36 @@
+h4{
+    display: inline;
+}
+
+a {
+	color: grey;
+	font-size: 12px;
+}
+
+.top-nav {
+	color: black;
+}
+
+.subtext {
+	display: inline;
+	padding-left: 20px;
+}
+
+.page-header{
+    background-color: peachpuff;
+    padding-left: 10px;
+    padding-top: 10px;
+    border-radius: 10px;
+}
+
+body {
+    background-color: #D5D5D5;
+}
+
+form {
+
+}
+
+.favsList {
+	display: none;
+}
