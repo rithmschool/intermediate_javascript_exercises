@@ -23,21 +23,23 @@ $(function(){
 	$favLink.on('click', function(e){
 		e.preventDefault();
 
-		/*hide and show favorites when click "favorites" link in nav*/
-		if($(e.target).text() === 'favorites'){
+		/*hide and show favorites when click "favorites/all" link in nav*/
+		if(!oneDomainOnly){
 			favoritesOnly = !favoritesOnly;
 			if (favoritesOnly){
 				$ol.find('.glyphicon-star-empty').parent().parent().hide();
 				$ol.css('list-style-type', 'none');
+				$(e.target).text('all');
 			}
 			else {
 				$ol.find('.glyphicon-star-empty').parent().parent().show();
 				$ol.css('list-style-type', 'decimal');
+				$(e.target).text('favorites');
 			}
 		}
 
-		/*show all in list (currently only showing a specific domain)*/
-		else {
+		/*show all in list (if currently only showing a specific domain)*/
+		else { 
 			oneDomainOnly = false;
 			$('li').show();
 			$ol.css('list-style-type', 'decimal');
