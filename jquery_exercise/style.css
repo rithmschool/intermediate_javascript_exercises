@@ -5,12 +5,12 @@
 
 .container-fluid {
 	margin-top: 2rem;
+
 }
 
 header {
 	background-color: orange;
 	padding: 1rem;
-	margin-bottom: 1rem;
 }
 
 header > span:nth-child(2) {
@@ -19,4 +19,25 @@ header > span:nth-child(2) {
 
 #listContent{
 	display: none;
+}
+
+#favorites, #submit{
+	cursor: pointer;
+}
+
+small {
+	padding-left: 1rem;
+	color: gray;
+}
+
+a {
+	color: black;
+}
+
+section{
+	background-color: beige;
+}
+
+#theList {
+	padding: 1rem;
 }
