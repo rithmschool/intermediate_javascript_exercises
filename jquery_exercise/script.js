@@ -16,7 +16,7 @@ $(function(){
 	/*hide and show title/url/submit form when click "submit" link in nav*/
 	$submitLink.on('click', function(e){
 		e.preventDefault();
-		$submitForm.toggle();
+		$submitForm.slideToggle();
 	});
 
 	/*event listeners for clicking on the favorite/all link*/
@@ -54,20 +54,33 @@ $(function(){
 	& switch the favorites link in nav bar to all*/
 	$ol.on('click', '.url', function(e){
 		var activeUrlText = $(e.target).text().trim();
-		$('li:not(:contains' + activeUrlText + ')').hide();
+		$('li').filter(function(i, el){
+			return $(el).find('.url').text().trim() !== activeUrlText;
+		}).hide();
+		// $('li:not(:contains' + activeUrlText + ')').hide();
 		oneDomainOnly = true;
 		$favLink.text("all");
 		$ol.css('list-style-type', 'none');
 	});
 
+	//NOT WORKING YET BUT TRYING TO START WITH FORM VALIDATION
+	// $submitForm.on('blur', 'input', function(e){
+	// 	// if($('#formTitle').val() !== ""){
+	// 	// 	$('button').removeClass('disabled');
+	// 	// }
+	// 	console.log($('input:required:valid'));
+	// 	//console.log($('#formUrl').val());
+	// });
+
 	/*submit a new item using the form*/
-	$submitForm.submit(function(e){
+	$submitForm.on('submit', function(e){
 		e.preventDefault();
 		var title = $('#formTitle').val();
 		var url = $('#formUrl').val();
 
 		if (url !== ''){
 			//var domainUrl = url.match(/^http:\/\/(www.)?(\S+)$/)[2];
+			// var domainUrl = url.match(/\w+.\w+$/)[0];
 
 			//extract the *****.*** ending portion of the url
 			var domainUrlArr = url.split('.');
