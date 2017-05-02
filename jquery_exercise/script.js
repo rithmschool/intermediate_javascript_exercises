@@ -26,15 +26,15 @@ $(document).ready(function () {
         e.preventDefault();
         var $postTitle = $("#post-title").val();
         var $postUrl = $("#post-url").val();
-        var $partialUrl = $postUrl.match(/\w+\.\w+\.\w+/); // url after http:// and before path; something.something.something
+        var $partialUrl = $postUrl.match(/\w+\.\w+\.\w+/) || $postUrl.match(/\w+\.\w+/); // url after http:// and before path; something.something.something
 
         if ($partialUrl[0].match(/^www/)) { // if www. start, remove "www."
             $partialUrl[0] = $partialUrl[0].substring(4);
-        }
+        } 
 
         var $mainList = $("#main ol");
         if (($postUrl.includes('http://') || $postUrl.includes('https://')) && (/\w+\./).test($postUrl)) {
-            var html = '<li><span class="fa fa-star-o"></span>&nbsp;<span class="link-title"><a href="' + $postUrl + '">' + $postTitle + '</a></span> <span class="link-url">(' + $partialUrl + ')</span></li>';
+            var html = '<li><span class="fa fa-star-o"></span>&nbsp;<span class="link-title"><a href="' + $postUrl + '">' + $postTitle + '</a></span> <span class="link-url">(' + $partialUrl[0] + ')</span></li>';
             $mainList.append(html);
         }
     });
