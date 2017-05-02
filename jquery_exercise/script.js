@@ -1,17 +1,15 @@
-// FIX THIS VALIDATION
-// just for the demos, avoids form submit
-// jQuery.validator.setDefaults({
-//     debug: true,
-//     success: "valid"
-// });
-// $("form").validate({
-//     rules: {
-//         field: {
-//             required: true,
-//             url: true
-//         }
-//     }
-// });
+jQuery.validator.setDefaults({
+    debug: true,
+    success: "valid"
+});
+$("form").validate({
+    rules: {
+        field: {
+            required: true,
+            url: true
+        }
+    }
+});
 
 $(document).ready(function () {
     // toggling submit form (WRONG)
@@ -52,8 +50,23 @@ $(document).ready(function () {
 
         var $mainList = $("ol");
         if (($postUrl.includes('http://') || $postUrl.includes('https://')) && (/\w+\./).test($postUrl)) {
-            var html = '<li><span class="fa fa-star-o"></span> <span class="link-title"><a href="' + $postUrl + '">' + $postTitle + '</a></span> <span class="link-url">(' + $partialUrl + ')</span></li>';
-            $mainList.append(html);
+            // var html = '<li><span class="fa fa-star-o"></span> <span class="link-title"><a href="' + $postUrl + '">' + $postTitle + '</a></span> <span class="link-url">(' + $partialUrl + ')</span></li>';
+            // $mainList.append(html);
+            var $star = $("<span>").addClass("fa fa-star-o");
+            var $link = $("<a/>")
+                            .attr("href", $postUrl)
+                            .text(" " + $postTitle + " ");
+            var $linkTitle = $("<span>")
+                            .addClass("link-title")
+                            .append($link);
+            var $linkUrl = $("<span>")
+                            .addClass("link-url")
+                            .text("(" + $partialUrl + ")");
+            var $newLi = $("<li>")
+                            .append($star)
+                            .append($linkTitle)
+                            .append($linkUrl);
+            $mainList.append($newLi);
         }
     });
 
