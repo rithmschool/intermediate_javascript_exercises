@@ -1,0 +1,46 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+	    <title> hack or snooze</title>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	    <link rel="stylesheet"href="style.css">
+	</head>
+	<body>
+	    <div class="container-fluid">
+	        <div class="col-sm-6 col-sm-offset-3">
+	            <div class="page-header" id= "header">
+	                  <h4>Hack or snooze </h4>
+	                  <div class="subtext">
+	                      <small id="submitLink"><a class='top-nav'> submit</a></small>
+	                      <span> | </span>
+	                      <small id="favsLink"><a class='top-nav'> favorites</a></small>
+	                  </div>
+	            </div>
+	            <div class="content">
+	                <form>
+						<div class="form-group">
+		                    <label>title</label>
+		                    <input class="titleInput form-control" id="input1" type="text">  
+						</div>
+						<div class="form-group">
+		                    <label>url</label>
+		                    <input class="urlInput form-control" id="input2" type="text">
+	                    </div>
+
+	                    <input class= "btn" type="submit" value="Submit">
+	                </form>
+	                <div>
+	                    <ol class="listOfEntries">
+						  <li>Visualizing algorithms<a href="http://visualgo.net"> visualgo.net</a></li>
+						  <li>Problem solving with Rithm<a href="http://rithmschool.com"> rithmschool.com</a></li>
+						</ol>
+						<ol class="favsList">
+	                    </ol>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	    <script src="script.js"></script>
+	</body>
+</html>
