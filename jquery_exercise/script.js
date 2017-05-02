@@ -20,19 +20,6 @@ $(document).ready(function () {
         $("#submit").toggle();
     });
 
-    var $favStar = $(".fa");
-    $favStar.on("click", function (e) {
-        e.preventDefault();
-        if ($(e.target).hasClass('fa-star-o')) {
-            $(e.target).removeClass('fa-star-o');  //missing . before removeClass
-            $(e.target).addClass('fa-star');
-        } else {
-            $(e.target).removeClass('fa-star');
-            $(e.target).addClass('fa-star-o');
-        }
-
-    });
-
     // append new item to form
     // create a new item
     $("#post-submit").on("click", function (e) {
@@ -47,10 +34,21 @@ $(document).ready(function () {
 
         var $mainList = $("#main ol");
         if (($postUrl.includes('http://') || $postUrl.includes('https://')) && (/\w+\./).test($postUrl)) {
-            var html = '<li><span class="fa fa-star-o"></span><span class="link-title"><a href="' + $postUrl + '">' + $postTitle + '</a></span> <span class="link-url">(' + $partialUrl + ')</span></li>';
+            var html = '<li><span class="fa fa-star-o"></span>&nbsp;<span class="link-title"><a href="' + $postUrl + '">' + $postTitle + '</a></span> <span class="link-url">(' + $partialUrl + ')</span></li>';
             $mainList.append(html);
         }
     });
 
+    var $ol = $("ol");
+    $ol.on("click", ".fa", function (e) {
+        e.preventDefault();
+        if ($(e.target).hasClass('fa-star-o')) {
+            $(e.target).removeClass('fa-star-o');  //missing . before removeClass
+            $(e.target).addClass('fa-star');
+        } else {
+            $(e.target).removeClass('fa-star');
+            $(e.target).addClass('fa-star-o');
+        }
+    });
 
 });
