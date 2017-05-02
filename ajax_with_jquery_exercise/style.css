@@ -31,8 +31,7 @@ nav {
 aside {
     display: none;
     background-color: #f5f5ee;
-    padding: 10px;
-    padding-left: 50px;
+    padding: 10px 10px 10px 50px;
 }
 
 form {
@@ -77,5 +76,5 @@ section .link-url {
 }
 
 section ol li {
-    padding: 5px 0 5px 0;
+    padding: 5px 0;
 }

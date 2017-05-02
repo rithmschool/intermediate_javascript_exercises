@@ -9,33 +9,38 @@ $(function () {
 
     // login functionality
     $(".login-submit").on("click", function (e) {
-        e.preventDefault();
-        var $user = $(".email").val();
-        var $pass = $(".password").val();
-        $.post('https://hn-favorites.herokuapp.com/login', 
-            { "email": $user, "password": $pass }
-        ).then(function (res) {
-            console.log(res);
-            $(".login").text("logout");
-        }).catch(function (res) {
-            console.log("login failed");
-        });
+        submitClick(e);
     });
 
     // signup functionality
     $(".signup-submit").on("click", function (e) {
-        e.preventDefault();
+        submitClick(e);
+    });
+
+    function submitClick(event) {
+        event.preventDefault();
         var $user = $(".email").val();
         var $pass = $(".password").val();
-        $.post('https://hn-favorites.herokuapp.com/signup', 
+        var url = 'https://hn-favorites.herokuapp.com/login';
+        if ($(event.target) === $(".login-submit")) {
+            url = 'https://hn-favorites.herokuapp.com/signup';
+        }
+        $.post(url,
             { "email": $user, "password": $pass }
         ).then(function (res) {
+            $(".login-error").text("");
+            $(".signup-error").text("");
             console.log(res);
             $(".login").text("logout");
+            $("aside").toggle();
         }).catch(function (res) {
-            console.log("signup failed");
+            if ($(event.target) === $(".login-submit")) {
+                $(".login-error").text("login failed");
+            } else {
+                $(".signup-error").text("signup failed");
+            }
         });
-    });
+    }
 
     // populating ol with articles
     $.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty')
@@ -72,23 +77,18 @@ $(function () {
     // star functionality
     $ol.on("click", ".fa", function (e) {
         e.preventDefault();
-        if ($(e.target).hasClass('fa-star-o')) {
-            $(e.target).removeClass('fa-star-o');
-            $(e.target).addClass('fa-star');
-        } else {
-            $(e.target).removeClass('fa-star');
-            $(e.target).addClass('fa-star-o');
-        }
+        $(e.target).toggleClass('fa-star-o');
+        $(e.target).toggleClass('fa-star');
     });
 
-    // $(".favs").on("click", function (e) {
-    //     e.preventDefault();
-    //     if ($(".favs").text() === "all") {
-    //         $(".favs").text("favorites");
-    //         $(".fa-star-o").parent().toggle(true);
-    //     } else {
-    //         $(".favs").text("all");
-    //         $(".fa-star-o").parent().toggle(false);
-    //     }
-    // });
+    $(".favs").on("click", function (e) {
+        e.preventDefault();
+        if ($(".favs").text() === "all" && $(".login").text() === "logout") {
+            $(".favs").text("favorites");
+            $(".fa-star-o").parent().toggle(true);
+        } else if ($(".login").text() === "logout") {
+            $(".favs").text("all");
+            $(".fa-star-o").parent().toggle(false);
+        }
+    });
 });
