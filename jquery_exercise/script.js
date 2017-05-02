@@ -12,7 +12,7 @@ $("form").validate({
 });
 
 $(document).ready(function () {
-    // toggling submit form (WRONG)
+
     $(".submission").on("click", function (e) {
         e.preventDefault();
         $("aside").toggle();
@@ -30,11 +30,16 @@ $(document).ready(function () {
         }
     });
 
-    // var $favs = $(".favs");
-    // $favs.on("click", function(e){
-    //     e.preventDefault();
-
-    // });
+    $(".favs").on("click", function(e){
+        e.preventDefault();
+        if ($(".favs").text() === "all"){
+            $(".favs").text("favorites");
+            $(".fa-star-o").parent().toggle(true);
+        } else {
+            $(".favs").text("all");
+            $(".fa-star-o").parent().toggle(false); 
+        }
+    });
 
     // append new item to form
     // create a new item
@@ -48,10 +53,9 @@ $(document).ready(function () {
             $partialUrl[0] = $partialUrl[0].substring(4);
         }
 
-        var $mainList = $("ol");
         if (($postUrl.includes('http://') || $postUrl.includes('https://')) && (/\w+\./).test($postUrl)) {
             // var html = '<li><span class="fa fa-star-o"></span> <span class="link-title"><a href="' + $postUrl + '">' + $postTitle + '</a></span> <span class="link-url">(' + $partialUrl + ')</span></li>';
-            // $mainList.append(html);
+            // $ol.append(html);
             var $star = $("<span>").addClass("fa fa-star-o");
             var $link = $("<a/>")
                             .attr("href", $postUrl)
@@ -66,7 +70,7 @@ $(document).ready(function () {
                             .append($star)
                             .append($linkTitle)
                             .append($linkUrl);
-            $mainList.append($newLi);
+            $ol.append($newLi);
         }
     });
 
