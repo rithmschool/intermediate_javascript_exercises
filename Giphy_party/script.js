@@ -1,6 +1,6 @@
 $(function(){
 	$("#searchButton").on("click", function(event){
-		let $searchText = $("#searchText").text();   // collect the user's input. store in jquery variable
+		let $searchText = $("#searchText").val();   // collect the user's input. store in jquery variable
 		let $gifHolder = $(".gifHolder")  			//retrieves our holder div where we will keep all our images
 		
 		// make an AJAX request to the GIPHY API using our user's input
@@ -12,7 +12,9 @@ $(function(){
 			url: "http://api.giphy.com/v1/gifs/search?q=" + $searchText + "&api_key=dc6zaTOxFJmzC",
 			type: "GET",
 			success: function(response){
-				$('<img />').attr('src', response.data[0].url).appendTo($gifHolder); // attr() expects strings not objects ???
+				console.log(response);
+				console.log(response.data);
+				$('<img />').attr('src', response.data[Math.floor(Math.random()* response.data.length)].images.fixed_height.url).width("200px").height("200px").appendTo($gifHolder); // attr() expects strings not objects use toString() method??
 			},
 			error: function(error){
         		console.log(error);
