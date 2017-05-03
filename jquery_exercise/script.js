@@ -14,6 +14,14 @@ $("form").validate({
 });
 
 $(document).ready(function () {
+    var topStories = [];
+
+    $.get('https://hacker-news.firebaseio.com/v0/item/')
+    .then(function(res) {
+        // we have a list of top IDs
+        return console.log(res);
+    })
+
     // toggling submit form (WRONG)
     $("#submission").on("click", function (e) {
         e.preventDefault();
@@ -43,7 +51,7 @@ $(document).ready(function () {
     $ol.on("click", ".fa", function (e) {
         e.preventDefault();
         if ($(e.target).hasClass('fa-star-o')) {
-            $(e.target).removeClass('fa-star-o');  //missing . before removeClass
+            $(e.target).removeClass('fa-star-o'); 
             $(e.target).addClass('fa-star');
         } else {
             $(e.target).removeClass('fa-star');
