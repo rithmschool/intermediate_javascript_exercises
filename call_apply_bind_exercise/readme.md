@@ -14,8 +14,8 @@ var obj = {
 ```
 
 - List two examples of "array-like-objects" that we have seen.
-    -
-    -
+    - arguments
+    - document.get______ (if we grab more than 1, it put it into an array-like object)
 
 ### Functions to write:
 
