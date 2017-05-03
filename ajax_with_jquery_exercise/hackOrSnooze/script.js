@@ -9,7 +9,6 @@ $(function(){
 	}
 	//refresh when clicking brand
 	$('.brand').on("click",function(){
-		window.location = window.location.href + "#refresh";
 		window.location.reload();
 	});
 	//favorite and unfavorite
@@ -86,7 +85,6 @@ $(function(){
 			$.post("https://hn-favorites.herokuapp.com/login", {email: $('#email').val(), password: $('#password').val()}).then(function(res){
 				token.push(res);
     			localStorage.setItem("cred", JSON.stringify(token));
-    			window.location = window.location.href + "#refresh";
 				window.location.reload();
 			});
 		} else {
@@ -94,14 +92,15 @@ $(function(){
 			$.post("https://hn-favorites.herokuapp.com/signup", {email: $('#email').val(), password: $('#password').val()}).then(function(res){
 				token.push(res);
     			localStorage.setItem("cred", JSON.stringify(token));
-    			window.location = window.location.href + "#refresh";
+    			alert('Sign up successful!');
 				window.location.reload();
 			});
 		}
 	})
+	//clicking on favorites
 	$('.fav').on("click", function (){
 		$('ol').hide();
-		$('ul').empty();
+		$('ul').html('');
 		$.ajax({
 			method: "GET",
 			url: "https://hn-favorites.herokuapp.com/stories.json",
@@ -124,10 +123,9 @@ $(function(){
 						.addClass('postid')
 						.text(res[j].story_id)
 						.hide();
-				var url = res[j].url.split(/\/\//)[1].split(/\//)[0];
 				$newLink.attr('href', res[j].url)
 						//.text('(' + res.url.match(/\w+.\w+$/)[0] + ")");
-						.text('(' + url.match(/\w+.\w+$/)[0] + ")");
+						.text('(' + res[j].url + ")");
 				$newListItem.append($newGlyph)
 							.append(" ")
 							.append($newItem)
@@ -140,36 +138,42 @@ $(function(){
 	});
 
 
-	//populate list
+	var myList = [];
+
 	$.get("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty").then(function(res){
-		for(var i = 0; i < 20; i++){
-			$.get("https://hacker-news.firebaseio.com/v0/item/"+ res[i] +".json?print=pretty")
-			.then(function(res){
-				var $newListItem = $('<li>');
-				var $newGlyph= $('<span>')
-						.addClass("glyphicon glyphicon-star-empty");
-				var $newItem = $('<span>')
-						.addClass("item")
-						.text(res.title);
-				var $newLink = $('<a>');
-				var $newId = $('<span>')
-						.addClass('postid')
-						.text(res.id)
-						.hide();
-				var url = res.url.split(/\/\//)[1].split(/\//)[0];
-				$newLink.attr('href', res.url)
-						//.text('(' + res.url.match(/\w+.\w+$/)[0] + ")");
-						.text('(' + url.match(/\w+.\w+$/)[0] + ")");
-				$newListItem.append($newGlyph)
-							.append(" ")
-							.append($newItem)
-							.append(" ")
-							.append($newLink)
-							.append($newId);
-				$('ol').append($newListItem);
-			})
+		myList = myList.concat(res.slice(0,20));
+		return myList
+	}).then(function(myList){
+		var arr = myList.map(function(val){
+			return $.get("https://hacker-news.firebaseio.com/v0/item/"+ val +".json?print=pretty");
+		})
+		return Promise.all(arr);
+	}).then(function(arr){
+		for(var i = 0; i < arr.length; i++){
+			var $newListItem = $('<li>');
+			var $newGlyph= $('<span>')
+					.addClass("glyphicon glyphicon-star-empty");
+			var $newItem = $('<span>')
+					.addClass("item")
+					.text(arr[i].title);
+			var $newLink = $('<a>');
+			var $newId = $('<span>')
+					.addClass('postid')
+					.text(arr[i].id)
+					.hide();
+
+			//var url = arr[i].url.split(/\/\//)[1].split(/\//)[0];
+			$newLink.attr('href', arr[i].url)
+					.text('(' + arr[i].url + ")");
+					//.text('(' + url.match(/\w+.\w+$/)[0] + ")");
+			$newListItem.append($newGlyph)
+						.append(" ")
+						.append($newItem)
+						.append(" ")
+						.append($newLink)
+						.append($newId);
+			$('ol').append($newListItem);
 		}
-		return;
 	}).then(function(){
 		if(token.length !== 0){
 			return $.ajax({
