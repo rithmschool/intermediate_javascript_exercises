@@ -6,6 +6,7 @@ $(function(){
     var $topStories = $('.topStories')
     var $title = $('title');
     var authToken;
+    var deleteID;
 
     $.get('https://hacker-news.firebaseio.com/v0/topstories.json')
     .then(function(res){
@@ -21,10 +22,11 @@ $(function(){
                 var $newA = $('<a>', {
                     href: res.url,
                     text: res.url,
-                }).addClass(res.id);
+                    class: res.id
+                });
                 $newLi.append($newA);
                 $topStories.append($newLi);
-                storiesObjsList[res.id] = 'res';
+                storiesObjsList[res.id] = res;
             })  
 
         i++
@@ -57,15 +59,23 @@ $(function(){
                 return $(el).prepend($('<span>', {class:'glyphicon glyphicon-star-empty'}))
             })
 
-            $('li').map(function(i, el) {
-                // return
-                if($(el).text() in localStorage) {
-                    $(el).children().first().removeClass()
-                    $(el).children().first().addClass('glyphicon glyphicon-star')
+            // $('li').map(function(i, el) {
+            //     // $.get(`https://hacker-news.firebaseio.com/v0/item/${$(el:last-child).attr('class')}.json` )
+            $.get('https://hn-favorites.herokuapp.com/stories.json',
+                { Authorization: authToken } )
+            .then(function(res) {
+                var starredList = [];
+                for(var i=0; i<res.length; i++) {
+                    if(storiesObjsList.includes(res[i].id)) {
+                        var $targetLi = $('li').attr(res[i].id)
+                        $targetLi.children().first().removeClass()
+                        $targetLi.children().first().addClass('glyphicon glyphicon-star')  
+                    }
                 }
             })
-        })   
-    })
+        })
+    })   
+
 
 
     $submitSignup.on("click", function(e){
@@ -124,40 +134,41 @@ $(function(){
 
         if(option === 'glyphicon glyphicon-star') {
             $.ajax({
-                method: 'post',
                 url: 'https://hn-favorites.herokuapp.com/stories.json',
+                method: 'post',
+                contentType: 'application/json',
+                dataType: 'json',
                 headers: { Authorization: authToken },
                 data: JSON.stringify({ 
                     hacker_news_story: {
-                        by: storiesObjsList[$(e.target).next().class].by, 
-                        story_id: storiesObjsList[$(e.target).next().class].id,
-                        title: storiesObjsList[$(e.target).next().class].title,
-                        url: storiesObjsList[$(e.target).next().class].url
+                        by: storiesObjsList[$(e.target).next().attr('class')].by, 
+                        story_id: storiesObjsList[$(e.target).next().attr('class')].id,
+                        title: storiesObjsList[$(e.target).next().attr('class')].title,
+                        url: storiesObjsList[$(e.target).next().attr('class')].url
                     }
                 })
+            }).then(function(res) {
+                deleteID = res;
             })
         } else {
-            if($(e.target).next().class in storiesObjsList) {
+            /*  if($(e.target).next().attr('class') in storiesObjsList) {  */
                 $.ajax({
+                    url: `https://hn-favorites.herokuapp.com/stories/${deleteID}.json`,
                     method: 'post',
-                    url: 'https://hn-favorites.herokuapp.com/stories/${$(e.target).next().class}.json',
+                    contentType: 'application/json',
+                    dataType: 'json',
                     headers: { Authorization: authToken },
-                    data: JSON.stringify({ 
-                        hacker_news_story: {
-                            by: storiesObjsList[$(e.target).next().class].by, 
-                            story_id: storiesObjsList[$(e.target).next().class].id,
-                            title: storiesObjsList[$(e.target).next().class].title,
-                            url: storiesObjsList[$(e.target).next().class].url
-                        }
-                    })
                 })
-            }
+           /* } */
         }
 
         $(e.target).attr('class', option)
     })
 
-
 })
+
+
+
+
 
 
