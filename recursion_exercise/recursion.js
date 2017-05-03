@@ -76,8 +76,8 @@ function binarySearch(array, key){
 				index += mid;
 				found = 1;
 			} else if (arr[mid] < key){
-				index += mid;
-				helper(arr.slice(mid, arr.length), key);
+				index += mid + 1;
+				helper(arr.slice(mid+1, arr.length), key);
 			} else if (arr[mid] > key){
 				helper(arr.slice(0,mid), key)
 			}

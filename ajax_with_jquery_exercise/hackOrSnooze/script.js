@@ -191,9 +191,10 @@ $(function(){
 			for(var k = 0; k < res.length; k++){
 				for(var a = 0; a < list.length; a++){
 					if(Number(res[k].story_id) === Number(list[a].innerText)){
-						$(list[a]).parent().children().eq(0).removeClass("glyphicon-star-empty");
-						$(list[a]).parent().children().eq(0).addClass("glyphicon-star");
-						$(list[a]).parent().children().eq(0).data("favid", res[k].id);
+						let match = $(list[a]).parent().children().eq(0)
+						match.removeClass("glyphicon-star-empty");
+						match.addClass("glyphicon-star");
+						match.data("favid", res[k].id);
 					}
 				}
 			}
