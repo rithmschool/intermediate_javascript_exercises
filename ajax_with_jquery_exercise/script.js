@@ -102,10 +102,16 @@ $(function() {
         });
 
         let url = $newA.attr('href');
-        url = url.split("://")[1].split("/")[0];
-        if (url.split(".").length > 2){
-            url = url.split(".").slice(-2).join(".");
+
+        if (url !== undefined) {
+            url = url.split("://")[1].split("/")[0];
+            if (url.split(".").length > 2){
+                url = url.split(".").slice(-2).join(".");
+            } 
+        } else {
+            url = "none"
         }
+        
 
         let $newUrlSpan = $("<span>")
             .attr('data-storyId', storyId)
