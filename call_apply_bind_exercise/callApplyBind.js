@@ -9,25 +9,22 @@ function sumEvenArguments(){
 }
 
 function arrayFrom(arrayLikeObject){
-    return [].slice.call(arrayLikeObject)
+    return [].slice.call(arrayLikeObject);
 }
 
 function invokeMax(fn, num){
     var max = 0;
     return function(){
-        var args = [].slice.call(arguments)
-        if(max >= num){
-            return "Maxed Out!"
-        }
-        max++
-        return fn.apply(this,arguments)
+        if(max >= num) return "Maxed Out!";
+        max++;
+        return fn.apply(this,arguments);
     }
 }
 
 function guessingGame(amount){
     var answer = Math.floor(Math.random()*11);
     var guesses = 0;
-    var completed = false
+    var completed = false;
     return function(guess){
         if(!completed){
             var option;
