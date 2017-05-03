@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Hack or Snooze</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-h21C2fcDk/eFsW9sC9h0dhokq5pDinLNklTKoxIZRUn3+hvmgQSffLLQ4G4l2eEr" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <header>
+                    <span><strong>Hack or Snooze</strong></span>
+                    <span>
+                        <span id="login">Login</span>
+                        <span></span>
+                        <span id="favorites">Favorites</span>
+                        <span id="logout" class="pull-right">Logout</span>
+                    </span>
+                </header>
+                <section id="listContent">
+                    <div class="row">
+                        <div class="col-xs-8 col-xs-offset-2">
+                            <form class="loginform">
+                                <div class="form-group">
+                                    <label for="title">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">Password</label>
+                                    <input type="password" class="form-control" id="password" placeholder="*****">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" id="loginbutton" class="btn btn-default">Login
+                                    </button>
+                                </div>
+                            </form>
+                            <form class="newuserform">
+                                <div class="form-group">
+                                    <label for="title">New Account Email</label>
+                                    <input type="email" class="form-control" id="newemail" placeholder="you@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">New Account PW</label>
+                                    <input type="password" class="form-control" id="newpassword" placeholder="*****">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" id="signup" class="btn btn-default">Sign Up
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                    <!--div class="col-xs-2"></div-->
+                <section id="theList">
+                    <!--div><span class="number">1. </span><span class="glyphicon glyphicon-star-empty"></span><a href="www.wikipedia.com" target="_blank">Wikipedia</a><small><span data-domain="wikipedia.com">(wikipedia.com)</span></small></div>
+                    <div><span class="number">2. </span><span class="glyphicon glyphicon-star"></span><a href="www.rithmschool.com" target="_blank">Problem solving with Rithm</a><small><span data-domain="rithmschool.com">(rithmschool.com)</span></small></div>
+                    <div><span class="number">3.</span> <span class="glyphicon glyphicon-star-empty"></span><a href="www.nytimes.com" target="_blank">New York Times</a><small><span data-domain="nytimes.com">(nytimes.com)</span></small></div>
+                    <div><span class="number">4. </span><span class="glyphicon glyphicon-star-empty"></span><a href="http://www.cnn.com" target="_blank">CNN</a><small><span data-domain="cnn.com">(cnn.com)</span></small></div>
+                    <div><span class="number">5. </span><span class="glyphicon glyphicon-star-empty"></span><a href="www.google.com" target="_blank">Google</a><small><span data-domain="google.com">(google.com)</span></small></div>
+                    <div><span class="number">6. </span><span class="glyphicon glyphicon-star-empty"></span><a href="http://www.cnn.com/politics" target="_blank">CNN Politics</a><small><span data-domain="cnn.com">(cnn.com)</span></small></div-->
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

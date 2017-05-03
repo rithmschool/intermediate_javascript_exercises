@@ -1,0 +1,44 @@
+.glyphicon {
+	padding-left: .5rem;
+	padding-right: 1.5rem;
+}
+
+.container-fluid {
+	margin-top: 2rem;
+
+}
+
+header {
+	background-color: orange;
+	padding: 1rem;
+}
+
+header > span:nth-child(2) {
+	margin-left: 3rem;
+}
+
+#listContent{
+	display: none;
+}
+
+#favorites, #login, #logout{
+	cursor: pointer;
+}
+
+small {
+	padding-left: 1rem;
+	color: gray;
+	cursor: pointer;
+}
+
+a {
+	color: black;
+}
+
+section{
+	background-color: beige;
+}
+
+#theList {
+	padding: 1rem;
+}
