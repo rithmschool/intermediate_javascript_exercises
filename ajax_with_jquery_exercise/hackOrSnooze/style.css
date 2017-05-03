@@ -27,11 +27,11 @@ form{
 	margin-left: 70%;
 	margin-right: 1%;
 }
-.search:hover, .fav:hover, .glyphicon-star-empty:hover, .glyphicon-star:hover, .brand:hover{
+.search:hover, .fav:hover, .glyphicon-star-empty:hover, .glyphicon-star:hover, .brand:hover, .signup:hover, .login:hover, .logout:hover{
 	cursor: pointer;
 	color: lightblue;
 }
-.search:hover, .fav:hover, .brand:hover{
+.search:hover, .fav:hover, .brand:hover, .signup:hover, .login:hover, .logout:hover{
 	color: rgb(100,100,100);
 }
 .brand{

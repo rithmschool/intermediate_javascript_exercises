@@ -145,10 +145,6 @@ $(function(){
 		for(var i = 0; i < 20; i++){
 			$.get("https://hacker-news.firebaseio.com/v0/item/"+ res[i] +".json?print=pretty")
 			.then(function(res){
-				//create new list item
-				//append glyphicon
-				//append span class item w/ title
-				//append link
 				var $newListItem = $('<li>');
 				var $newGlyph= $('<span>')
 						.addClass("glyphicon glyphicon-star-empty");
@@ -173,6 +169,7 @@ $(function(){
 				$('ol').append($newListItem);
 			})
 		}
+		return;
 	}).then(function(){
 		if(token.length !== 0){
 			return $.ajax({
@@ -191,7 +188,7 @@ $(function(){
 			for(var k = 0; k < res.length; k++){
 				for(var a = 0; a < list.length; a++){
 					if(Number(res[k].story_id) === Number(list[a].innerText)){
-						let match = $(list[a]).parent().children().eq(0)
+						let match = $(list[a]).parent().children().eq(0);
 						match.removeClass("glyphicon-star-empty");
 						match.addClass("glyphicon-star");
 						match.data("favid", res[k].id);
