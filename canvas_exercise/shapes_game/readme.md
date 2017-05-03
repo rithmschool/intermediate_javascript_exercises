@@ -11,7 +11,7 @@ The game presents one of 4 shapes to you.  You must press the correct arrow key 
 
 If you press the wrong arrow for a shape, your score will be subtracted by 1 point.  If you press the correct arrow, your score will be increased by 1 point.
 
-The goal of the game is to get the most points in 30 seconds.
+The goal of the game is to get the most points in 30 seconds!
 
 Here is a demo of the game:
 

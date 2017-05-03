@@ -1,5 +1,14 @@
 window.addEventListener("load", function() {
-
+  //add storage
+  storage = JSON.parse(localStorage.getItem("topscore"));
+  if(storage === null){
+    storage = [];
+    var obj = {["highScore"]: 0};
+    storage.push(obj);
+  } else {
+    var top = document.getElementById("high-score");
+    top.innerText = storage[0].highScore;
+  }
   var canvas = document.getElementById("shapes-game"),
       height = canvas.scrollHeight,
       width = canvas.scrollWidth,
@@ -16,7 +25,7 @@ window.addEventListener("load", function() {
       dropId;
   canvas.width = width;
   canvas.height = height;
-  ctx.font = "30px Arial";
+  ctx.font = "20px Arial";
   ctx.fillStyle = "white";
   ctx.textAlign = "center";
   ctx.fillText("Press the space bar to start a new game!", canvas.width/2, canvas.height/2); 
@@ -116,7 +125,14 @@ window.addEventListener("load", function() {
   // when the game ends display this
   function drawGameStartText(ctx, width, height, score) {
     clear(ctx, canvas.width, canvas.height);
-    ctx.font = "30px Arial";
+    //increase high score if higher.
+    if(score > storage[0].highScore){
+      var high = document.querySelector('#high-score');
+      high.innerText = score;
+      storage[0].highScore = score;
+      localStorage.setItem("topscore", JSON.stringify(storage));
+    }
+    ctx.font = "20px Arial";
     ctx.fillStyle = "white";
     ctx.textAlign = "center";
     ctx.fillText("Game over! your score is: " + score, canvas.width/2, canvas.height/2 - 50);
@@ -146,12 +162,28 @@ window.addEventListener("load", function() {
   }
 
   function scoreUp(){
+    var animate = document.querySelector('#plus');
+    animate.className = "animation";
+    var animate1 = document.querySelector('#shapes-game');
+    animate1.className = "glowGreen";
+    setTimeout(function(){
+      animate.className = '';
+      animate1.className = '';
+    }, 1000);
     var score = scoreSpan.innerText;
     score++;
     scoreSpan.innerText = score;
   }
 
   function scoreDown(){
+    var animate2 = document.querySelector('#minus');
+    animate2.className = "animationDown";
+    var animate3 = document.querySelector('#shapes-game');
+    animate3.className = "glowRed";
+    setTimeout(function(){
+      animate2.className = '';
+      animate3.className = '';
+    }, 1000);
     var score = scoreSpan.innerText;
     score--;
     scoreSpan.innerText = score;
@@ -160,6 +192,7 @@ window.addEventListener("load", function() {
 
 
   document.onkeydown = function(e){
+      //reset animations
       if(e.keyCode === 38 && gameOn){
         //up
         if(expectedKey === 4){

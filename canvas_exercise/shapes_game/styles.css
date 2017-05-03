@@ -2,17 +2,85 @@ body {
   padding-bottom: 50px;
 }
 
+h1{
+  font-size: 15px;
+}
+
+.test{
+  text-align: center;
+  background: red;
+}
+.container{
+  margin: 0 auto;
+}
 #shapes-game {
   border: 4px solid grey;
   background-color: black;
+
+}
+
+.glowRed{
+  animation: pulseRed 0.5s 1;
+  animation-timing-function: linear;
+}
+
+@keyframes pulseRed{
+  50%{
+    box-shadow: 0 0 20px 7px red;
+  }
+}
+
+.glowGreen{
+  animation: pulseGreen 0.5s 1;
+  animation-timing-function: linear;
+}
+
+@keyframes pulseGreen{
+  50%{
+    box-shadow: 0 0 20px 7px green;
+  }
+}
+
+#plus{
+  color: white;
+  position: absolute;
+}
+#minus{
+  color: white;
+	position: absolute;
+	left: 17px;
+}
+.animationDown{
+	animation: floatdown 1s 1;
+}
+@keyframes floatdown{
+	50%{
+		color: red;
+	}
+	100%{
+		transform: translate(0, 10px);
+	}
+}
+
+.animation{
+  animation: floatup 1s 1;
+}
+
+@keyframes floatup{
+	50%{
+		color: lightgreen;
+	}
+	100%{
+		transform: translate(0, -10px);
+	}
 }
 
 .canvas-container {
   padding: 10px;
 }
 .canvas-container, #shapes-game {
-  height: 750px;
-  width: 800px;
+  height: 670px;
+  width: 400px;
 }
 
 .scores {

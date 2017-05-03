@@ -10,12 +10,14 @@
 </head>
 <body>
   <div class="container">
-    <div class="col-xs-10 canvas-container">
-      <canvas id="shapes-game" height="750" width="800"></canvas>
+    <div class="col-xs-offset-3 col-xs-10 canvas-container">
+      <canvas id="shapes-game" height="500" width="400"></canvas>
     </div>
     <div class="col-xs-2 scores">
+      <h1>High Score</h1>
+      <h3><span id="high-score">0</span></h3>
       <h1>Score</h1>
-      <h3><span id="score-val">0</span></h3>
+      <h3 style="position: relative"><span id="minus">-1</span><span id="score-val">0</span><span id="plus">+1</span></h3>
       <h1>Timer</h1>
       <h3><span id="time-remaining">30</span></h3>
       <div class="legend">
