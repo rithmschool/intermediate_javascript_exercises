@@ -1,10 +1,22 @@
 $(function () {
+    // checking if logged in
+    var storage = localStorage.getItem("auth_token") || "";
+    if (storage) {
+        $(".login").text("logout");
+    }
+
     var $ol = $("ol");
 
     // login aside
     $(".login").on("click", function (e) {
         e.preventDefault();
         $("aside").toggle();
+        // logout functionality
+        if ($(".login").text() === "logout") {
+            $(".login").text("login/signup");
+            localStorage.clear();
+            $("aside").toggle();
+        }    
     });
 
     // login functionality
@@ -30,11 +42,12 @@ $(function () {
         ).then(function (res) {
             $(".login-error").text("");
             $(".signup-error").text("");
-            console.log(res);
             $(".login").text("logout");
             $("aside").toggle();
+            // console.log(res);
+            localStorage.setItem("auth_token", res.auth_token);
         }).catch(function (res) {
-            if ($(event.target) === $(".login-submit")) {
+            if ($(event.target).val() === "login") {
                 $(".login-error").text("login failed");
             } else {
                 $(".signup-error").text("signup failed");
@@ -45,7 +58,7 @@ $(function () {
     // populating ol with articles
     $.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty')
         .then(function (res) {
-            for (var i = 0; i < 20; i++) {
+            for (var i = 0; i < 25; i++) {
                 $.get(`https://hacker-news.firebaseio.com/v0/item/${res[i]}.json?print=pretty`)
                     .then(function (res) {
                         //console.log(res);
@@ -62,9 +75,12 @@ $(function () {
                         var $linkTitle = $("<span>")
                             .addClass("link-title")
                             .append($link);
+                        var $pLink = $("<a/>")
+                            .attr("href", "https://" + $partialUrl)
+                            .text("(" + $partialUrl + ")");
                         var $linkUrl = $("<span>")
                             .addClass("link-url")
-                            .text("(" + $partialUrl + ")");
+                            .append($pLink);
                         var $newLi = $("<li>")
                             .append($star)
                             .append($linkTitle)
@@ -77,8 +93,10 @@ $(function () {
     // star functionality
     $ol.on("click", ".fa", function (e) {
         e.preventDefault();
-        $(e.target).toggleClass('fa-star-o');
-        $(e.target).toggleClass('fa-star');
+        if ($(".login").text() === "logout") { // make sure logged in
+            $(e.target).toggleClass('fa-star-o');
+            $(e.target).toggleClass('fa-star');
+        }
     });
 
     $(".favs").on("click", function (e) {
