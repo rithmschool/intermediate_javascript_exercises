@@ -1,0 +1,49 @@
+body{
+	font-family: Verdana, Geneva, sans-serif;
+}
+header{
+	margin-top: 5%;
+	width: 100%;
+	background-color: #FF6600;
+	border-radius: 5px;
+	padding: 20px 0;
+	font-weight: bold;
+}
+header div{
+	display:inline;
+	margin: 2%;
+}
+.grey{
+	background: #F6F6EF;
+}
+.item{
+	color: black;
+}
+ol li a, ul li a{
+	font-size: 10px;
+	color: grey;
+}
+form{
+	margin-left: 70%;
+	margin-right: 1%;
+}
+.search:hover, .fav:hover, .glyphicon-star-empty:hover, .glyphicon-star:hover, .brand:hover{
+	cursor: pointer;
+	color: lightblue;
+}
+.search:hover, .fav:hover, .brand:hover{
+	color: rgb(100,100,100);
+}
+.brand{
+	font-size: 18px;
+}
+ol, ul{
+	color: gray;
+}
+.pull-right{
+	margin-right: 10px;
+}
+
+ul{
+	list-style-type: none;
+}
