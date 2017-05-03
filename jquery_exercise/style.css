@@ -2,6 +2,11 @@ body {
 	font-family: Verdana, Geneva, sans-serif;
 }
 
+h4 {
+	font-weight: bold;
+	margin: 0;
+}
+
 /******* HEADER NAVBAR *******/
 header {
 	background-color: #FF6600;
@@ -14,10 +19,6 @@ header {
 header div {
 	display: inline;
 	padding: 30px;
-}
-
-header div#links {
-	padding: 0px;
 }
 
 header div#brand {
@@ -43,11 +44,21 @@ header a:hover {
 	padding: 15px;
 }
 
-#resultList .name {
-	color: #222222;
+li {
+	padding-top: 3px;
 }
 
-#resultList .url:hover {
-	text-decoration: underline;
-	cursor: pointer;
+/*author and time ago*/
+.postInfo {
+	font-size: .8em;
 }
+
+#resultList .name a {
+	color: #222222;
+	text-decoration: none;
+}
+
+#resultList .url a {
+	color: #828282;
+}
+

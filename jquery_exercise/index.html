@@ -12,83 +12,84 @@
 <body>
 	<header>
 		<div id="brand">Hack or Snooze</div>
-		<div id="links">
-			<a href="" id="submitLink">submit</a> | 
+		<div id="linkDiv">
+			<a href="" id="loginLink">login</a> |
 			<a href="" id="favLink">favorites</a>
 		</div>
 	</header>
 	
 	<div id="content">
-		<div id="submitForm" class="container">
-			<form class="form-horizontal">
-				<div class="form-group">
-					<label for="formTitle" class="col-sm-2 col-form-label text-right">
-						Title
-					</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="formTitle" required>
+		<div id="forms" class="container">
+			<div id="loginForm">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<div class="col-sm-10 col-sm-offset-2">
+							<h4>Login</h4>
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label for="formUrl" class="col-sm-2 col-form-label text-right">
-						URL
-					</label>
-					<div class="col-sm-10">
-						<input type="url" class="form-control" id="formUrl" require>
+					<div class="form-group">
+						<label for="loginLogin" class="col-sm-2 col-form-label text-right">
+							Login
+						</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="loginLogin" required>
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-10 col-sm-offset-2">
-						<button type="submit" class="btn btn-secondary">
-							Submit
-						</button>
+					<div class="form-group">
+						<label for="loginPassword" class="col-sm-2 col-form-label text-right">
+							Password
+						</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control" id="loginPassword" require>
+						</div>
 					</div>
-				</div>
-			</form>
+					<div class="form-group">
+						<div class="col-sm-10 col-sm-offset-2">
+							<button type="submit" class="btn btn-secondary">
+								Submit
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div id="signupForm">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<div class="col-sm-10 col-sm-offset-2">
+							<h4>Signup</h4>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="signupLogin" class="col-sm-2 col-form-label text-right">
+							Login
+						</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="signupLogin" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="signupPassword" class="col-sm-2 col-form-label text-right">
+							Password
+						</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control" id="signupPassword" require>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-10 col-sm-offset-2">
+							<button type="submit" class="btn btn-secondary">
+								Submit
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
 		
 		<div id="resultList" class="container">
 			<ol>
-				<li>
-					<span>
-						<span class="star glyphicon glyphicon-star-empty" 
-							aria-hidden="true"></span> 
-					</span> 
-					<span class='name'>Visualizing Algorithms</span>
-					<span class='url'>
-						(visualgo.net)
-					</span>
-				</li>
-				<li>
-					<span>
-						<span class="star glyphicon glyphicon-star-empty" 
-							aria-hidden="true"></span> 
-					</span>
-					<span class='name'>Problem Solving with Rithm</span> 
-					<span class='url'>
-						(rithmschool.com)
-					</span>
-				</li>
-				<li>
-					<span>
-						<span class="star glyphicon glyphicon-star-empty" 
-							aria-hidden="true"></span> 
-					</span>
-					<span class='name'>Buy this book!</span> 
-					<span class='url'>
-						(amazon.com)
-					</span>
-				</li>
-				<li>
-					<span>
-						<span class="star glyphicon glyphicon-star-empty" 
-							aria-hidden="true"></span> 
-					</span>
-					<span class='name'>Dogs on GitHub</span> 
-					<span class='url'>
-						(github.com)
-					</span>
-				</li>
+
 			</ol>
 		</div>
 	</div>
