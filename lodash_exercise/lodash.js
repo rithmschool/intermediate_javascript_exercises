@@ -79,6 +79,7 @@ function takeRight(array){
 	return holdingArray;
 }
 
+
 function takeWhile(array, callback){
 	var holdingArray = [];
 	function helper(array, callback) {
@@ -151,6 +152,7 @@ function zipObject(arr1,arr2){
 		acc[value] = arr2[index];
 		return acc;
 	}, {})
+
 }
 
 function includes(input, value, index){
@@ -187,6 +189,7 @@ function sample(array){
 	return array[Math.floor(Math.random() * 4)];
 }
 
+
 function flip (fn) {
     return function() {
         var args = Array.from(arguments);
@@ -220,6 +223,7 @@ function cloneDeep(object){
 		}
 	}
 	return holdingObj;
+
 }
 
 function sumBy(array, value){
@@ -301,6 +305,7 @@ function omitBy(object,value){
 	return newObj;
 }
 
+
 function padEnd(string, length, char){
 	var str = string;
 	var toggle = 0;
@@ -320,6 +325,7 @@ function padEnd(string, length, char){
 	};
 	str = helper(str, padding, character);
 	return str;
+
 }
 
 function repeat(string, number){
@@ -350,6 +356,7 @@ function flatten(array){
 	}, []);
 }
 
+
 function flattenDeep(array){
 	var holdingArray = [];
 	for (var i = 0; i < array.length; i++) {
@@ -361,3 +368,4 @@ function flattenDeep(array){
 	}
 	return holdingArray;
 }
+
