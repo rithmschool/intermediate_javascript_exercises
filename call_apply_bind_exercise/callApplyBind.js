@@ -35,3 +35,27 @@ function invokeMax(fn, times){
 		}
 	}
 }
+
+function guessingGame(maxGuesses){
+
+	if (maxGuesses < 0 || maxGuesses > 10){ return "invalid number of guesses"};
+
+	let answer = Math.floor(Math.random()*10);
+
+	let guessCounter = 1;
+
+	return function(guess){
+		if (guessCounter < maxGuesses){
+			guessCounter++;
+			return `No more guesses the answer was ${answer}`;
+		}
+		if (guessCounter >= maxGuesses){
+			guessCounter++; // don't really have to do this
+			return "You are all done playing!";
+		}
+		guessCounter ++
+		if (guess === answer) return "You got it!";
+		if (guess > answer) return "You're too high!";
+		if (guess < answer) return "You're too low!";
+	}
+}
