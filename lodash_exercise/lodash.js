@@ -292,7 +292,6 @@ function flattenDeep(arr){
 	for (let i = 0; i< arr.length; i++){
 		if (Array.isArray(arr[i])){
 			returnArr = returnArr.concat(flattenDeep(arr[i]));
-			//returnArr.push(flattenDeep(arr[i]));
 		} else {
 			returnArr.push(arr[i]);
 		}
