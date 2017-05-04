@@ -4,21 +4,24 @@ function Person(firstName, lastName, favoriteColor, favoriteNumber){
 	this.favoriteColor = favoriteColor;
 	this.favoriteNumber = favoriteNumber;
 	this.favoriteFoods = [];
+	this.family = [];
 }
 
 Person.prototype.fullName = function() {
 	return `${this.firstName} ${this.lastName}`;
 }
 
-Object.prototype.toString = function() {
+Person.prototype.toString = function() {
 	return `${this.firstName} ${this.lastName}, Favorite Color: ${this.favoriteColor}, Favorite Number: ${this.favoriteNumber}`
 }
 
-Person.prototype.family = [];
-
 Person.prototype.addToFamily = function(obj) {
 	if (obj instanceof Person) {
-		Person.family.every(function(value))
+		if (this.family.every(function(value) {
+			return !(JSON.stringify(obj) === JSON.stringify(value));
+		})) {
+			this.family.push(obj);
+		}
 	}
 }
 
