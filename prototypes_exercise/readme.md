@@ -50,4 +50,33 @@ For the last part, let's think less about the actual code we need to write and m
 
 - Let's imagine that we are building an application which allows users to play chess. What constructor functions would we need? What kinds of prototype functions and properties would we need as well?
 
+	For the board itself:
+	
+	- A constructor function to create the board object
+	- A prototype property - a 2-D array of the board
+	- A prototype function to display the board
+	
+	For pieces (rooks, king, queen, etc.):
+	
+	- A constructor function to create pieces as objects (i.e., 2 rooks)
+	- A prototype property 	defining the types of movements allowed (i.e., a bishop can move diagonally any distance)
+	- A prototype property defining whether jumping other pieces is allowed
+	- A prototype function to actually make movements (e.g, for bishop you would pass in direction and number of spaces as arguments)
+
+	For players:
+	
+	- A constructor function to create each player as an object
+	- A prototype property to define the player color (white or black)
+
 - Let's imagine that we are building a game of Tic Tac Toe. What kinds of prototype functions and properties would we need as well?
+
+	For the board itself:
+	
+	- A constructor function to create the board object
+	- A prototype property - a 2-D array of the board
+	- A prototype function to display the board
+
+	For players:
+	
+	- A constructor function to create each player as an object
+	- A prototype property to define the player symbol (X or O)
