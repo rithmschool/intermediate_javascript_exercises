@@ -28,6 +28,7 @@ header > span:nth-child(2) {
 small {
 	padding-left: 1rem;
 	color: gray;
+	cursor: pointer;
 }
 
 a {
