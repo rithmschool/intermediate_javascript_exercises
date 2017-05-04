@@ -34,6 +34,20 @@ Array.prototype.map = function(fn){
 	return newArray;
 }
 
-Function.prototype.bind = function(){
-	return "fail the test";
+String.prototype.reverse = function(){
+	var newString = '';
+	for(var i = 0; i < this.length; i++){
+		newString += this[this.length - i - 1];
+	}
+	return newString;
+}
+
+Function.prototype.bind = function(thisArg, ...outerArg){
+	var _this = this;
+	var outer = outerArg;
+	return function(...innerArg){
+		var inner = innerArg;
+		var all = outerArg.concat(innerArg)
+		return _this.apply("albert", all);
+	}
 }
