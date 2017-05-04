@@ -110,25 +110,6 @@ function stringifyNumbers(obj){
 	let keysArr = Object.keys(obj);
 	let returnObj = {};
 
-	/*
-	for (let i = 0; i<keysArr.length; i++){
-		if (typeof obj[keysArr[i]] === 'number'){
-			returnObj[keysArr[i]] = obj[keysArr[i]].toString();
-		}
-		// case array = keep array;
-		if (Array.isArray(obj[keysArr[i]])){
-			returnObj[keysArr[i]] = obj[keysArr[i]].slice(0);
-		} else {
-			// case object = recurse
-			if (typeof obj[keysArr[i]] === 'object'){
-				returnObj[keysArr[i]] = stringifyNumbers(obj[keysArr[i]]);
-			} else {
-				// boolean?
-				returnObj[keysArr[i]] = obj[keysArr[i]];
-			}
-		}
-	}*/
-
 	for (let i = 0; i<keysArr.length; i++){
 		switch (typeof obj[keysArr[i]]){
 			case 'number':
@@ -153,20 +134,6 @@ function stringifyNumbers(obj){
 	}
 	return returnObj;
 }
-
-
-
-var testObj = {
-      num: 1,
-      test: [],
-      data: {
-        val: 4,
-        info: {
-          isRight: true,
-          random: 66
-        }
-      }
-    }
 
 
 
