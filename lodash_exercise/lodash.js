@@ -47,11 +47,47 @@ function union(arr1,arr2){
     return unionArr;
 }
 
-function zip(){
+function zip(...arrs){
+	//let returnArr1 = [];
+	//let returnArr2 = [];
+	let returnArr = [];
 
+	for (let i=0; i<arrs[0].length; i++){
+		returnArr.push([]);
+	}
+
+	let arrLength = arrs[0].length;
+
+    while (arrs.length > 0) {
+        let curArr = arrs.shift();
+        for (let i = 0; i< arrLength;  i++){
+            //if (typeof curArr[i] !== "undefined"){
+                returnArr[i].push(curArr[i]);
+            //} else {
+            //	returnArr[i].push(undefined);
+            //}
+        }
+    }
+    
+    return returnArr;
 }
 
-function unzip(){
+function unzip(arrs){
+	let returnArr = [];
+	let makeArrays = arrs[0].length;
+
+	for (let i = 0; i< makeArrays; i++){
+		returnArr.push([]);
+	}
+
+	while (arrs.length > 0){
+		let curArr = arrs.shift();
+
+		for (let i = 0; i<makeArrays; i++){
+			returnArr[i].push(curArr[i]);
+		}
+	}
+	return returnArr;
 
 }
 
@@ -96,8 +132,11 @@ function sample(arr){
 	return arr[Math.floor(Math.random()*arr.length)];
 }
 
-function flip(){
-
+function flip(fn){
+    return function(...innerArgs){
+        return fn.apply(this, innerArgs.reverse())
+        
+    }
 }
 
 function cloneDeep(arr){
@@ -135,18 +174,14 @@ function inRange(num, start, end){
 	return start < num && num < end;
 }
 
-function has(obj, targetKey){
-
-    // obj - we're looking for keys
-    // targetKey = "value" cool, let's look.
-    // if Array.isArray(targetKey), let's look for an array of values
-    // which array method was the "all of them?"
+function has(obj, ...targetKey){
 
     return targetKey.every(function(val, idx, array){
         if (obj[val]){
             return true;
         } else {
-            return false;
+            // if obj[val] is an object, recurse
+            return has(obj[val]) || false 
         }
     })
 }
@@ -251,6 +286,25 @@ function flatten(arr){
     return returnArr;
 }
 
-function flattenDeep(){
+function flattenDeep(arr){
+	let returnArr = [];
+
+	for (let i = 0; i< arr.length; i++){
+		if (Array.isArray(arr[i])){
+			returnArr = returnArr.concat(flattenDeep(arr[i]));
+			//returnArr.push(flattenDeep(arr[i]));
+		} else {
+			returnArr.push(arr[i]);
+		}
+	}
+	return returnArr;
 
 }
+
+
+
+
+
+
+
+
