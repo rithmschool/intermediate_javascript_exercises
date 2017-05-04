@@ -1,4 +1,4 @@
-function Person(firstName, lastName, favoriteColor, favoriteNumber, favoriteFoods) {
+function Person(firstName, lastName, favoriteColor, favoriteNumber, favoriteFoods, family) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.favoriteColor = favoriteColor;
@@ -28,8 +28,8 @@ Person.prototype.addToFamily = function(...relatives) {
   }, this);
 }
 
-//
-// String.prototype.reverse = function() {
-//   if (this.str.length < 1) return "";
-//   return reverse(this.str.slice(1)) + this.str[0];
-// };
+
+String.prototype.reverse = function() {
+  if (this.length < 1) return "";
+  return this.reverse.apply(this.slice(1)) + this[0];
+};
