@@ -39,12 +39,8 @@ function acceptsOnlyNumbers(){
 }
 
 function mergeArrays(arr1, arr2){
-    var newArr = arr1;
-    for (var i = 0; i< arr2.length; i++){
-        newArr[newArr.length] = arr2[i];
-    }
-    newArr.sort();
-    return newArr;
+    arr1 = arr1.concat(arr2);
+    return arr1.sort();
 }
 
 function mergeObjects(obj1, obj2){

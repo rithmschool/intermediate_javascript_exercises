@@ -27,6 +27,7 @@ describe("Tests", function(){
 
 	it("mergeArrays", function(){
 		expect(mergeArrays([1,3],[2,4])).to.be.deep.equal([1,2,3,4]);
+		expect(mergeArrays([10, 15, 12],[13,14,11])).to.be.deep.equal([10,11,12,13,14,15]);
 	});
 
 	it("mergeObjects",function(){
@@ -46,4 +47,8 @@ describe("Tests", function(){
 		expect(mergeObjects(obj1, obj2)).to.be.deep.equal(resultObj);
 
 	});
+
+	it("Test sort", function(){
+		[1,7,83,21,1,5,9,12,91,99,12,85];
+	}
 });
