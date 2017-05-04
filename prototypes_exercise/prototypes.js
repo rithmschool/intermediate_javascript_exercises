@@ -113,9 +113,49 @@ For the last part, let's think less about the actual code we need to write and m
 Let's imagine that we are building an application which allows users to play chess. What constructor functions would we need? What kinds of prototype functions and properties would we need as well?
 
 ANSWER:
+		Board / Squares:
+			Properties:
+				-isOccupied
+				-position
+			Functions:
+				-reset?
+				-haveWinner?
+		Player
+			Properties:
+				-name
+				-pieces
+				-isWinner
+			
+		Piece 
+			Properties:
+				-color
+				-position
+				-type
+			Functions:
+				-move
+				-capture
+				-promote
 
 Let's imagine that we are building a game of Tic Tac Toe. What kinds of prototype functions and properties would we need as well?
 
 ANSWER:
+		Board:
+			Properties:
+				-isBlank?
+			Functions:
+				-reset?
+				-haveWinner?
+		Player:
+			Properties:
+				-name
+				-color
+				-isWinner
+				-total score?
 
+		Turn (draw X/O):
+			Properties:
+				-type (x/o)
+				-position
+			Functions:
+				-draw (x/o)
 */
