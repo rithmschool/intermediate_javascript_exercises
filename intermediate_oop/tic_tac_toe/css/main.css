@@ -11,11 +11,15 @@ body {
   background-color: #bfbfbf;
   vertical-align: top;
   font-size: 700%;
-  color: red;
+  color: #FF5325;
 }
 
 .row {
   min-width: 600px ;
+}
+
+.result {
+  font-size: 3em;
 }
 
 #new-game {
@@ -24,4 +28,5 @@ body {
 
 #message {
   font-size: 3em;
+  font-weight: 400;
 }
