@@ -12,14 +12,24 @@ var obj = {
     }
 }
 ```
+Corrected:
+
+```javascript
+var obj = {
+    fullName: "Harry Potter",
+    person: function(){
+        return "This person's name is " + this.fullName
+    }
+}
+```
 
 - List two examples of "array-like-objects" that we have seen.
-    -
-    -
+    * arguments
+    * document.getElementsByTagName()
 
 ### Functions to write:
 
-Make the tests pass for the following functions: 
+Make the tests pass for the following functions: see .js file
 
 - Write a function called `sumEvenArguments` which takes all of the arguments passed to a function and returns the sum of the even ones.
 
