@@ -2,7 +2,7 @@ $(function(){
     var $submitLogin = $('.submitLogin');
     var $submitSignup = $('.submitSignup');
     var stories = [];
-    var storiesObjsList = {};
+    var storiesListObj = {};
     var $topStories = $('.topStories')
     var $title = $('title');
     var authToken;
@@ -26,7 +26,7 @@ $(function(){
                 });
                 $newLi.append($newA);
                 $topStories.append($newLi);
-                storiesObjsList[res.id] = res;
+                storiesListObj[res.id] = res;
             })  
 
         i++
@@ -44,7 +44,7 @@ $(function(){
         
         $.ajax({
             method: 'post',
-            url: 'https://hn-favorites.herokuapp.com/login',
+            url: 'https://hn-favorites.herokuapp.com/login',    
             data: {
                 email: $usernameLogin,
                 password: $passLogin
@@ -61,18 +61,21 @@ $(function(){
 
             // $('li').map(function(i, el) {
             //     // $.get(`https://hacker-news.firebaseio.com/v0/item/${$(el:last-child).attr('class')}.json` )
-            $.get('https://hn-favorites.herokuapp.com/stories.json',
-                { Authorization: authToken } )
-            .then(function(res) {
-                var starredList = [];
-                for(var i=0; i<res.length; i++) {
-                    if(storiesObjsList.includes(res[i].id)) {
-                        var $targetLi = $('li').attr(res[i].id)
-                        $targetLi.children().first().removeClass()
-                        $targetLi.children().first().addClass('glyphicon glyphicon-star')  
-                    }
-                }
+            return $.ajax({
+                url:'https://hn-favorites.herokuapp.com/stories.json',
+                method: 'get', 
+                headers: { Authorization: authToken }
             })
+        })
+        .then(function(res) {
+            for(var i=0; i<res.length; i++) {
+                if(res[i].story_id in storiesListObj) {
+                    var $targetA = $(`li .${res[i].story_id}`)
+                    $targetA.siblings().removeClass()
+                    $targetA.siblings().addClass('glyphicon glyphicon-star')
+                    $targetA.siblings().data('deleteID', res[i].id)
+                }
+            }
         })
     })   
 
@@ -141,28 +144,33 @@ $(function(){
                 headers: { Authorization: authToken },
                 data: JSON.stringify({ 
                     hacker_news_story: {
-                        by: storiesObjsList[$(e.target).next().attr('class')].by, 
-                        story_id: storiesObjsList[$(e.target).next().attr('class')].id,
-                        title: storiesObjsList[$(e.target).next().attr('class')].title,
-                        url: storiesObjsList[$(e.target).next().attr('class')].url
+                        by: storiesListObj[$(e.target).next().attr('class')].by, 
+                        story_id: storiesListObj[$(e.target).next().attr('class')].id,
+                        title: storiesListObj[$(e.target).next().attr('class')].title,
+                        url: storiesListObj[$(e.target).next().attr('class')].url
                     }
                 })
             }).then(function(res) {
-                deleteID = res;
+                $(e.target).data('deleteID', res.id)
+                debugger
+                $(e.target).attr('class', option)
             })
         } else {
             /*  if($(e.target).next().attr('class') in storiesObjsList) {  */
+                var deleteID = $(e.target).data('deleteID')               
                 $.ajax({
                     url: `https://hn-favorites.herokuapp.com/stories/${deleteID}.json`,
-                    method: 'post',
+                    method: 'delete',
                     contentType: 'application/json',
                     dataType: 'json',
                     headers: { Authorization: authToken },
+                }).then(function(res) {
+                    $(e.target).attr('class', option);
                 })
-           /* } */
+           
         }
 
-        $(e.target).attr('class', option)
+
     })
 
 })
