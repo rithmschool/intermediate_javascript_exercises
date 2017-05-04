@@ -1,4 +1,5 @@
 $(function() {
+  var formStatus = false;
   var newsList20;
   var storiesArray = [];
   var $link;
@@ -9,7 +10,8 @@ $(function() {
   var $icon;
   var iconStatus = false;
   var loggedIn = false;
-  var authentification = "";
+  var token = "";
+
 
   $.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty', function(res) {
     newsList20 = res.slice(0,20);
@@ -22,63 +24,77 @@ $(function() {
         data.forEach(function(story) {
           $li = $("<li>");
 
-          $icon = $("<span>").addClass("glyphicon glyphicon-star-empty");
+          $icon = $("<span>").addClass("glyphicon glyphicon-star-empty").addClass("hideIcons");
 
           $topictext = $("<a>").attr("href", story.url)
                               .addClass("topic-text")
                               .text(story.title);
           $link = $("<span>").addClass("anchor").text("(" + story.url + ")");
-          $li.append($topictext).append($link);
+          $li.append($icon).append($topictext).append($link);
           $topiclist.append($li);
         });
       });
   });
 
     $(".login").on("submit", function(e) {
-      if (!$("#username").val() || !$("#password").val()) {
+      var $email = $("#email").val();
+      var $password = $("#password").val();
+      var credentials = {email: $email, password: $password};
+
+      if (!$email || !$password) {
         e.preventDefault();
         alert("Please fill in empty fields");
       } else {
-        e.preventDefault();
+
         $.post({
           url: 'https://hn-favorites.herokuapp.com/login',
-          data: {username: "polinka1986", password: "1986/pol"}
-        }).then(function(res) {
-          authentification = res.auth_token;
-        }).then(function(res) {
-          if (typeof authentification === "string") {
+          data: credentials,
+          dataType: "json",
+        }).done(function(data) {
+            var token = data.auth_token;
             loggedIn = true;
-            console.log("yey");
-          }
-        });
-
+          });
+        e.preventDefault();
         $(".login").trigger("reset");
       }
     });
 
     $(".signup").on("submit", function(e) {
-      if (!$("#usernameNew").val() || !$("#passwordNew").val()) {
+      var $email = $("#emailNew").val();
+      var $password = $("#passwordNew").val();
+      var credentials = {email: $email, password: $password};
+
+      if (!$email || !$password) {
         e.preventDefault();
         alert("Please fill in empty fields");
       } else {
-        e.preventDefault();
-        var token = $.post({
+
+        $.post({
           url: 'https://hn-favorites.herokuapp.com/signup',
-          data: {username: "polinka1986", password: "1986/pol"}
-        });
-        if (token) {
-          console.log("show the favorites");
-        }
+          data: credentials,
+          dataType: "json",
+        }).done(function(data) {
+            token = data.auth_token;
+            loggedIn = true;
+            $(".formToggle").empty().text("logged");
+            formStatus = false;
+            $(".loginform").slideUp(300);
+
+            iconStatus = true;
+            $icon.removeClass("hideIcons");
+          });
+        e.preventDefault();
         $(".signup").trigger("reset");
       }
     });
 
-if (loggedIn) {
-  formStatus = true;
-} else {
-  formStatus = false;
-}
-
-
-
+    $(".formToggle").on("click", function() {
+      if (!formStatus) {
+        formStatus = true;
+        $(".loginform").slideDown(300);
+      } else {
+        formStatus = false;
+        $(".loginform").slideUp(300);
+      }
+    });
 });
