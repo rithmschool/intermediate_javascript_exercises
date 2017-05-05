@@ -1,17 +1,13 @@
-function Square(id, state = "") {
+function Square(id) {
 	this.id = id;
-	this.state = state;
-	this.view = null;
+	this.state = "";
 	this.row = this.id.split("_")[1];
 	this.col = this.id.split("_")[2];
+	this.div = document.getElementById(this.id);
 }
 
-// BEHAVIOR
-
-// var square = new Square();
-
-// if (square.state === "blank") {
-// 	// do stuff;
-// }
-
-// square.changeState("x");
+Square.prototype.changeState = function(newState) {
+	this.state = newState;
+	this.div.innerText = this.state;
+	return this.state;
+}

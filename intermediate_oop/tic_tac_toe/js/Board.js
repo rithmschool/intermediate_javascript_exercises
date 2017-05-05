@@ -8,16 +8,17 @@ function Board() {
 	// add thing here that creates all the squares
 }
 
-// on a click, board has to:
-	// check for a win & if there is one, display winner 
-	// check for a tie / board filled / turn counter === 9
-	// call a function from squareview to show the X or O
+Board.prototype.createBoard = function(ids) {
+	for (var i = 0; i < ids.length; i++) {
+		this.squares[ids[i]] = new Square(ids[i]);
+	}
+}
 
 Board.prototype.reset = function() {
 	// loop through all keys (squares) and set their states to "blank"
 	var obj = this.squares;
 	for (var key in obj) {
-		obj[key].view.changeState("");
+		obj[key].changeState("");
 	}
 
 	// reset everything
@@ -37,7 +38,7 @@ Board.prototype.turn = function(squareId) {
 	if (currSquare.state === "" && this.turnCount < 9) {
 
 		// take the actual turn
-		currSquare.view.changeState(this.player); 
+		currSquare.changeState(this.player); 
 		
 		this.turnCount++;
 
