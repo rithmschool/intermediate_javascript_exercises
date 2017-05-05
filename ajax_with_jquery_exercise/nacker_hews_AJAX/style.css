@@ -1,0 +1,108 @@
+/*Block*/
+
+body {
+	font-size:18px;
+}
+
+/*Element*/
+
+ul {
+	padding-top:10px;
+}
+
+li {
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+label {
+	display:inline-block;
+	width: 50px;
+}
+
+li a {
+	color:black;
+
+}
+
+li a:hover {
+	color:black;
+	text-decoration:none;
+}
+
+/*Modifier*/
+
+.submitform {
+	padding-left: 20px;
+	padding-top: 30px;
+	padding-bottom: 40px;
+}
+
+
+.navigation {
+  	background-color: #E55233;
+	padding-top:10px;
+  	padding-left:20px;
+}
+
+.form-row {
+  	background-color: #FFF4DD;
+	padding-top:10px;
+  	padding-left:20px;
+  	padding-bottom:20px;
+}
+
+.nav-title {
+	font-weight:600;
+	font-size: 20px;
+}
+
+.logtoggle, .logout {
+	padding-right:40px;
+}
+
+.newslist {
+  	background-color: #FFF4DD;
+}
+
+.btn-hacker {
+	background-color:#E55233;
+	color: white;
+}
+
+.btn-hacker:hover {
+	background-color:#E58A76;
+	color: white;
+}
+
+.hideform{
+  	display: none ;
+}
+
+.hide-all {
+	display:none ;
+}
+
+.formtoggle:hover, .favoritetoggle:hover, .alltoggle:hover, .top-stories:hover, .logtoggle:hover, .logout:hover,
+.best-stories:hover, .new-stories:hover {
+	cursor:pointer;
+	color:#E58A76;
+}
+
+li.hide-all {
+	display:none ;
+}
+
+li .class-filter {
+	font-size:14px;
+	color:#696162;
+	padding-left:10px;
+}
+
+li .class-filter:hover {
+	font-size:14px;
+	color:#696162;
+	padding-left:10px;
+	text-decoration:underline;
+	cursor:pointer;
+}

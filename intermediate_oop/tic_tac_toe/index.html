@@ -11,30 +11,34 @@
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/main.css">
 
-    <script src="/js/vendor/jquery-3.1.1.min.js"></script>
-    <script src="/js/vendor/bootstrap.min.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="js/vendor/jquery-3.1.1.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/grid.js"></script>
+    <script src="js/main.js"></script>
   </head>
   <body>
     <h2>Tic Tac Toe</h2>
     <div class="container" id="board">
       <div class="row">
-        <div class="square" id="square_0_0"></div>
-        <div class="square" id="square_0_1"></div>
-        <div class="square" id="square_0_2"></div>
+        <div class="square square-set" id="s1"></div>
+        <div class="square square-set" id="s2"></div>
+        <div class="square square-set" id="s3"></div>
       </div>
       <div class="row">
-        <div class="square" id="square_1_0"></div>
-        <div class="square" id="square_1_1"></div>
-        <div class="square" id="square_1_2"></div>
+        <div class="square square-set" id="s4"></div>
+        <div class="square square-set" id="s5"></div>
+        <div class="square square-set" id="s6"></div>
       </div>
       <div class="row">
-        <div class="square" id="square_2_0"></div>
-        <div class="square" id="square_2_1"></div>
-        <div class="square" id="square_2_2"></div>
+        <div class="square square-set" id="s7"></div>
+        <div class="square square-set" id="s8"></div>
+        <div class="square square-set" id="s9"></div>
      </div>
     </div>
     <button id="new-game" type="button" class="btn btn-default btn-lg">New Game</button>
     <h3 id="message"></h3>
+      <div class="row result">
+        
+      </div>
   </body>
 </html>
