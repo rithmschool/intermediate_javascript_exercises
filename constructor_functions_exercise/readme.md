@@ -26,7 +26,7 @@ The key word `this` depends on the context given. If without the `new` word. `th
 
 A Class is a blueprint which instances make use of to make new instances of the class. 
 
-In object-orientated programming. A Class would be the blueprints for the object and instances use these Classes to make objects. JavaScript tries to mimic this using Constructors for Classes
+In object-oreintated programming, a Class would be the blueprints for the object and instances use these Classes to make objects. JavaScript tries to mimic this using Constructors for Classes.
 
 **5. Create a constructor function for a Person, each person should have a firstName, lastName, favoriteColor and favoriteNumber.**
 

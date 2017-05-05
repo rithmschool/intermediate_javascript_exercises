@@ -58,38 +58,50 @@ function search(arr, key){
 }
 
 
-
-
-function binarySearch(array, key){
-	var index = 0;
-	var found = -1;
-	function helper(arr, key){
-		if(arr.length === 1){
-			if(arr[0] === key){
-				found = 1;
-			} else{
-				found = -1;
-			}
-		} else {
-			var mid = Math.floor(arr.length/2);
-			if(arr[mid] === key){
-				index += mid;
-				found = 1;
-			} else if (arr[mid] < key){
-				index += mid + 1;
-				helper(arr.slice(mid+1, arr.length), key);
-			} else if (arr[mid] > key){
-				helper(arr.slice(0,mid), key)
-			}
-		}
-	}
-	helper(array,key);
-	if(found === 1){
-		return index;
-	} else {
-		return found;
+function binarySearch(arr, key, start = 0, end = arr.length -1){
+	if(start > end) return -1;
+	var mid = Math.floor((start+end)/2);
+	if(arr[mid] === key){
+		return mid;
+	} else if(arr[mid] < key){
+		return binarySearch(arr,key, mid+1,end);
+	} else if(arr[mid] > key){
+		return binarySearch(arr,key, start, mid-1);
 	}
 }
+
+
+
+// function binarySearch(array, key){
+// 	var index = 0;
+// 	var found = -1;
+// 	function helper(arr, key){
+// 		if(arr.length === 1){
+// 			if(arr[0] === key){
+// 				found = 1;
+// 			} else{
+// 				found = -1;
+// 			}
+// 		} else {
+// 			var mid = Math.floor(arr.length/2);
+// 			if(arr[mid] === key){
+// 				index += mid;
+// 				found = 1;
+// 			} else if (arr[mid] < key){
+// 				index += mid + 1;
+// 				helper(arr.slice(mid+1, arr.length), key);
+// 			} else if (arr[mid] > key){
+// 				helper(arr.slice(0,mid), key)
+// 			}
+// 		}
+// 	}
+// 	helper(array,key);
+// 	if(found === 1){
+// 		return index;
+// 	} else {
+// 		return found;
+// 	}
+// }
 
 function stringifyNumbers(obj){
 

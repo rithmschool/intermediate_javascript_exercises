@@ -1,9 +1,7 @@
 function sumEvenArguments(...nums){
 	var sum = 0;
 	for(var val of nums){
-		if(val % 2 === 0){
-			sum += val;
-		}
+		if(val % 2 === 0) sum += val;
 	}
 	return sum
 }
@@ -23,9 +21,8 @@ function invokeMax(fn, num){
 		if(counter < times){
 			counter++;
 			return fn.apply(fn, inner);
-		} else {
-			return "Maxed Out!";
 		}
+		return "Maxed Out!";
 	}
 }
 

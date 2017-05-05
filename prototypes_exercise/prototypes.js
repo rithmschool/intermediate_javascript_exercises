@@ -34,12 +34,9 @@ Array.prototype.map = function(fn){
 	return newArray;
 }
 
-String.prototype.reverse = function(){
-	var newString = '';
-	for(var i = 0; i < this.length; i++){
-		newString += this[this.length - i - 1];
-	}
-	return newString;
+String.prototype.reverse = function(str){
+	if(this.length === 1) return this[0];
+	return this.slice(1).reverse() + this[0];
 }
 
 Function.prototype.bind = function(thisArg, ...outerArg){

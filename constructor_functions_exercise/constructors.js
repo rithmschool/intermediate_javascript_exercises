@@ -22,6 +22,6 @@ function Parent(firstName, lastName, favoriteColor, favoriteFood){
     this.favoriteFood = favoriteFood;
 }
 
-function Child(firstName, lastName, favoriteColor, favoriteFood){
-	Parent.call(Child, firstName, lastName, favoriteColor, favoriteFood);
+function Child(...arr){
+	Parent.apply(Child, arr);
 }

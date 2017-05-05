@@ -307,19 +307,58 @@ function flatten(arr){
 	return newArr;
 }
 
+// function flattenDeep(arr){
+// 	var newArray = [];
+
+// 	function helper(arr){
+// 		if(arr.length === 0) return;
+// 		if(typeof(arr[0]) === 'number'){
+// 			newArray.push(arr[0]);
+// 		} else {
+// 			helper(arr[0]);
+// 		}
+// 		helper(arr.slice(1));
+// 	}
+// 	helper(arr);
+
+// 	return newArray;
+// }
+
+// function flattenDeep(arr){
+// 	if(arr.length === 0)
+// 	var array = []
+// 	if(typeof(arr[0]) === 'number'){
+// 		array.push(arr[0])
+// 		array = array.concat(flattenDeep(arr.slice(1)));
+// 	} else {
+// 		return array = array.concat((flattenDeep(arr[0])))
+// 	}
+// 	return array;
+// }
+
+
+// function flattenDeep(arr){
+// 	var array = [];
+// 	for(var i = 0; i < arr.length; i++){
+// 		if(typeof(arr[i]) === 'number'){
+// 			array.push(arr[i]);
+// 		} else {
+// 			array = array.concat(arr[i]);
+// 		}
+// 	}
+// 	return array;
+// }
+
+
 function flattenDeep(arr){
-	var newArray = [];
-
-	function helper(arr){
-		if(arr.length === 0) return;
-		if(typeof(arr[0]) === 'number'){
-			newArray.push(arr[0]);
+	if(arr.length === 0) return;
+	var array = [];
+	for(var i = 0; i < arr.length; i++){
+		if(typeof(arr[i]) === 'number'){
+			array.push(arr[i]);
 		} else {
-			helper(arr[0]);
+			array = array.concat(flattenDeep(arr[i]));
 		}
-		helper(arr.slice(1));
 	}
-	helper(arr);
-
-	return newArray;
+	return array;
 }
