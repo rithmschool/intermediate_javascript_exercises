@@ -16,19 +16,28 @@ Paddle.PADDLE_HEIGHT = 125;
 Paddle.PADDLE_SPEED = 15;
 
 Paddle.prototype.update = function() {
-  this.component.update();
+  if (this.component.y > 0 && this.component.y < 800 - 125){
+    this.component.update();
+  } else if (this.component.y < 0){
+    this.component.y = 5;
+  } 
+  else {
+    this.component.y = 800 - 130;
+  }
 }; 
 
 Paddle.prototype.draw = function(context) {
   this.component.draw(context);
 };
 
+
+
 Paddle.prototype.__setupArrowBindings = function() {
  document.addEventListener("keydown", function(event) {
     if (event.which === this.upKeyCode) {
       this.keyDown = this.upKeyCode;
       this.component.velocity = this.velocityUp;
-    } else if (event.which === this.downKeyCode) {
+    } else if (event.which === this.downKeyCode) { 
       this.keyDown = this.downKeyCode;
       this.component.velocity = this.velocityDown;
     }
