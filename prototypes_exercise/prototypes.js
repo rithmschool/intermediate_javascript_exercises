@@ -69,7 +69,7 @@ Implement your own version of Array.prototype.map
 Array.prototype.map = function (arr, cb){
 	var newArr = [];
 	for (var i = 0; i < arr.length; i++){
-		newArr.push(cb(arr[i]), i, arr);
+		newArr.push(cb(arr[i], i, arr));
 	}
 	return newArr;
 }
