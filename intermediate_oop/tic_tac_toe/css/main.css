@@ -8,20 +8,40 @@ h2 {
   font-size: 48px;
 }
 
-.square {
+@media only screen and (min-width: 601px) {
+  .square {
   display: inline-block;
-  width: 185px;
-  height: 165px;
+  min-width: 185px;
+  min-height: 165px;
   margin: 3px;
   padding-top: 10px;
   background-color: #d3ffce;
   vertical-align: top;
   font-size: 700%;
   border-radius: 10px;
+  }
+
+  .row {
+    min-width: 600px ;
+  }
 }
 
-.row {
-  min-width: 600px ;
+@media only screen and (max-width: 600px) {
+  .square {
+    display: inline-block;
+    min-width: 74px; 
+    min-height: 66px; 
+    margin: 2px;
+    padding-top: 8px;
+    background-color: #d3ffce;
+    vertical-align: top;
+    font-size: 270%;
+    border-radius: 10px;
+  }
+
+  .row {
+    min-width: 240px ;
+  }
 }
 
 #new-game {
