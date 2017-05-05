@@ -1,8 +1,9 @@
 function productOfArray(arr) {
     if(arr.length === 1) return arr[0];
     var arrZero = arr[0];
-    arr.shift();
-    return arrZero * productOfArray(arr);
+    var arrCopy = arr.slice();
+    arrCopy.shift();
+    return arrZero * productOfArray(arrCopy);
 }
 
 function collectStrings(obj) {
