@@ -1,7 +1,7 @@
-//let submitToggle = false;
 let favesToggle = false;
-let authToken = localStorage.getItem("token");
+let authToken = localStorage.getItem("token") || null;
 let favObj = JSON.parse(localStorage.getItem("favObj")) || {};
+
 
 $(function() {
 
@@ -14,8 +14,8 @@ $(function() {
     let $login = $("#login");
     let $logout = $("#logout");
     
-    let $loginForm= $(".loginform");
-    let $newUserForm=$(".newuserform");
+    let $loginForm = $(".loginform");
+    let $newUserForm = $(".newuserform");
 
     // ---- CODE ----
 
@@ -57,10 +57,26 @@ $(function() {
             $slideScreen.slideToggle();
             toggleNav();
             if(type === "login") {
-                favObj = JSON.parse(localStorage.getItem("favObj"));
-                loadTopStories();
+                // retrieve favorites from heroku API
+                $.ajax({
+                    method: "GET",
+                    url: "https://hn-favorites.herokuapp.com/stories.json",
+                    dataType: "json",
+                    contentType: "application/json",
+                    headers: {
+                        Authorization: authToken
+                     }
+                }).then(function(res){
+                    for (var i=0; i<res.length; i++) {
+                        favObj[res[i].title] = res[i].id;
+                    }
+                    localStorage.setItem("favObj", JSON.stringify(favObj));
+                    loadTopStories();
+                })
+               
             } else {
                 favObj = {};
+                loadTopStories();
             }
         })
         .catch(function(err){
@@ -194,12 +210,13 @@ $(function() {
     $logout.on('click',function(e){
         // remove auth from local storage.
         localStorage.removeItem("token");
-        authToken = undefined;
+        localStorage.removeItem("favObj");
+        authToken = null;
+        favObj = {};
         toggleNav();
-        localStorage.setItem("favObj", JSON.stringify(favObj));
 
         // return to top 20 stories page and empty all stars
-        favObj = {};
+        
         loadTopStories();
         let $glyphs = $(".glyphicon");
         $glyphs.removeClass("glyphicon-star glyphicon-star-empty")
@@ -306,13 +323,6 @@ $(function() {
         }
 
     })
-
-    // 7. Saves localStorage on page refresh
-
-    window.onbeforeunload = function(e) {
-        localStorage.setItem("favObj", JSON.stringify(favObj));
-        localStorage.setItem("token", authToken);
-    }
 
 
 });
