@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	const boardDiv = document.getElementById('board');
 	const newGameBtn = document.getElementById('new-game');
-	const message = document.getElementById('message');
+	const messageElement = document.getElementById('message');
 
 	//when start a new game: create a new game & new board -- clear DOM text of pieces
 	//set the message to blank
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		game = new Game();
 		board = new Board(squareDomIds);
 		board.clearDOMText();
-		message.innerText = "";
+		messageElement.innerText = "";
 	});
 
 	boardDiv.addEventListener('click', function(e){
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	Board.prototype.isFilled = function(){
 		var squaresObj = this.squares;
 		for (var key in squaresObj){
-			if (!squaresObj[key].isFilled){
+			if (!squaresObj[key].getIsFilled()){
 				return false;
 			}
 		}
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	//check is a specific square on the Board is filled
 	Board.prototype.isSquareFilled = function(squareId){
-		if (this.squares[squareId].isFilled){
+		if (this.squares[squareId].getIsFilled()){
 			return true;
 		}
 		else {
@@ -154,12 +154,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		//if no winner & board is filled, there is a tie
 		if (!this.isWinner && board.isFilled()){
-			message.innerText = "Tie!";
+			messageElement.innerText = "Tie!";
 			this.arePlaying = false;
 			return true;
 		}
 		else if (this.isWinner){
-			message.innerText = `${this.winningPiece} wins!`; 
+			messageElement.innerText = `${this.winningPiece} wins!`; 
 			this.arePlaying = false;
 			return true;
 		}
@@ -175,6 +175,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	Square.prototype.fill = function(){
 		this.isFilled = true;
+	}
+
+	Square.prototype.getIsFilled = function(){
+		return this.isFilled;
 	}
 
 	Square.prototype.setPlayer = function(player){
