@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	let $board = $("#board");
 
 	$board.on('click',function(e){
-		g.play($(e.target)[0].id)
+		if ($(e.target).hasClass("square")) g.play($(e.target)[0].id);
 	});
 
 	let $newgame = $("#new-game");
