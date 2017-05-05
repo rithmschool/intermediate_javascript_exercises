@@ -1,28 +1,28 @@
 function Grid () {
 	this.results = {
-		X: [],
-		O: []
+		X: new Set(),
+		O: new Set()
 	}
 	this.move = 0;
 	this.on = true;
 }
 
 Grid.prototype.testWin = function(input) {
-	if (this.results[input].indexOf("s1") !== -1 && this.results[input].indexOf("s2") !== -1 && this.results[input].indexOf("s3") !== -1) {
+	if (this.results[input].has("s1") && this.results[input].has("s2") && this.results[input].has("s3")) {
 		return true;
-	}  else if (this.results[input].indexOf("s4") !== -1 && this.results[input].indexOf("s5") !== -1 && this.results[input].indexOf("s6") !== -1) {
+	}  else if (this.results[input].has("s4") && this.results[input].has("s5") && this.results[input].has("s6")) {
 		return true;
-	} else if (this.results[input].indexOf("s7") !== -1 && this.results[input].indexOf("s8") !== -1 && this.results[input].indexOf("s9") !== -1) {
+	} else if (this.results[input].has("s7") && this.results[input].has("s8") && this.results[input].has("s9")) {
 		return true;
-	} else if (this.results[input].indexOf("s1") !== -1 && this.results[input].indexOf("s4") !== -1 && this.results[input].indexOf("s7") !== -1) {
+	} else if (this.results[input].has("s1") && this.results[input].has("s4") && this.results[input].has("s7")) {
 		return true;
-	} else if (this.results[input].indexOf("s2") !== -1 && this.results[input].indexOf("s5") !== -1 && this.results[input].indexOf("s8") !== -1) {
+	} else if (this.results[input].has("s2") && this.results[input].has("s5") && this.results[input].has("s8")) {
 		return true;
-	} else if (this.results[input].indexOf("s3") !== -1 && this.results[input].indexOf("s6") !== -1 && this.results[input].indexOf("s9") !== -1) {
+	} else if (this.results[input].has("s3") && this.results[input].has("s6") && this.results[input].has("s9")) {
 		return true;
-	} else if (this.results[input].indexOf("s1") !== -1 && this.results[input].indexOf("s5") !== -1 && this.results[input].indexOf("s9") !== -1) {
+	} else if (this.results[input].has("s1") && this.results[input].has("s5") && this.results[input].has("s9")) {
 		return true;
-	} else if (this.results[input].indexOf("s3") !== -1 && this.results[input].indexOf("s5") !== -1 && this.results[input].indexOf("s7") !== -1) {
+	} else if (this.results[input].has("s3") && this.results[input].has("s5") && this.results[input].has("s7")) {
 		return true;
 	} else {
 		return false;
@@ -30,12 +30,12 @@ Grid.prototype.testWin = function(input) {
 }
 
 Grid.prototype.addResult = function (input, value) {
-	this.results[input].push(value);
+	this.results[input].add(value);
 }
 
 Grid.prototype.reset = function() {
-	this.results.X = [];
-	this.results.O = [];
+	this.results.X = new Set();
+	this.results.O = new Set();
 	this.move = 0;
 	this.on = true;
 }

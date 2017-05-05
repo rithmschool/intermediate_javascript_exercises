@@ -93,10 +93,8 @@ function search(array, number) {
 	return indexValue;
 }*/
 
-function binarySearch(array,value,start,end) {
-	var start = start || 0;
-	var end = end || array.length - 1;
-	var midpoint = Math.floor((start + end)/2);
+function binarySearch(array,value,start=0,end=array.length-1) {
+	let midpoint = Math.floor((start + end)/2);
 	if(value < array[start] || value > array[end]) {
 		return -1;
 	} else if (array[midpoint] === value) {
@@ -104,7 +102,7 @@ function binarySearch(array,value,start,end) {
 	} else if (array[midpoint] < value) {
 		return binarySearch(array,value,midpoint+1,end);
 	} else if (array[midpoint] > value) {
-		return binarySearch(array,value,start,midpoint);
+		return binarySearch(array,value,start,midpoint-1);
 	}
 }
 
