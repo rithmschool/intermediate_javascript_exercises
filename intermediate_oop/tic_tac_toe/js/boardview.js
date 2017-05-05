@@ -6,12 +6,15 @@ function BoardView(game) {
 }
 
 BoardView.prototype.draw = function(event) {
-  this.game.add(Number(event.target.id));
-  var turn = this.game.getTurn();
-  event.target.innerText = turn;
-  this.game.counter ++;
-  this.game.changeTurn();
-  this.game.result(this.game.check, this.game.counter);
+  if(this.game.gameState() && event.target.innerText === ''){
+  	this.game.add(Number(event.target.id));
+  	var turn = this.game.getTurn();
+  	event.target.innerText = turn;
+  	this.game.upCounter();
+  	this.game.changeTurn();
+  	this.game.result(this.game.check, this.game.counter);
+  }
+
 }
 
 BoardView.prototype.reset = function() {
