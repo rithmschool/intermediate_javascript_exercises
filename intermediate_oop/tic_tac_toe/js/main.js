@@ -11,47 +11,55 @@ document.addEventListener("DOMContentLoaded", function() {
 	let $newgame = $("#new-game");
 
 	$newgame.on('click',function(e){
-		// clear text
-		//clear message
-		// set content of all squares to ""
-		$("#message").text("");
-		g.clear();
-		g.playable=true;
-		g.turn = "X";
+		g.reset();
 	});
 
-});
-
-
-
+})
 
 
 function Game(){
 	this.b = new Board();
 	this.turn = "X";
 	this.playable = true;
+	this.playCount = 0;
 
+	this.clear.bind(this);
+	this.play.bind(this);
+}
 
-	//Game.prototype.play= function(htmlId){
-	this.play= function(htmlId){
-		// id in coord.
-		if (! this.playable){ return null}
+Game.prototype.reset = function(){
+	$("#message").text("");
+	this.clear();
+	this.playable=true;
+	this.turn = "X";
+	this.playCount = 0;
+}
 
-		let coord = [];
-		coord[0] = +htmlId.slice(7,8);
-		coord[1] = +htmlId.slice(9,10);
-		if ( this.b.update(coord, this.turn)) {
-			// switch 
-			this.turn = this.turn === "X"? "O" : "X";
-			if (this.b.isGameWon()){
-				$("#message").text(`${this.b.isGameWon()} Won!`);
-				this.playable = false;
-			}
+Game.prototype.play= function(htmlId){
+	// id in coord.
+	if (! this.playable){ return null}
+
+	let coord = [];
+	coord[0] = +htmlId.slice(7,8);
+	coord[1] = +htmlId.slice(9,10);
+	if ( this.b.update(coord, this.turn)) {
+		// switch 
+		this.turn = this.turn === "X"? "O" : "X";
+		this.playCount++;
+
+		if (this.b.isGameWon()){
+			$("#message").text(`${this.b.isGameWon()} Won!`);
+			this.playable = false;
+		}else if ( this.playCount === 9){
+			$("#message").text(`Game is a draw!`);
+			this.playable = false;
 		}
 	}
-	this.clear = function(){
-		this.b.clear();
-	}
+}
+
+Game.prototype.clear = function(){
+	// how to we get our this right?
+	this.b.clear();
 }
 
 function Board(){
