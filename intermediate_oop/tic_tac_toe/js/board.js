@@ -5,16 +5,19 @@ function Board() {
 	this.turnCount = 0;
 	this.winner = null;
 	this.squares = {
-		// key = new squares
 	};
 	this.gameBoard = [[],[],[]];
 }
 
-// on a click - board has to:
+Board.prototype.createBoard = function (arrayIds) {
+	for (var i=0; i<arrayIds.length; i++) {
+		this.squares[arrayIds[i]] = new Square(arrayIds[i]);
+	}
+}
 
 Board.prototype.reset = function () {
 	for (var key in this.squares) {
-		this.squares[key].view.changeState("");
+		this.squares[key].changeState("");
 	}
 	this.player = Math.random() < 0.5 ? "X" : "O"; 
 	this.winner = null;
@@ -28,7 +31,7 @@ Board.prototype.turn = function(squareId) {
 	var currSquare = this.squares[squareId];
 
 	if(currSquare.state === "" && this.turnCount < 9) {
-		currSquare.view.changeState(this.player); 
+		currSquare.changeState(this.player); 
 		this.turnCount++;
 
 		this.gameBoard[currSquare.row][currSquare.column] = currSquare.state;
