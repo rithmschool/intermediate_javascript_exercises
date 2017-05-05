@@ -1,9 +1,11 @@
+//let submitToggle = false;
+let favesToggle = false;
+let authToken = localStorage.getItem("token");
+let favObj = JSON.parse(localStorage.getItem("favObj")) || {};
+
 $(function() {
 
     // ---- VARIABLE DECLARATIONS ----
-
-    let submitToggle = false;
-    let favesToggle = false;
 
     let $slideScreen = $("#listContent");
     let $listSection = $("#theList");
@@ -14,9 +16,6 @@ $(function() {
     
     let $loginForm= $(".loginform");
     let $newUserForm=$(".newuserform");
-    
-    let authToken = localStorage.getItem("token");
-    let favObj = {};
 
     // ---- CODE ----
 
@@ -31,22 +30,52 @@ $(function() {
     // 1. Toggle the navbar between Login and Favorites/Logout.
 
     function toggleNav(){
-        if ( ! ("token" in localStorage)){
-            $login.css("display",'');
-            $faves.css("display",'none');
-            $logout.css("display", "none");
+        if (!("token" in localStorage)){
+            $login.show();
+            $faves.hide();
+            $logout.hide();
         }else{
             // hide #login. because you're logged in.
-            $login.css("display",'none');
-            $faves.css("display",'');
-            $logout.css("display", '');
+            $login.hide();
+            $faves.show();
+            $logout.show();
         }  
     }
 
-    // 2. Get the top 20 stories.
+    // 2. Login or sign up.
+
+    function logOrSignIn(e, email, password, type, alert) {
+        e.preventDefault();
+        $.ajax({
+            method: "POST",
+            url: `https://hn-favorites.herokuapp.com/${type}`,
+            data: {email: email,password: password},
+            dataType: "json"
+        }).then(function(res){
+            localStorage.setItem("token", res.auth_token);
+            authToken = res.auth_token;
+            $slideScreen.slideToggle();
+            toggleNav();
+            if(type === "login") {
+                favObj = JSON.parse(localStorage.getItem("favObj"));
+                loadTopStories();
+            } else {
+                favObj = {};
+            }
+        })
+        .catch(function(err){
+            if(type === "login") {
+                alert("Error logging in. Please check your credentials and try again.");
+            }
+            $loginForm.trigger("reset");
+            $slideScreen.slideToggle();
+        });
+    }
+
+    // 3. Get the top 20 stories.
 
     function loadTopStories(){
-
+        
         $("#theList").empty();
 
         let myList = [];
@@ -71,25 +100,21 @@ $(function() {
         });
     }
 
-    // 3. Add the top 20 stories to the page.
+    // 4. Add the top 20 stories to the page.
 
     function addListItem(title, displayUrl, by, storyId, faveStatus){
 
         let $newSpan = $("<span>");
 
-        if (faveStatus === true){
+        if(title in favObj) {
             $newSpan.attr('class', "glyphicon glyphicon-star");
         } else {
-            if(title in favObj) {
-                $newSpan.attr('class', "glyphicon glyphicon-star");
-            } else {
-                $newSpan.attr('class', "glyphicon glyphicon-star-empty");
-            }
+            $newSpan.attr('class', "glyphicon glyphicon-star-empty");
         }
         
 
-        let $newNumSpan = $("<span>")
-            .addClass("number");
+        let $newNumSpan = $("<span>", {class: "number"})
+
         if (faveStatus === false){
             $newNumSpan.text($("#theList>div").length+1 + ". ");
         };
@@ -118,6 +143,7 @@ $(function() {
             .attr('data-by', by)
             .attr('data-domain', url)
             .text("(" + url + ")");
+
         if(title in favObj) {
             $newUrlSpan.attr('data-id', favObj[title])
         }
@@ -141,15 +167,8 @@ $(function() {
     // 1. Slide login screen up/down.
 
     $login.on('click', function(e){
-        // this just rolls out the form.
 
-        if (submitToggle === false){
-            submitToggle = true;
-            $slideScreen.slideDown();
-        } else {
-            submitToggle = false;
-            $slideScreen.slideUp();
-        }
+        $slideScreen.slideToggle();
 
     })
 
@@ -157,31 +176,8 @@ $(function() {
 
     $loginForm.on('submit',function(e){
 
-        e.preventDefault();
-        // create new div. as a new last child to 
-        // send data to heroku app
-        // take token returned and stick into localstorage
-        $.ajax({
-            method: "POST",
-            url: "https://hn-favorites.herokuapp.com/login",
-            data: {email:$('#email').val(),password:$('#password').val()},
-            dataType: "json"
-        }).then(function(res){
-            localStorage.setItem("token", res.auth_token);
-            authToken = res.auth_token;
-            toggleNav();
-            favObj = JSON.parse(localStorage.getItem("favObj"));
-            loadTopStories(); // ----------- need to use local storage to retrieve
-        })
-        .catch(function(err){
-            alert("Error logging in. Please check your credentials and try again.")
-            $loginForm.trigger("reset")
-        });
-
-        $loginForm.trigger("reset");
-
-        submitToggle = false;
-        $slideScreen.slideUp();
+        let alert = "Error logging in. Please check your credentials and try again."
+        logOrSignIn(e, $('#email').val(), $('#password').val(), "login", alert);
 
     });
 
@@ -189,25 +185,7 @@ $(function() {
 
     $newUserForm.on('submit',function(e){
 
-        e.preventDefault();
-
-        $.ajax({
-            method: "POST",
-            url: "https://hn-favorites.herokuapp.com/signup",
-            data: {email:$('#newemail').val(),password:$('#newpassword').val()},
-            dataType: "json"
-        }).then(function(res){
-            localStorage.setItem("token", res.auth_token);
-            authToken = res.auth_token;
-            toggleNav();
-            favObj = {};
-        })
-        .catch(function(err){console.log(err)});
-
-        $newUserForm.trigger("reset");
-
-        submitToggle = false;
-        $slideScreen.slideUp();
+        logOrSignIn(e, $('#newemail').val(), $('#newpassword').val(), "signup");
 
     });
 
@@ -224,9 +202,8 @@ $(function() {
         favObj = {};
         loadTopStories();
         let $glyphs = $(".glyphicon");
-        $glyphs.removeClass("glyphicon-star");
-        $glyphs.removeClass("glyphicon-star-empty")
-        $glyphs.addClass("glyphicon-star-empty");
+        $glyphs.removeClass("glyphicon-star glyphicon-star-empty")
+                .addClass("glyphicon-star-empty");
     });
 
     //  5. Let users add or remove favorites.
@@ -235,10 +212,12 @@ $(function() {
         if ($(e.target).hasClass("glyphicon-star-empty")){
             // making a link a favorite
 
-            let byVar = $(e.target).parent().children().eq(3).children().eq(0).attr('data-by');
-            let storyIdVar = $(e.target).parent().children().eq(3).children().eq(0).attr('data-storyId');
-            let titleVar = $(e.target).parent().children().eq(2).text();
-            let urlVar = $(e.target).parent().children().eq(2).attr('href');
+            let $target = $(e.target);
+            let $children = $(e.target).parent().children();
+            let byVar = $children.eq(3).children().eq(0).attr('data-by');
+            let storyIdVar = $children.eq(3).children().eq(0).attr('data-storyId');
+            let titleVar = $children.eq(2).text();
+            let urlVar = $children.eq(2).attr('href');
             
             $.ajax({
                 method: "POST",
@@ -259,15 +238,15 @@ $(function() {
             }).then(function(res){
                 favObj[res.title] = res.id;
                 localStorage.setItem("favObj", JSON.stringify(favObj));
-                $(e.target).removeClass("glyphicon-star-empty");
-                $(e.target).addClass("glyphicon-star");
-                $(e.target).parent().children().eq(3).children().eq(0).attr("data-id",res.id);
+                $target.removeClass("glyphicon-star-empty")
+                        .addClass("glyphicon-star");
+                $children.eq(3).children().eq(0).attr("data-id",res.id);
             })
             .catch(function(err){console.log(err)});
             
         } else {
 
-            // delete a favorite
+            // deleting a favorite
             $.ajax({
                 method: "DELETE",
                 url: "https://hn-favorites.herokuapp.com/stories/" + $(e.target).parent().children().eq(3).children().eq(0).attr('data-id') + ".json",
@@ -279,6 +258,7 @@ $(function() {
                 delete favObj[$(e.target).parent().children().eq(2).text()];
                 $(e.target).removeClass("glyphicon-star");
                 $(e.target).addClass("glyphicon-star-empty");
+                localStorage.setItem("favObj", JSON.stringify(favObj));
             })
             .catch(function(err){console.log(err)});
         }
@@ -291,12 +271,6 @@ $(function() {
             // show favorites
             favesToggle = true;
 
-            // displaying the users favorites here.
-            // empty the section with the divs.
-            // get the new list based on user prefs.
-            // display that list.
-
-            // favObj not defined here ********************************
             $.ajax({
                 method: "GET",
                 url: "https://hn-favorites.herokuapp.com/stories.json",
@@ -311,7 +285,6 @@ $(function() {
 
                 for (let i =0; i< res.length; i++){
                    addListItem(res[i].title, res[i].url, res[i].by, res[i].id, true);
-
                 }  
 
             })
@@ -333,6 +306,13 @@ $(function() {
         }
 
     })
+
+    // 7. Saves localStorage on page refresh
+
+    window.onbeforeunload = function(e) {
+        localStorage.setItem("favObj", JSON.stringify(favObj));
+        localStorage.setItem("token", authToken);
+    }
 
 
 });
