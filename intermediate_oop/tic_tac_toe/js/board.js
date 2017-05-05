@@ -5,6 +5,7 @@ function Board() {
 	this.turnCount = 0;
 	this.squares = {}; // keys are squareIds, values are the square instances
 	this.gameBoard = [[],[],[]]; // nested array to store played moves
+	this.winner = "none";
 }
 
 // function to add squares to the board
@@ -22,6 +23,7 @@ Board.prototype.reset = function () {
 		this.squares[key].changeState("");
 	}
 	this.gameBoard = [[],[],[]]; 
+	this.winner = "none";
 	this.printMessage("");
 }
 
@@ -44,11 +46,11 @@ Board.prototype.turn = function(squareId) {
 
 		// check for a win after at least 5 turns (not possible before then)
 		if (this.turnCount >= 5) { 
-			var winner = this.checkForWin(squareId);
+			this.checkForWin(squareId);
 		}
 		
 		// if at 9 turns there was no win, it's a tie
-		if (!winner && this.turnCount === 9) {
+		if (this.winner === "none" && this.turnCount === 9) {
 			this.printMessage("It's a tie!");
 		}
 
@@ -69,7 +71,7 @@ Board.prototype.checkForWin = function(squareId) {
 		this.gameBoard[currRow][1] === currPlay &&
 		this.gameBoard[currRow][2] === currPlay) {
 		this.printMessage(`${currPlay} wins!`)
-		return "winner";
+		this.winner = `${currPlay} wins!`;
 	}
 
 	// check if the current column wins
@@ -77,7 +79,7 @@ Board.prototype.checkForWin = function(squareId) {
 		this.gameBoard[1][currCol] === currPlay &&
 		this.gameBoard[2][currCol] === currPlay) {
 		this.printMessage(`${currPlay} wins!`)
-		return "winner";
+		this.winner = `${currPlay} wins!`;
 	}
 
 	// check if diagonal wins
@@ -85,7 +87,7 @@ Board.prototype.checkForWin = function(squareId) {
 		this.gameBoard[1][1] === currPlay &&
 		this.gameBoard[2][2] === currPlay) {
 		this.printMessage(`${currPlay} wins!`)
-		return "winner";
+		this.winner = `${currPlay} wins!`;
 	}
 
 	// check if other diagonal wins
@@ -93,7 +95,7 @@ Board.prototype.checkForWin = function(squareId) {
 		this.gameBoard[1][1] === currPlay &&
 		this.gameBoard[2][0] === currPlay) {
 		this.printMessage(`${currPlay} wins!`)
-		return "winner";
+		this.winner = `${currPlay} wins!`;
 	}
 
 }

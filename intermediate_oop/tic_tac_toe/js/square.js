@@ -2,6 +2,10 @@
 
 function Square(id) {
 	this.state = ""; // can be "X", "O", or ""
+	this.color = {
+		"X": "blue",
+		"O": "yellow"
+	} // object with keys of this.state and values of the color
 	this.id = id;
 	this.div = document.getElementById(this.id); // ex: square_0_0
 	this.row = this.id.split("_")[1]; 
@@ -12,5 +16,6 @@ function Square(id) {
 Square.prototype.changeState = function (newState) {
 	this.state = newState;
 	this.div.innerText = newState;
+	this.div.style.color = this.color[this.state];
 }
 

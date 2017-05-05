@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	const DOMboard = document.getElementById("board");
 	DOMboard.addEventListener("click", function (e) {
 		var squareId = e.target.id;
-		if(e.target.parentElement.parentElement.id === "board") {
+		if(e.target.parentElement.parentElement.id === "board" && board.winner === "none") {
 			// if a square is clicked on, play a turn on that square
 			board.turn(squareId);
 		}
