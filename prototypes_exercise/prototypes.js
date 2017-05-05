@@ -41,9 +41,7 @@ String.prototype.reverse = function(str){
 
 Function.prototype.bind = function(thisArg, ...outerArg){
 	var _this = this;
-	var outer = outerArg;
 	return function(...innerArg){
-		var inner = innerArg;
 		var all = outerArg.concat(innerArg)
 		return _this.apply("albert", all);
 	}
