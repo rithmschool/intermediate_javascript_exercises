@@ -5,3 +5,19 @@
     width: 1000px;
 }
 
+#extra {
+    width: 1000px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+#resetBtn {
+    margin-top: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+

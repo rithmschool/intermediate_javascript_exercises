@@ -7,6 +7,8 @@ function CanvasComponent(x, y, width, height, velocity=undefined, color="white")
   this.color = color;
 }
 
+
+//adds velocity x & y to the current x & y
 CanvasComponent.prototype.update = function() {
   if (this.velocity !== undefined) {
     this.x += this.velocity.x;
