@@ -75,16 +75,16 @@ $(function(){
 		$('.logout').hide();
 		$('.signup').show();
 		$('.login').show();
-		window.location = window.location.href + "#refresh";
 		window.location.reload();
 	})
 	$('#formsignup').on("submit", function(e){
 		e.preventDefault();
-		if($('.signorlog') === "login"){
+		if($('.signorlog').text() === "login"){
 			//login request
 			$.post("https://hn-favorites.herokuapp.com/login", {email: $('#email').val(), password: $('#password').val()}).then(function(res){
 				token.push(res);
     			localStorage.setItem("cred", JSON.stringify(token));
+    			alert('login successful!');
 				window.location.reload();
 			});
 		} else {
@@ -151,8 +151,13 @@ $(function(){
 	}).then(function(arr){
 		for(var i = 0; i < arr.length; i++){
 			var $newListItem = $('<li>');
-			var $newGlyph= $('<span>')
+			if(token.length !== 0){
+				var $newGlyph= $('<span>')
 					.addClass("glyphicon glyphicon-star-empty");
+			} else {
+				var $newGlyph= $('<span>')
+					.addClass("glyphicon");
+			}
 			var $newItem = $('<span>')
 					.addClass("item")
 					.text(arr[i].title);
@@ -161,11 +166,18 @@ $(function(){
 					.addClass('postid')
 					.text(arr[i].id)
 					.hide();
+			if(arr[i].url !== undefined){
+				var url = arr[i].url.split("/")[2];
+				var url2 = url.split("www.");
+				if(url2.length === 1){
+					$newLink.attr('href', arr[i].url)
+					.text('(' + url2[0] + ")");
+				} else if(url2.length ===2){
+					$newLink.attr('href', arr[i].url)
+					.text('(' + url2[1] + ")");
+				}
+			}
 
-			//var url = arr[i].url.split(/\/\//)[1].split(/\//)[0];
-			$newLink.attr('href', arr[i].url)
-					.text('(' + arr[i].url + ")");
-					//.text('(' + url.match(/\w+.\w+$/)[0] + ")");
 			$newListItem.append($newGlyph)
 						.append(" ")
 						.append($newItem)
