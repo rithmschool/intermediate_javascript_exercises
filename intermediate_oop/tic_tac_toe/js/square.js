@@ -1,19 +1,16 @@
 // square
 
 function Square(id) {
-	this.state = "";
+	this.state = ""; // can be "X", "O", or ""
 	this.id = id;
+	this.div = document.getElementById(this.id); // ex: square_0_0
 	this.row = this.id.split("_")[1]; 
-	this.column = this.id.split("_")[2];
-	this.div = document.getElementById(this.id); // square_0_0 (or square_2_1)
+	this.column = this.id.split("_")[2]; 
 }
 
-// state can be X, O, or ""
-
+// function to change the state of a square (from blank to an X or O)
 Square.prototype.changeState = function (newState) {
-	console.log("this state", this);
 	this.state = newState;
 	this.div.innerText = newState;
-	return this.state;
 }
 
