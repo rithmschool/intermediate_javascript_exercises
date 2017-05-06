@@ -6,7 +6,7 @@ function Ball(x, y, velocity, canvasWidth, canvasHeight, pointScoredCallback=fun
 }
 
 Ball.BALL_WIDTH = 20;
-Ball.BALL_HEIGHT = 25;
+Ball.BALL_HEIGHT = 20;
 
 Ball.DIRECTION_LEFT = 0;
 Ball.DIRECTION_RIGHT = 1;

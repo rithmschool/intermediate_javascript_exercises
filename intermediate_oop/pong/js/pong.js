@@ -8,8 +8,8 @@ function Pong(canvasId) {
   this.ball = new Ball(10, 10, undefined, this.width, this.height, this.pointScored.bind(this));
   this.ball.randomVelocityAndPosition();
   this.paddleL = new Paddle(15, 350, Paddle.PADDLE_SPEED, Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, true)
-  this.paddleL.upKeyCode = 83;
-  this.paddleL.downKeyCode = 90;
+  this.paddleL.upKeyCode = 87;
+  this.paddleL.downKeyCode = 83;
   this.paddleR = new Paddle(970, 350, Paddle.PADDLE_SPEED, Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, true);
   this.dashes = [];
   this.__createDashes();
@@ -20,14 +20,29 @@ Pong.prototype.startGameLoop = function() {
 };
 
 Pong.prototype.pointScored = function(pointType) {
+  var messageText = document.querySelector('#messageText');
+  var rightPoint = document.querySelector('#rightScore');
+  var leftPoint = document.querySelector('#leftScore');
   if (pointType === Ball.DIRECTION_LEFT) {
+    
     console.log("point for Right");
+    if(messageText.innerText === ""){
+      rightPoint.innerText++;
+    }
     this.ball.randomVelocityAndPosition(Ball.DIRECTION_RIGHT);
   } else if (pointType === Ball.DIRECTION_RIGHT) {
-    console.log("Point for left");
+    if(messageText.innerText === ""){
+      leftPoint.innerText++;
+    }
     this.ball.randomVelocityAndPosition(Ball.DIRECTION_LEFT);
   }
-
+  console.log("Point for left");
+  if(rightPoint.innerText === "10"){
+    messageText.innerText = "Right player wins!";
+  }
+  if(leftPoint.innerText === "10"){
+    messageText.innerText = "Left player wins!";
+  }
 }
 
 Pong.prototype.clearCanvas = function() {

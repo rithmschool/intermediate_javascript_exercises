@@ -16,6 +16,12 @@ Paddle.PADDLE_HEIGHT = 125;
 Paddle.PADDLE_SPEED = 15;
 
 Paddle.prototype.update = function() {
+  if(this.component.y < 0){
+    this.component.y = 0;
+  }
+  if((this.component.y + this.component.height) > 800){
+    this.component.y = 800 - this.component.height;
+  }
   this.component.update();
 }; 
 

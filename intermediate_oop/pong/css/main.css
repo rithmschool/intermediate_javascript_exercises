@@ -5,3 +5,8 @@
     width: 1000px;
 }
 
+#score, #messageBox{
+	font-size: 100px;
+	width: 1000px;
+	text-align: center;
+}
