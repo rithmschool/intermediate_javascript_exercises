@@ -37,7 +37,7 @@ Ball.prototype.__boundsChecking = function() {
   if (this.component.x + this.component.width < 0 && this.component.velocity) {
     this.component.velocity = undefined;
     setTimeout(function() {
-      _this.pointScoredCallback(Ball.DIRECTION_LEFT);
+      _this.pointScoredCallback(Ball.DIRECTION_LEFT, _this); 
     }, 0);
   }
 
@@ -46,7 +46,7 @@ Ball.prototype.__boundsChecking = function() {
   if (this.component.x > this.canvasWidth && this.component.velocity) {
     this.component.velocity = undefined;
     setTimeout(function() {
-      _this.pointScoredCallback(Ball.DIRECTION_RIGHT);
+      _this.pointScoredCallback(Ball.DIRECTION_RIGHT, _this);
     }, 0);
   }
 };
@@ -61,7 +61,7 @@ Ball.prototype.randomVelocityAndPosition = function(direction) {
   //more chance to be faster -- up/down
   var y = Math.floor((Math.random() * 10) + 2); //between 2 and 11
 
-  //aassigns it a random velocity
+  //assigns it a random velocity
   this.component.velocity = new Velocity(x, y);
   if (direction === Ball.DIRECTION_LEFT) {
     this.component.velocity.x *= -1; //if it's going to the Left, make the x negative

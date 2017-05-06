@@ -6,8 +6,12 @@ function Pong(canvasId) {
   this.intervalId = undefined;
 
   //pointScored.bind() -- bind Pong
-  this.ball = new Ball(10, 10, undefined, this.width, this.height, this.pointScored.bind(this));
-  this.ball.randomVelocityAndPosition();
+  this.ballOne = new Ball(10, 10, undefined, this.width, this.height, this.pointScored.bind(this));
+  this.ballOne.randomVelocityAndPosition();
+
+  this.ballTwo = new Ball(10, 10, undefined, this.width, this.height, this.pointScored.bind(this));
+  this.ballTwo.randomVelocityAndPosition();
+
   this.paddleL = new Paddle(15, 350, Paddle.PADDLE_SPEED, Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, true)
   this.paddleL.upKeyCode = 83;
   this.paddleL.downKeyCode = 90;
@@ -34,15 +38,15 @@ Pong.prototype.startGameLoop = function() {
 };
 
 //called within Ball
-Pong.prototype.pointScored = function(pointType) {
+Pong.prototype.pointScored = function(pointType, whichBall) {
   if (pointType === Ball.DIRECTION_LEFT) {
     // console.log("point for Right");
     this.scoreR++;
-    this.ball.randomVelocityAndPosition(Ball.DIRECTION_RIGHT);
+    whichBall.randomVelocityAndPosition(Ball.DIRECTION_RIGHT);
   } else if (pointType === Ball.DIRECTION_RIGHT) {
     // console.log("Point for left");
     this.scoreL++;
-    this.ball.randomVelocityAndPosition(Ball.DIRECTION_LEFT);
+    whichBall.randomVelocityAndPosition(Ball.DIRECTION_LEFT);
   }
   this.writeScore();
 
@@ -98,17 +102,22 @@ Pong.prototype.clearCanvas = function() {
   //redraw the elements
 Pong.prototype.update = function() {
   this.clearCanvas();
-  this.ball.update();
+  this.ballOne.update();
+  this.ballTwo.update();
   this.paddleL.update();
   this.paddleR.update();
 
-  this.paddleL.handleCollision(this.ball);
-  this.paddleR.handleCollision(this.ball);
+  this.paddleL.handleCollision(this.ballOne);
+  this.paddleL.handleCollision(this.ballTwo);
+
+  this.paddleR.handleCollision(this.ballOne);
+  this.paddleR.handleCollision(this.ballTwo);
 
   this.paddleL.draw(this.context);
   this.paddleR.draw(this.context);
   this.__drawDashes();
-  this.ball.draw(this.context);
+  this.ballOne.draw(this.context);
+  this.ballTwo.draw(this.context);
 };
 
 
