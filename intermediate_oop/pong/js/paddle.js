@@ -64,7 +64,13 @@ Paddle.prototype.handleCollision = function(ball) {
   var bTop = ball.component.y;
   var bBottom = ball.component.y + ball.component.height;
 
-  if ((pLeft < bRight) && (pRight > bLeft) && (pTop < bBottom) && (pBottom > bTop)) {
+  if ((pLeft < bRight) && 
+    (pRight > bLeft) && 
+    (pTop < bBottom) && 
+    (pBottom > bTop)) {
+    // console.log(ball.component.velocity.x);
+    // console.log(`Collision: pLeft: ${pLeft}, pRight: ${pRight}, pTop: ${pTop}, pBottom: ${pBottom}`);
+    // console.log(`Collision: bLeft: ${bLeft}, bRight: ${bRight}, bTop: ${pTop}, bBottom: ${bBottom}`);
     ball.component.velocity.x *= -1;
   }
 };
