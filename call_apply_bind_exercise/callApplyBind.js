@@ -14,12 +14,12 @@ function arrayFrom(...someInput) {
 
 function invokeMax(fn, max) {
   var counter = 0;
-  return function(...innerArgs) { //i am returning function add(a,b)
+  return function(...innerArgs) {
     counter++;
       if (counter > max) {
           return "Maxed Out!"
       } else {
-          return fn.apply(max, innerArgs);
+          return fn(...innerArgs);
       }
   }
 }
