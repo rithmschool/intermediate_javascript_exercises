@@ -1,4 +1,4 @@
-function Paddle(x, y, paddleSpeed, paddleWidth, paddleHeight, humanControllable=false) {
+function Paddle(x, y, paddleSpeed, paddleWidth, paddleHeight, humanControllable=false, name) {
   this.velocityUp = new Velocity(0, paddleSpeed * -1);
   this.velocityDown = new Velocity(0, paddleSpeed);
   this.component = new CanvasComponent(x, y, paddleWidth, paddleHeight);
@@ -6,6 +6,8 @@ function Paddle(x, y, paddleSpeed, paddleWidth, paddleHeight, humanControllable=
   this.humanControllable = humanControllable;
   this.upKeyCode = 38;
   this.downKeyCode = 40;
+  this.name = name;
+  this.score = 0;
   if (this.humanControllable) {
     this.__setupArrowBindings();
   }
@@ -17,6 +19,10 @@ Paddle.PADDLE_SPEED = 15;
 
 Paddle.prototype.update = function() {
   this.component.update();
+  if (this.component.y < 0)
+    this.component.y = 0
+  if (this.component.y + this.component.height > 800)
+    this.component.y = 800 - this.component.height;
 }; 
 
 Paddle.prototype.draw = function(context) {
@@ -25,6 +31,7 @@ Paddle.prototype.draw = function(context) {
 
 Paddle.prototype.__setupArrowBindings = function() {
  document.addEventListener("keydown", function(event) {
+
     if (event.which === this.upKeyCode) {
       this.keyDown = this.upKeyCode;
       this.component.velocity = this.velocityUp;
@@ -33,7 +40,6 @@ Paddle.prototype.__setupArrowBindings = function() {
       this.component.velocity = this.velocityDown;
     }
   }.bind(this));
-
 
   document.addEventListener("keyup", function(event) {
     if (this.keyDown === event.which) {
@@ -57,4 +63,7 @@ Paddle.prototype.handleCollision = function(ball) {
   if ((pLeft < bRight) && (pRight > bLeft) && (pTop < bBottom) && (pBottom > bTop)) {
     ball.component.velocity.x *= -1;
   }
+  // if ((pLeft > bRight) && (pRight < bLeft) && (pTop < bBottom) && (pBottom > bTop)) {
+  //   ball.component.velocity.x *= -1;
+  // }
 };

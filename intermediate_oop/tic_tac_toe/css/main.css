@@ -1,5 +1,6 @@
 body {
   text-align: center;
+  font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 
@@ -12,6 +13,7 @@ body {
   vertical-align: top;
   font-size: 700%;
   color: red;
+  border-radius: 10px;
 }
 
 .row {
@@ -25,3 +27,4 @@ body {
 #message {
   font-size: 3em;
 }
+

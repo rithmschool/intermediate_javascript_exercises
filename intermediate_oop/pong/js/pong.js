@@ -7,34 +7,44 @@ function Pong(canvasId) {
 
   this.ball = new Ball(10, 10, undefined, this.width, this.height, this.pointScored.bind(this));
   this.ball.randomVelocityAndPosition();
-  this.paddleL = new Paddle(15, 350, Paddle.PADDLE_SPEED, Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, true)
+  this.paddleL = new Paddle(15, 350, Paddle.PADDLE_SPEED, Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, true, 'player1');
   this.paddleL.upKeyCode = 83;
   this.paddleL.downKeyCode = 90;
-  this.paddleR = new Paddle(970, 350, Paddle.PADDLE_SPEED, Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, true);
+  this.paddleR = new Paddle(970, 350, Paddle.PADDLE_SPEED, Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, true, 'player2');
   this.dashes = [];
   this.__createDashes();
+  this.scoreboardP1 = new Scoreboard('player1', 800, 760, Scoreboard.SCOREB_WIDTH, Scoreboard.SCOREB_HEIGHT);
+  this.scoreboardP2 = new Scoreboard('player2', 900, 760, Scoreboard.SCOREB_WIDTH, Scoreboard.SCOREB_HEIGHT);
 }
 
 Pong.prototype.startGameLoop = function() {
   this.intervalId = setInterval(this.update.bind(this), 20); 
 };
 
+Pong.prototype.endGame = function() {
+  clearInterval(this.intervalId);
+  this.update(true);
+}
+
 Pong.prototype.pointScored = function(pointType) {
   if (pointType === Ball.DIRECTION_LEFT) {
-    console.log("point for Right");
+    this.scoreboardP2.score += 1;
     this.ball.randomVelocityAndPosition(Ball.DIRECTION_RIGHT);
   } else if (pointType === Ball.DIRECTION_RIGHT) {
-    console.log("Point for left");
+    this.scoreboardP1.score += 1;
     this.ball.randomVelocityAndPosition(Ball.DIRECTION_LEFT);
   }
+  if (this.scoreboardP2.score === 2 || this.scoreboardP1.score === 2) {
+    this.endGame();
 
+  }
 }
 
 Pong.prototype.clearCanvas = function() {
   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 };
 
-Pong.prototype.update = function() {
+Pong.prototype.update = function(gameEnds) {
   this.clearCanvas();
   this.ball.update();
   this.paddleL.update();
@@ -46,7 +56,11 @@ Pong.prototype.update = function() {
   this.paddleL.draw(this.context);
   this.paddleR.draw(this.context);
   this.__drawDashes();
-  this.ball.draw(this.context);
+  if(!gameEnds) {
+    this.ball.draw(this.context);
+  }
+  this.scoreboardP1.draw(this.context);
+  this.scoreboardP2.draw(this.context);
 };
 
 

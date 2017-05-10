@@ -18,3 +18,8 @@ CanvasComponent.prototype.draw = function(context) {
   context.fillStyle = this.color;
   context.fillRect(this.x, this.y, this.width, this.height);  
 }
+
+CanvasComponent.prototype.drawText = function(context, text) {
+  context.strokeStyle = this.color;
+  context.strokeText(text, this.x, this.y); 
+}
