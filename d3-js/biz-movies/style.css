@@ -1,0 +1,19 @@
+body {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px
+}
+
+svg {
+    display: block;
+    margin: 0 auto;
+}
+
+.tooltip {
+    position: absolute;
+    pointer-events: none;
+}
+
+.footer {
+    padding: 50px;
+}
