@@ -1,0 +1,51 @@
+Title,Cover,Author,Times_Shelved,Average_Rating,Number_of_Ratings,Year_Published
+Introduction to Algorithms (Hardcover),https://images.gr-assets.com/books/1387741681s/108986.jpg,Thomas H. Cormen,363,4.30,12834,1989
+Structure and Interpretation of Computer Programs (MIT Electrical Engineering and Computer Science),https://images.gr-assets.com/books/1391032527s/43713.jpg,Harold Abelson,254,4.44,10908,1984
+The Pragmatic Programmer: From Journeyman to Master (Paperback),https://images.gr-assets.com/books/1401432508s/4099.jpg,Andrew Hunt,221,4.31,23613,1999
+Design Patterns: Elements of Reusable Object-Oriented Software (Hardcover),https://images.gr-assets.com/books/1348027904s/85009.jpg,Erich Gamma,210,4.14,16202,1994
+The C Programming Language (Paperback),https://images.gr-assets.com/books/1391032531s/515601.jpg,Brian W. Kernighan,200,4.41,12703,1978
+Clean Code: A Handbook of Agile Software Craftsmanship (Paperback),https://images.gr-assets.com/books/1436202607s/3735293.jpg,Robert C. Martin,173,4.36,18103,2007
+Code: The Hidden Language of Computer Hardware and Software (Paperback),https://images.gr-assets.com/books/1328830222s/44882.jpg,Charles Petzold,164,4.38,10902,1999
+The Mythical Man-Month: Essays on Software Engineering (Paperback),https://images.gr-assets.com/books/1348430512s/13629.jpg,Frederick P. Brooks Jr.,162,4.05,18938,1975
+"Compilers: Principles, Techniques, and Tools (Hardcover)",https://images.gr-assets.com/books/1387666736s/703102.jpg,Alfred V. Aho,162,4.06,5429,1986
+Refactoring: Improving the Design of Existing Code (Hardcover),https://images.gr-assets.com/books/1386925632s/44936.jpg,Martin Fowler,137,4.20,12480,1999
+Introduction to the Theory of Computation (Hardcover),https://images.gr-assets.com/books/1347452544s/400716.jpg,Michael Sipser,131,4.17,3045,1996
+The Algorithm Design Manual (Hardcover),https://images.gr-assets.com/books/1388183113s/425208.jpg,Steven S. Skiena,123,4.29,4730,1997
+Programming Pearls (Paperback),https://images.gr-assets.com/books/1385191091s/52084.jpg,Jon L. Bentley,109,4.22,7004,1986
+"Gödel, Escher, Bach: An Eternal Golden Braid (Paperback)",https://images.gr-assets.com/books/1428732588s/24113.jpg,Douglas R. Hofstadter,108,4.29,93900,1979
+"The Art of Computer Programming, Volume 1: Fundamental Algorithms (Hardcover)",https://images.gr-assets.com/books/1388242904s/112247.jpg,Donald Ervin Knuth,103,4.34,5816,1973
+Head First Design Patterns: A Brain-Friendly Guide (Paperback),https://images.gr-assets.com/books/1408309444s/58128.jpg,Eric Freeman,93,4.22,9188,2004
+Algorithms to Live By: The Computer Science of Human Decisions (Hardcover),https://images.gr-assets.com/books/1454296875s/25666050.jpg,Brian Christian,88,4.14,26363,2016
+Operating System Concepts (Hardcover),https://images.gr-assets.com/books/1387667734s/83833.jpg,Abraham Silberschatz,84,3.95,2589,1985
+Computer Networks (Hardcover),https://images.gr-assets.com/books/1347462821s/166190.jpg,Andrew S. Tanenbaum,83,4.03,3297,1981
+Concrete Mathematics: A Foundation for Computer Science (Hardcover),https://images.gr-assets.com/books/1348780612s/112243.jpg,Ronald L. Graham,83,4.30,4976,1988
+Algorithms (Hardcover),https://images.gr-assets.com/books/1348011905s/10803540.jpg,Robert Sedgewick,80,4.36,3036,1983
+JavaScript: The Good Parts (Paperback),https://images.gr-assets.com/books/1328834793s/2998152.jpg,Douglas Crockford,76,4.23,11217,2008
+Artificial Intelligence: A Modern Approach (Hardcover),https://images.gr-assets.com/books/1385600294s/27543.jpg,Peter Norvig,76,4.12,5945,1994
+Working Effectively with Legacy Code (Paperback),https://images.gr-assets.com/books/1348627451s/44919.jpg,Michael C. Feathers,68,4.13,7626,2004
+Code Complete (Paperback),https://images.gr-assets.com/books/1396837641s/4845.jpg,Steve McConnell,68,4.26,16175,1993
+The Code Book: The Science of Secrecy from Ancient Egypt to Quantum Cryptography (Paperback),https://images.gr-assets.com/books/1403181687s/17994.jpg,Simon Singh,66,4.28,30121,1999
+"The Art of Computer Programming, Volumes 1-3 Boxed Set (Boxed Set - Hardcover)",https://images.gr-assets.com/books/1348345166s/112239.jpg,Donald Ervin Knuth,64,4.50,2874,1998
+Computer Systems: A Programmer's Perspective (Hardcover),https://images.gr-assets.com/books/1387708094s/829182.jpg,Randal E. Bryant,64,4.32,1091,2002
+Effective C++: 55 Specific Ways to Improve Your Programs and Designs (Paperback),https://images.gr-assets.com/books/1348261809s/105125.jpg,Scott Meyers,63,4.37,4029,1991
+Types and Programming Languages (Hardcover),https://images.gr-assets.com/books/1347671948s/112252.jpg,Benjamin C. Pierce,63,4.21,1882,2002
+Coders at Work: Reflections on the Craft of Programming (Paperback),https://images.gr-assets.com/books/1349026758s/6713575.jpg,Peter Seibel,61,3.93,8415,2009
+Purely Functional Data Structures (Paperback),https://images.gr-assets.com/books/1388210737s/594288.jpg,Chris Okasaki,57,4.13,2749,1996
+Patterns of Enterprise Application Architecture (Hardcover),https://images.gr-assets.com/books/1440294142s/70156.jpg,Martin Fowler,57,4.14,6478,2002
+"Applied Cryptography: Protocols, Algorithms, and Source Code in C (Hardcover)",https://images.gr-assets.com/books/1387734235s/351301.jpg,Bruce Schneier,57,4.16,3621,1993
+Computer Networking: A Top-Down Approach (Hardcover),https://images.gr-assets.com/books/1387700719s/83847.jpg,James F. Kurose,56,4.02,1843,2000
+Computer Organization & Design: The Hardware/Software Interface (Hardcover),https://images.gr-assets.com/books/1386925474s/83895.jpg,David A. Patterson,55,3.97,1476,1993
+The Elements of Computing Systems: Building a Modern Computer from First Principles (Hardcover),https://images.gr-assets.com/books/1387737217s/910789.jpg,Noam Nisan,55,4.47,1590,2005
+Domain-Driven Design: Tackling Complexity in the Heart of Software (Hardcover),https://images.gr-assets.com/books/1287493789s/179133.jpg,Eric Evans,54,4.14,7118,2003
+The Art of Computer Programming: Volume 3: Sorting and Searching (Hardcover),https://images.gr-assets.com/books/1388460762s/363999.jpg,Donald Ervin Knuth,54,4.36,1463,1973
+Learn You a Haskell for Great Good! (ebook),https://images.gr-assets.com/books/1294497489s/6593810.jpg,Miran Lipovača,52,4.34,2674,2011
+The Clean Coder: A Code of Conduct for Professional Programmers (Paperback),https://images.gr-assets.com/books/1347470803s/10284614.jpg,Robert C. Martin,52,4.25,7311,2011
+"The Art of Computer Programming, Volume 2: Seminumerical Algorithms (Hardcover)",https://images.gr-assets.com/books/1388266930s/112246.jpg,Donald Ervin Knuth,52,4.38,1469,1969
+Test Driven Development: By Example (Paperback),https://images.gr-assets.com/books/1372039943s/387190.jpg,Kent Beck,52,4.05,5535,2002
+"Don't Make Me Think, Revisited: A Common Sense Approach to Web Usability (Paperback)",https://images.gr-assets.com/books/1384736553s/18197267.jpg,Steve Krug,51,4.26,10519,2000
+Computer Architecture: A Quantitative Approach (Paperback),https://images.gr-assets.com/books/1388277732s/70135.jpg,John L. Hennessy,50,4.08,1787,1990
+Pro Git (Paperback),https://images.gr-assets.com/books/1383771684s/6518085.jpg,Scott Chacon,50,4.10,3275,2009
+Hackers: Heroes of the Computer Revolution (Paperback),https://images.gr-assets.com/books/1435697935s/56829.jpg,Steven Levy,49,4.13,12215,1984
+Machine Learning (Paperback),https://images.gr-assets.com/books/1387743284s/213030.jpg,Tom M. Mitchell,47,4.01,1342,1986
+The Annotated Turing: A Guided Tour Through Alan Turing's Historic Paper on Computability and the Turing Machine (Paperback),https://images.gr-assets.com/books/1348963714s/2333956.jpg,Charles Petzold,47,4.14,3028,2008
+A Discipline of programming (Hardcover),https://images.gr-assets.com/books/1348910294s/2276288.jpg,Edsger W. Dijkstra,46,4.28,1188,1976
