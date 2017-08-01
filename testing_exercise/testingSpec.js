@@ -36,5 +36,16 @@ describe("TESTS FOR replaceWith", function() {
 });
 
 describe("TESTS FOR expand", function() {
-	
+	it("happy path, expand integer array 3 times", function() {
+		expect(expand([1,2,3],3)).to.deep.equal([1,2,3,1,2,3,1,2,3]);
+	});
+
+	it("happy path, expand string array 3 times", function() {
+		expect(expand(["foo", "test"],1)).to.deep.equal(["foo","test"]);
+	});
+
+	it("expand array 0 times", function() {
+		expect(expand(["foo", "test"],0)).to.deep.equal(["foo","test"]);
+	});
 });
+

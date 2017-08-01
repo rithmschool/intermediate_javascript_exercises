@@ -8,3 +8,15 @@ function replaceWith(entry, replaceChar, withChar) {
 	
 	return entry;
 }
+
+function expand(arr, num) {
+	if (num <=0)
+		return arr;
+
+	var nArr = [];
+	for(var i=0; i < num; i++)
+		for(var j=0; j < arr.length; j++)
+			nArr.push(arr[j]);
+
+	return nArr;
+}
