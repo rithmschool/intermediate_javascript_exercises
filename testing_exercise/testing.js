@@ -14,8 +14,7 @@ function expand(arr, num) {
 
 	var nArr = [];
 	for(var i=0; i < num; i++)
-		for(var j=0; j < arr.length; j++)
-			nArr.push(arr[j]);
+		nArr = nArr.concat(arr);
 
 	return nArr;
 }
