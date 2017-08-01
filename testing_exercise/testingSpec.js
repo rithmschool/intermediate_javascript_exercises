@@ -98,5 +98,26 @@ describe("TESTS FOR mergeObjects", function() {
 		expect(mergeObjects(obj1,obj2)).to.deep.equal(obj3);
 	});
 
+	it("one empty object", function() {
+		var obj1 = {};
+        var obj2 = {test: "thing",num: 55};
+        var obj3 = {test: "thing",num: 55};
+		expect(mergeObjects(obj1,obj2)).to.deep.equal(obj3);
+	});
+
+	it("both empty", function() {
+		var obj1 = {};
+        var obj2 = {};
+        var obj3 = {};
+		expect(mergeObjects(obj1,obj2)).to.deep.equal(obj3);
+	});
+
+	it("2 override, 1 extra field", function() {
+		var obj1 = {name: "Foo", num: 3};
+        var obj2 = {name: "Bar", num: 55, field: "extra"};
+        var obj3 = {name: "Bar",num: 55,field: "extra"};
+		expect(mergeObjects(obj1,obj2)).to.deep.equal(obj3);
+	});
+
 });
 

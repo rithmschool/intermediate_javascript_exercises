@@ -42,6 +42,8 @@ function mergeArrays(arr1, arr2) {
 }
 
 function mergeObjects(obj1, obj2) {
-	var retObj = {};
-	return retObj;
+	for (var key in obj2) {
+		obj1[key] = obj2[key];
+	}
+	return obj1;
 }
