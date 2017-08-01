@@ -24,7 +24,7 @@ function expand(arr, num){
 function acceptNumbersOnly(){
 
 	for(let i =0; i < arguments.length; i++){
-		if(isNaN(arguments[i])){
+		if(isNaN(arguments[i]) || typeof arguments[i] !== 'number'){
 			return false;
 		}
 	}

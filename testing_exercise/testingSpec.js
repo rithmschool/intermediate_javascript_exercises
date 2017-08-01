@@ -21,6 +21,7 @@ describe("acceptNumbersOnly", function() {
   it("takes in any number of arguments and returns `true` if all of them are numbers.", function() {
     expect(acceptNumbersOnly(1,"foo")).to.equal(false);
     expect(acceptNumbersOnly(1,2,3,4,5,6,7)).to.equal(true);
+    expect(acceptNumbersOnly('1',2,3,4,5,6,7)).to.equal(false);
     expect(acceptNumbersOnly(1,2,3,4,5,6,NaN)).to.equal(false);
   });
 })
