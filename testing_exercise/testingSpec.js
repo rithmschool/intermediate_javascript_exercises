@@ -49,3 +49,54 @@ describe("TESTS FOR expand", function() {
 	});
 });
 
+describe("TESTS FOR acceptNumbersOnly", function() {
+	it("number and string present", function() {
+		expect(acceptNumbersOnly(1,"foo")).to.be.false;
+	});
+
+	it("numbers present only", function() {
+		expect(acceptNumbersOnly(1,2,3,4,5,6,7)).to.be.true;
+	});
+
+	it("number and NaN present", function() {
+		expect(acceptNumbersOnly(1,2,3,4,5,6,NaN)).to.be.false;
+	});
+});
+
+describe("TESTS FOR mergeArrays", function() {
+	it("two number arrays", function() {
+		expect(mergeArrays([2,1],[3,4])).to.deep.equal([1,2,3,4]);
+	});
+
+	it("two number arrays unequal length", function() {
+		expect(mergeArrays([2,1],[3,4,7])).to.deep.equal([1,2,3,4,7]);
+	});
+
+	it("two string arrays unequal length", function() {
+		expect(mergeArrays(["a","c"],["b","d"])).to.deep.equal(["a","b","c","d"]);
+	});
+
+	it("two string arrays unequal length", function() {
+		expect(mergeArrays(["a","c"],["f","b","d"])).to.deep.equal(["a","b","c","d","f"]);
+	});
+
+	it("one empty array", function() {
+		expect(mergeArrays([],[3,4])).to.deep.equal([3,4]);
+	});
+
+	it("two empty arrays", function() {
+		expect(mergeArrays([],[])).to.deep.equal([]);
+	});
+
+});
+
+describe("TESTS FOR mergeObjects", function() {
+	it("two objects", function() {
+		var obj1 = {name: "Foo", num: 3};
+        var obj2 = {test: "thing",num: 55};
+        var obj3 = {name: "Foo",test: "thing",num: 55};
+		expect(mergeObjects(obj1,obj2)).to.deep.equal(obj3);
+	});
+
+});
+
