@@ -20,7 +20,12 @@ function expand(arr, num) {
 }
 
 function acceptNumbersOnly() {
-
+	for (var i = 0; i < arguments.length; i++) {
+		if (typeof(arguments[i]) !== "number" || isNaN(arguments[i])) {
+			return false;
+		}
+	}
+	return true;
 }
 
 function mergeArrays(arr1, arr2) {
