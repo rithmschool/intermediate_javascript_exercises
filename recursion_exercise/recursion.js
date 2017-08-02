@@ -1,53 +1,53 @@
-function productOfArray(arr){
-    if(arr.length === 0){
-        return 1
+function productOfArray(arr) {
+    if(arr.length === 0) {
+        return 1;
     }
-    return arr.shift() * productOfArray(arr)
+    return arr.shift() * productOfArray(arr);
 }
 
 // HELPER METHOD RECURSION
-function collectStrings(obj){
+function collectStrings(obj) {
     var stringsArr = [];
 
-    function gatherStrings(o){
-        for(var key in o){
-            if(typeof o[key] === 'string'){
-                stringsArr.push(o[key])
+    function gatherStrings(o) {
+        for(var key in o) {
+            if(typeof o[key] === 'string') {
+                stringsArr.push(o[key]);
             }
-            else if(typeof o[key] === 'object'){
-                return gatherStrings(o[key])
+            else if(typeof o[key] === 'object') {
+                return gatherStrings(o[key]);
             }
         }
     }
 
-    gatherStrings(obj)
+    gatherStrings(obj);
 
     return stringsArr;
 }
 
 // PURE RECURSION
-function collectStrings(obj){
+function collectStrings(obj) {
     var stringsArr = [];
-    for(var key in obj){
-        if(typeof obj[key] === 'string'){
-            stringsArr.push(obj[key])
+    for(var key in obj) {
+        if(typeof obj[key] === 'string') {
+            stringsArr.push(obj[key]);
         }
-        else if(typeof obj[key] === 'object'){
-            stringsArr = stringsArr.concat(collectStrings(obj[key]))
+        else if(typeof obj[key] === 'object') {
+            stringsArr = stringsArr.concat(collectStrings(obj[key]));
         }
     }
 
     return stringsArr;
 }
 
-function contains(obj, val){
-    for(var key in obj){
-        if(obj[key] === val){
-            return true
+function contains(obj, val) {
+    for(var key in obj) {
+        if(obj[key] === val) {
+            return true;
         }
-        if(typeof obj[key] === 'object'){
-            if(contains(obj[key], val)){
-                return true
+        if(typeof obj[key] === 'object' && obj[key]) {
+            if(contains(obj[key], val)) {
+                return true;
             }
         }
     }
@@ -55,33 +55,33 @@ function contains(obj, val){
 }
 
 // With helper method recursion
-function linearSearch(arr, val){
+function linearSearch(arr, val) {
 
-    function search(arr,val,idx){
-        if(idx === arr.length) return -1
-        else if(arr[idx] !== val){
-            return search(arr, val, idx+1)
+    function search(arr,val,idx) {
+        if(idx === arr.length) return -1;
+        else if(arr[idx] !== val) {
+            return search(arr, val, idx+1);
         }
         return idx;
     }
 
-    return search(arr, val, 0)
+    return search(arr, val, 0);
 
 }
 
-function search(arr, val, start=0, end=arr.length-1){
-    if(start > end){
-        return -1
-    } else if(arr[start] !== val){
-        return search(arr, val, start+1, end)
+function search(arr, val, start=0, end=arr.length-1) {
+    if(start > end) {
+        return -1;
+    } else if(arr[start] !== val) {
+        return search(arr, val, start+1, end);
     }
-    return start
+    return start;
 }
 
 // With helper method recursion
-function binarySearch(arr, val){
+function binarySearch(arr, val) {
 
-    function binarySearchHelper(array, value, left, right){
+    function binarySearchHelper(array, value, left, right) {
 
         if(left > right) return -1;
 
@@ -90,13 +90,13 @@ function binarySearch(arr, val){
         if(array[middle] === value) return middle;
 
         else if(array[middle] > value) {
-            return binarySearchHelper(array,value,left,middle-1)
+            return binarySearchHelper(array,value,left,middle-1);
         }
 
-        return binarySearchHelper(array,value,middle+1,right)
+        return binarySearchHelper(array,value,middle+1,right);
     }
 
-    return binarySearchHelper(arr, val, 0, arr.length)
+    return binarySearchHelper(arr, val, 0, arr.length);
 }
 
 function binarySearch(array, key, left=0, right=array.length) {
