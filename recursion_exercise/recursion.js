@@ -161,21 +161,51 @@ console.log(binarySearch([1,2,3,4,5],15)); // -1
 
 
 function stringifyNumbers(obj) {
-	
+	var newObj = {};
+
+	for (var key in obj) {
+		if (typeof obj[key] === 'number') {
+			newObj[key] = obj[key].toString();
+		} else if (typeof obj[key] === 'object' && Array.isArray(obj[key]) === false) {
+			newObj[key] = stringifyNumbers(obj[key]);
+		} else {
+			newObj[key] = obj[key];
+		}
+	}
+
+	return newObj;
 }
 
-var obj = {
-    num: 1,
-    test: [],
-    data: {
+// Store data in a new object
+// No need for Helper
+// Base Case: when the for loop ends!
+// Examine each key's type
+	// If the type is object, set the element to the result of recurse!
+	// If not, add the key,value pair to the object and move on
+		// Of course, if it's a number, stringify that crap!
+	// Return the new object!
+
+var obj1 = {
+      num: 1,
+      test: [],
+      data: {
         val: 4,
         info: {
-            isRight: true,
-            random: 66
+          isRight: true,
+          random: 66,
+          nested: {
+            inner: {
+              nestedInner: {
+                another: {
+                  num: 10
+                }
+              }
+            }
+          }
         }
+      }
     }
-}
-console.log(stringifyNumbers(obj1));
+console.log(JSON.stringify(stringifyNumbers(obj1)));
 /*/
 {
     num: "1",
