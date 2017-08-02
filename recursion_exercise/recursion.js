@@ -20,10 +20,6 @@ function collectStrings(obj) {
 }
 
 function contains(obj, val) {
-  return true;
-}
-
-function contains(obj, val) {
   for(let prop in obj){
     if(typeof obj[prop] === 'object'){
       if (contains(obj[prop], val)) {
@@ -39,6 +35,8 @@ function contains(obj, val) {
 
 // Bonus! Er, perhaps when I understand this better.
 //
-function search(arr, val){
-
+function search(arr, val, count=0){
+  if(arr[count] === val) return count;
+  if(count === arr.length) return -1;
+  return search(arr, val, count+1);
 }
