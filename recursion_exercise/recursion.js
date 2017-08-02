@@ -172,19 +172,23 @@ function binarySearch(arr, num) {
 	return idx;
 }
 
+// simple recursion
 function stringifyNumbers(obj) {
+	var nObj = {};
 	var kArr = Object.keys(obj);
 
 	if (kArr.length === 0)
-		return;
+		return obj;
 
 	for (var i=0; i<kArr.length; i++) {
-	    if (typeof obj[kArr[i]] === 'object')
-	        stringifyNumbers(obj[kArr[i]]);
+	    if (typeof obj[kArr[i]] === 'object') {
+	    	nObj[kArr[i]] = stringifyNumbers(obj[kArr[i]]);
+	    }
 	    else
 	        if (typeof obj[kArr[i]] == 'number')
-	        	obj[kArr[i]] = obj[kArr[i]] + "";
+	        	nObj[kArr[i]] = obj[kArr[i]] + "";
+	        else
+	        	nObj[kArr[i]] = obj[kArr[i]];
 	}
-
-	return obj;
+	return nObj;
 }
