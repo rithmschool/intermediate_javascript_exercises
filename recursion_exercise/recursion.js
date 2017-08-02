@@ -111,28 +111,60 @@ return helper(arr,val)
 
 
 //Refactor your search function to use a faster algorithm called binary search https://www.youtube.com/watch?v=JQhciTuD3E8.
-function binary(arr,val) {
-	//sort
+function binarySearch(arr,val) {
+var l = 0;
+var	r = arr.length - 1;
+var middle = Math.floor((l+r)/2);
 
-	(if arr.length === 1) {
-		return index
-	} else if (arr.length = 2) {
-
+	function helper(a,v,l,r) {
+	middle = Math.floor((l+r)/2);
+		if (l > r) {
+			return middle = -1;
+		}
+		if (a[middle] === v) {
+			return middle
+		} else if (v > a[middle]) {
+			l = middle+1
+			helper(a,v,l, r)
+		} else {
+			r = middle -1
+			helper(a,v, l, r)
+		}
 	}
-
-	//search
-	if (val > arr[arr.length/2]) {
-		return arr.length/2 + binary(arr.slice(Math.ceil(arr.length/2)), val)
-	} else {
-		return arr.length/2 - binary(arr.slice(0,Math.ceil(arr.length/2)), val)
-	}
+helper(arr,val,l,r)
+return middle
 }
+
+// //iterative
+// function binary(arr, val) {
+// 	var l = 0
+// 	var r = arr.length-1
+// 	var middle = 0;
+
+// 	while (true) {
+// 		if (l > r) {
+// 		return -1
+// 		}
+
+// 		middle = Math.floor((l+r)/2)
+		
+// 		if (arr[middle] === val) {
+// 			return middle
+// 		} else if (val > arr[middle]) {
+// 			l = middle +1
+// 		} else {
+// 			r = middle - 1
+// 		}
+// 	}
+// }
 
 
 
 
 //- Write a function called `stringifyNumbers` which takes in an object and finds all of the values which are numbers and converts them to strings. Recursion would be a great way to solve this!
 
+function stringifyNumbers(obj) {
 
+}
 
 
