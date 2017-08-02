@@ -20,24 +20,45 @@ function fromPairs(arr){
 	}
 }
 
-function head(){
-
+function head(arr){
+	if (arr.length === 0) {
+		return undefined;
+	} else {
+		return arr[0];
+	}
 }
 
-function take(){
-
+function take(arr, num=1){
+	return arr.slice(0, num);
 }
 
-function takeRight(){
-
+function takeRight(arr, num=1){
+	if (num === 0) {
+		return []
+	} else {
+		return arr.slice(num*-1);
+	}
 }
 
 function union(){
-
+	// assuming arguments will be an "array" of arrays
+	var result = [];
+	for (var i = 0; i < arguments.length; i++) {
+		for (var j = 0; j < arguments[i].length; j++) {
+			if (result.indexOf(arguments[i][j]) === -1) {
+				result.push(arguments[i][j]);
+			}
+		}
+	}
+	return result;
 }
 
-function zipObject(){
-
+function zipObject(keysArr, valuesArr){
+	var result = {};
+	for (var i = 0; i < keysArr.length; i++) {
+		result[keysArr[i]] = valuesArr[i];
+	}
+	return result;
 }
 
 function includes(){
@@ -95,6 +116,8 @@ function upperFirst(str){
 function flatten(){
 
 }
+
+// BONUS
 
 function zip(){
 
