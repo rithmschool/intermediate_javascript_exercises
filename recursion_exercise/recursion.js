@@ -150,5 +150,41 @@ function search(arr, num) {
 
 
 function binarySearch(arr, num) {
+	var idx = -1;
+	var minIndex = 0;
+	var maxIndex = arr.length -1;
+	function helper(a) {
+		var mid = Math.floor(maxIndex - minIndex / 2);
 
+		if(a[mid] > num) {
+		    maxIndex = mid - 1;
+		    helper(a);
+		}
+		else if (a[mid] < num) {
+		    minIndex = mid + 1;
+		    helper(a);
+		}
+		else {
+		    return mid;
+		}
+	}
+	idx = helper(arr);
+	return idx;
+}
+
+function stringifyNumbers(obj) {
+	var kArr = Object.keys(obj);
+
+	if (kArr.length === 0)
+		return;
+
+	for (var i=0; i<kArr.length; i++) {
+	    if (typeof obj[kArr[i]] === 'object')
+	        stringifyNumbers(obj[kArr[i]]);
+	    else
+	        if (typeof obj[kArr[i]] == 'number')
+	        	obj[kArr[i]] = obj[kArr[i]] + "";
+	}
+
+	return obj;
 }
