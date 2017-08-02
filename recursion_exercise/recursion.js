@@ -40,6 +40,24 @@ function collectStrings(obj){
     return array;
 }
 
-//working on search
+function search(array, lookFor){
+    var index = 0;
+    var originalLength = array.length;
+    function helper(array,lookFor){
+        //base case
+          if(index === originalLength){
+               index = -1
+               return;
+          }
+
+          if(array[0] === lookFor){
+                return;
+          } 
+          index+=1
+          helper(array.slice(1), lookFor);
+    }
+    helper(array,lookFor);
+    return index;
+}
 
 
