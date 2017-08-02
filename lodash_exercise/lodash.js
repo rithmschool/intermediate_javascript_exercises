@@ -1,9 +1,23 @@
-function drop(){
-
+function drop(arr, num=1){
+	if (num === 1) {
+		return arr.slice(1);
+	} else {
+		return arr.slice(num);
+	}
 }
 
-function fromPairs(){
-
+function fromPairs(arr){
+	// assuming arr is an array of arrays containing key value pairs
+	// e.g. [[key, value],[key, value],[key, value]]
+	if (arr.length === 0) {
+		return {};
+	} else {
+		var result = {};
+		for (var i = 0; i < arr.length; i++) {
+			result[arr[i][0]] = arr[i][1];
+		}
+		return result;
+	}
 }
 
 function head(){
