@@ -30,7 +30,9 @@ function acceptNumbersOnly() {
 
 function mergeArrays(arr1, arr2) {
 	var mergedArr = arr1.concat(arr2);
-	return mergedArr.sort();
+	return mergedArr.sort(function(a, b){
+		return a - b;
+	});
 }
 
 function mergeObjects(obj1, obj2) {
