@@ -15,7 +15,7 @@ var person = {
 //solution
 const person = {
     fullName: "Harry Potter",
-    sayHi: function(){
+    sayHi(){
         setTimeout(() => console.log("Your name is " + this.fullName),100)
     }
 }
@@ -102,11 +102,23 @@ let add = (a=10, b=10) => (a + b);
 
 Research the following functions - what do they do?
 
-`Array.from` -
-https://docs.microsoft.com/en-us/scripting/javascript/reference/array-from-function-array-javascript
-`Object.assign` -
-https://docs.microsoft.com/en-us/scripting/javascript/reference/object-assign-function-object-javascript
-`Array.includes` -
+<br>
+<code> <strong>Array.from </strong></code> 
 
-`String.startsWith` -
-https://docs.microsoft.com/en-us/scripting/javascript/reference/startswith-method-string-javascript
+[Returns an array from an array-like or iterable object.](
+https://docs.microsoft.com/en-us/scripting/javascript/reference/array-from-function-array-javascript)
+
+<br>
+<code> <strong> Object.assign </strong></code> 
+
+[Copies the values from one or more source objects to a target object.](https://docs.microsoft.com/en-us/scripting/javascript/reference/object-assign-function-object-javascript)
+
+<br>
+<code> <strong> Array.includes </strong></code> 
+
+[Returns a Boolean value indicating whether an array includes a certain element.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes)
+
+<br>
+<code> <strong> String.startsWith </strong></code> 
+
+[Returns a value that indicates whether a string or substring starts with another specified string.](https://docs.microsoft.com/en-us/scripting/javascript/reference/startswith-method-string-javascript)
