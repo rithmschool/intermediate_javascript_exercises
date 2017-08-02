@@ -16,20 +16,34 @@ function collectStrings(obj) {
     return acc;
   }, []);
 }
-function contains(obj, value) {
-  var result = false;
+// function contains(obj, value) {
+//   var result = false;
+//
+//   function helper(obj1) {
+//     for (var key in obj1) {
+//       if (obj1[key] === value) {
+//         result = true;
+//       } else if (typeof obj1[key] === 'object') {
+//         helper(obj1[key]);
+//       }
+//     }
+//   }
+//   helper(obj);
+//   return result;
+// }
 
-  function helper(obj1) {
-    for (var key in obj1) {
-      if (obj1[key] === value) {
-        result = true;
-      } else if (typeof obj1[key] === 'object') {
-        helper(obj1[key]);
+function contains(obj, val) {
+  for (var key in obj) {
+    if (obj[key] === val) {
+      return true;
+    }
+    if (typeof obj[key] === 'object') {
+      if (contains(obj[key], val)) {
+        return true;
       }
     }
   }
-  helper(obj);
-  return result;
+  return false;
 }
 
 function search(array, target) {
@@ -49,4 +63,18 @@ function binarySearch(array, target, start = 0, end = array.length - 1) {
   } else {
     return binarySearch(array, target, middle + 1, end);
   }
+}
+
+function stringifyNumbers(obj) {
+  var object = {};
+  for (var key in obj) {
+    if (Number.isFinite(obj[key])) {
+      object[key] = '' + obj[key];
+    } else if (!Array.isArray(obj[key]) && typeof obj[key] === 'object') {
+      object[key] = stringifyNumbers(obj[key]);
+    } else {
+      object[key] = obj[key];
+    }
+  }
+  return object;
 }
