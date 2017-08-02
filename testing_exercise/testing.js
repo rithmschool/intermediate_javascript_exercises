@@ -32,11 +32,11 @@ function acceptNumbersOnly(){
 }
 
 
-console.log(
-acceptNumbersOnly(1,"foo"), // false
-acceptNumbersOnly(1,2,3,4,5,6,7), // true
-acceptNumbersOnly(1,2,3,4,5,6,NaN)  // false
-)
+// console.log(
+// acceptNumbersOnly(1,"foo"), // false
+// acceptNumbersOnly(1,2,3,4,5,6,7), // true
+// acceptNumbersOnly(1,2,3,4,5,6,NaN)  // false
+// )
 
 
 
