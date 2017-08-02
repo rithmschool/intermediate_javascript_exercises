@@ -33,13 +33,21 @@ function contains(nestedObj, searchTerm) {
 	return false;
 }
 
-function search(arr, val) {
-	// if (arr.length === 0) return -1;
-	// if (arr[0] === val) {
-	// 	return 0;
-	// } else {
-		
-	// }
+function search(arr, val, currentIndex=0) {
+    if (arr[0] === val) {
+	   return currentIndex;
+	}
+	// if an empty array is passed in, value is not found
+	else if (arr.length === 0) {
+	   return -1;
+	}
+	// otherwise, increment the index to keep track of it, and then remove the
+	// value that was already checked, and pass in a shorter array to search()
+	else {
+		currentIndex++;
+		currentIndex = search(arr.slice(1), val, currentIndex);
+	}
+	return currentIndex;
 }
 
 function binarySearch(arr, val) {
