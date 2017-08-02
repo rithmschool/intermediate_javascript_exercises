@@ -51,7 +51,11 @@ function search(arr, val, currentIndex=0) {
 }
 
 function binarySearch(arr, val) {
-
+	// sort the array
+	// find the middle, compare
+	// remove the middle and everything before or after it
+	// depending on the comparison
+	// repeat
 }
 
 function stringifyNumbers(obj) {
