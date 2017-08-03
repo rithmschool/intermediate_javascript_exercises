@@ -129,12 +129,14 @@ function inRange(num, start, end){
 		end = start;
 		start = 0;
 	}
+
 	if(end < start){
-		let temp = end;
-		end = start;
-		start = temp;
+		return num <= start && num > end;
 	}
-	return num >= start && num < end; 
+	else {
+		return num >= start && num < end; 
+	}
+	
 }
 
 function has(){
