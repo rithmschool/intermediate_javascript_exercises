@@ -106,7 +106,7 @@ function cloneDeep(obj){
 	return newObj;
 }
 
-function sumBy(){
+function sumBy(array, fn = function()){
 
 }
 
