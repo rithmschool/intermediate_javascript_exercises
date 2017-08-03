@@ -1,11 +1,15 @@
 function replaceWith(str, replaceThisChar, replacementChar) {
-	var arrayOfChars = str.split("");
-	arrayOfChars.forEach(function(val, index){
-		if (val === replaceThisChar) {
-			arrayOfChars[index] = replacementChar;
-		}
-	});
-	return arrayOfChars.join("");
+	// var arrayOfChars = str.split("");
+	// arrayOfChars.forEach(function(val, index){
+	// 	if (val === replaceThisChar) {
+	// 		arrayOfChars[index] = replacementChar;
+	// 	}
+	// });
+	// return arrayOfChars.join("");
+	return str.split("").map(function(val, index, array){
+		if (val === replaceThisChar) return replacementChar;
+		return val;
+	}).join("");
 }
 
 function expand(arr, num) {
