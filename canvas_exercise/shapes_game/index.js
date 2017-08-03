@@ -10,6 +10,11 @@ window.addEventListener("load", function() {
     var x = Math.random() * (width - 100);
     var y = Math.random() * (height - 100);
 
+    effectOn = false;
+    clearInterval(initParticlesTimer);
+    clearInterval(particlesInterval);
+    clearTimeout(stopParticleTimer);
+
     switch(shapeNum) {
       case 0:  // Red Triangle
         ctx.fillStyle = "red";
@@ -20,10 +25,16 @@ window.addEventListener("load", function() {
         ctx.lineTo(x,y);
         ctx.fill();
         ctx.closePath();
+        initParticlesTimer = setTimeout(function() {
+          blastShape(x,y);
+        }, 800);
         return "red0";
       case 1: // White Square
         ctx.fillStyle = "white";
         ctx.fillRect(x,y,100,100);
+        initParticlesTimer = setTimeout(function() {
+          blastShape(x,y);
+        }, 800);
         return "white1"
       case 2: // White Triangle
         ctx.fillStyle = "white";
@@ -34,12 +45,17 @@ window.addEventListener("load", function() {
         ctx.lineTo(x,y);
         ctx.fill();
         ctx.closePath();
+        initParticlesTimer = setTimeout(function() {
+          blastShape(x,y);
+        }, 800);
         return "white0";
       default: // Red Square
         ctx.fillStyle = "red";
         ctx.fillRect(x,y,100,100);
+        initParticlesTimer = setTimeout(function() {
+          blastShape(x,y);
+        }, 800);
         return "red1";
-
     }
   }
 
@@ -62,11 +78,11 @@ window.addEventListener("load", function() {
   }
 
   function startTimer(timerSpan) {
-    var timer = setInterval(function() {
-      timerSpan.innerText = Number(timerSpan.innerText) - 1;
+    intervalId = setInterval(function() {
+    timerSpan.innerText = Number(timerSpan.innerText) - 1;
 
       if (Number(timerSpan.innerText) === 0) {
-        clearInterval(timer);
+        clearInterval(intervalId);
         endGame();
       }
     }, 1000);
@@ -75,11 +91,51 @@ window.addEventListener("load", function() {
   function endGame() {
     expectedKey = undefined;
     gameOn = false;
-    // return undefined :D
+    effectOn = false;
     restartGame(ctx, width, height, scoreSpan, timerSpan);
   }
 
-  // NEED TO HAVE AN END-GAME SCREEN and input moves to a reset game.
+  // MAYBE implement this
+  function randomEffect(randomNum) {
+
+  }
+
+  function blastShape(x, y) {
+    
+    clear(ctx, height, width);
+    var tempX = 0;
+    var tempY = 0;
+    effectOn = true;
+    for (var i = 0; i < particles.length; i++) {
+      particles[i].x = Math.floor(Math.random() * 50) + x;
+      particles[i].y = Math.floor(Math.random() * 50) + y;
+      particles[i].velX = Math.floor(Math.random() * 5 - 2.5);
+      particles[i].velY = Math.floor(Math.random() * 5 - 2.5);
+    }
+    
+
+    particlesInterval = setInterval(function() {
+      if (effectOn) {
+        clear(ctx, canvas.width, canvas.height);
+        for (var j = 0; j < particles.length; j++) {
+          ctx.fillRect(particles[j].x,particles[j].y,2,2);
+          particles[j].x += particles[j].velX;
+          particles[j].y += particles[j].velY;
+        }
+        particleTimer = setTimeout(function() {
+          if (effectOn) {
+            clearInterval(particlesInterval);
+            effectOn = false;
+            clear(ctx, canvas.width, canvas.height);
+          }
+        }, 2000);
+      }
+    }, 50); 
+  }
+
+/*
+  Initialize game and variables
+*/
 
   var canvas = document.getElementById("shapes-game"),
       height = canvas.scrollHeight,
@@ -93,10 +149,26 @@ window.addEventListener("load", function() {
       timerSpan = document.getElementById("time-remaining"),
       scoreSpan = document.getElementById("score-val"),
       seconds = 3,
-      intervalId;
+      intervalId,
+      particles = [],
+      initParticlesTimer,
+      particlesInterval,
+      stopParticleTimer,
+      effectOn = false;;
 
   canvas.width = width;
   canvas.height = height;
+
+  // Set up the particles only once;.
+  for (var i = 0; i < 50; i++) {
+      var particle = {
+        x: 0, 
+        y: 0, 
+        velX: 10, 
+        velY: 10
+      }
+      particles.push(particle);
+  }
 
   document.addEventListener("keyup", function(event) {
     if (gameOn === false) {
