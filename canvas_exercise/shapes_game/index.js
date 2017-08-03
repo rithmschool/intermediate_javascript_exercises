@@ -1,4 +1,5 @@
 window.addEventListener("load", function() {
+  // adding a comment here to trigger a commit for new pull request
 
   function clear(ctx, width, heigt) {
   }
