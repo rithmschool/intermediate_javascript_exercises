@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row main sidepane">
+        <h1>
+            <p class="row foo"></p>
+            <div class="row main sidepane">
+                <h2>
+                    <div class="row test">1</div>
+                </h2>
+            </div>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="main">
+            <h2 class="row">
+                <div id="foo" class="row main sidepane">
+                    2
+                </div>
+            </h2>
+        </div>
+    </div>
+    <div class="row"></div>
+    <script>
+    function getElementById(id, node = document.body) {
+  var element = null;
+
+  if (node.id === id) {
+    element = node;
+  }
+  if (node.children) {
+    for (var i = 0; i < node.children.length; i++) {
+      getElementById(id, node.children[i]);
+    }
+  }
+  return element;
+}
+//
+// function getElementsByTagName(tagName, node = document.body) {
+//   var result = [];
+//
+//   if (node.tagName.split('.').includes(tagName)) {
+//     result.push(node);
+//   }
+//   if (node.children) {
+//     for (var i = 0; i < node.children.length; i++) {
+//       result = result.concat(getElementsByTagName(tagName, node.children[i]));
+//     }
+//     return result;
+//   }
+// }
+//
+// function getElementsByClassName(className, node = document.body) {
+//   var result = [];
+//
+//   if (node.className.split(' ').includes(className)) {
+//     result.push(node);
+//   }
+//   if (node.children) {
+//     for (var i = 0; i < node.children.length; i++) {
+//       result = result.concat(
+//         getElementsByClassName(className, node.children[i])
+//       );
+//     }
+//     return result;
+//   }
+// }
+</script>
+</body>
+</html>
