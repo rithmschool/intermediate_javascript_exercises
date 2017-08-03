@@ -26,49 +26,52 @@
     </div>
     <div class="row"></div>
     <script>
-    function getElementById(id, node = document.body) {
-  var element = null;
+    function getElementById(id){
+      return window[id];
+    }
+// function getElementById(id, node = document.body) {
+//   var element = null;
+//
+//   if (node.id === id) {
+//     element = node;
+//   }
+//   if (node.children) {
+//     for (var i = 0; i < node.children.length; i++) {
+//       getElementById(id, node.children[i]);
+//     }
+//   }
+//   return element;
+}
+//
+function getElementsByTagName(tagName, node = document.body) {
+  var result = [];
 
-  if (node.id === id) {
-    element = node;
+  if (node.tagName.split('.').includes(tagName)) {
+    result.push(node);
   }
   if (node.children) {
     for (var i = 0; i < node.children.length; i++) {
-      getElementById(id, node.children[i]);
+      result = result.concat(getElementsByTagName(tagName, node.children[i]));
     }
+    return result;
   }
-  return element;
 }
-//
-// function getElementsByTagName(tagName, node = document.body) {
-//   var result = [];
-//
-//   if (node.tagName.split('.').includes(tagName)) {
-//     result.push(node);
-//   }
-//   if (node.children) {
-//     for (var i = 0; i < node.children.length; i++) {
-//       result = result.concat(getElementsByTagName(tagName, node.children[i]));
-//     }
-//     return result;
-//   }
-// }
-//
-// function getElementsByClassName(className, node = document.body) {
-//   var result = [];
-//
-//   if (node.className.split(' ').includes(className)) {
-//     result.push(node);
-//   }
-//   if (node.children) {
-//     for (var i = 0; i < node.children.length; i++) {
-//       result = result.concat(
-//         getElementsByClassName(className, node.children[i])
-//       );
-//     }
-//     return result;
-//   }
-// }
+
+function getElementsByClassName(className, node = document.body) {
+  var result = [];
+
+  if (node.className.split(' ').includes(className)) {
+    result.push(node);
+  }
+  if (node.children) {
+    for (var i = 0; i < node.children.length; i++) {
+      result = result.concat(
+        getElementsByClassName(className, node.children[i])
+      );
+    }
+    return result;
+  }
+}
 </script>
 </body>
 </html>
