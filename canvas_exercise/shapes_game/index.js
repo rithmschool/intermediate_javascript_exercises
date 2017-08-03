@@ -27,14 +27,14 @@ window.addEventListener("load", function() {
         ctx.closePath();
         initParticlesTimer = setTimeout(function() {
           blastShape(x,y);
-        }, 800);
+        }, 500);
         return "red0";
       case 1: // White Square
         ctx.fillStyle = "white";
         ctx.fillRect(x,y,100,100);
         initParticlesTimer = setTimeout(function() {
           blastShape(x,y);
-        }, 800);
+        }, 500);
         return "white1"
       case 2: // White Triangle
         ctx.fillStyle = "white";
@@ -47,14 +47,14 @@ window.addEventListener("load", function() {
         ctx.closePath();
         initParticlesTimer = setTimeout(function() {
           blastShape(x,y);
-        }, 800);
+        }, 500);
         return "white0";
       default: // Red Square
         ctx.fillStyle = "red";
         ctx.fillRect(x,y,100,100);
         initParticlesTimer = setTimeout(function() {
           blastShape(x,y);
-        }, 800);
+        }, 500);
         return "red1";
     }
   }
@@ -107,8 +107,8 @@ window.addEventListener("load", function() {
     for (var i = 0; i < particles.length; i++) {
       particles[i].x = Math.floor(Math.random() * 50) + x;
       particles[i].y = Math.floor(Math.random() * 50) + y;
-      particles[i].velX = Math.floor(Math.random() * 5 - 2.5);
-      particles[i].velY = Math.floor(Math.random() * 5 - 2.5);
+      particles[i].velX = Math.floor(Math.random() * 10 - 5);
+      particles[i].velY = Math.floor(Math.random() * 10 - 5);
     }
 
     particleTimer = setTimeout(function() {
