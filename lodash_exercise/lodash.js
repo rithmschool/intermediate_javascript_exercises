@@ -343,11 +343,24 @@ function repeat(string='', n=1){
 }
 
 function upperFirst(str){
-
+	return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function flatten(){
+// Flattens array a single level deep.
+// Base Case: We run out of elements in the aray (any)
+function flatten(array){
+	var flattenedArr = [];
 
+	for (var i = 0; i < array.length; i++) {
+		if (Array.isArray(array[i])) {
+			for (var j = 0; j < array[i].length; j++)
+			flattenedArr.push(array[i][j]);
+		} else {
+			flattenedArr.push(array[i]);
+		}
+	}
+
+	return flattenedArr;
 }
 
 function zip(){
