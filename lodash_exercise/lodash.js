@@ -95,11 +95,35 @@ function cloneDeep(collection){
 	return result;
 }
 
-function sumBy(){
-
+function sumBy(arrOfObj, iteratee){
+	if (typeof iteratee === "string") {
+		return arrOfObj.reduce(function(acc, obj){
+			acc += obj[iteratee];
+			return acc;
+		}, 0);
+	} else {
+		var sum = 0;
+		for (var i = 0; i < arrOfObj.length; i++) {
+			sum += iteratee(arrOfObj[i]);
+		}
+		return sum;
+	}
 }
 
-function inRange(){
+function inRange(num, start=0, end){
+	// Checks if n is between start and up to, but not including, end.
+	// If end is not specified, it's set to start with start then set to 0.
+	// If start is greater than end the params are swapped to support negative ranges.
+	if (end === undefined) {
+		end = start;
+		start = 0;
+	}
+	if (start > end) {
+		var hold = start;
+		start = end;
+		end = hold;
+	}
+	return (num > start && num < end);
 
 }
 
@@ -107,16 +131,28 @@ function has(){
 
 }
 
-function omit(){
-
+function omit(obj, arrKeysToOmit){
+	var result = {};
+	for (var key in obj) {
+		if (arrKeysToOmit.indexOf(key) === -1) {
+			result[key] = obj[key];
+		}	    
+	}
+	return result;
 }
 
-function pick(){
-
+function pick(obj, arrKeysToPick){
+	var result = {};
+	for (var key in obj) {
+		if (arrKeysToPick.indexOf(key) !== -1) {
+			result[key] = obj[key];
+		}	    
+	}
+	return result;
 }
 
 function pickBy(){
-
+	
 }
 
 function omitBy(){
@@ -127,16 +163,33 @@ function padEnd(){
 
 }
 
-function repeat(){
+function repeat(str, times){
+	if (times === 0) return "";
+	if (times === 1) return str;
 
+	var result = "";
+	for (var i = 0; i < times; i++) {
+		result = result.concat(str);
+	}
+	return result;
 }
 
 function upperFirst(str){
-
+	var result = "";
+	return result.concat(str[0].toUpperCase() + str.slice(1));
 }
 
-function flatten(){
-
+function flatten(arr){
+	//NOT WORKING
+	var result = [];
+	for (var i = 0; i < arr.length; i++) {
+		if (Array.isArray(arr[i])) {
+			flatten(arr[i]);
+		} else {
+			result.push(arr[i]);
+		}
+	}
+	return result;
 }
 
 // BONUS
