@@ -139,54 +139,163 @@ function inRange(num, start, end){
 	
 }
 
-function has(){
+function has(obj, path){
+	var keys, isDefined = obj;
+	if(typeof path === 'string') { keys = path.split('.'); }
+	else { keys = path; }
+
+	for(let k of keys){
+		isDefined = isDefined[k];
+		if(isDefined === undefined) return false;
+	}
+
+	return true;
+	
+	/* 
+	var keys;
+	if(typeof path === 'string') { keys = path.split('.'); }
+	else { keys = path; } 
+
+	if(keys.length === 0) return true;
+	if(obj[keys[0]] === undefined) return false;
+	return has(obj[keys], keys.slice[1]);
+	*/
 
 }
 
-function omit(){
+function omit(obj, keys){
+	var newObj = {};
 
+	for(let key in obj){
+		newObj[key] = obj[key];
+	}
+
+	for(let key of keys){
+		delete(newObj[key]);
+	}
+
+	return newObj;
 }
 
-function pick(){
+function pick(obj, keys){
+	var newObj = {};
 
+	for(let k of keys){
+		newObj[k] = obj[k];
+	}
+
+	return newObj;
 }
 
-function pickBy(){
+function pickBy(obj, fn){
+	var newObj = {};
 
+	for(let key in obj){
+		if(fn(obj[key])) newObj[key] = obj[key];
+	}
+
+	return newObj;
 }
 
-function omitBy(){
+function omitBy(obj, fn){
+	var newObj = {};
 
+	for(let key in obj){
+		if(!fn(obj[key])) newObj[key] = obj[key];
+	}
+
+	return newObj;
 }
 
-function padEnd(){
+function padEnd(str, len, pad = " "){
+	var newStr = str;
 
+	while(newStr.length < len) { newStr += pad; }
+
+	return newStr.substring(0, len);
 }
 
-function repeat(){
+function repeat(str, num){
+	var newStr = '';
 
+	for(let i = 0; i < num; i++) newStr += str;
+
+	return newStr;
 }
 
 function upperFirst(str){
 
+	return str[0].toUpperCase() + str.substring(1);
+
 }
 
-function flatten(){
+function flatten(arr){
+	var newArr = [];
 
+	for(let v of arr){
+		if(Array.isArray(v)){
+			for(let sv of v) newArr.push(sv);
+		} 
+		else {
+			newArr.push(v);
+		}
+	}
+
+	return newArr;
 }
 
 function zip(){
+	var newArr = [];
 
+	for(let a = 0; a < arguments[0].length; a++){
+		let temp = [];
+
+		for(let i = 0; i < arguments.length; i++){
+			temp.push(arguments[i][a]);
+		}
+
+		newArr.push(temp);
+	}
+
+	return newArr;
 }
 
-function unzip(){
+function unzip(arr){
+	var newArr = [];
 
+	for(let a = 0; a < arr[0].length; a++){
+		let temp = [];
+
+		for(let i = 0; i < arr.length; i++){
+			temp.push(arr[i][a]);
+		}
+
+		newArr.push(temp);
+	}
+
+	console.log(newArr);
+	return newArr;
 }
 
-function flip(){
+function flip(fn){
 
+	return function(...args){
+		var rev = args.reverse();
+		return fn(...rev);
+	}
 }
 
-function flattenDeep(){
+function flattenDeep(arr){
+	var newArr = [];
 
+	for(let v of arr){
+		if(Array.isArray(v)){
+			newArr = newArr.concat(flattenDeep(v));
+		} 
+		else {
+			newArr.push(v);
+		}
+	}
+
+	return newArr;
 }
