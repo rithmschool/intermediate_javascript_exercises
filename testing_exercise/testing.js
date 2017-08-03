@@ -9,9 +9,6 @@ function replaceWith(str, replaceThisChar, replacementChar) {
 }
 
 function expand(arr, num) {
-	if (num === 1) {
-		return arr;
-	}
 	var result = arr;
 	for (var i = 1; i < num; i++) {
 		result = result.concat(arr);
