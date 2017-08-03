@@ -179,6 +179,8 @@ window.addEventListener("load", function() {
     if (expectedKey !== undefined) {
       if (event.keyCode === expectedKeysMap[expectedKey]) {
         scoreSpan.innerText = Number(scoreSpan.innerText) + 1;
+      } else if (event.keyCode == 38 || event.keyCode=== 40 || event.keyCode=== 37 || event.keyCode=== 39){
+        scoreSpan.innerText = Number(scoreSpan.innerText) - 1; 
       }
     }
     
