@@ -6,8 +6,9 @@ describe('replaceWith', () => {
     expect(replaceWith('awesome', 'e', 'z')).to.equal('awzsomz');
   });
 
-  it('should be case insensitive', () => {
-    expect(replaceWith('awEsome', 'e', 'z')).to.equal('awzsomz');
+  it('should be case sensitive', () => {
+    expect(replaceWith('awEsome', 'e', 'z')).to.equal('awEsomz');
+    expect(replaceWith('awesomE', 'e', 'Z'), 'big Z').to.equal('awZsomE');
   });
 
   it('should replace letters', () => {
@@ -47,7 +48,7 @@ describe('mergeArrays', () => {
 describe('mergeObjects', () => {
   it('merge objects', () => {
     expect(
-      mergeObjects({name: 'Foo', num: 33}, {test: 'thing', num: 55})
+      mergeObjects({ name: 'Foo', num: 33 }, { test: 'thing', num: 55 })
     ).to.deep.equal({
       name: 'Foo',
       test: 'thing',

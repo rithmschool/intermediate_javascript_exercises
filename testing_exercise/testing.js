@@ -1,12 +1,8 @@
 function replaceWith(string, pattern, replacer) {
-  var newString = [];
-  string.split('').forEach(function(letter) {
-    if (letter.toLowerCase() === pattern.toLowerCase()) {
-      letter = replacer;
-    }
-    newString.push(letter);
-  });
-  return newString.join('');
+  return string
+    .split('')
+    .map(letter => (letter === pattern ? replacer : letter))
+    .join('');
 }
 
 function expand(arr, num) {
@@ -27,7 +23,7 @@ function acceptNumbersOnly() {
 }
 
 function mergeArrays(arr1, arr2) {
-  return arr1.concat(arr2).sort();
+  return arr1.concat(arr2).sort((a, b) => a - b);
 }
 
 function mergeObjects(obj1, obj2) {
