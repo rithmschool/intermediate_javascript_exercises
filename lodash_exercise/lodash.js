@@ -201,6 +201,37 @@ if (Array.isArray(path)) {
 	 	}
 	}
 return false
+
+
+
+
+
+
+// //recurse through object, without grabbing all the keys first.
+// function has(object,path){
+// 	function helper(obj) {
+// 		for (var key in obj) {
+// 			if (typeof obj[key] === "object") {
+// 				return helper(obj[key]);
+// 			}
+// 		}
+// 	}
+
+// if (Array.isArray(path)) {
+// 	for (var i = 0; i < path.length; i ++){
+// 	   if (arr.indexOf(path[i]) !== -1) {
+// 	   	return true
+// 	   }
+// 	}
+// } else if (typeof path === "string") {
+// 	 	if (arr.indexOf(path) !== -1) {
+// 	 		return true
+// 	 	}
+// 	}
+// return false
+
+
+
 }
 
 function omit(object, remove){
@@ -290,7 +321,17 @@ var newArr = [];
 
 
 //bonus
+//not finished
 function zip(){
+var zippedArr = []
+var iteration = arguments[0].length
+	for (var i = 0; i < arguments.length; i++) {
+		// call recursion here.
+	}
+
+function helper(arr) {
+	// do this while not equal to iteration.
+}
 
 }
 
@@ -298,10 +339,33 @@ function unzip(){
 
 }
 
-function flip(){
 
+//not finished
+function flip(fn){
+	var flippedArr = []
+	for (var i = 0; i < arguments.length; i++) {
+		flippedArr.unshift(arguments[i])
+	}
+
+	return fn(flippedArr);
 }
 
-function flattenDeep(){
 
+
+function flattenDeep(array){
+var newArr = [];
+
+	function helper(arr) {
+		for (var i = 0; i < arr.length; i++) {
+			if (Array.isArray(arr[i])) {
+				helper(arr[i]);
+			} else {
+				newArr.push(arr[i]);
+			}
+		}
+	}
+
+helper(array);
+return newArr;
+	
 }
