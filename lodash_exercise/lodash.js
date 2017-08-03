@@ -61,16 +61,38 @@ function zipObject(keysArr, valuesArr){
 	return result;
 }
 
-function includes(){
-
+function includes(collection, val, fromIndex=0){
+	// collection can be an array, string, or object
+	if (typeof collection === "object" && Array.isArray(collection) !== true) {
+		for (var key in collection) {
+			if (collection[key] === val) {
+				return true;
+			}
+		}
+		return false;
+	}
+	return (collection.slice(fromIndex).indexOf(val) !== -1) ? true : false;
 }
 
-function sample(){
-
+function sample(arr){
+	return arr[Math.floor(Math.random()*arr.length-1)];
 }
 
-function cloneDeep(){
-
+function cloneDeep(collection){
+	var result;
+	if (Array.isArray(collection)) {
+		result = [];
+		collection.forEach(function(val){
+			// we want to make all the references different
+			result.concat(cloneDeep(val));
+		});
+	} else {
+	    result = {};
+		for (var key in collection) {
+			result[key] = collection[key];
+		}
+	}
+	return result;
 }
 
 function sumBy(){
