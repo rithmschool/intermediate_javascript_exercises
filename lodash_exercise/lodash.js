@@ -106,12 +106,35 @@ function cloneDeep(obj){
 	return newObj;
 }
 
-function sumBy(array, fn = function()){
+function sumBy(arr, cb){
+	var total = 0;
+	var fn;
+	if(typeof cb === 'string'){
+		fn = function(obj){
+			return obj[cb];
+		}
+	}else{
+		fn = cb;
+	}
 
+	for(let e of arr){
+		total += fn(e);
+	}
+
+	return total;
 }
 
-function inRange(){
-
+function inRange(num, start, end){
+	if(!end){
+		end = start;
+		start = 0;
+	}
+	if(end < start){
+		let temp = end;
+		end = start;
+		start = temp;
+	}
+	return num >= start && num < end; 
 }
 
 function has(){
