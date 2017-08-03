@@ -52,7 +52,7 @@ function sample(col){
 }
 
 function cloneDeep(col){
-  return Object.create(col);
+  return JSON.parse(JSON.stringify(col));
 }
 
 function sumBy(arr, fn){
