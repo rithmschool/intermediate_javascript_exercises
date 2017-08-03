@@ -1,7 +1,7 @@
 function replaceWith(str, target, replacement){
 	return str
 		.split('')
-		.map(function(v,i,a){
+		.map(function(v){
 			if(v === target) return replacement;
 			else return v;
 		}).join('');
@@ -28,12 +28,12 @@ function acceptNumbersOnly(...args) {
 }
 
 function mergeArrays(arr1, arr2) {
-	return arr1.concat(arr2).sort();
+	return arr1.concat(arr2).sort(function(a, b){return a-b;});
 }
 
 function mergeObjects(...args) {
-	return args.reduce(function(t,v,i,a){
-		Object.keys(v).forEach(function(sv, si, sa){
+	return args.reduce(function(t,v){
+		Object.keys(v).forEach(function(sv){
 			t[sv] = v[sv];
 		});
 		return t;
