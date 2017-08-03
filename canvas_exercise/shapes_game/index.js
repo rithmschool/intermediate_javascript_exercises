@@ -11,7 +11,7 @@ window.addEventListener("load", function() {
     var y = Math.random() * (height - 100);
 
     effectOn = false;
-    clearInterval(initParticlesTimer);
+    clearTimeout(initParticlesTimer);
     clearInterval(particlesInterval);
     clearTimeout(stopParticleTimer);
 
@@ -103,8 +103,6 @@ window.addEventListener("load", function() {
   function blastShape(x, y) {
     
     clear(ctx, height, width);
-    var tempX = 0;
-    var tempY = 0;
     effectOn = true;
     for (var i = 0; i < particles.length; i++) {
       particles[i].x = Math.floor(Math.random() * 50) + x;
@@ -112,7 +110,14 @@ window.addEventListener("load", function() {
       particles[i].velX = Math.floor(Math.random() * 5 - 2.5);
       particles[i].velY = Math.floor(Math.random() * 5 - 2.5);
     }
-    
+
+    particleTimer = setTimeout(function() {
+      if (effectOn) {
+        clearInterval(particlesInterval);
+        effectOn = false;
+        clear(ctx, canvas.width, canvas.height);
+      }
+    }, 2000);
 
     particlesInterval = setInterval(function() {
       if (effectOn) {
@@ -122,13 +127,6 @@ window.addEventListener("load", function() {
           particles[j].x += particles[j].velX;
           particles[j].y += particles[j].velY;
         }
-        particleTimer = setTimeout(function() {
-          if (effectOn) {
-            clearInterval(particlesInterval);
-            effectOn = false;
-            clear(ctx, canvas.width, canvas.height);
-          }
-        }, 2000);
       }
     }, 50); 
   }
