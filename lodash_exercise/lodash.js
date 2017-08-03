@@ -136,11 +136,15 @@ function upperFirst(str){
   return str.slice(0,1).toUpperCase().concat(str.slice(1));
 }
 
+// Yeah, I know it's a nested loop, but I couldn't figure out
+// any other way to do it
 function flatten(arr){
   let flat = [];
   for (let e of arr) {
     if (Array.isArray(e)) {
-      flat.concat(e);
+      for (let f of e){
+        flat.push(f);  
+      }
     } else {
       flat.push(e);  
     }
