@@ -151,12 +151,24 @@ function pick(obj, arrKeysToPick){
 	return result;
 }
 
-function pickBy(){
-	
+function pickBy(obj, callback){
+	var result = {};
+	for (var key in obj) {
+		if (callback(obj[key])) {
+			result[key] = obj[key];
+		}
+	}
+	return result;
 }
 
-function omitBy(){
-
+function omitBy(obj, callback){
+	var result = {};
+	for (var key in obj) {
+		if (!callback(obj[key])) {
+			result[key] = obj[key];
+		}
+	}
+	return result;
 }
 
 function padEnd(){
