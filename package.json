@@ -1,0 +1,12 @@
+{
+  "name": "intermediate_javascript_exercises",
+  "version": "1.0.0",
+  "description": "Rithm Cohort Assignments",
+  "main": "index.js",
+  "repository": "git@github.com:PerStirpes/intermediate_javascript_exercises.git",
+  "author": "Matt Barraza-Carl <mccarl@asu.edu>",
+  "license": "none",
+  "devDependencies": {
+    "browser-sync": "^2.18.13"
+  }
+}
