@@ -49,17 +49,7 @@ function contains(obj, val) {
 }
 
 
-function realSize(arrays) {
-  // Force be with you, code warrior!
-  var count = 0;
-  
-  for(var i = 0; i < arrays.length
-  if(Array.isArray(arrays)) {
-    return realSize(arra
-  }
-  
-  return 0;
-}
+
 
 
 
