@@ -1,9 +1,8 @@
 function drop(arr, num=1){
 	if (num === 1) {
 		return arr.slice(1);
-	} else {
-		return arr.slice(num);
 	}
+	return arr.slice(num);
 }
 
 function fromPairs(arr){
@@ -23,9 +22,8 @@ function fromPairs(arr){
 function head(arr){
 	if (arr.length === 0) {
 		return undefined;
-	} else {
-		return arr[0];
 	}
+	return arr[0];
 }
 
 function take(arr, num=1){
@@ -35,9 +33,8 @@ function take(arr, num=1){
 function takeRight(arr, num=1){
 	if (num === 0) {
 		return []
-	} else {
-		return arr.slice(num*-1);
 	}
+	return arr.slice(num*-1);
 }
 
 function union(){
@@ -71,7 +68,7 @@ function includes(collection, val, fromIndex=0){
 		}
 		return false;
 	}
-	return (collection.slice(fromIndex).indexOf(val) !== -1) ? true : false;
+	return collection.slice(fromIndex).indexOf(val) !== -1 ? true : false;
 }
 
 function sample(arr){
