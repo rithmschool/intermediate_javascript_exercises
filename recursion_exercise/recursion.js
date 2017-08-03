@@ -33,9 +33,9 @@ function realSize(arrays) {
 	function helper(arr){
 		for(var i = 0; i < arr.length; i++){
 			if(typeof arr[i] === "number") count++;
-  			else if(Array.isArray(arr[i])) helper(arr[i]);
-  	}
-  }
+     else if(Array.isArray(arr[i])) helper(arr[i]);
+   }
+ }
   helper(arrays);
   return count;
 }
@@ -43,18 +43,18 @@ function realSize(arrays) {
 function SumSquares(l){
 	var total = 0;
   function helper(a){
-		for(var i = 0; i < a.length; i++){
-			if(typeof a[i] === "number") total += Math.pow(a[i], 2);
-		  else if(Array.isArray(a[i])) helper(a[i]);
-		}
-	}
-	helper(l);
-	return total;
+    for(var i = 0; i < a.length; i++){
+     if(typeof a[i] === "number") total += Math.pow(a[i], 2);
+     else if(Array.isArray(a[i])) helper(a[i]);
+   }
+ }
+ helper(l);
+ return total;
 }
 
 function replicate(times, number) {
 	var newArr = [];
- 	if(times <= 0) return newArr;
+  if(times <= 0) return newArr;
   else return newArr.concat(number,replicate(times-1, number));
 }
 
@@ -86,11 +86,11 @@ function stringifyNumbers(obj) {
   var newObj = {};
   for(var key in obj) {
     if(typeof obj[key] === "object" && !Array.isArray(obj[key])){
-     	newObj[key] = stringifyNumbers(obj[key]);
+      newObj[key] = stringifyNumbers(obj[key]);
     } else if(typeof obj[key] === "number"){
     	newObj[key] = (obj[key]).toString();
     } else{
-     	newObj[key] = obj[key];
+      newObj[key] = obj[key];
     }
   }
   return newObj;
