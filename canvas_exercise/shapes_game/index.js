@@ -56,25 +56,17 @@ window.addEventListener("load", function() {
     timerSpan.innerText = "30"; // restart the timerSpan
     scoreSpan.innerText = "0"; // restart the score
 
-    ctx.fillStyle = "white"; // re-render start text
-    ctx.font = "2em Times New Roman";
-    ctx.fillText("Score: " + score, 120, 300);
+    if (alreadyPlayed) {
+      ctx.fillStyle = "white"; // re-render start text
+      ctx.font = "2em Times New Roman";
+      ctx.fillText("Score: " + score, 120, 300);
+    }
 
     ctx.fillStyle = "white"; // re-render start text
     ctx.font = "2.3em Times New Roman";
     ctx.fillText("Press the space bar to start the game.", 120, 350);
 
     score = 0; 
-  }
-
-  function restartGame(ctx, width, height) {
-    clear(ctx, width, height); // clear the board of any text or shapes
-    seconds = 30; // restart the seconds
-    timerSpan.innerText = "30"; // restart the timerSpan
-    scoreSpan.innerText = "0"; // restart the score
-    ctx.fillStyle = "white"; // re-render start text
-    ctx.font = "2.3em Times New Roman";
-    ctx.fillText("Press the space bar to start the game.", 120, 350);
   }
 
   function runTimer() {
@@ -94,6 +86,7 @@ window.addEventListener("load", function() {
       height = canvas.scrollHeight,
       width = canvas.scrollWidth,
       gameOn = false,
+      alreadyPlayed = false,
       expectedKey = undefined,
       ctx = canvas.getContext('2d'),
       // white triangle / white0 = up, red square / red1 = down,
@@ -124,6 +117,7 @@ window.addEventListener("load", function() {
     } else { // if gameOn is false, only start game if space bar is clicked
       if (e.keyCode === 32) {
         gameOn = !gameOn;
+        alreadyPlayed = true;
         clear(ctx, width, height);
         drawRandomShape(ctx, width, height);
         runTimer();
@@ -131,6 +125,6 @@ window.addEventListener("load", function() {
     }
   });
 
-  restartGame(ctx, width, height);
+  drawGameStartText(ctx, width, height);
 });
 
