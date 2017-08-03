@@ -87,12 +87,12 @@ function cloneDeep(collection){
 			result.concat(cloneDeep(val));
 		});
 	} else {
-	    result = {};
-		for (var key in collection) {
-			result[key] = collection[key];
-		}
-	}
-	return result;
+    result = {};
+    for (var key in collection) {
+      result[key] = collection[key];
+   }
+}
+return result;
 }
 
 function sumBy(arrOfObj, iteratee){
@@ -171,8 +171,13 @@ function omitBy(obj, callback){
 	return result;
 }
 
-function padEnd(){
-
+function padEnd(str="", length=0, chars=" "){
+	//NOT WORKING
+	var result = str.slice();
+	if (length === 0) {
+		result result;
+	}
+	return result;
 }
 
 function repeat(str, times){
