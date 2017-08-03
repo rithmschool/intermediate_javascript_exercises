@@ -149,23 +149,24 @@ search([1,2,3,4,5],15); // -1
 
 // =============================================================================
 // iterative solution
-// function binarySearch(array, num) {
-//   let left = 0;
-//   let right = array.length - 1;
-//
-//   while (true) {
-//     if (left > right) return -1;
-//
-//     let middle = Math.floor((left + right) / 2);
-//
-//     if (array[middle] === num) return middle;
-//
-//     if (array[middle] < num) {
-//       left = middle + 1;
-//     } else right = middle - 1;
-//     }
-//   }
-// }
+function binarySearch(array, num) {
+  let left = 0;
+  let right = array.length - 1;
+  let middle = 0;
+
+  while (true) {
+    if (left > right) return -1;
+
+    middle = Math.floor((left + right) / 2);
+
+    if (array[middle] === num) return middle;
+
+    if (array[middle] < num) {
+      left = middle + 1;
+    } else right = middle - 1;
+    }
+  }
+}
 
 // recursive solution
 function binarySearch(array, num, left = 0, right = array.length - 1) {
