@@ -11,8 +11,8 @@ body {
   padding: 10px;
 }
 .canvas-container, #shapes-game {
-  height: 750px;
-  width: 800px;
+  height: 700px;
+  width: 750px;
 }
 
 .scores {
