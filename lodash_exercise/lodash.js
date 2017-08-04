@@ -39,8 +39,9 @@ function union(){
 
   for (let i = 0; i < arrays.length; i++) {
     for (let j = 0; j < arrays[i].length; j++) {
-      console.log(arrays[i][j]);
-      if(!result.includes(arrays[i][j])) result.push(arrays[i][j]);
+      if(!result.includes(arrays[i][j])) {
+        result.push(arrays[i][j]);
+      }
     }
   }
 
@@ -61,18 +62,27 @@ function zipObject(keys, values){
 // =============================================================================
 function includes(collection, value, fromIndex = 0){
   if (Array.isArray(collection)) {
-    if (collection.indexOf(value) === fromIndex) return true;
-    else return false;
+    if (collection.indexOf(value) === fromIndex) {
+      return true;
+    } else {
+      return false;
+    }
 
   } else if (typeof collection === 'object') {
     for (let key in collection) {
-      if (collection[key] === value) return true;
+      if (collection[key] === value) {
+        return true;
+      }
     }
 
     return false;
+
   } else if (typeof collection === 'string') {
-    if (collection.indexOf(value) !== -1) return true;
-    else return false;
+    if (collection.indexOf(value) !== -1) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   return false;
@@ -82,12 +92,16 @@ function includes(collection, value, fromIndex = 0){
 function sample(collection){
   let rnd = Math.floor(Math.random() * collection.length);
 
-  if (Array.isArray(collection)) return collection[rnd];
-  else {
+  if (Array.isArray(collection)) {
+    return collection[rnd];
+  } else {
     let keyNum = 0;
 
     for (let key in collection) {
-      if (keyNum === rnd) return collection[key];
+      if (keyNum === rnd) {
+        return collection[key];
+      }
+
       keyNum++;
     }
   }
@@ -134,13 +148,17 @@ function sumBy(array, iteratee){
 // =============================================================================
 function inRange(number, end, start = 0){
   if (start > end) {
-    let swap = start;
-    start = end;
-    end = swap;
+    [start, end] = [end, start];
+    // let swap = start;
+    // start = end;
+    // end = swap;
   }
 
-  if (start <= number && number < end) return true;
-  else return false;
+  if (start <= number && number < end) {
+    return true;
+  }
+
+  return false;
 }
 
 // =============================================================================
@@ -159,18 +177,22 @@ function has(object, path){
   }
 
   helper (object);
-  console.log(keyArray);
 
   if (Array.isArray(path)) {
     for (var i = 0; i < path.length; i++) {
-      if (!keyArray.includes(path[i])) return false;
+      if (!keyArray.includes(path[i])) {
+        return false;
+      }
     }
 
     return true;
-  } else {
-    if (keyArray.includes(path)) return true;
-    else return false;
   }
+
+  if (keyArray.includes(path)) {
+    return true;
+  }
+
+  return false;
 }
 
 // =============================================================================

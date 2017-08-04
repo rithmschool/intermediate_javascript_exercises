@@ -43,7 +43,7 @@ let o = {
 
 collectStrings(o); // ["foo", "bar", "baz"])
 
-// =============================================================================
+// // =============================================================================
 function contains(obj, val) {
   for (let key in obj) {
     if (obj[key] === val) {
@@ -147,27 +147,27 @@ function search(array, num, index = 0) {
 search([1,2,3,4,5],5); // 4
 search([1,2,3,4,5],15); // -1
 
-// =============================================================================
-// iterative solution
-function binarySearch(array, num) {
-  let left = 0;
-  let right = array.length - 1;
-  let middle = 0;
-
-  while (true) {
-    if (left > right) return -1;
-
-    middle = Math.floor((left + right) / 2);
-
-    if (array[middle] === num) return middle;
-
-    if (array[middle] < num) {
-      left = middle + 1;
-    } else right = middle - 1;
-    }
-  }
-}
-
+// // =============================================================================
+// // iterative solution
+// function binarySearch(array, num) {
+//   let left = 0;
+//   let right = array.length - 1;
+//   let middle = 0;
+//
+//   while (true) {
+//     if (left > right) return -1;
+//
+//     middle = Math.floor((left + right) / 2);
+//
+//     if (array[middle] === num) return middle;
+//
+//     if (array[middle] < num) {
+//       left = middle + 1;
+//     } else right = middle - 1;
+//     }
+//   }
+// }
+//
 // recursive solution
 function binarySearch(array, num, left = 0, right = array.length - 1) {
   if (left > right) return -1;
@@ -178,9 +178,9 @@ function binarySearch(array, num, left = 0, right = array.length - 1) {
 
   if (array[middle] < num) {
     return binarySearch(array, num, middle + 1, right);
-  } else {
-    return binarySearch(array, num, left, middle - 1);
   }
+
+  return binarySearch(array, num, left, middle - 1);
 }
 
 binarySearch([1,2,3,4,5],5); // 4
@@ -193,14 +193,18 @@ function stringifyNumbers(object) {
   for (let key in object) {
     if (typeof object[key] === 'number') {
       newObj[key] = object[key].toString();
+
     } else if (Array.isArray(object[key])) {
       newObj[key] = object[key];
+
     } else if (typeof object[key] === 'object') {
       newObj[key] = stringifyNumbers(object[key]);
+
     } else {
       newObj[key] = object[key];
     }
   }
+
   return newObj;
 }
 
