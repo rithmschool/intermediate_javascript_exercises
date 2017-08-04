@@ -51,8 +51,23 @@ function sample(col){
   return col[Math.floor(Math.random() * col.length)];
 }
 
-function cloneDeep(col){
-  return JSON.parse(JSON.stringify(col));
+function cloneDeep(col) {
+  let newCol = {};
+  if (Array.isArray(col)) newCol = [];
+
+  function cloneHelper(col) {
+    let obj = {};
+    for (let e in col) {
+      if (typeof col[e] === 'object' && !Array.isArray(col[e])) {
+        newCol.push(cloneHelper(col[e]));
+      } else {
+        obj[e] = col[e];
+      }
+    }
+    return obj;
+  }
+  cloneHelper(col);
+  return newCol;
 }
 
 function sumBy(arr, fn){
@@ -136,17 +151,13 @@ function upperFirst(str){
   return str.slice(0,1).toUpperCase().concat(str.slice(1));
 }
 
-// Yeah, I know it's a nested loop, but I couldn't figure out
-// any other way to do it
 function flatten(arr){
   let flat = [];
   for (let e of arr) {
     if (Array.isArray(e)) {
-      for (let f of e){
-        flat.push(f);  
-      }
+      flat = flat.concat(e);  
     } else {
-      flat.push(e);  
+      flat.push(e);
     }
   }
   return flat;
