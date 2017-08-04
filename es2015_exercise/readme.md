@@ -12,16 +12,30 @@ var person = {
     }
 }
 ```
+var person = {
+    fullName: "Harry Potter",
+    sayHi(){
+        setTimeout(() => console.log("Your name is " + this.fullName).bind(this),1000)
+    }
+}
+
 
 ```javascript
 var name = "Josie"
 console.log("When " + name + " comes home, so good")
 ```
 
+var name = "Josie"
+console.log(`When ${name} comes home, so good`)
+
+
 ```javascript
 var DO_NOT_CHANGE = 42;
 DO_NOT_CHANGE = 50; // stop me from doing this!
 ```
+
+const DO_NOT_CHANGE = 42;
+DO_NOT_CHANGE = 50; // stop me from doing this!
 
 ```javascript
 var arr = [1,2]
@@ -30,6 +44,11 @@ arr[0] = arr[1]
 arr[1] = temp
 ```
 
+var [b,a] = arr
+-- or --
+var [a,b] = arr
+var arr = [b,a]
+
 ```javascript
 function double(arr){
     return arr.map(function(val){
@@ -37,6 +56,10 @@ function double(arr){
     });
 }
 ```
+
+var double = (arr) => arr.map(val => val*2);
+    
+
 
 ```javascript
 var obj = {
@@ -49,6 +72,10 @@ var obj = {
 var a = obj.numbers.a;
 var b = obj.numbers.b;
 ```
+
+var{a,b} = obj.numbers
+
+
 
 ```javascript
 function add(a,b){
@@ -64,12 +91,18 @@ function add(a,b){
 }
 ```
 
+var add = (a=10, b=10) => a+b
+
+
+
+
+
 Research the following functions - what do they do?
 
-`Array.from` -
+`Array.from` - Creates an array from an array-like object
 
-`Object.assign` -
+`Object.assign` - Creates a new object with key-value pairs copied from another array.
 
-`Array.includes` -
+`Array.includes` - checks if a value is in the array but does not return the index
 
-`String.startsWith` -
+`String.startsWith` - returns true or false based on whether the string begins with the argument passed.
