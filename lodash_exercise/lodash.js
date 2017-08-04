@@ -181,8 +181,6 @@ function has(obj, gKeys){
 
 			if(typeof a[key] === 'object')
 				helper(a[key]);
-			else
-				return;
 		}
 	}
 	helper(obj);
