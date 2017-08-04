@@ -184,8 +184,14 @@ function omit(obj, paths){
 	return copy;
 }
 
-function pick(){
-
+function pick(obj, paths){
+	var finalObj = {};
+	
+	for(let val of paths) {
+		finalObj[val] = obj[val];
+	}
+	return finalObj;
+	
 }
 
 function pickBy(){
