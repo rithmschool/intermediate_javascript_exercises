@@ -235,12 +235,20 @@ function pick(obj, gKeys){
 	return rObj;
 }
 
-function pickBy(){
-
+function pickBy(obj, fn){
+	rObj = {};
+	for (key in obj)
+		if (fn(obj[key]))
+			rObj[key] = obj[key];
+	return rObj;
 }
 
-function omitBy(){
-
+function omitBy(obj, fn){
+	rObj = {};
+	for (key in obj)
+		if (!fn(obj[key]))
+			rObj[key] = obj[key];
+	return rObj;
 }
 
 function padEnd(){
