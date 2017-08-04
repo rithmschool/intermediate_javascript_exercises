@@ -248,6 +248,7 @@ function omitBy(obj, fn){
 	for (key in obj)
 		if (!fn(obj[key]))
 			rObj[key] = obj[key];
+		
 	return rObj;
 }
 
