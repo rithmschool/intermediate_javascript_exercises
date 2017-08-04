@@ -1,13 +1,13 @@
 var expect = chai.expect;
 
 describe("replaceWith", function () {
-	it("replaces a capital with a capital", function(){
+  it("replaces a capital with a capital", function(){
 		expect(replaceWith("Foobar", "F", "B")).to.equal("Boobar");
 	});
-	it("does not capitalize when it isn't passed a capital", function(){
+  it("does not capitalize when it isn't passed a capital", function(){
 		expect(replaceWith("Hello", "e", "i")).to.equal("Hillo");
 	});
-	it("does not get rid of capitalization", function(){
+  it("does not get rid of capitalization", function(){
 		expect(replaceWith("TeST", "S", "M")).to.equal("TeMT");
 	});
 });
