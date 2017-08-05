@@ -2,26 +2,33 @@
 
 Convert the following es5 code blocks into es2015 code:
 
+using this, so can't use arrow function?  .bind?
+
 ```javascript
 var person = {
     fullName: "Harry Potter",
     sayHi: function(){
         setTimeout(function(){
-            console.log("Your name is " + this.fullName)
+            console.log('Your name is ${this.fullName}')
         }.bind(this),1000)
     }
 }
 ```
 
-```javascript
-var name = "Josie"
-console.log("When " + name + " comes home, so good")
-```
+done,changed to string interpolation
 
 ```javascript
-var DO_NOT_CHANGE = 42;
-DO_NOT_CHANGE = 50; // stop me from doing this!
+var name = "Josie"
+console.log('When ${name} comes home, so good')
+
 ```
+done, used const 
+
+```javascript
+const DO_NOT_CHANGE = 42;
+DO_NOT_CHANGE = 50; // stop me from doing this!  
+```
+??
 
 ```javascript
 var arr = [1,2]
@@ -30,13 +37,13 @@ arr[0] = arr[1]
 arr[1] = temp
 ```
 
+done?
+
 ```javascript
-function double(arr){
-    return arr.map(function(val){
-        return val*2
-    });
-}
+function double(arr) => ( arr.map(val => (val*2); )
 ```
+
+done, destructed below
 
 ```javascript
 var obj = {
@@ -46,30 +53,24 @@ var obj = {
     } 
 }
 
-var a = obj.numbers.a;
-var b = obj.numbers.b;
+var {a,b} = obj.numbers
 ```
+changed to default inputs... is || saying "or ten"?
 
 ```javascript
-function add(a,b){
-    if(a === 0) a = 0
-    else {
-        a = a || 10    
-    }
-    if(b === 0) b = 0
-    else {
-        b = b || 10    
-    }
+function add(a =0,b=0){
+    a = a || 10   
+    b = b || 10    
     return a+b
 }
 ```
 
 Research the following functions - what do they do?
 
-`Array.from` -
+`Array.from` - creates a new Array from an array-like object or string (changes "foo" to ["f","o","o"]
 
-`Object.assign` -
+`Object.assign` - creates a shallow copy of one source to a target source. ex: can create a new object with inputs. Object.assign({},obj); if feed empty object first it copies to a new empty object
 
-`Array.includes` -
+`Array.includes` - determines if an array includes a certain element, returns boolean
 
-`String.startsWith` -
+`String.startsWith` - determines if a string begins with the characters of a given "search" string, returns boolean ex: string.startsWith('a'). 2nd parameter is index to begin search at, defaults to 0. 
