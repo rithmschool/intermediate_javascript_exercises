@@ -8,7 +8,6 @@ window.addEventListener("load", function() {
     ctx.clearRect(0, 0, width, height);
   }
 
-
   // ===========================================================================
   // drawRandomShape
   function drawRandomShape(ctx, width, height) {

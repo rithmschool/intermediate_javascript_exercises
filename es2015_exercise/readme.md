@@ -104,7 +104,7 @@ Array.from() optionally takes two arguments, a map function that runs on each el
 ## `Object.assign`
 Copies the values of all enumerable properties of one or more source objects to a target object (passed in as the first parameter), which is returned. Propertes in the returned object are overwritten by properties in the source object if they have the same name. The copy that is created is a shallow copy, that is, only references to arrays and objects are copied, not the actual values.
 
-## `Array.includes` 
+## `Array.includes`
 This method is used to determine if an array includes a specified element and returns true if found, false if not found. It can be used in place of `Array.indexOf()` when a true or false is needed rather than the element's index. It takes an optional argument that specifies which index to begin searching from.
 
 ## `String.startsWith`
