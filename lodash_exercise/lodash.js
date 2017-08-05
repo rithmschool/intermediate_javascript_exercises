@@ -282,18 +282,75 @@ function flatten(array){
   return result;
 }
 
-function zip(){
+// =============================================================================
+function zip(...args){
+  var numArrays = args.length;
+  var longest = 0;
+  var longestIdx = 0;
+  var result = [];
 
+  // identify the longest array
+  for (let i = 0; i < numArrays; i++) {
+    if (args[i].length > longest) {
+      longest = args[i].length;
+      longestIdx = i;
+    }
+  }
+
+  // splice the longest array out of the args array
+  var longArr = args.splice(longestIdx, 1);
+
+  // unshift the longest array into the args array so that it's first
+  args.unshift(longArr[0]);
+
+  for (let i = 0; i < longest; i++) {
+    let array = [];
+
+    for (let j = 0; j < numArrays; j++) {
+      array.push(args[j][i]);
+    }
+
+    result.push(array);
+  }
+
+  return result;
 }
 
-function unzip(){
+// =============================================================================
+function unzip(arrays) {
+  var result = [];
 
+  for (let i = 0; i < arrays[0].length; i++) {
+    var array = [];
+
+    for (var j = 0; j < arrays.length; j++) {
+      if (arrays[j][i] !== undefined) {
+        array.push(arrays[j][i]);
+      }
+    }
+
+    result.push(array);
+  }
+
+  return result;
 }
 
+// =============================================================================
 function flip(){
 
 }
 
-function flattenDeep(){
+// =============================================================================
+function flattenDeep(array){
+  let flattened = [];
 
+  for (let i = 0; i < array.length; i++) {
+    if (Array.isArray(array[i])) {
+      flattened = flattened.concat(flattenDeep(array[i]));
+    } else {
+      flattened.push(array[i]);
+    }
+  }
+
+  return flattened;
 }
