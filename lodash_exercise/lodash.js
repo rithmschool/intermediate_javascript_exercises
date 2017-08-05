@@ -228,14 +228,7 @@ function upperFirst(str){
 function flatten(arr){
   var result = [];
   for (var i = 0; i < arr.length; i++) {
-    if (Array.isArray(arr[i])) {
-      // if the current element is an array,
-      // we need to go down a layer to flatten that as well
-      // and then remember to add it to the result and reassign since concat doesn't modify original arr
-      result = result.concat(flatten(arr[i]));
-    } else {
-      result.push(arr[i]);
-    }
+    result = result.concat(arr[i]);
   }
   return result;
 }
@@ -255,6 +248,17 @@ function flip(){
 }
 
 function flattenDeep(){
-
+  var result = [];
+  for (var i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      // if the current element is an array,
+      // we need to go down a layer to flatten that as well
+      // and then remember to add it to the result and reassign since concat doesn't modify original arr
+      result = result.concat(flatten(arr[i]));
+    } else {
+      result.push(arr[i]);
+    }
+  }
+  return result;
 }
 
