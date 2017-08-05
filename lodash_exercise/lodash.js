@@ -90,19 +90,35 @@ function sample(array){
     return array[randomIndex];
 }
 
-function cloneDeep(){
+function cloneDeep(obj,answer={}){
+   
+    for(var key in obj){
+        //if array
+        if(typeof obj[key] === 'array'){
+            var array = obj[key];
+            var newArray = [];
+            for(var i =0; i < array.length; i++){
+                newArray.push(array[i]);
+            }
+            answer.push(newArray);
+        }
+        //if object
+        if(typeof obj[key] === 'object'){
+            deepClone(obj[key],answer);
+        } 
 
+        //base case, position is not obj or array
+        else {
+            answer[key] = obj[key];
+            return;
+        }
+    }
+    return answer;
 }
+
 
 function sumBy(obj,cb){
     var sum = 0;
-    if(typeof cb === 'string'){
-        for(var key in obj){
-            if(key === cb){
-                sum += obj[key]
-            }
-        }
-    };
 
     if(typeof cb === 'function'){
         for(var i=0; i < obj.length; i++){
@@ -110,27 +126,84 @@ function sumBy(obj,cb){
             sum += resultOfFunction;
         };
     };
+    
+//does this require recursion??
+    if(typeof cb === 'string'){
+        for(var val of obj){
+             if(obj[val] === cb){
+                sum += obj[val]
+             }
+        }
+    };
     return sum;
 }
 
-function inRange(){
 
+function inRange(a,b,c){
+    var min = b;
+    var max = c;
+    if(arguments.length === 2){
+        max = b;
+        min = 0;
+    }
+    if(arguments[1] > arguments[2]){
+        max = b;
+        min = c;
+    }
+    if((a < max) && (a > min)){
+        return true;
+    }
+    return false;
 }
 
-function has(){
+function has(object,path){
 
+    for(var key in object){
+        if(object.hasOwnProperty(key)){
+            return true;
+        } else {
+            has(object,path)
+        }
+    }
+    return false;
 }
 
-function omit(){
-
+function omit(object,pathsArray){
+    var answer = {}
+    for(var j=0; j <pathsArray.length; j++){
+        currentKey = pathsArray[j];  
+        for(var key in object){
+            if(object.hasOwnProperty(currentKey) === true){
+                delete object[currentKey];
+            }
+        }
+    };
+    return object;
 }
 
-function pick(){
-
+function pick(object,pathsArray){
+    var answer = {}
+    for(var j=0; j <pathsArray.length; j++){
+        currentKey = pathsArray[j];  
+        for(var key in object){
+            if(object.hasOwnProperty(currentKey) === true){
+                answer[currentKey] = object[currentKey];
+            }
+        }
+    };
+    return answer;
+    
 }
 
-function pickBy(){
-
+function pickBy(object,fn){
+    var answer = {}
+   
+    for (var key in object) {
+        if(fn(object[key]) === true){
+            answer[key] = object[key];
+        } 
+    }
+    return answer;    
 }
 
 function omitBy(){
