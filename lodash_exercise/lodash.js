@@ -45,7 +45,7 @@ function union(array1,array2){
     newArray = newArray.sort(function(a,b){
         return b-a;
     });
-    console.log(newArray);
+
     for(var i =0; i < newArray.length; i++){
         if(newArray[i] === newArray[i+1])
             newArray.splice(i,1)
@@ -206,24 +206,62 @@ function pickBy(object,fn){
     return answer;    
 }
 
-function omitBy(){
+function omitBy(object,fn){
+    var answer = {}
+   
+    for (var key in object) {
+        if(fn(object[key]) !== true){
+            answer[key] = object[key];
+        } 
+    }
+
+    return answer;    
+}
+
+
+function padEnd(string,length=0,chars=" "){
+    if(length === 0){
+        return string
+    } else {
+        for(var i = 1; string.length <= length-1; i++){
+            string += chars;
+        }
+        return string
+    }
+}
+
+function repeat(string,n=1){
+    answer = ""
+    if(n===0){
+        return '';
+    } else {
+        for(var i = 0; i <= n; i++){
+            answer += string
+        }
+    }
+    return answer;
 
 }
 
-function padEnd(){
-
+function upperFirst(string){
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function repeat(){
 
-}
-
-function upperFirst(str){
-
-}
-
-function flatten(){
-
+function flatten(array){
+    var answer = [];
+    for(var i = 0; i < array.length; i++){
+        var currentPosition = array[i]
+        if(typeof currentPosition === 'number'){
+            answer.push(array[i]);
+        }
+        if(typeof currentPosition === 'object'){
+            for(var j = 0; j < currentPosition.length; j++){
+                answer.push(currentPosition[j]);
+            }
+        }
+    }
+    return answer;
 }
 
 function zip(){
@@ -238,6 +276,18 @@ function flip(){
 
 }
 
-function flattenDeep(){
-
+function flattenDeep(array, answer=[]){
+    for(var i = 0; i < array.length; i++){
+        var currentPosition = array[i]
+        if(typeof currentPosition === 'number'){
+            answer.push(array[i]);
+        }
+        if(typeof currentPosition === 'object'){
+            //for(var j = 0; j < currentPosition.length; j++){
+                answer.push(currentPosition)
+                flattenDeep(array,answer)
+           // }
+        }
+    }
+    return answer;
 }
