@@ -235,9 +235,29 @@ function flatten(arr){
 
 // BONUS
 
+// passes in X number of arrays
+// first array containing first elements, 2nd containing 2nd, etc.
+// returns X number of arrays with those elements as listed
+// e.g. [a,b,c], [1,2,3], [x,y,z] ==> [[a,1,x], [b,2,y], [c,3,z]]
 function zip(){
+  var result = [];
+  for (let n = 0; n < arguments[0].length; n++) {
+    result.push([]);
+  }
+  // there should be N nested arrays for N elements in each array passed in
+  // e.g. if first array has 10 elements, resulting number of nested arrays is 10
 
-}
+  // loop through the arguments (they are all arrays)
+  // grab first/i element of each one, add to a new array
+  // add that new array to the result
+  for (let i = 0; i < arguments[0].length; i++) {
+    for (let j = 0; j < arguments.length; j++) {
+      result[i].push(arguments[j][i]);
+    }
+  }
+  return result;
+} // note that this will only work if the longest array in the arguments is the 1st one passed in
+// otherwise we would have to first find the longest array from the arguments
 
 function unzip(){
 
