@@ -47,7 +47,7 @@ window.addEventListener("load", function() {
   // ===========================================================================
   // drawGameStartText
   function drawGameStartText(ctx, width, height, score) {
-    ctx.font = '28px serif';
+    ctx.font = '30px serif';
     ctx.fillStyle = 'white';
     ctx.fillText('Press the space bar to start a new game.', 170, 360);
 
@@ -71,6 +71,7 @@ window.addEventListener("load", function() {
       height = canvas.scrollHeight,
       width = canvas.scrollWidth,
       current,
+      score,
       gameOn = false,
       ctx = canvas.getContext('2d'),
       // white triangle = up, red square = down,
@@ -85,7 +86,7 @@ window.addEventListener("load", function() {
   canvas.width = width;
   canvas.height = height;
 
-  drawGameStartText(ctx, width, height, 0);
+  drawGameStartText(ctx, width, height);
 
   document.addEventListener("keyup", function(event) {
     if (event.keyCode === 32 && gameOn === false) {
