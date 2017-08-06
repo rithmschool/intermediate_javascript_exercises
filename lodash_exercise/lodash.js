@@ -259,22 +259,38 @@ function zip(){
 } // note that this will only work if the longest array in the arguments is the 1st one passed in
 // otherwise we would have to first find the longest array from the arguments
 
-function unzip(){
 
+function unzip(){ // unzip takes in a result in the format of what's returned from zip
+  // e.g. [['a', 1, true], ['b', 2, false]], which has a length of 1
+  var result = [];
+  // there should be N nested arrays for N elements in each arg
+  for (let n = 0; n < arguments[0][0].length; n++) {
+    result.push([]);
+  }
+
+  // loop through the arguments (they are all arrays)
+  // grab first/i element of each one, add to a new array
+  // add that new array to the result
+  for (let i = 0; i < result.length; i++) {
+    for (let j = 0; j < arguments[0].length; j++) {
+      result[i].push(arguments[0][j][i]);
+    }
+  }
+  return result;
 }
 
 function flip(){
 
 }
 
-function flattenDeep(){
+function flattenDeep(arr){
   var result = [];
   for (var i = 0; i < arr.length; i++) {
     if (Array.isArray(arr[i])) {
       // if the current element is an array,
       // we need to go down a layer to flatten that as well
       // and then remember to add it to the result and reassign since concat doesn't modify original arr
-      result = result.concat(flatten(arr[i]));
+      result = result.concat(flattenDeep(arr[i]));
     } else {
       result.push(arr[i]);
     }
