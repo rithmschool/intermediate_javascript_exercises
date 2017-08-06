@@ -118,7 +118,6 @@ function cloneDeep(obj){
     var newObj = {};
     for(let prop in obj){
       newObj[prop] = cloneDeep(obj[prop])
-      return newObj;
     }
   } else {
     return obj
