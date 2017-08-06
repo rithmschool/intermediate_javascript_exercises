@@ -117,24 +117,24 @@ function cloneDeep(obj,answer={}){
 }
 
 
-function sumBy(obj,cb){
+function sumBy(array,cb){
     var sum = 0;
-
     if(typeof cb === 'function'){
-        for(var i=0; i < obj.length; i++){
-            var resultOfFunction = cb(obj[i]);
+        for(var i=0; i < array.length; i++){
+            var resultOfFunction = cb(array[i]);
             sum += resultOfFunction;
         };
     };
-    
-//does this require recursion??
     if(typeof cb === 'string'){
-        for(var val of obj){
-             if(obj[val] === cb){
-                sum += obj[val]
-             }
+        for(var j=0; j < array.length; j++){
+            var currentObj = array[j]
+            for(var key in currentObj){
+                if(key === cb){
+                    sum += currentObj[cb]
+                }
+            }
         }
-    };
+    }
     return sum;
 }
 
@@ -235,7 +235,7 @@ function repeat(string,n=1){
     if(n===0){
         return '';
     } else {
-        for(var i = 0; i <= n; i++){
+        for(var i = 1; i <= n; i++){
             answer += string
         }
     }
@@ -264,9 +264,20 @@ function flatten(array){
     return answer;
 }
 
-function zip(){
-
+function zip(...arrays){
+    //arrays = [arg,arg,arg]
+    var answerArray =[];
+    var subArray = [];
+    for(var i = 0; i < arrays[0].length; i++){
+        for(var j = 0; j < arrays[0].length; j++){
+            subArray.push(arrays[i], arrays[i[j]])
+        }
+        answerArray.push(subArray);
+    } 
+    return answerArray;
 }
+
+
 
 function unzip(){
 
