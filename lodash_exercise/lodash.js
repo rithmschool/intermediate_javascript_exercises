@@ -12,7 +12,7 @@ function fromPairs(arr){
  return arr.reduce((acc, el) => {
  	 acc[el[0]] = el[1];
 
- 	 return acc; 
+ 	 return acc;
  }, {})
 
  // let result = {};
@@ -46,7 +46,7 @@ function takeRight(arr, num=1){
 
 
 function union(...a){
-	 
+
 	return	a.reduce((acc, el)=>{
 						return acc.concat(el);
 				  },[])
@@ -113,7 +113,7 @@ function cloneDeep(obj){
 		var arr = [];
     for(let val of obj){
     	arr.push(cloneDeep(val))
-    }        
+    }
 	} else if (typeof obj === 'object'){
 		var newObj = {};
 		for(let prop in obj){
@@ -154,7 +154,7 @@ function has(obj, search){
 		index++
 
 		if(searchArr.length-1 === index && o[searchArr[index]]) return;
-		
+
 		if(typeof o[searchArr[index]] === 'object'){
 			 iterator(o[searchArr[index]])
 		} else {
@@ -198,7 +198,7 @@ function pickBy(obj, callBack){
 			result[prop] = obj[prop];
 		}
 	}
-	return result;	
+	return result;
 
 }
 
@@ -221,7 +221,7 @@ function padEnd(str, num, repeatChars = ' '){
 	if(strLng-1 < num){
 		for(let i= 0; i < num-strLng; i++){
 			result += repeatChars[i % repeatChars.length]
-		} 
+		}
 	}
 
 
@@ -245,7 +245,7 @@ function repeat(str, num){
 	if(num > 0){
 		for(let i= 0; i < num; i++){
 			result += str;
-		} 
+		}
 	}
 
 	return result;
@@ -274,9 +274,9 @@ function zip(...arr){
 		if(longestArrayLength === counter) return
 
 		for(let i = 0; i < a.length; i++){
-			 if(counter === 0 && a[i].length > longestArrayLength) 
+			 if(counter === 0 && a[i].length > longestArrayLength)
 			 	longestArrayLength = a[i].length;
-			 
+
 			 currentArr.push(a[i][counter])
 		}
 		result.push(currentArr)
@@ -316,7 +316,7 @@ function flip(fn){
 			for(let i = a.length-1; i >= 0 ; i--){
 				reverseElements.push(a[i])
 			}
-			
+
 			return fn(...reverseElements)
 	}
 
