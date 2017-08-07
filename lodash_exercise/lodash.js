@@ -73,10 +73,10 @@ function includes(input, value, index) {
   //check type of input
   if (Array.isArray(input)) {
     if (index !== undefined) {
-      var slicedArr = input.slice(index);
-      return (slicedArr[0] !== value);
+      var slicedArr = input.slice(index + 1);
+      return (slicedArr[index] === value);
     } else {
-      return (input.indexOf(value) != -1);
+      return (input.indexOf(value) > -1);
     }
   } else if (typeof input === "string") {
     return input.indexOf(value) !== -1;
@@ -90,12 +90,28 @@ function sample(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-function cloneDeep() {
-
+function cloneDeep(input) {
+  //recursively clones value
+  if (Array.isArray(input)) {
+    for (let i = 0; i < input.length; i++) {
+      var newArr = [];
+      newArr = newArr.concat(cloneDeep(input[i]));
+    }
+    return newArr;
+  }
+  return Object.assign({}, input);
 }
 
-function sumBy() {
-
+function sumBy(arr, funOrKey) {
+  var sum = 0;
+  for (var i = 0; i < arr.length; i++) {
+    if (typeof funOrKey === "function") {
+       sum += funOrKey(arr[i]);
+    } else {
+       sum += arr[i][funOrKey];
+    }
+  }
+  return sum;
 }
 
 function inRange() {
