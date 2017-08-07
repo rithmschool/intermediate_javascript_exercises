@@ -9,7 +9,8 @@
   "scripts": {
     "start": "browser-sync start --files '**/*.js, **/*.html, **/*.css'",
     "2": "yarn start -- --server canvas",
-    "3": "yarn start -- --server canvas_exercise"
+    "3": "yarn start -- --server canvas_exercise",
+    "test": "scripts/test"
   },
   "devDependencies": {
     "browser-sync": "^2.18.13"
