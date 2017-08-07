@@ -2,17 +2,6 @@ function identity(value) {
   return value;
 }
 
-function forEach(collection, iteratee) {
-  if (Array.isArray(collection)) {
-    for (var index = 0; index < collection.length; index++) {
-      iteratee(collection[index], index, collection);
-    }
-  }
-  for (var prop in collection) {
-    iteratee(collection[prop], prop, collection);
-  }
-}
-
 function drop(array, n = 1) {
   return array.slice(n);
 }
@@ -151,30 +140,53 @@ function flatten(array) {
     return prev.concat(curr);
   }, []);
 }
-//**************************************************//
-function zip() {
-  return [...arguments].reduce(
-    (prev, curr, idx) => {
-      if (idx === 0) {
-        prev[0].push(curr);
-      } else {
-        prev[1].push(curr);
-      }
-      return prev;
-    },
-    [[], []]
-  );
-}
 
-function unzip() {}
+function zip(array) {
+  var max = 0;
+  var result = new Array(max);
+  array = Array.from(arguments);
 
-function flip(flipped) {
-  return flipped();
-}
-function flipped() {
-  return [...arguments].reduceRight(function(prev, curr) {
-    return prev - curr;
+  forEach(array, function(arg) {
+    max = Math.max(arg.length, max);
   });
+
+  for (var i = 0; i < max; i++) {
+    result[i] = array.map(item => item[i]);
+  }
+
+  return result;
+}
+//**************************************************//
+
+function unzip(array) {
+  var index = -1;
+  var length = 0;
+
+  array = filter(array, function(arg) {
+    if (Array.isArray(arg)) {
+      length = Math.max(arg.length, length);
+      return true;
+    }
+  });
+
+  var result = new Array(length);
+
+  while (++index < length) {
+    result[index] = map(array, function(obj) {
+      return obj[index];
+    });
+  }
+  return result;
+}
+
+function flip(func) {
+  return function() {
+    var flipped = [];
+    for (var i = arguments.length - 1; i >= 0; i--) {
+      flipped.push(arguments[i]);
+    }
+    return func(...flipped);
+  };
 }
 //**************************************************//
 function flattenDeep(array) {
@@ -182,5 +194,29 @@ function flattenDeep(array) {
     return prev.concat(
       Array.isArray(toFlatten) ? flattenDeep(toFlatten) : toFlatten
     );
+  }, []);
+}
+
+function forEach(collection, iteratee) {
+  if (Array.isArray(collection)) {
+    for (var index = 0; index < collection.length; index++) {
+      iteratee(collection[index], index, collection);
+    }
+  }
+  for (var prop in collection) {
+    iteratee(collection[prop], prop, collection);
+  }
+}
+
+function map(array, callBack) {
+  return array.reduce((mapArr, item) => mapArr.concat(callBack(item)), []);
+}
+
+function filter(array, callBack) {
+  return array.reduce((filterArr, item) => {
+    if (callBack(item)) {
+      filterArr.push(item);
+    }
+    return filterArr;
   }, []);
 }
