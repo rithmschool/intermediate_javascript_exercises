@@ -60,4 +60,56 @@ function search(array, lookFor){
     return index;
 }
 
+//not recursive
+// function binarySearch(array, searchElement) {
+//     var minIndex = 0;
+//     var maxIndex = array.length - 1;
+//     var currentIndex;
+//     var current;
 
+//     while (minIndex <= maxIndex) {
+//         currentIndex = (minIndex + maxIndex) / 2 | 0;
+//         current = array[currentIndex];
+
+//         if (current < searchElement) {
+//             minIndex = currentIndex + 1;
+//         }
+//         else if (current > searchElement) {
+//             maxIndex = currentIndex - 1;
+//         }
+//         else {
+//             return currentIndex;
+//         }
+//     }
+
+//     return -1;
+// }
+
+//recursive
+function binarySearch(array, searchElement) {
+    var minIndex = 0;
+    var maxIndex = array.length - 1;
+    var currentIndex = (minIndex + maxIndex) / 2 | 0;
+    var currentNumber = array[currentIndex];
+      
+    if (currentNumber < searchElement) {
+        minIndex = currentIndex + 1;
+        binarySearch(array.slice(minIndex), searchElement)
+
+    }
+
+    if (currentNumber > searchElement) {
+        maxIndex = currentIndex - 1;
+        binarySearch(array.slice(0, maxIndex), searchElement)
+    }
+  
+    if (currentNumber === searchElement) {
+        return currentIndex;
+    }
+    // } else {
+    //     return -1;
+    // }
+}
+
+binarySearch([1,2,3,4,5,6,7],6)
+//5
