@@ -25,8 +25,8 @@ window.addEventListener("load", function() {
         expectedKey = 'ArrowDown';
         ctx.fillStyle = 'red';
         ctx.fillRect(
-          top,
           left,
+          top,
           50,
           50);
         break;
