@@ -1,24 +1,19 @@
 function drop(arr, num){
   var dropArr = [];
-
   if(num === undefined) {
   	num = 1;
   }
-
   for(var i = num; i < arr.length; i++) {
   	dropArr.push(arr[i])
   }
   return dropArr;
-  
 }
 
 function fromPairs(arr){
 	var pairsObj = {};
-
 	for(var i = 0; i < arr.length; i++) {
 		pairsObj[arr[i][0]] = arr[i][1];		
 	}
-
 	return pairsObj;
 }
 
@@ -28,7 +23,6 @@ function head(){
   } else {
   	return arguments[0][0];
   }
-
 }
 
 function take(arr, num){
@@ -47,7 +41,6 @@ function take(arr, num){
 		takeArr.push(arr[i]);
 	}
 	return takeArr; 
-
 }
 
 function takeRight(arr, num){
@@ -64,13 +57,10 @@ function takeRight(arr, num){
 	for(var i = num-1; i < arr.length; i++) {
 		arrRt.push(arr[i]);
 	}
-
 	return arrRt;
-
 }
 
 function union(arrays){
-
 	var uniqArr = [];
 	var singleArr = [];
 
@@ -83,7 +73,6 @@ function union(arrays){
 		}
 	}
 	return uniqArr;
-
 }
 
 function zipObject(arr1, arr2){
@@ -97,7 +86,6 @@ function zipObject(arr1, arr2){
 //Checks if value is in collection. If collection is a string, it's checked for a substring of value, otherwise SameValueZero is used for equality comparisons. If fromIndex is negative, it's used as the offset from the end of collection.
 function includes(collection, value, indx){
 //REFACTOR
-
 	if(indx !== undefined) {
 		startPt = indx;
 	} else {
@@ -128,21 +116,34 @@ function sample(arr){
 }
 
 function cloneDeep(collection){
-	var copyOf = JSON.parse(JSON.stringify(collection));
-	return copyOf;
+	var finalArr = [];
+	function cloneDeepHelper(coll) {
+		for(var i = 0; i < coll.length; i++) {
+			if(Array.isArray(coll[i])) {
+				finalArr.push(coll[i]);
+			} else {
+				var obj = {};					
+				for(var n in coll[i]) {
+					obj[coll[i][n]] = coll[i][n]; 
+					finalArr.push(obj[coll[i][n]]);
+				}
+			}
+		}
+	}
+	cloneDeepHelper(collection);
+	return finalArr;
 }
 
-function sumBy(arr, param2){
-	// var total = 0;
-
-	// for(var i = 0; i < arr.length; i++) {
-	// 	if(typeof param2 {} === 'function') {
-	// 		total += param2
-	// 	}
-	// 	total += callback(arr[i]);
-	// }
-
-	// return total;
+function sumBy(arr, param){
+	var total = 0;
+	for(var i = 0; i < arr.length; i++) {
+		if(typeof param === 'function') {
+			total += param(arr[i]); 
+ 		} else {
+ 			total += arr[i][param];
+ 		}
+	}
+	return total;
 }
 
 function inRange(num, start, end){
@@ -191,31 +192,93 @@ function pick(obj, paths){
 		finalObj[val] = obj[val];
 	}
 	return finalObj;
-	
 }
 
-function pickBy(){
-
+function pickBy(obj, predicate){
+	var finalObj = {};
+	for(var n in obj) {
+		if(predicate(obj[n])) {
+			finalObj[n] = obj[n];
+		} 
+	}
+	return finalObj;
 }
 
-function omitBy(){
-
+function omitBy(obj, predicate){
+	var finalObj = {};
+	for(var n in obj) {
+		if(!predicate(obj[n])) {
+			finalObj[n] = obj[n];
+		} 
+	}
+	return finalObj;
 }
 
-function padEnd(){
-
+function padEnd(str, len, chars){
+	var sl = str.length;
+	if(sl === len) {
+		return str;
+	}
+	if(sl < len & chars === undefined) {
+		for(var i = 0; i < len-sl; i++) {
+			str +=" ";
+		}
+		return str;
+	} 
+	if(sl > len) {
+		str = str.substring(0, len);
+	} 
+	if(sl < len) {
+		var loops = (len-sl)/chars.length;
+		if(loops % 2 === 0) {
+			for(var i = 0; i < loops; i++) {
+				str += chars;
+			}
+		} else {
+			for(var i = 0; i < Math.ceil((len-sl)/chars.length); i++) {
+				str += chars;
+			}
+			str = str.substring(0, len);
+		}
+		return str;
+	}
 }
 
-function repeat(){
-
+function repeat(str, num){
+	var finalStr = "";
+	if(num === undefined) {
+		return "";
+	}
+	for(var i = 0; i < num; i++) {
+		finalStr += str;
+	}
+	return finalStr;
 }
 
 function upperFirst(str){
-
+	var result = str.split("");
+	result[0] = result[0].toUpperCase();
+	var finalStr = result.join("");
+	return finalStr;
 }
 
-function flatten(){
+function flatten(array){
+	var finalArr = []
 
+	function flattenHelper (arr) {
+		for(var i = 0; i < arr.length; i++) {
+			if(Array.isArray(arr[i])) {
+				for(var j = 0; j < arr[i].length; j++) {
+					finalArr.push(arr[i][j]);
+				}
+			} else {
+				finalArr.push(arr[i]);
+			}
+		}
+		return finalArr;
+	}
+	flattenHelper(array);
+	return finalArr;
 }
 
 function zip(){

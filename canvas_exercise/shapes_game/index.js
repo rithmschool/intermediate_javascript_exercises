@@ -3,8 +3,8 @@ window.addEventListener("load", function() {
   var canvas = document.getElementById("shapes-game"),
       height = canvas.scrollHeight,
       width = canvas.scrollWidth,
-      gameOn = false,
-      expectedKey = undefined,
+      // gameOn = false,
+      // expectedKey = undefined,
       ctx = canvas.getContext('2d'),
       // white triangle = up, red square = down,
       // red triangle = left, white square = right
@@ -14,63 +14,56 @@ window.addEventListener("load", function() {
       seconds = 3,
       intervalId;
 
-  canvas.width = width;
-  canvas.height = height;
+      canvas.width = width;
+      canvas.height = height;
 
   var shapeVal = 0;
   var totalScore = 0;
   var timerCountDown = 1;
-
+  var keyCodes = [37, 38, 39, 40];
 
 
 //-------------------------------------------------------------------  
+//Opening screen
+drawStartText();
+
+//-------------------------------------------------------------------  
+//Start Game
+  function startGame() {
+    clear(); //clear the canvas
+    drawRandomShape(); //add a random shape track scoring 
+    countDown(); //start timer countdown
+    endGaame() //use as a callback for when timer countdown expires  
+  }
+
+//-------------------------------------------------------------------
 
 function drawStartText() {
-
-  var canvas = document.getElementById("shapes-game")
-  var ctx = canvas.getContext('2d');
-
   ctx.font = '40px serif';
   ctx.fillStyle = 'orange';
   ctx.fillText('Press the Space Bar to start a new game', 60, 340);
-
 }
 
-function countDown() {
-    timerCountDown = 10;
-    var int = setInterval(function () {
-        timerSpan.innerHTML = timerCountDown;
-        timerCountDown-- || clearInterval(int);  //if i is 0, then stop the interval
-    }, 1000);
+function drawStartTextAfterGame() {
+  ctx.font = '40px serif';
+  ctx.fillStyle = 'orange';
+  ctx.fillText('Game Over', 290, 340);  
+  ctx.fillText('Press the Space Bar to start a new game', 60, 380);  
 }
 
+//To start game, listen for spacebar keypress
+document.body.onkeypress = function(e){
+    if(e.keyCode === 32){
+      startGame();
+    } 
+}
 
-
-// function countDown(callback) {
-//     timerCountDown = 10;
-//     var int = setInterval(function () {
-//         timerSpan.innerHTML = timerCountDown;
-//         timerCountDown-- ;
-//           if(timerCountDown < 1) {
-//           learInterval(int);  //if i is 0, then stop the interval
-//           callback(value)
-//           }
-//     }, 1000);
-// }
-
-
-//-------------------------------------------------
-  function clear() {
-    ctx.clearRect(0, 0, height, width); 
-  }
-
-  function startGame() {
-    drawRandomShape();
-    // countDown();
-    countDown(clear());
-  }
+function clear() {
+  ctx.clearRect(0, 0, height, width); 
+}
 
   function drawRandomShape() {
+    //draw random image
     var randomImg = Math.floor(Math.random()*(5-1)+1);
     switch(randomImg) {
       case 1:
@@ -85,25 +78,58 @@ function countDown() {
       case 4:
         drawWhiteTriangle()
     }
-
+    //compare image's value to keycode value, and calculate scoring
     document.body.onkeydown = function(e){
-        if(e.keyCode == shapeVal) {
-          totalScore++
-          scoreSpan.innerHTML = totalScore;
-          clear()
-          drawRandomShape()
-        } else {
-          totalScore--
-          scoreSpan.innerHTML = totalScore;
-          clear()
-          drawRandomShape()
-        }
+      if(e.keyCode == shapeVal) {
+        totalScore++
+        scoreSpan.innerHTML = totalScore;
+        clear()
+        drawRandomShape()
+      } else if(keyCodes.includes(e.keyCode)) {
+        totalScore--
+        scoreSpan.innerHTML = totalScore;
+        clear()
+        drawRandomShape()
+      }
     }
   }
 
+  function randomCoordinate() {
+    return Math.floor(Math.random()*(600-100)+100);
+  }
+
+//-------------------------------------------------
+
+function countDown() {
+    timerCountDown = 30;
+    var int = setInterval(function () {
+        timerSpan.innerHTML = timerCountDown;
+        timerCountDown-- ;
+          if(timerCountDown < 1) {
+          clearInterval(int);  //if i is 0, then stop the interval
+          endGame();
+          totalScore = 0;
+            if (event.onkeypress) {
+    event.preventDefault();
+  }
+          }
+    }, 1000);
+}
+
+
+function endGame() {
+  clear();
+  drawStartTextAfterGame(); 
+  timerSpan.innerHTML = "0";
+  scoreSpan.innerHTML = totalScore+1;
+
+}
+
+
+//-------------------------------------------------------------------
+//shape functions
   function drawRedSquare() {
     shapeVal = 40
-    // var ctx = canvas.getContext('2d');
     var upperLeftX = randomCoordinate()
     var upperLeftY = randomCoordinate()
     var width = 100;
@@ -114,8 +140,6 @@ function countDown() {
 
   function drawWhiteSquare() {
     shapeVal = 39
-    // var ctx = canvas.getContext('2d');
-
     var upperLeftX = randomCoordinate()
     var upperLeftY = randomCoordinate()
     var width = 100;
@@ -126,11 +150,9 @@ function countDown() {
 
 function drawWhiteTriangle() {  
     shapeVal = 38
-
     var xCoord = randomCoordinate()
     var yCoord = randomCoordinate()
     var canvas = document.getElementById('shapes-game');
-    // var ctx = canvas.getContext('2d');
     ctx.fillStyle = "white";
     ctx.beginPath();
     ctx.moveTo(xCoord, yCoord);    
@@ -141,11 +163,9 @@ function drawWhiteTriangle() {
 
 function drawRedTriangle() {  
     shapeVal = 37
-
     var xCoord = randomCoordinate()
     var yCoord = randomCoordinate()
     var canvas = document.getElementById('shapes-game');
-    // var ctx = canvas.getContext('2d');
     ctx.fillStyle = "red";
     ctx.beginPath();
     ctx.moveTo(xCoord, yCoord);    
@@ -154,24 +174,6 @@ function drawRedTriangle() {
     ctx.fill();
 }
 
-function randomCoordinate() {
-  return Math.floor(Math.random()*(600-100)+100);
-}
 
-document.body.onkeydown = function(e){
-    if(e.keyCode == 32){
-      startGame();
-      drawStartText();
-
-    } 
-}
-
-
-
-
-
-  document.addEventListener("keyup", function() {
- 
-  });
 });
 

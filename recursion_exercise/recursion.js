@@ -49,6 +49,23 @@ function contains(obj, val) {
 }
 
 
+function search(arr, val) {
+  var indx = 0;
+  function searchHelper(recArr, val) {
+    if(recArr[0] === val) {
+      return indx;
+    } else if(recArr.length > 1) {
+        indx++;
+        recArr.shift();
+        searchHelper(recArr, val);
+    } else {
+      indx = -1
+      return indx
+    }
+  }
+  searchHelper(arr, val);
+  return indx;
+}
 
 
 
