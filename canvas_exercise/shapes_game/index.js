@@ -10,6 +10,7 @@ window.addEventListener("load", function() {
     var x = Math.floor(Math.random() * (650 - 100) + 100);
     var y = Math.floor(Math.random() * (650 - 100) + 100);
 
+    //{white0: 38, red1: 40, red0: 37, white1: 39}
     if (shapes.indexOf(Math.floor(Math.random() * (4 - 0))) === 0) {
         ctx.fillStyle = 'white';
         ctx.beginPath();
@@ -18,7 +19,7 @@ window.addEventListener("load", function() {
         ctx.lineTo(x + 70, x + 70);
         ctx.fill();
         ctx.closePath();
-        return 0;
+        return 'white0';
       }
     else if (shapes.indexOf(Math.floor(Math.random() * (4 - 0))) === 1) {
         ctx.fillStyle = 'red';
@@ -28,17 +29,17 @@ window.addEventListener("load", function() {
         ctx.lineTo(x + 70, x + 70);
         ctx.fill();
         ctx.closePath();
-        return 1;
+        return 'red0';
       }
     else if (shapes.indexOf(Math.floor(Math.random() * (4 - 0))) === 2) {
       ctx.fillStyle = 'white';
       ctx.fillRect(x, y, 70, 70);
-      return 2;
+      return 'white1';
     }
     else {
       ctx.fillStyle = 'red';
       ctx.fillRect(x, y, 70, 70);
-      return 3;
+      return 'red1';
     }
   }
 
@@ -46,10 +47,14 @@ window.addEventListener("load", function() {
     ctx.fillStyle = 'white';
     ctx.font = '36px serif';
     ctx.fillText('Press the space bar to start a new game', width, height);
+    if (score !== undefined) {
+      ctx.fillText('Score: ' + score, width + 225, height + 50);
+    }
   }
 
   function restartGame(ctx, width, height) {
-
+      countdown = 30;
+      scoreSpan.innerHTML = 0;
   }
 
   var canvas = document.getElementById("shapes-game"),
@@ -63,76 +68,46 @@ window.addEventListener("load", function() {
       expectedKeysMap = {white0: 38, red1: 40, red0: 37, white1: 39},
       timerSpan = document.getElementById("time-remaining"),
       scoreSpan = document.getElementById("score-val"),
-      seconds = 3,
+      countdown = 30,
       intervalId;
 
   canvas.width = width;
   canvas.height = height;
-  //white shapes
-  // ctx.fillStyle = 'white';
-  // ctx.fillRect(300, 20, 70, 70);
-  // ctx.beginPath();
-  // ctx.moveTo(30, 30);
-  // ctx.lineTo(30, 100);
-  // ctx.lineTo(100, 100);
-  // ctx.fill();
-  // ctx.closePath();
-  // //red Shapes
-  // ctx.fillStyle = 'red';
-  // ctx.fillRect(200, 400, 70, 70);
-  // ctx.beginPath();
-  // ctx.moveTo(200, 200);
-  // ctx.lineTo(200, 270);
-  // ctx.lineTo(270, 270);
-  // ctx.fill();
-  // ctx.closePath();
-  // //clear shapes, triangle must be cleared like a square
-  // ctx.clearRect(200, 200, 100, 100);
-  // //Game start text
-  // ctx.fillStyle = 'white';
 
-  //timer
-
-  drawGameStartText(ctx, 100, 400);
   document.addEventListener("keyup", function(event) {
-    if (event.keyCode === 32) {
-        var countdown = 30;
-        var timer = setInterval(count, 1000);
-        //0 = white triangle (up) 1 = red triangle(left) 2 = white square(right) 3 = red square(down)
-        function count() {
+    if (!gameOn && event.keyCode === 32) {
+        gameOn = true;
+        clear(ctx, width, height);
+        expectedKey = expectedKeysMap[drawRandomShape(ctx)];
+        intervalId = setInterval(function() {
           countdown--;
-          timerSpan.innerHTML = countdown;
-          clear(ctx, width, height);
           if (countdown === 0) {
-            timerSpan.innerHTML = countdown;
-            clearInterval(timer);
+            clearInterval(intervalId);
+            gameOn = false;
+            var endScore = +scoreSpan.innerHTML;
+            restartGame();
+            clear(ctx, width, height);
+            drawGameStartText(ctx, 100, 400, endScore);
           }
+          timerSpan.innerHTML = countdown;
+        }, 1000);
+        //0 = white triangle (up) 1 = red triangle(left) 2 = white square(right) 3 = red square(down)
+      }
+    else if (gameOn && Object.values(expectedKeysMap).includes(event.keyCode)) {
+        if (expectedKey === event.keyCode) {
+          scoreSpan.innerHTML = Number(scoreSpan.innerHTML) + 1;
         }
+        else {
+          scoreSpan.innerHTML = Number(scoreSpan.innerHTML) - 1;
+        }
+        clear(ctx, width, height);
+        expectedKey = expectedKeysMap[drawRandomShape(ctx)];
       }
-    else {
-      if (event.keyCode === 37) {
-        if (randomShape === 1) Number(scoreSpan.innerHTML += 1);
-        else Number(scoreSpan.innerHTML -= 1);
-      }
-      else if (event.keyCode === 38) {
-        if (randomShape === 0) Number(scoreSpan.innerHTML += 1);
-        else Number(scoreSpan.innerHTML -= 1);
-      }
-      else if (event.keyCode === 39) {
-        if (randomShape === 2) Number(scoreSpan.innerHTML += 1);
-        else Number(scoreSpan.innerHTML -= 1);
-      }
-      else if (event.keyCode === 40){
-        if (randomShape === 3) Number(scoreSpan.innerHTML += 1);
-        else Number(scoreSpan.innerHTML - 1);
-      }
-      else Number(scoreSpan.innerHTML -= 1);
-    }
+  });
+  drawGameStartText(ctx, 100, 400);
 
       //once key gets pressed it runs functions attached
       //waits for next key to be pressed
       //
       //match expectedKey to expectedKeysMap
-    drawRandomShape(ctx);
-  });
 });
