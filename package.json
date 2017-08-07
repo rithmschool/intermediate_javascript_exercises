@@ -7,12 +7,14 @@
   "author": "Matt Barraza-Carl <mccarl@asu.edu>",
   "license": "none",
   "scripts": {
-    "start": "browser-sync start --files '**/*.js, **/*.html, **/*.css'",
     "2": "yarn start -- --server canvas",
     "3": "yarn start -- --server canvas_exercise",
-    "test": "scripts/test"
+    "start": "browser-sync start --files '**/*.js, **/*.html, **/*.css'",
+    "test": "mocha"
   },
   "devDependencies": {
-    "browser-sync": "^2.18.13"
+    "browser-sync": "^2.18.13",
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0"
   }
 }
