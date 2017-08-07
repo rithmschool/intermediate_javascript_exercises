@@ -6,6 +6,11 @@
   "repository": "git@github.com:PerStirpes/intermediate_javascript_exercises.git",
   "author": "Matt Barraza-Carl <mccarl@asu.edu>",
   "license": "none",
+  "scripts": {
+    "start": "browser-sync start --files '**/*.js, **/*.html, **/*.css'",
+    "2": "yarn start -- --server canvas",
+    "3": "yarn start -- --server canvas_exercise"
+  },
   "devDependencies": {
     "browser-sync": "^2.18.13"
   }

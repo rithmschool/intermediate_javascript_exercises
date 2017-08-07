@@ -22,14 +22,6 @@ function fromPairs(array) {
     prev[curr[0]] = curr[1];
     return prev;
   }, {});
-  // var index = -1;
-  // var l = array == null ? 0 : array.length;
-  // var result = {};
-  // while (++index < l) {
-  //   var pair = array[index];
-  //   result[(pair[0] = pair[1])];
-  // }
-  // return result;
 }
 
 function head(array) {
@@ -78,25 +70,29 @@ function cloneDeep(collection) {
     return Object.assign({}, collection);
   }
 }
-//**************************************************//
-function sumBy(array, iteratee) {
-  return array && array.length ? iteratee(identity) : 0;
-}
-//**************************************************//
-function inRange(num, start, end) {
-  if (num < 0) {
-    num *= -1;
-    start *= -1;
-    end *= -1;
-  }
 
-  if (aguments.length > 2) {
-    return start < num && num < end;
-  } else {
-    return 0 < num && num < start;
+function sumBy(array, iteratee) {
+  var count = 0;
+  for (var idx = 0; idx < array.length; idx++) {
+    if (typeof iteratee === 'function') {
+      count += iteratee(array[idx]);
+    } else {
+      count += array[idx][iteratee];
+    }
   }
+  return count;
 }
-//**************************************************//
+
+function inRange(value, start, end) {
+  start = +start || 0;
+  if (end === undefined) {
+    end = start;
+    start = 0;
+  } else {
+    end = +end || 0;
+  }
+  return value >= Math.min(start, end) && value < Math.max(start, end);
+}
 function has(object, other) {
   return object.hasOwnProperty(...other) ? true : false;
 }
@@ -118,7 +114,7 @@ function pick(obj, arr) {
     return newObj;
   }, {});
 }
-//**************************************************//
+
 function pickBy(obj, cb) {
   var o = {};
   forEach(obj, function(value, key, collection) {
@@ -128,7 +124,7 @@ function pickBy(obj, cb) {
   });
   return o;
 }
-//**************************************************//
+
 function omitBy(obj, cb) {
   var o = {};
   forEach(obj, function(value, key, collection) {
@@ -138,7 +134,6 @@ function omitBy(obj, cb) {
   });
   return o;
 }
-//**************************************************//
 function padEnd(str, target, char) {
   return str.padEnd(target, char);
 }
@@ -155,17 +150,8 @@ function flatten(array) {
   return array.reduce(function(prev, curr) {
     return prev.concat(curr);
   }, []);
-  // var flat = [];
-  // for (var i = 0; i < array.length; i++) {
-  //   if (Array.isArray(array[i])) {
-  //     flat = flat.concat(array[i]);
-  //   } else {
-  //     flat.push(array[i]);
-  //   }
-  // }
-  // return flat;
 }
-
+//**************************************************//
 function zip() {
   return [...arguments].reduce(
     (prev, curr, idx) => {
@@ -190,7 +176,7 @@ function flipped() {
     return prev - curr;
   });
 }
-
+//**************************************************//
 function flattenDeep(array) {
   return array.reduce(function(prev, toFlatten) {
     return prev.concat(
