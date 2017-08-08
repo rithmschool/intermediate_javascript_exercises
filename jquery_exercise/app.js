@@ -16,6 +16,7 @@ $(function() {
   var $addSite = $('#add-site');
 
   var formShow = false;
+  var faveShow = false;
 
   $form.hide();
 
@@ -34,6 +35,14 @@ $(function() {
     var $notFaves = $('ol').find('li > span.glyphicon-star-empty').parent();
     $notFaves.toggleClass('hidden');
     $ol.toggleClass('no-list-nums');
+
+    if (!faveShow) {
+      $faves.text('all');
+    } else {
+      $faves.text('favorites');
+    }
+
+    faveShow = !faveShow;
   });
 
   $form.on('submit', function(event) {
