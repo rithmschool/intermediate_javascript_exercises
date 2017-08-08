@@ -41,7 +41,7 @@ $(function() {
     addSite();
   });
 
-  $ol.on('click', 'span', function(event) {
+  $ol.on('click', 'span.glyphicon', function(event) {
     $(event.target).toggleClass('glyphicon-star-empty glyphicon-star');
   });
 
@@ -52,20 +52,31 @@ $(function() {
     if (title.length && url.length) {
       var $li = $('<li>');
 
-      var $urlSpan = $('<span>');
-      $urlSpan.addClass('glyphicon glyphicon-star-empty');
+      var $faveSpan = $('<span>');
+      $faveSpan.addClass('glyphicon glyphicon-star-empty');
 
       var $link = $('<a>');
       $link.attr('href', url)
-      .attr('target', '_blank')
-      .text(title);
+           .attr('target', '_blank')
+           .text(title);
 
-      $li.append($urlSpan);
+      var $domainSpan = $('<span>');
+      $domainSpan.addClass('domain')
+                 .text(getDomain(url));
+
+      $li.append($faveSpan);
       $li.append($link);
+      $li.append($domainSpan);
       $ol.append($li);
 
       $title.val('');
       $url.val('');
     }
+  }
+
+  function getDomain(url) {
+    var fullDomain = url.split('//')[1];
+    var domain = fullDomain.split('.');
+    return '(' + domain[1] + '.' + domain[2] + ')';
   }
 });

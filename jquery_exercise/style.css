@@ -1,4 +1,4 @@
-p:hover {
+p:hover, .domain:hover {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -24,11 +24,14 @@ form {
   padding: 20px 10px;
 }
 
+a, label, #title, #url {
+  font-size: 16px;
+}
+
 a {
   text-decoration: none;
-  padding-left: 3px;
+  padding-left: 5px;
   padding-right: 7px;
-  font-size: 16px;
   line-height: 2em;
   color: #37474f;
 }
@@ -39,7 +42,6 @@ li {
 
 #title, #url {
   min-width: 250px;
-  font-size: 16px;
 }
 
 .header {
@@ -66,4 +68,5 @@ li {
 
 .domain {
   color: #607d8b;
+  font-size: 14px;
 }
