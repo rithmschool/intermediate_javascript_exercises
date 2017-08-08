@@ -1,0 +1,50 @@
+.title, .submit, .favorites {
+	height: 3em;
+	margin: 5px;
+}
+
+.submit:hover, .favorites:hover, .all:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.glyphicon:hover {
+	cursor: pointer;
+}
+
+.title {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.wrapper {
+	background-color: #f6f6ef;
+	width: 80%;
+	margin-top: 1em;
+	margin-left: auto;
+	margin-right: auto;
+	color: #828282;
+}
+
+
+.panel > .panel-heading, .custom-panel {
+    background-image: none;
+    background-color: rgb(255, 102, 0);
+    color: black;
+    border: 1px solid rgb(255, 102, 0);
+}
+
+.custom-form {
+	width: 30%;
+	margin-left: 5em;
+	margin-bottom: 2em;
+	display: none;
+}
+
+a, a:hover {
+	color: black;
+}
+
+.link-items {
+	margin-bottom: 50px;
+}
