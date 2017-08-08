@@ -20,7 +20,6 @@ function expand(array,number){
    return answer;
 }
 
-
 function acceptNumbersOnly(){
     for(var i=0; i<arguments.length; i++){
         if(arguments[i] === NaN){

@@ -116,6 +116,17 @@ function cloneDeep(obj,answer={}){
     return answer;
 }
 
+// function cloneDeep(item){
+//     if(Array.isArray(item)){
+//         var newArr = [];
+//         for(var i = 0; i < item.length; i++){
+//             newArr = newArr.concat(cloneDeep(item[i]))
+//         }
+//         return newArr;
+//     }
+//     return Object.assign({}, item)
+// }
+
 
 function sumBy(array,cb){
     var sum = 0;

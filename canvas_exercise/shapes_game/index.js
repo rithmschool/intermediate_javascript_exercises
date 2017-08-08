@@ -12,6 +12,7 @@ function clear(width, height) {
 
 var selected = '';
 
+//draw  random Shape in random location
 function drawShape(){
 
   var shapesArray = [drawWhiteTri, drawRedTri, drawRedSq, drawWhiteSq];
@@ -58,18 +59,15 @@ function drawShape(){
 
 };
 
-
-
-// function drawGameStartText(ctx, width, height, score) {
-//   ctx.fillText("Press the Space Bar to Begin a New Game", 100, 100);
-// }
-
-function restartGame(ctx, width, height) {
+//restart Game by clearing screen, drawing text, and listening for space bar push
+function restartGame(ctx, width, height){
+  clear();
   timerSpan.innerHTML = 30;
   scoreSpan.innerHTML = 0;
   drawText();
-
+  listenForSpaceBar();
 }
+
 
 var canvas = document.getElementById("shapes-game"),
     height = canvas.scrollHeight,
@@ -91,33 +89,38 @@ function drawText() {
   ctx.fillText("Press the Space Bar to Begin a New Game", 100, 300)
 }
 
-document.addEventListener("keyup", function(event){
-  if(event.keyCode === 32){
-    var timerId = setInterval(function(){
-      timerSpan.innerHTML = +timerSpan.innerHTML - 1
+//listen for spacebar, if pushed, start timer and points acrueing
+function listenForSpaceBar(){
+	document.addEventListener("keyup", function(event){
+		  if(event.keyCode === 32){
+		  	startTimer(); 
+		  	points();
+		  }
+	  }); 
+};
+
+//start timer and once hits 30 seconds, restart game
+function startTimer(){
+  var timerId = setInterval(function(){
+  	timerSpan.innerHTML = +timerSpan.innerHTML - 1
   },1000);
 
   setTimeout(function(){
      clearTimeout(timerId);
-     clear();
      restartGame();
-  },31000);
-}
-})
+  },31000);  
+} 
 
 restartGame();
 
-
-
-
-document.addEventListener("keyup", function(event){
-  //console.log(expectedKeysMap[selected],event.keyCode);
-    if(event.keyCode === expectedKeysMap[selected]){
-      scoreSpan.innerHTML = +scoreSpan.innerHTML + 1;
-    } else {
-      scoreSpan.innerHTML = +scoreSpan.innerHTML - 1;
-    }
-  clear();
-  drawShape();
-});
-
+function points(){
+	document.addEventListener("keyup", function(event){    
+	    if(event.keyCode === expectedKeysMap[selected]){
+	      scoreSpan.innerHTML = +scoreSpan.innerHTML + 1;
+	    } else {
+	      scoreSpan.innerHTML = +scoreSpan.innerHTML - 1;
+	    }
+	  	clear();
+	  	drawShape();
+	});
+}
