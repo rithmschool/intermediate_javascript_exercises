@@ -46,7 +46,8 @@ $(document).ready(function(){
 		favor: false,
 		title: $inp_title.val(),
 		link: $inp_url.val()});
-
+		$inp_title.val('');
+		$inp_url.val('');
 		saveLinks();
 		
 	});
@@ -58,6 +59,7 @@ $(document).ready(function(){
 		$target.toggleClass('glyphicon-star-empty glyphicon-star');
 		var index = $target.parent().index();
 		links[index].favor = $target.hasClass('glyphicon-star');
+		$target.parent().toggleClass('favor');
 		saveLinks();
 	});	
 
