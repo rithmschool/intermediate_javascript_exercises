@@ -33,7 +33,6 @@ drawStartText();
     clear(); //clear the canvas
     drawRandomShape(); //add a random shape track scoring 
     countDown(); //start timer countdown
-    endGaame() //use as a callback for when timer countdown expires  
   }
 
 //-------------------------------------------------------------------
@@ -102,11 +101,11 @@ function clear() {
 
 function countDown() {
     timerCountDown = 30;
-    var int = setInterval(function () {
+    var intervalID = setInterval(function () {
         timerSpan.innerHTML = timerCountDown;
         timerCountDown-- ;
           if(timerCountDown < 1) {
-          clearInterval(int);  //if i is 0, then stop the interval
+          clearInterval(intervalID);  //if i is 0, then stop the interval
           endGame();
           totalScore = 0;
             if (event.onkeypress) {
