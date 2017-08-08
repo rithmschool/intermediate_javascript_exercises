@@ -6,6 +6,7 @@
 'use strict';
 
 $(function() {
+  // cache all the jQuery objects
   var $toggle = $('.toggle');
   var $faves = $('.faves');
   var $main = $('main');
@@ -20,6 +21,8 @@ $(function() {
 
   $form.hide();
 
+  // ===========================================================================
+  // Event listener to show and hide the form
   $toggle.on('click', function() {
     if (formShow) {
       $form.show();
@@ -31,6 +34,8 @@ $(function() {
     formShow = !formShow;
   });
 
+  // ===========================================================================
+  // Event listener to toggle between showing all links and only favorited links
   $faves.on('click', function() {
     var $notFaves = $('ol').find('li > span.glyphicon-star-empty').parent();
     $notFaves.toggleClass('hidden');
@@ -45,15 +50,21 @@ $(function() {
     faveShow = !faveShow;
   });
 
+  // ===========================================================================
+  // Event listener for form submission
   $form.on('submit', function(event) {
     event.preventDefault();
     addSite();
   });
 
+  // ===========================================================================
+  // Event listener to mark a link as favorited (or unfavorited)
   $ol.on('click', 'span.glyphicon', function(event) {
     $(event.target).toggleClass('glyphicon-star-empty glyphicon-star');
   });
 
+  // ===========================================================================
+  // Function to create and add link to list
   function addSite() {
     var title = $title.val();
     var url = $url.val();
@@ -83,6 +94,9 @@ $(function() {
     }
   }
 
+  // ===========================================================================
+  // Function to parse url and return domain name for the second bonus feature.
+  // That haven't finished :-(
   function getDomain(url) {
     var fullDomain = url.split('//')[1];
     var domain = fullDomain.split('.');
