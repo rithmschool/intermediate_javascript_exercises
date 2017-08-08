@@ -123,29 +123,33 @@ function inRange(num, start=0, end){
   return (num > start && num < end);
 }
 
-function has(obj, path){
-  // NOT WORKING
-
+function has(obj, path) {
   // returns true if obj.path exists
   // returns false if obj.path is not valid
-  // has({a:1}, a) --> true
-  // has({{a:1}}, a) --> false
-  // if path is just a string
+
+  // if path is just a string, just look for immediate key
   if (typeof path === "string") {
     for (var key in obj) {
       if (key === path) return true;
     }
   }
+
+  // if path is an array, find if first element is immediate key
+  // then do again if there's a deeper layer
   if (Array.isArray(path)) {
-    for (var i = 0; i < path.length; i++) {
-      if (obj[path[i]] === undefined) {
-        return false;
+    // if path array only has one element
+    if (path.length === 1) {
+      for (var key in obj) {
+        if (key === path[0]) return true;
       }
+      return false;
     }
-    return true;
+    // if the path array contains more than one element
+    for (var key in obj) {
+      if (key === path[0]) return has(obj[path[0]], path.slice(1));
+    }
   }
-  return false;
-}
+} 
 
 function omit(obj, arrKeysToOmit){
   var result = {};
@@ -279,8 +283,18 @@ function unzip(){ // unzip takes in a result in the format of what's returned fr
   return result;
 }
 
-function flip(){
-
+function flip(callback){
+  // callback(arguments) ==> run stuff in callback on arguments.reverse
+  return function() {
+      // grab arguments and reverse them
+      var args = [];
+      for (var i = 0; i < arguments.length; i++) {
+        args.push(arguments[i]);
+      }
+      args.reverse();
+      // spread out arguments so they're not in an array anymore and run through callback
+      return callback(...args);
+    }
 }
 
 function flattenDeep(arr){
