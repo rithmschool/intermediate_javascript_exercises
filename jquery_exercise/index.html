@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hack or Snooze</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-10 col-xs-offset-1	">
+				<header>
+					<span><b>Hack or Snooze</b></span>
+					<span class="links">
+						<span id="submit">submit</span> | <span id="favorites">favorites</span>
+					</span>
+				</header>
+				<section id="add-story" class="hide">
+					<div class="row">
+					    <div class="col-xs-10">
+					        <form class="form">
+					            <div class="form-group">
+					                <label for="title">title</label>
+					                <input type="text" class="form-control" id="title" placeholder="title">
+					            </div>
+					            <div class="form-group">
+					                <label for="title">url</label>
+					                <input type="url" class="form-control" id="url" placeholder="http://">
+					            </div>
+					            <div class="form-group">
+					                <button type="submit" class="btn btn-default">Submit</button>
+					            </div>
+					        </form>
+					    </div>
+					</div>
+				</section>
+				<section id="story-list">
+					<ol>
+						<li><span class="glyphicon glyphicon-star-empty"></span><a href="http://visualgo.net" target="_blank">Visualizing Algorithms </a>
+							<span class = "small">(visualgo.net)</span>
+						</li>
+						<li><span class="glyphicon glyphicon-star-empty"></span><a href="http://www.rithmschool.com" target="_blank">Problem Solving with Rithm </a>
+							<span class = "small">(rithmschool.com)</span>
+						</li>
+					</ol>	
+				</section>
+			</div>
+		</div>
+	</div>
+
+	<script
+	  src="http://code.jquery.com/jquery-3.2.1.min.js"
+	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous"></script>
+	<script src="script.js"></script>
+</body>
+</html>
