@@ -129,43 +129,82 @@ function has(obj, path){
 }
 
 function omit(obj, path){
-    var newObj = obj;
-    for (var i = 0; i < path.length; i++) {
-      for (var key in newObj) {
-        if (newObj[key] === path) {
-          delete newObj[key];
-        }
+    var newObj = {};
+    for (var key in obj) {
+      if (path.indexOf(key) === -1) {
+        newObj[key] = obj[key];
       }
     }
     return newObj;
 }
 
-function pick(){
-
+function pick(obj, path){
+  var newObj = {};
+  for (var key in obj) {
+    if (path.indexOf(key) !== -1) {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
 }
 
-function pickBy(){
-
+function pickBy(obj, fn){
+  var newObj = {};
+  for (var key in obj) {
+    if (fn(obj[key])) {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
 }
 
-function omitBy(){
-
+function omitBy(obj, fn){
+  var newObj = {};
+  for (var key in obj) {
+    if (!fn(obj[key])) {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
 }
 
-function padEnd(){
-
+function padEnd(str, length, char){
+  var newStr = '';
+  if (str.length >= length) return str;
+  if (char === undefined) {
+    for (var i = 0; i < length - str.length; i++) {
+      newStr += ' ';
+    }
+    return str.concat(newStr);
+  }
+  for (var i = 0; i < length - str.length; i++) {
+    newStr += char[i % char.length];
+  }
+  return str.concat(newStr);
 }
 
-function repeat(){
-
+function repeat(str, num){
+    var newStr = '';
+    if (num === 0) return newStr;
+    for (var i = 0; i < num; i++) {
+      newStr = newStr.concat(str);
+    }
+    return newStr;
 }
 
 function upperFirst(str){
-
+  return str[0].toUpperCase().concat(str.slice(1));
 }
 
-function flatten(){
-
+function flatten(arr){
+  var newArr = [];
+  for (var i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      newArr = newArr.concat(arr[i]);
+    }
+    else newArr.push(arr[i]);
+  }
+  return newArr;
 }
 
 function zip(){
