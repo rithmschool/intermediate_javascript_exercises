@@ -5,6 +5,9 @@ $(function() {
   });
   $('#favorites').click(function(){
     $('li.off').toggle();
+
+    var text = $('#favorites').text() === 'favorites' ? 'all' : 'favorites';
+    $('#favorites').text(text);
   });
   $('#links').on('click', '.fav-icon', function(e){
     var $target = $(e.target);
