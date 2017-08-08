@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hack or Snooze (featuring Jake Weary)</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="hack_or_snooze.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+  <style>
+    body {
+      background: #FBF8EF;
+      color: #666;
+    }
+    #header {
+      background: #FE642E;
+      color: #000;
+    }
+    #header h2 {
+      display: inline-block;
+      padding: 0 30px 0 15px;
+    }
+    #header .header-links {
+      font-size: .9em;
+    }
+    #submit-form-container {
+      display: none;
+      padding-top: 20px;
+    }
+    .title {
+      color: #000;
+      font-weight: bold;
+    }
+    li {
+      padding: 5px;
+    }
+    li .url {
+      font-size: 0.85em;
+    }
+    li>span {
+      white-space: pre;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <h2>Hack or Snooze</h2>
+    <span id="submit" class="header-links">submit</span> | <span id="favorites" class="header-links">favorites</span>
+  </div>
+  <div id="submit-form-container">
+    <form id="submit-form" class="pure-form pure-form-aligned">
+      <div class="pure-control-group">
+        <label for="title">title</label>
+        <input type="text" name="title" id="title" required>
+      </div>
+      <div class="pure-control-group">
+        <label for="url">url</label>
+        <input type="text" name="url" id="url" required>
+      </div>
+      <div class="pure-controls">
+        <button type="submit" class="pure-button">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div>
+    <ol id="links">
+      <li class="off">
+        <span class="fav-icon">&#9734;</span>
+        <span class="title">Visualizing Algorithms</span>
+        <span class="url">(<a href="#">visualgo.net</a>)</span>
+      </li>
+      <li class="off">
+        <span class="fav-icon">&#9734;</span>
+        <span class="title">Problem Solving With Rithm</span>
+        <span class="url">(<a href="#">rithmschool.com</a>)</span>
+      </li>
+      <li class="off">
+        <span class="fav-icon">&#9734;</span>
+        <span class="title">Buy this book!</span>
+        <span class="url">(<a href="#">github.com</a>)</span>
+      </li>
+      <li class="off">
+        <span class="fav-icon">&#9734;</span>
+        <span class="title">Dogs on GitHub</span>
+        <span class="url">(<a href="#">github.com</a>)</span>
+      </li>
+      <li class="off">
+        <span class="fav-icon">&#9734;</span>
+        <span class="title">MOAR PROBLEM SOLVING</span>
+        <span class="url">(<a href="#">amazon.com</a>)</span>
+      </li>
+      <li class="off">
+        <span class="fav-icon">&#9734;</span>
+        <span class="title">Good Search Engine</span>
+        <span class="url">(<a href="#">foofer.org</a>)</span>
+      </li>
+      <li class="off">
+        <span class="fav-icon">&#9734;</span>
+        <span class="title">Good News Site</span>
+        <span class="url">(<a href="#">flop.nyc</a>)</span>
+      </li>
+    </ol>
+  </div>
+</body>
+</html>
