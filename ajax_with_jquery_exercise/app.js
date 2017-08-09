@@ -92,16 +92,16 @@ $(function() {
         storyIds.push(stories[i]);
       }
 
-      storyIds.forEach(function(ele) {
-        $.get(`https://hacker-news.firebaseio.com/v0/item/${ele}.json`)
-        .then(story => {
-          if(story.url) addSite(story.title, story.url);
+        storyIds.forEach(function(ele) {
+          $.get(`https://hacker-news.firebaseio.com/v0/item/${ele}.json`)
+          .then(story => {
+            if(story.url) addSite(story.title, story.url);
+          });
         });
-      });
-    }
-  ).fail(err => {
-    console.warn(err);
-  });
+      }
+    ).fail(err => {
+      console.warn(err);
+    });
   }
 
   // ===========================================================================
@@ -110,6 +110,24 @@ $(function() {
     var email = $emailIn.val();
     var password = $passwordIn.val();
     console.log("SIGN IN", email, password);
+
+    $.ajax({
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+          },
+        url: "https://hn-favorites.herokuapp.com/login",
+        data: JSON.stringify({
+            email: email,
+            password: password
+        })
+    })
+    .then(function(data) {
+      console.log(data.auth_token);
+      localStorage.setItem('token', data.auth_token);
+    })
+    .fail(err => console.warn(err));
+
     $emailIn.val('');
     $passwordIn.val('');
   }
@@ -120,6 +138,24 @@ $(function() {
     var email = $emailUp.val();
     var password = $passwordUp.val();
     console.log("SIGN UP", email, password);
+
+    $.ajax({
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+          },
+        url: "https://hn-favorites.herokuapp.com/signup",
+        data: JSON.stringify({
+            email: email,
+            password: password
+        })
+    })
+    .then(function(data) {
+      console.log(data.auth_token);
+      localStorage.setItem('token', data.auth_token);
+    })
+    .fail(err => console.warn(err));
+
     $emailUp.val('');
     $passwordUp.val('');
   }
