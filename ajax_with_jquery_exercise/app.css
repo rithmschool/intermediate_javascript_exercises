@@ -107,7 +107,7 @@
 }
 
 .tiny_text {
-	font-size: 10px;
+	font-size: 11px;
 }
 
 .link_menu{
@@ -122,4 +122,10 @@
 .login_link {
 	position:relative;
 	right: -420px;
+}
+
+.text_by {
+	position: relative;
+	left:22px;
+	font-size: 12px;
 }

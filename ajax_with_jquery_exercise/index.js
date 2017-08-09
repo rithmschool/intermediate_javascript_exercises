@@ -3,6 +3,7 @@ $(document).ready(function() {
 	console.log("Logged In: " + loggedIn);
 
 	var $list = $("#list_links");
+	var $favs = $("#list_favs");
 	var $lnkFavorites = $("#link_fav");
 	var $lnkLogin = $("#link_login");
 	var $lnkSignup = $("#link_signup");
@@ -17,6 +18,8 @@ $(document).ready(function() {
 	//loggedIn=true;
 	//localStorage.setItem("hos_loggedIn", false);
 	/* DEV SETTINGS */
+
+	/* Initialization */
 
 	// A few things need to change if user is logged in...
 	toggleLoginMenuMode($lnkLogin, $lnkSignup, loggedIn);
@@ -51,9 +54,34 @@ $(document).ready(function() {
 		$signupDiv.eq(0).slideToggle(250);
 	});
 
-	$btnSignup.on('click', function(event) {
-		// *********MUST CHECK IF THE USERNAME AND PW WAS EVEN VALID!
+	// Combine these two into a single function and pass whether login or signup?
+	$btnLogin.on('click', function(event) {
+		var username = $("#input_text3").val();
+		var password = $("#input_text4").val();
+		
+		if ($(event.target).attr("id") === "login_submit") {
+			$.ajax({
+			    method: "POST",
+			    headers: {
+			        "Content-Type": "application/json"
+			      },
+			    url: "https://hn-favorites.herokuapp.com/login",
+			    data: JSON.stringify({
+			        email: username, 
+			        password: password
+			    })
+			})
+			.then(function(data) { 
+				loginMaintenance(data);
+			})
+			.fail(function(err) {
+				console.warn("Auth Token Error: " + err);
+				alert("Log In: Please enter a valid email address and password!");
+			});
+		}
+	})
 
+	$btnSignup.on('click', function(event) {
 		var username = $("#input_text3").val();
 		var password = $("#input_text4").val();
 		
@@ -70,27 +98,50 @@ $(document).ready(function() {
 			    })
 			})
 			.then(function(data) { 
-				console.log(data.auth_token);
-				localStorage.setItem("hos_autoToken", data.auth_token);
-				localStorage.setItem("hos_loggedIn", true);
-				loggedIn = true;
-				toggleLoginMenuMode($lnkLogin, $lnkSignup, loggedIn);
+				loginMaintenance(data);
 			})
-			.fail(err => console.warn(err));
+			.fail(function(err) {
+				console.warn("Auth Token Error: " + err);
+				alert("Sign Up: Please enter a valid email address and password!");
+			});
 		}
+	});
 
-		// Tried to do it this way: 
-		/*$.post("https://hn-favorites.herokuapp.com/signup", {
-				headers: {
-			    	"Content-Type": "application/json"
-			    },
-				email: username,
-				password: password
+	function loginMaintenance(data) {
+		console.log(data.auth_token);
+		localStorage.setItem("hos_autoToken", data.auth_token);
+		localStorage.setItem("hos_loggedIn", true);
+		loggedIn = true;
+		$loginDiv.eq(0).slideUp(250);
+		$signupDiv.eq(0).slideUp(250);
+		toggleLoginMenuMode($lnkLogin, $lnkSignup, loggedIn);
+		setChecksVisible($list, loggedIn);
+	}
+
+	$list.on('click', function(event){
+		if ($(event.target).attr('type') === 'checkbox') {
+			if ($(event.target).is(':checked')) {
+				// REQUEST IT BE A FAVORITE
+			} else {
+				// REQUEST IT BE REMOVED FROM FAVORITES
+			}
+		}
+	});
+
+	$lnkFavorites.on('click', function() {
+		$.ajax({
+			    method: "GET",
+			    headers: {
+			        "Authorization": localStorage.getItem("hos_autoToken")
+			      },
+			    url: "https://hn-favorites.herokuapp.com/stories.json",
 			})
-			.then(function(response) {
-				console.log(response);
-			})*/
-	})
+		.then(function(response) {
+			console.log(response);
+
+			// HERE IS WHERE WE WILL FILL THE FAVORITES LIST
+		});
+	});
 
 	/*$btnSubmit.on('click', function() {
 
@@ -217,6 +268,7 @@ function buildList(responseList, loggedIn) {
 		$listItem.html(`<input type="checkbox" class="${visible}">
 			<span>${val.title}</span>
 			<span class="tiny_text">(<a href="#" class="link_filter">${url}</a>)</span>
+			<div class="text_by">by ${val.by}</div>
 		`);
 
 		$listItems.push($listItem);
@@ -226,13 +278,17 @@ function buildList(responseList, loggedIn) {
 
 // NOT CURRENTLY WORKING
 function setChecksVisible($list, visible) {
-	$list.each(function(val) {
+  var $children = $list.children();
+	
+	$children.each(function(index) {
+		var $subChildren = $children.eq(index).children();
+
 		if (visible) {
-			val.addClass("visible_checkbox");
-			val.removeClass("invisible");
+			$($subChildren[0]).addClass("visible");
+			$($subChildren[0]).removeClass("invisible");
 		} else {
-			val.removeClass("visible_checkbox");
-			val.addClass("invisible");
+			$($subChildren[0]).removeClass("visible");
+			$($subChildren[0]).addClass("invisible");
 		}
 	});
 }
@@ -240,7 +296,6 @@ function setChecksVisible($list, visible) {
 function toggleLoginMenuMode($lnkLogin, $lnkSignup, loggedIn) {
 	if (loggedIn === true) {
 		// The formatting is super ugly when it goes to log out...
-		debugger;
 		$lnkLogin.text("log out");
 		$lnkSignup.addClass("displayNone");
 		$lnkSignup.removeClass("displayBlock");

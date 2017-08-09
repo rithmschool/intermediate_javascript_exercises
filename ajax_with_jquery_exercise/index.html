@@ -27,11 +27,11 @@
 			<form id="login_form">
 				<div class="input">
 					<label id="input_label1" class="inputA">username:</label>
-					<input id="input_text1" class="input_TextA border_round_sm" type="email" required>
+					<input id="input_text1" class="input_TextA border_round_sm" type="email" validate="required:true">
 				</div>
 				<div class="input">
 					<label id="input_label2" class="inputB">password:</label>
-					<input id="input_text2" class="input_TextB border_round_sm" type="password" required>
+					<input id="input_text2" class="input_TextB border_round_sm" type="password" validate="required:true">
 				</div>
 				<div id="button_div">
 					<input type="submit" id="login_submit" class="button_submit" value="Log In">
@@ -42,11 +42,11 @@
 			<form id="signup_form">
 				<div class="input">
 					<label id="input_label3" class="inputA">username:</label>
-					<input id="input_text3" class="input_TextA border_round_sm" type="email" required>
+					<input id="input_text3" class="input_TextA border_round_sm" type="email" validate="required:true">
 				</div>
 				<div class="input">
 					<label id="input_label4" class="inputB">password:</label>
-					<input id="input_text4" class="input_TextB border_round_sm" type="password" required>
+					<input id="input_text4" class="input_TextB border_round_sm" type="password" validate="required:true">
 				</div>
 				<div id="button_div">
 					<input type="submit" id="signup_submit" class="button_submit" value="Sign Up">
@@ -55,21 +55,8 @@
 		</div>
 		<div id="article_links">
 			<ol id="list_links">
-				<!-- <li class="visible">
-					<input type="checkbox">
-					<span>Visualizing Algorithms</span>
-					<span class="tiny_text">(<a href="#" class="link_filter">www.funstuff.com</a>)</span>
-				</li>
-				<li class="visible">
-					<input type="checkbox">
-					<span>Beating a Dead Horse...literally.</span>
-					<span class="tiny_text">(<a href="#" class="link_filter">www.crueltybythenumbers.com</a>)</span>
-				</li>
-				<li class="visible">
-					<input type="checkbox">
-					<span>Good Times, Bad Times, Hella Times</span>
-					<span class="tiny_text">(<a href="#" class="link_filter">www.crazygarbage.com</a>)</span>
-				</li> -->
+			</ol>
+			<ol id="list_favs" class="invisible">
 			</ol>
 		</div>
 	</div>
