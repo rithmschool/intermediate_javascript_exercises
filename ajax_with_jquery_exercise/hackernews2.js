@@ -1,63 +1,59 @@
 
-//add listener for submit to be clicked
+
 $(function(){
 	$("form").hide();
 
+//variables
 	var $password = $("#password")
 	var $username = $("#username")
 	var $items = $("#items");
 	var authorization = "";
 
-
+//functions
 	function displayLink(name="adele",url="http://wwww.google.com"){
 		var shortUrl = url.slice(12);
 		var $newLi = $("<li>", {
 			html: `${name} (<a href="${url}">${shortUrl}</a>)`,
 		});
 
-		var $star = $("<img>", {
-			src: "favstarempty.png",
-			height: "20px",
-			width: "20px",
-			id: "favoriteToggle",
-			class: "hideNoLogin"
+
+		var $star = $("<span>", {
+			class: "hideNoLogin glyphicon glyphicon-star-empty"
 		});
 
 		$newLi.prepend($star);
 		$items.append($newLi);
 	}
 
-	//upon submit you get username/password
+//EVENTS
+	//upon submit you get username/password/token
 	$("button").on('click', function(e){
 		var username = $username.val();
 		var password = $password.val();
 
 		//get token
 		$.ajax({
-	    method: "POST",
-	    headers: {
-	        "Content-Type": "application/json"
-	      },
-	    url: "https://hn-favorites.herokuapp.com/login",
-	    data: JSON.stringify({
-	        'email': username, 
-	        'password': password
-		    })
-		})
+		    method: "POST",
+		    headers: {
+		        "Content-Type": "application/json"
+		      },
+		    url: "https://hn-favorites.herokuapp.com/login",
+		    data: JSON.stringify({
+		        'email': username, 
+		        'password': password
+			    })
+			})
 		.then(function(data) { 
 			localStorage.setItem('auth_token', data.auth_token);
 			authorization = data.auth_token
 			getFavorites(data.auth_token)
 		})
 		.fail(err => console.warn(err))
-
-
-		$("#star").on('click', function(e) {
-			$(e.target).toggle();
-		});
 	})
 	
-	//"class", glyphicon glyphicon-star glyphicon glyphicon-star-empty
+	$items.on('click', '.glyphicon-star-empty, .glyphicon-star', function(e) {
+			$(e.target).toggleClass("glyphicon-star glyphicon-star-empty");
+		});
 
 	$("#clicktoToggle").on("click", function(e){
 		$("form").toggle();
