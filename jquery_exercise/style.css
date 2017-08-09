@@ -1,0 +1,67 @@
+#name{
+	padding-right:40px;
+	font-size: 25px;
+	font-weight: bold;
+	display:inline-block;
+}
+
+.main{
+	background-color: gray;
+	font: 20px;
+	color:black;
+	padding-top:5px;
+	padding-right:10px;
+	padding-left:10px;
+	padding-bottom:5px;
+}
+
+#addNew {
+	font-size: 15px;
+	font-weight:normal;
+	color:black;
+	display:inline-block;
+}
+
+#fav {
+	font-size: 15px;
+	font-weight:normal;
+	color:black;
+	display:inline-block;
+}
+/*
+p {
+	font-size:15px;
+	font-weight:normal;
+	color:black;
+}*/
+
+.header{
+	background-color:orange;
+	display:block;
+	padding:10px;
+}
+
+#articles {
+	padding-top:5px;
+}
+
+
+.form-inline {
+	display:none;
+}
+
+.form-inline-block {
+	display:block;
+}
+
+a{
+	color:black;
+}
+
+.hidden {
+	display:none;
+}
+
+.block {
+	display:block;
+}
