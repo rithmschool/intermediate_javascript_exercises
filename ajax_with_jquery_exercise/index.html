@@ -14,11 +14,14 @@
     <div class="header">
       <h3 class="header-text">Blacker Bluez Top Stories</h3>
       <!-- <p class="header-text toggle">submit</p> | -->
-      <p class="header-text faves">favorites</p>
-      <p class="header-text toggle login">login</p>
+      <!-- <p class="header-text faves">favorites</p> -->
+      <a class="header-link" href="favorites.html">Favorites</a>
+      <div class="session">
+        <p class="header-text toggle login">login</p> |
+        <p class="header-text logout">logout</p>
+      </div>
     </div>
     <main>
-      <p hidden id="test">TEST</p>
       <div class="forms">
         <form id="signin-form" action="#" class="form-inline">
           <p class="form-name">Sign In</p>
@@ -46,7 +49,7 @@
           <button type="submit" class="btn btn-default" id="sign-up">Submit</button>
         </form>
       </div>
-      <ol>
+      <ol class="top">
         <!-- <li><span class="hidden glyphicon glyphicon-star-empty"></span><a href="http://www.rithmschool.com" target="_blank">hard-coded test link</a>
           <span class="domain">(rithmschool.com)</span></li>
         <li><span class="hidden glyphicon glyphicon-star-empty"></span><a href="http://www.rithmschool.com" target="_blank">hard-coded test link</a>

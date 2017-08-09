@@ -3,6 +3,11 @@ p.header-text:hover, .domain:hover {
   cursor: pointer;
 }
 
+p.message {
+  color: darkred;
+  line-height: 2em;
+}
+
 h3 {
   padding: 0 20px;
 }
@@ -56,7 +61,7 @@ ol {
   margin-top: 10px;
 }
 
-.header-text {
+.header-text, .header-link {
   display: inline-block;
   font-weight: bold;
 }
@@ -79,7 +84,7 @@ ol {
   font-size: 14px;
 }
 
-.login {
+.session {
   float: right;
   padding: 20px 20px;
   color: #eeeeee;

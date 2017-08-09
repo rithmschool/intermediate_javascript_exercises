@@ -12,7 +12,7 @@ $(function() {
   var $login = $('.login');
   var $main = $('main');
   var $forms = $('.forms');
-  var $ol = $('ol');
+  var $olTop = $('ol.top');
 
   var $emailIn = $('#email-in');
   var $passwordIn = $('#password-in');
@@ -23,6 +23,8 @@ $(function() {
   var $passwordUp = $('#password-up');
   var $signUp = $('#sign-up');
   var $signUpForm = $('#signup-form');
+
+  var $logout = $('.logout');
 
   var formShow = false;
   var faveShow = false;
@@ -53,7 +55,7 @@ $(function() {
   $faves.on('click', function() {
     var $notFaves = $('ol').find('li > span.glyphicon-star-empty').parent();
     $notFaves.toggleClass('hidden');
-    $ol.toggleClass('no-list-nums');
+    $olTop.toggleClass('no-list-nums');
 
     if (!faveShow) {
       $faves.text('all');
@@ -79,8 +81,17 @@ $(function() {
   });
 
   // ===========================================================================
+  // Event listener to sign out
+  $logout.on('click', function(event) {
+    localStorage.removeItem('token');
+    $('span.glyphicon').addClass('hidden');
+    $login.text('login');
+  });
+
+
+  // ===========================================================================
   // Event listener to save a story as favorited (or unfavorited)
-  $ol.on('click', 'span.glyphicon', function(event) {
+  $olTop.on('click', 'span.glyphicon', function(event) {
     saveFavorite(event);
   });
 
@@ -112,7 +123,6 @@ $(function() {
   function signIn() {
     var email = $emailIn.val();
     var password = $passwordIn.val();
-    console.log("SIGN IN", email, password);
 
     $.ajax({
         method: "POST",
@@ -139,7 +149,6 @@ $(function() {
   function signUp() {
     var email = $emailUp.val();
     var password = $passwordUp.val();
-    console.log("SIGN UP", email, password);
 
     $.ajax({
         method: "POST",
@@ -173,7 +182,6 @@ $(function() {
   // ===========================================================================
   // Function to create and add story to list
   function addSite(story) {
-    // console.log(story);
     var {id, title, by, url} = story;
     var $li = $('<li>');
 
@@ -197,17 +205,15 @@ $(function() {
     $li.append($link);
     $li.append($domainSpan);
     $li.append($hiddenP);
-    $ol.append($li);
+    $olTop.append($li);
+
+    if (localStorage.getItem("token")) {
+      $('span.glyphicon').removeClass('hidden');
+      $login.text('hello!');
+    }
   }
 
-  // ===========================================================================
-  // Function to parse url and return domain name for the second bonus feature.
-  // That I haven't finished :-(
-  function getDomain(url) {
-    var fullDomain = url.split('//')[1];
-    var domain = fullDomain.split('/');
-    return '(' + domain[0] + ')';
-  }
+
 
   // ===========================================================================
   // Function to collect data for and make ajax request to save story as a favorite
@@ -222,8 +228,6 @@ $(function() {
     var by = idAndBy[1];
 
     var token = localStorage.getItem('token');
-
-    console.log($parent, title, url, id, by);
 
     $.ajax({
         method: "POST",
@@ -242,11 +246,16 @@ $(function() {
         })
     })
     .then(function(data) {
-      console.log('FAVORITE SAVED');
       $(event.target).toggleClass('glyphicon-star-empty glyphicon-star');
     })
     .fail(err => console.warn(err));
   }
-
-
 });
+
+// ===========================================================================
+// Function to parse url and return domain name
+function getDomain(url) {
+  var fullDomain = url.split('//')[1];
+  var domain = fullDomain.split('/');
+  return '(' + domain[0] + ')';
+}
