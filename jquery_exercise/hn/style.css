@@ -1,0 +1,62 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+:root {
+  font: 16px 'Open Sans', sans-serif;
+}
+h1 {
+  width: 95%;
+  background: mistyrose;
+  border-radius: 4px;
+  margin: 0;
+  padding: 0;
+}
+
+span {
+  font-size: 16px;
+}
+span:hover {
+  text-decoration: underline;
+  margin: auto;
+}
+form {
+  display: grid;
+  width: 90%;
+  padding: 0;
+  align-content: center;
+}
+label {
+  font-size: 16px;
+}
+input {
+  width: 100%;
+  padding: 8px 8px;
+  margin: 1px 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.contain {
+  min-height: 100vh;
+  max-width: 95vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+button {
+  width: 70%;
+  border-radius: 4px;
+  color: white;
+  padding: 10px 25px;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin: auto;
+}
+button:hover {
+  opacity: 0.9;
+  color: white;
+}
