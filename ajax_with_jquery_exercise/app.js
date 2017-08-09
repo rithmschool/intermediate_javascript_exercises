@@ -44,7 +44,7 @@ $(function() {
     $forms.slideToggle(500);
 
     formShow = !formShow;
-    
+
     $emailIn.focus();
   });
 
@@ -79,9 +79,10 @@ $(function() {
   });
 
   // ===========================================================================
-  // Event listener to mark a link as favorited (or unfavorited)
+  // Event listener to save a story as favorited (or unfavorited)
   $ol.on('click', 'span.glyphicon', function(event) {
     $(event.target).toggleClass('glyphicon-star-empty glyphicon-star');
+    saveFavorite(event.target);
   });
 
   // ===========================================================================
@@ -98,7 +99,7 @@ $(function() {
         storyIds.forEach(function(ele) {
           $.get(`https://hacker-news.firebaseio.com/v0/item/${ele}.json`)
           .then(story => {
-            if(story.url) addSite(story.title, story.url);
+            if(story.url) addSite(story);
           });
         });
       }
@@ -165,7 +166,6 @@ $(function() {
   // Function to update page after login, called by #signIn and #signUp
   function setLogin(token) {
     localStorage.setItem('token', token);
-    console.log(token);
     $('span.glyphicon').removeClass('hidden');
     $login.text('hello!');
     $forms.hide();
@@ -173,7 +173,9 @@ $(function() {
 
   // ===========================================================================
   // Function to create and add story to list
-  function addSite(title, url) {
+  function addSite(story) {
+    // console.log(story);
+    var {id, title, by, url} = story;
     var $li = $('<li>');
 
     var $faveSpan = $('<span>');
@@ -188,9 +190,14 @@ $(function() {
     $domainSpan.addClass('domain')
                .text(getDomain(url));
 
+    var $hiddenP = $('<p>');
+    $hiddenP.text(id + ' ' + by)
+            .addClass('hidden');
+
     $li.append($faveSpan);
     $li.append($link);
     $li.append($domainSpan);
+    $li.append($hiddenP);
     $ol.append($li);
   }
 
@@ -202,4 +209,22 @@ $(function() {
     var domain = fullDomain.split('/');
     return '(' + domain[0] + ')';
   }
+
+  // ===========================================================================
+  // Function to pull hidden
+  function saveFavorite(target) {
+    var $parent = $(target).parent();
+    var title = $parent.children().eq(1).text();
+    var url = $parent.children().eq(1).attr('href');
+    var hidden = $parent.children().eq(3).text();
+    var idAndBy = hidden.split(' ');
+    var id = idAndBy[0];
+    var by = idAndBy[1];
+
+    console.log($parent, title, url, id, by);
+
+    
+  }
+
+
 });
