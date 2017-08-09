@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="app.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="content_column">
+			<div class="header border_round">
+			<div id="title_page">
+				<h2>Hack or Snooze</h2>
+			</div>
+			<div id="fav_links">
+				<a href="#" id="link_fav" class="link_menu">favorites</a>
+			</div>
+			<div id="signup_link">
+				<a href="#" id="link_signup" class="link_menu signup_link">sign up</a>
+			</div>
+			<div id="login_link">
+				<a href="#" id="link_login" class="link_menu login_link">login</a>
+			</div>
+		</div>
+		<div id="login_div" class="loginSignup_div" style="display:none;">
+			<form id="login_form">
+				<div class="input">
+					<label id="input_label1" class="inputA">username:</label>
+					<input id="input_text1" class="input_TextA border_round_sm" type="email" required>
+				</div>
+				<div class="input">
+					<label id="input_label2" class="inputB">password:</label>
+					<input id="input_text2" class="input_TextB border_round_sm" type="password" required>
+				</div>
+				<div id="button_div">
+					<input type="submit" id="login_submit" value="Log In">
+				</div>
+			</form>
+		</div>
+		<div id="signup_div" class="loginSignup_div" style="display:none;">
+			<form id="signup_form">
+				<div class="input">
+					<label id="input_label3" class="inputA">username:</label>
+					<input id="input_text3" class="input_TextA border_round_sm" type="email" required>
+				</div>
+				<div class="input">
+					<label id="input_label4" class="inputB">password:</label>
+					<input id="input_text4" class="input_TextB border_round_sm" type="password" required>
+				</div>
+				<div id="button_div">
+					<input type="submit" id="signup_submit" value="Sign Up">
+				</div>
+			</form>
+		</div>
+		<div id="article_links">
+			<ol id="list_links">
+				<!-- <li class="visible">
+					<input type="checkbox">
+					<span>Visualizing Algorithms</span>
+					<span class="tiny_text">(<a href="#" class="link_filter">www.funstuff.com</a>)</span>
+				</li>
+				<li class="visible">
+					<input type="checkbox">
+					<span>Beating a Dead Horse...literally.</span>
+					<span class="tiny_text">(<a href="#" class="link_filter">www.crueltybythenumbers.com</a>)</span>
+				</li>
+				<li class="visible">
+					<input type="checkbox">
+					<span>Good Times, Bad Times, Hella Times</span>
+					<span class="tiny_text">(<a href="#" class="link_filter">www.crazygarbage.com</a>)</span>
+				</li> -->
+			</ol>
+		</div>
+	</div>
+	<script src="index.js"></script>
+</html>
