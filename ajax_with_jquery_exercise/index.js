@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	var loggedIn = JSON.parse(localStorage.getItem("hos_loggedIn"));
-	console.log(loggedIn);
+	console.log("Logged In: " + loggedIn);
+
 	var $list = $("#list_links");
 	var $lnkFavorites = $("#link_fav");
 	var $lnkLogin = $("#link_login");
@@ -18,12 +19,7 @@ $(document).ready(function() {
 	/* DEV SETTINGS */
 
 	// A few things need to change if user is logged in...
-	if (loggedIn === true) {
-		// The formatting is super ugly when it goes to log out...
-		$lnkLogin.text("log out");
-		$lnkSignup.addClass("invisible");
-		$lnkSignup.removeClass("visible");
-	}
+	toggleLoginMenuMode($lnkLogin, $lnkSignup, loggedIn);
 
 	if (top10Cached) {
 		$list.append(buildList(top10Cached, loggedIn));
@@ -44,8 +40,10 @@ $(document).ready(function() {
 		if (loggedIn === false) {
 			$loginDiv.eq(0).slideToggle(250);
 		} else {
-			$lnkLogin.text("log in");
-			localStorage.setItem("hos_loggedIn", false);
+			loggedIn = false;
+			localStorage.setItem("hos_loggedIn", loggedIn);
+			toggleLoginMenuMode($lnkLogin, $lnkSignup, loggedIn);
+			setChecksVisible($list, loggedIn);
 		}
 	});
 
@@ -58,7 +56,7 @@ $(document).ready(function() {
 
 		var username = $("#input_text3").val();
 		var password = $("#input_text4").val();
-		console.log($(event.target).attr("id"))
+		
 		if ($(event.target).attr("id") === "signup_submit") {
 			$.ajax({
 			    method: "POST",
@@ -74,6 +72,9 @@ $(document).ready(function() {
 			.then(function(data) { 
 				console.log(data.auth_token);
 				localStorage.setItem("hos_autoToken", data.auth_token);
+				localStorage.setItem("hos_loggedIn", true);
+				loggedIn = true;
+				toggleLoginMenuMode($lnkLogin, $lnkSignup, loggedIn);
 			})
 			.fail(err => console.warn(err));
 		}
@@ -223,7 +224,8 @@ function buildList(responseList, loggedIn) {
 	return $listItems;
 }
 
-function setVisible($list, visible) {
+// NOT CURRENTLY WORKING
+function setChecksVisible($list, visible) {
 	$list.each(function(val) {
 		if (visible) {
 			val.addClass("visible_checkbox");
@@ -235,6 +237,19 @@ function setVisible($list, visible) {
 	});
 }
 
+function toggleLoginMenuMode($lnkLogin, $lnkSignup, loggedIn) {
+	if (loggedIn === true) {
+		// The formatting is super ugly when it goes to log out...
+		debugger;
+		$lnkLogin.text("log out");
+		$lnkSignup.addClass("displayNone");
+		$lnkSignup.removeClass("displayBlock");
+	} else {
+		$lnkLogin.text("log in");
+		$lnkSignup.addClass("displayBlock");
+		$lnkSignup.removeClass("displayNone");
+	}
+}
 
 
 

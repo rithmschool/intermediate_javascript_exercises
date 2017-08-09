@@ -83,19 +83,27 @@
 	height: 24px;
 }
 
-#button_submit {
+.button_submit {
 	position:relative;
-	left: 92px;
+	left: 70px;
 	width: 64px;
 	height: 32px;
 }
 
 .visible {
-	visibility: hidden;
+	visibility: visible;
 }
 
 .invisible {
-	visibility: visible;
+	visibility: hidden;
+}
+
+.displayNone {
+	display:none;
+}
+
+.displayBlock {
+	display:block;
 }
 
 .tiny_text {
