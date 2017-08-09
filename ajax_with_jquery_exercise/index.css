@@ -1,0 +1,9 @@
+.row{
+	margin-bottom: 30px;
+}
+.glyphicon{
+	margin: 5px;
+}
+.hideNoLogin{
+	visibility: hidden;
+}

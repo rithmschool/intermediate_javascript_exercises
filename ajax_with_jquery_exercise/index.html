@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Linker</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://bootswatch.com/readable/bootstrap.min.css">
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row alert-warning header">
+				<div class="col col-xs-2">icon</div>
+				<div class="col col-xs-8"><ul class="list-inline">
+					<li class="list-inline-item"><a  id="favor-link" class="" href="#">Favoriets</a></li>
+				</ul></div>
+				<div class="col col-xs-2"><ul class="list-inline">
+					<li class="list-inline-item"><a  id="login-link" class="" href="#">Login</a></li>
+				</ul></div>
+		</div>
+		<div class="row hidden" id="login-form">
+			<form class="col-xs-offset-6 col col-xs-6 " action="#">
+				<div class="row input-group">
+				  <label class="input-group-addon control-label" for="inp-email">Email</label>
+				  <input type="email" class="form-control" name="inp-title" id="inp-email" required>
+				</div>
+				<div class="row input-group">
+				  	<label class="input-group-addon" for="inp-password">Password</label>
+				  	<input type="password" name="inp-password" class="form-control" id="inp-password" required>
+				</div>
+				<div class="col-xs-offset-2 col-xs-2 input-group">
+				  <button type="submit" id="login-btn" class="btn-warning">Login</button>
+				</div>
+			</form>
+		</div>
+		<div class="row">
+			<ol id="links">
+			</ol>
+		</div>
+	</div>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="index.js"></script>
+</body>
+</html>
