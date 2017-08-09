@@ -21,6 +21,7 @@ $(document).ready(function(){
 		let $lin = $('<li>');
 		$lin.html(html);
 		if(favor) $lin.addClass('favor');
+		$lin.addClass('bg-warning')
 		$links.append($lin);
 	}
 
