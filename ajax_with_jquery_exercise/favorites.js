@@ -33,21 +33,21 @@ $(function() {
     .then(faves => {
       faves.forEach(function(ele) {
           addFavorite(ele);
+          addListenerToFavorites();
         });
       }
     ).fail(err => console.warn(err));
-
   }
 
   // ===========================================================================
   // Function to create and add story to list
   function addFavorite(story) {
     // console.log(story);
-    var {id, story_id, title, by, url} = story;
+    var {id, title, url} = story;
     var $li = $('<li>');
 
     var $faveSpan = $('<span>');
-    $faveSpan.addClass('glyphicon glyphicon-star');
+    $faveSpan.addClass('glyphicon glyphicon-star favorited');
 
     var $link = $('<a>');
     $link.attr('href', url)
@@ -55,18 +55,48 @@ $(function() {
          .text(title);
 
     var $domainSpan = $('<span>');
-    $domainSpan.addClass('domain')
-               .text(getDomain(url));
+    $domainSpan.addClass('domain').text(getDomain(url));
 
     var $hiddenP = $('<p>');
-    $hiddenP.text(id + ' ' + by)
-            .addClass('hidden');
+    $hiddenP.text(id).addClass('hidden');
 
     $li.append($faveSpan);
     $li.append($link);
     $li.append($domainSpan);
     $li.append($hiddenP);
     $olFavorite.append($li);
+  }
+
+  // ===========================================================================
+  // Function to remove favorite
+  function addListenerToFavorites() {
+    $olFavorite.on('click', 'span.favorited', function(event) {
+      removeFavorite(event);
+    });
+  }
+
+  // ===========================================================================
+  // Function to remove favorite
+  function removeFavorite(event) {
+    var target = event.target;
+    console.log(target);
+    var $parent = $(target).parent();
+    var id = $parent.children().eq(3).text();
+
+    var token = localStorage.getItem('token');
+
+    $.ajax({
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+          },
+        url: `https://hn-favorites.herokuapp.com/stories/${id}.json`
+    })
+    .then(function(data) {
+      $parent.remove();
+    })
+    .fail(err => console.warn(err));
   }
 
   // ===========================================================================
@@ -77,7 +107,7 @@ $(function() {
     var $p = $('<p>');
     $p.text('Please login to see your favorite stories.');
     $p.addClass('message');
-    
+
     $li.append($p);
     $olFavorite.append($li);
   }

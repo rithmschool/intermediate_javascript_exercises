@@ -52,19 +52,19 @@ $(function() {
 
   // ===========================================================================
   // Event listener to toggle between showing all links and only favorited links
-  $faves.on('click', function() {
-    var $notFaves = $('ol').find('li > span.glyphicon-star-empty').parent();
-    $notFaves.toggleClass('hidden');
-    $olTop.toggleClass('no-list-nums');
-
-    if (!faveShow) {
-      $faves.text('all');
-    } else {
-      $faves.text('favorites');
-    }
-
-    faveShow = !faveShow;
-  });
+  // $faves.on('click', function() {
+  //   var $notFaves = $('ol').find('li > span.glyphicon-star-empty').parent();
+  //   $notFaves.toggleClass('hidden');
+  //   $olTop.toggleClass('no-list-nums');
+  //
+  //   if (!faveShow) {
+  //     $faves.text('all');
+  //   } else {
+  //     $faves.text('favorites');
+  //   }
+  //
+  //   faveShow = !faveShow;
+  // });
 
   // ===========================================================================
   // Event listener for sign in form submission
@@ -90,7 +90,7 @@ $(function() {
 
 
   // ===========================================================================
-  // Event listener to save a story as favorited (or unfavorited)
+  // Event listener to save a story as favorited
   $olTop.on('click', 'span.glyphicon', function(event) {
     saveFavorite(event);
   });
@@ -174,7 +174,7 @@ $(function() {
   // Function to update page after login, called by #signIn and #signUp
   function setLogin(token) {
     localStorage.setItem('token', token);
-    $('span.glyphicon').removeClass('hidden');
+    $('ol.top span.glyphicon').removeClass('hidden');
     $login.text('hello!');
     $forms.hide();
   }
@@ -208,7 +208,7 @@ $(function() {
     $olTop.append($li);
 
     if (localStorage.getItem("token")) {
-      $('span.glyphicon').removeClass('hidden');
+      $('ol.top span.glyphicon').removeClass('hidden');
       $login.text('hello!');
     }
   }
