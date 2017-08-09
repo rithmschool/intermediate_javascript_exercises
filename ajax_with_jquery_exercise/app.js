@@ -81,8 +81,7 @@ $(function() {
   // ===========================================================================
   // Event listener to save a story as favorited (or unfavorited)
   $ol.on('click', 'span.glyphicon', function(event) {
-    $(event.target).toggleClass('glyphicon-star-empty glyphicon-star');
-    saveFavorite(event.target);
+    saveFavorite(event);
   });
 
   // ===========================================================================
@@ -211,8 +210,9 @@ $(function() {
   }
 
   // ===========================================================================
-  // Function to pull hidden
-  function saveFavorite(target) {
+  // Function to collect data for and make ajax request to save story as a favorite
+  function saveFavorite(event) {
+    var target = event.target;
     var $parent = $(target).parent();
     var title = $parent.children().eq(1).text();
     var url = $parent.children().eq(1).attr('href');
@@ -221,9 +221,31 @@ $(function() {
     var id = idAndBy[0];
     var by = idAndBy[1];
 
+    var token = localStorage.getItem('token');
+
     console.log($parent, title, url, id, by);
 
-    
+    $.ajax({
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+          },
+        url: "https://hn-favorites.herokuapp.com/stories.json",
+        data: JSON.stringify({
+          hacker_news_story: {
+                    by: by,
+                    story_id: id,
+                    title: title,
+                    url: url
+                  }
+        })
+    })
+    .then(function(data) {
+      console.log('FAVORITE SAVED');
+      $(event.target).toggleClass('glyphicon-star-empty glyphicon-star');
+    })
+    .fail(err => console.warn(err));
   }
 
 
