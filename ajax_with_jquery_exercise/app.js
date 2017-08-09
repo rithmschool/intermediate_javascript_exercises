@@ -149,31 +149,19 @@ $(function() {
 
   // helper responsible for adding a new story li do the DOM
   function addStory(story) {
-    let $newLink = $("<a>", {
-      text: story.title,
-      href: story.url,
-      target: "_blank",
-      data: {
-        id: story.id
-      }
-    })
     let formattedTime = onFavorites ? '' : moment.unix(story.time).fromNow();
-    let hostname = $newLink.prop('hostname');
+    let hostname = $(`<a href=${story.url}>`).prop('hostname');
     let shortHostname = hostname.match(/\w+.\w+$/) ? hostname.match(/\w+.\w+$/)[0] : hostname;
-    let $small = $("<small>", {
-      text: "(" + shortHostname + ")"
-    });
-    let $star = $("<span>", {
-      "class": "glyphicon glyphicon-star-empty",
-      data: {
-        id: story.id
-      }
-    });
-    let $credit = $("<p>").append($("<small>", {
-      text: `by ${story.by} ${formattedTime}` 
-    }));
-    let $newStory = $("<li>").append($star, $newLink, $small, $credit);
-    $stories.append($newStory);
+    $stories.append(`
+      <li>
+        <span class="glyphicon glyphicon-star-empty" data-id=${story.id}/></span>
+        <a href=${story.url} target="_blank" data-id=${story.id}>${story.title}</a>
+        <small>(${shortHostname})</small>
+        <p>
+          <small>by ${story.by} ${formattedTime}</small>
+        </p>
+      </li>
+    `);
   }
 
   // helper to check current login status and update the view
