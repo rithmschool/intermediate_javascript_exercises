@@ -37,6 +37,10 @@ li {
   font-weight: bold;
 }
 
+ol {
+  padding-top: 10px;
+}
+
 #title, #url {
   min-width: 250px;
 }

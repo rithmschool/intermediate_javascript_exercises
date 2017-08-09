@@ -28,7 +28,7 @@ $(function() {
   var faveShow = false;
   const numStories = 20;
 
-  // $forms.hide();
+  $forms.hide();
 
   getTopStories(numStories);
 
@@ -42,7 +42,10 @@ $(function() {
     }
 
     $forms.slideToggle(500);
+
     formShow = !formShow;
+    
+    $emailIn.focus();
   });
 
   // ===========================================================================
@@ -123,8 +126,7 @@ $(function() {
         })
     })
     .then(function(data) {
-      console.log(data.auth_token);
-      localStorage.setItem('token', data.auth_token);
+      setLogin(data.auth_token);
     })
     .fail(err => console.warn(err));
 
@@ -151,8 +153,7 @@ $(function() {
         })
     })
     .then(function(data) {
-      console.log(data.auth_token);
-      localStorage.setItem('token', data.auth_token);
+      setLogin(data.auth_token);
     })
     .fail(err => console.warn(err));
 
@@ -161,12 +162,22 @@ $(function() {
   }
 
   // ===========================================================================
+  // Function to update page after login, called by #signIn and #signUp
+  function setLogin(token) {
+    localStorage.setItem('token', token);
+    console.log(token);
+    $('span.glyphicon').removeClass('hidden');
+    $login.text('hello!');
+    $forms.hide();
+  }
+
+  // ===========================================================================
   // Function to create and add story to list
   function addSite(title, url) {
     var $li = $('<li>');
 
     var $faveSpan = $('<span>');
-    $faveSpan.addClass('glyphicon glyphicon-star-empty');
+    $faveSpan.addClass('hidden glyphicon glyphicon-star-empty');
 
     var $link = $('<a>');
     $link.attr('href', url)
