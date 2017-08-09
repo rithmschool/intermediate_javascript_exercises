@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	var $links = $('#links');
+	var linksList = [];
+	var favList = [];
 	var $login_link = $('#login-link');
 	var $login_form = $('#login-form');
 	var $inp_email = $('#inp-email');
@@ -29,7 +31,6 @@ $(document).ready(function(){
 			localStorage.setItem('auth_token', data.auth_token);
 			authorization = data.auth_token;
 			console.log(data.auth_token);
-			$('.hideNoLogin').toggleClass('hideNoLogin showOnLogin');
 			$login_link.text('Log Out');
 			$inp_email.val('');
 			$inp_password.val('');
@@ -38,25 +39,27 @@ $(document).ready(function(){
 			{
 		    	method: "GET",
 		    	headers: { "Authorization": authorization },
-		      	'url': url,
+		      	'url': 'https://hn-favorites.herokuapp.com/stories.json',
 			});
 		})
-		.then()
+		.then(function(data){
+			getStories(true, data);
+		})
 		.fail(err => console.warn(err));
 	});
 
 	getStories();
 
-	function getStories(login = '', favorites = []){
+	function getStories(login = false, favorites = []){
 		var url = 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty';
 
 		$.get(url)
 		.then(function(res){
+			$links.empty();
 			for(let i = 0; i < 20; i++){
 				var newUrl = `https://hacker-news.firebaseio.com/v0/item/${res[i]}.json?print=pretty`;
 				 $.get(newUrl).then(function(res){
-				 	if(favorites)
-					displayLink(res.title, res.url)
+					displayLink(res.title, res.url, res.id, false, login);
 				});	
 			}
 			
@@ -82,11 +85,13 @@ $(document).ready(function(){
 
 	}
 
-	function displayLink(title, link, favor = false){
-		let html = '<a class="glyphicon glyphicon-star-empty star hideNoLogin" href="#"></a>';
+	function displayLink(title, link, storyId=0, favor = false, login = false){
+		var loginClass = 'hideNoLogin';
+		if(login) loginClass = 'showOnLogin';
+		let html = `<a storyId="${storyId}" class="glyphicon glyphicon-star-empty star ${loginClass}" href="#"></a>`;
 		let shortLink = '';
 		if(link)  { shortLink = link.split('/').filter(v => v.includes('.')); }
-		if(favor) html =  '<a class="glyphicon glyphicon-star star hideNoLogin" href="#"></a>';
+		if(favor) html =  `<a storyId="${storyId}" class="glyphicon glyphicon-star star ${loginClass}" href="#"></a>`;
 			{ html += `<a href="${link}">${title}</a> <small>( ${shortLink[0]} )</small>`; }
 		let $lin = $('<li>');
 		$lin.html(html);
