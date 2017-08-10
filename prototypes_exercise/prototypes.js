@@ -63,3 +63,16 @@ Function.prototype.bind = function(thisArg, ...args){
 	}
 
 }
+
+Array.prototype.reduce = function(fn, init, keepUndefined = false){
+	for(let i = 0; i < this.length; i++){
+		if(i === 0 && init === undefined){
+			init = this[0];
+			continue;
+		}else if(this[i] !== undefined || keepUndefined){
+			init = fn(init, this[i], i, this);
+		}
+	}
+
+	return init;
+}
