@@ -57,3 +57,54 @@ Function.prototype.bind = function(thisArg, ...outerArgs) {
     return _this.apply(thisArg, [...outerArgs, ...arguments]);
   }
 }
+
+/*
+array = [1,2,3,4];
+array.reduce(function(acc, el) {
+  return `${acc}${el}`;
+}, "");
+// "1234"
+*/
+
+Array.prototype.reduce = function(fn, startVal) {
+  var startValue = startVal? startVal : this[0];
+  var i = startVal? 0 : 1;
+
+  for (i ; i < this.length; i++) {
+    startValue = fn(startValue, this[i], i, this);
+  }
+
+  return startValue;
+}
+
+
+var numArray = [1,2,3,4];
+console.log(numArray.reduce(function(acc, el) {
+  return `${acc}${el}`;
+}, ""));
+// "1234"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
