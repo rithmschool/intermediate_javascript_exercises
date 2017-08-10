@@ -90,9 +90,9 @@ curl -H "Content-Type: application/json" \
      https://hn-favorites.herokuapp.com/stories.json
 ```
 
-__Stories API - DELETE /stories/:story_id.json__
+__Stories API - DELETE /stories/:id.json__
 
-To delete a favorite story, you will need the id created by the api.  For example, a delete request might to the following url:
+To delete a favorite story, you will need the id created by the api.  For example, a delete request might be to the following url:
 
 ```
 https://hn-favorites.herokuapp.com/stories/2.json
