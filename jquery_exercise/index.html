@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	
+	<div class="container"> 
+		<div class="header">
+			<h3 id='name'>HackerNews Clone</h3>
+			<p id="addNew">submit</p>
+			|
+			<p id="fav">favorites</p>
+		</div>
+
+		<div class="main">
+
+			<form class="form-inline">
+			  <div class="form-inline">
+			    <label for="title">Title:</label>
+			    <input type="text" class="form-control" id="title">
+			  </div>
+			  <div class="form-inline">
+			    <label for="url">URL:</label>
+			    <input type="url" class="form-control" id="url">
+			  </div>
+			  <button type="submit" class="btn btn-default">Submit</button>
+			</form>
+
+
+
+			<ol id="articles">
+				<li><span class="glyphicon glyphicon-star-empty"></span><a href="https://google.com"> Visualizing Algorithms</a></li>
+				<li><span class="glyphicon glyphicon-star-empty"></span><a href="https://rithmschool.com"> Problem Solving with Rithm</a></li>
+			</ol>
+		</div>
+
+	</div>
+
+
+
+					
+
+	<script
+  	src="https://code.jquery.com/jquery-3.2.1.js"
+  	integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  	crossorigin="anonymous"></script>
+	<script src="app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+<!-- //my old form
+<form id="form">
+Title: <input type="text" id="title"><br>
+URL: <input type="text" id="url"><br>
+<input type="submit" value="Submit" id="submit">
+</form> -->
