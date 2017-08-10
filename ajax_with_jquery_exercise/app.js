@@ -33,6 +33,7 @@ $(function() {
   $forms.hide();
 
   getTopStories(numStories);
+  var faveIds = getFavedStoryIds();
 
   // ===========================================================================
   // Event listener to show and hide the form
@@ -74,9 +75,11 @@ $(function() {
 
 
   // ===========================================================================
-  // Event listener to save a story as favorited
+  // Event listener to save a story as favorited if not already a favorite
   $olTop.on('click', 'span.glyphicon', function(event) {
-    saveFavorite(event);
+    if($(event.target).hasClass('glyphicon-star-empty')) {
+      saveFavorite(event);
+    }
   });
 
   // ===========================================================================
@@ -172,6 +175,15 @@ $(function() {
     var $faveSpan = $('<span>');
     $faveSpan.addClass('hidden glyphicon glyphicon-star-empty');
 
+    if (faveIds) {
+      for (var i = 0; i < faveIds.length; i++) {
+        if (faveIds[i] === id) {
+          $faveSpan.removeClass('glyphicon-star-empty');
+          $faveSpan.addClass('glyphicon-star');
+        }
+      }
+    }
+
     var $link = $('<a>');
     $link.attr('href', url)
          .attr('target', '_blank')
@@ -191,13 +203,12 @@ $(function() {
     $li.append($hiddenP);
     $olTop.append($li);
 
+    // show favorite buttons if signed in
     if (localStorage.getItem("token")) {
       $('ol.top span.glyphicon').removeClass('hidden');
       $login.text('hello!');
     }
   }
-
-
 
   // ===========================================================================
   // Function to collect data for and make ajax request to save story as a favorite
@@ -234,6 +245,7 @@ $(function() {
     })
     .fail(err => console.warn(err));
   }
+
 });
 
 // ===========================================================================
@@ -243,3 +255,29 @@ function getDomain(url) {
   var domain = fullDomain.split('/');
   return '(' + domain[0] + ')';
 }
+
+// ===========================================================================
+// function to get faved story ids from local storage
+function getFavedStoryIds() {
+  var favorites = localStorage.getItem('favorites');
+  var faveIds = [];
+
+  if (favorites) {
+    var faves = JSON.parse(favorites);
+
+    for (var i = 0; i < faves.length; i++) {
+      faveIds.push(faves[i].story_id);
+    }
+  }
+
+  return faveIds;
+}
+
+
+
+
+
+
+
+
+// end

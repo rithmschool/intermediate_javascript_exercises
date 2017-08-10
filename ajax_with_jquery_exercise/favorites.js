@@ -34,6 +34,9 @@ $(function() {
         url: "https://hn-favorites.herokuapp.com/stories.json"
     })
     .then(faves => {
+      var favorites = JSON.stringify(faves);
+
+      localStorage.setItem('favorites', favorites);
       faves.forEach(function(ele) {
           addFavorite(ele);
         });
@@ -45,7 +48,6 @@ $(function() {
   // Function to create and add story to list
   function addFavorite(story) {
     var {id, title, url, story_id} = story;
-    console.log(story);
     var $li = $('<li>');
 
     var $faveSpan = $('<span>');
@@ -87,7 +89,9 @@ $(function() {
         url: `https://hn-favorites.herokuapp.com/stories/${id}.json`
     })
     .then(function(data) {
-      $parent.remove();
+      // $parent.remove();
+      // getFavorites();
+      window.location.reload();
     })
     .fail(err => console.warn(err));
   }
