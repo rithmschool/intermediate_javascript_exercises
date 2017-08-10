@@ -1,0 +1,93 @@
+p.header-text:hover, span.glyphicon:hover, .domain:hover {
+  cursor: pointer;
+}
+
+p.header-text:hover, .domain:hover {
+  text-decoration: underline;
+}
+
+p.message {
+  color: darkred;
+  line-height: 2em;
+}
+
+h3 {
+  padding: 0 20px;
+}
+
+input {
+  margin-right: 20px;
+}
+
+main {
+  background-color: #cfd8dc;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+form {
+  padding: 20px 20px;
+}
+
+a, label, p.message, #title, #url {
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+  padding-left: 5px;
+  padding-right: 7px;
+  line-height: 2em;
+  color: #37474f;
+}
+
+li, .header-text, .header-link  {
+  font-weight: bold;
+}
+
+ol {
+  padding-top: 10px;
+}
+
+#title, #url {
+  min-width: 250px;
+}
+
+.header {
+  display: block;
+  width: 100%;
+  height: 70px;
+  background-color: #2979ff;
+  border: 2px solid #0d47a1;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  margin-top: 10px;
+}
+
+.header-text, .header-link {
+  display: inline-block;
+}
+
+.form-name {
+  color: #2979ff;
+  font-size: 18px;
+}
+
+.forms {
+  padding-bottom: 20px;
+}
+
+.no-list-nums {
+  list-style-type: none;
+}
+
+.domain {
+  color: #607d8b;
+  font-size: 14px;
+}
+
+.session {
+  float: right;
+  padding: 20px 20px;
+  color: #eeeeee;
+}
