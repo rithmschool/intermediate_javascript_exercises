@@ -3,19 +3,28 @@
 Fix the following code:
 
 ```javascript
+// var obj = {
+//     fullName: "Harry Potter",
+//     person: {
+//         sayHi: function(){
+//             return "This person's name is " + this.fullName
+//         }
+//     }
+// }
+
 var obj = {
     fullName: "Harry Potter",
     person: {
         sayHi: function(){
             return "This person's name is " + this.fullName
-        }
+        }.apply(obj)
     }
 }
 ```
 
 - List two examples of "array-like-objects" that we have seen.
-    -
-    -
+    - arguments
+    - result of DOM method such as getElementsByTagName
 
 ### Functions to write:
 
