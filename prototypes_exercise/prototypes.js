@@ -75,8 +75,9 @@ Function.prototype.bind = function(myThis, ...args){
 	})
 }
 
-Function.prototype.reduce = function(){
+Array.prototype.reduce = function(init){
 	
+	for(var i = 0; i < )
 }
 
 
