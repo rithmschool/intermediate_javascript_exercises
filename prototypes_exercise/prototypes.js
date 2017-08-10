@@ -37,3 +37,20 @@ Function.prototype.bind = function(thisArg, ...outerArgs){
     return _this.apply(thisArg, [...outerArgs, ...arguments]);
   }
 }
+
+Array.prototype.reduce = function(fn) {
+  var initialValue;
+  var startIdx;
+
+  if (arguments.length > 1) {
+    initialValue = arguments[1];
+    startIdx = 0;
+  } else {
+    initialValue = this[0];
+    startIdx = 1;
+  }
+  for (let i = startIdx; i < this.length; i++) {
+    initialValue = fn(initialValue, this[i], i, this);
+  }
+  return initialValue;
+}
