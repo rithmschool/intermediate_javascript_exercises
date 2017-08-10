@@ -3,19 +3,19 @@
 var obj = {
   fullName: "Harry Potter",
   person: {
-      sayHi: function(){
-          return "This person's name is " + this.fullName
-      }
-  }
+  	sayHi: function(){
+    	return "This person's name is " + this.fullName
+  	}
+	}
 }
 
 //Fix
 
 var obj = {
-  fullName: "Harry Potter",
-  sayHi: function(){
-      return "This person's name is " + this.fullName
-  }
+ 	fullName: "Harry Potter",
+ 	sayHi: function(){
+    return "This person's name is " + this.fullName
+ 	}
 }
 
 obj.sayHi();
@@ -54,7 +54,7 @@ function arrayFrom(){
 	return [].slice.call(arguments);
 }
 
-//5. Write a function called invokeMax which accepts a function and a maximum amount. invokeMax should return a function that when called increments a counter. If the counter is greater than the maximum amount, the inner function should return "Maxed Out"
+//5. Write a function called invokeMax which accepts a function and a maximum amount. invokeMax should return a function that when called increments a counter. If the counter is greater than the maximum amount, the inner function should return "Maxed Out!"
 
 /*function add(a,b){
     return a+b
