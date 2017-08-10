@@ -45,8 +45,8 @@ console.log( sayHi.call(newerObj));
 ```
 
 - List two examples of "array-like-objects" that we have seen.
-    -
-    -
+    - arguments
+    - jQuery selectors like $('p');
 
 ### Functions to write:
 

@@ -1,28 +1,50 @@
-var obj = {
-    fullName: "Harry Potter",
-    person: {
-        sayHi: function(){
-            return "This person's name is " + obj.fullName
-        }
-    }
+"use strict"
+
+function sumEvenArguments(){
+	var arr =  [].slice.call(arguments);
+	return arr.reduce( 
+	   function(t, v){ 
+	       if(v % 2 === 0) { return t+v; } 
+	       else { return t;}
+	   },0);
 }
 
-console.log( obj.person.sayHi() );
-
-
-var newObj = { 
-	fullName: "Harry Potter",
-	sayHi() { return `This person's name is ${this.fullName}`; }
+function arrayFrom(obj){
+	return [].slice.call(obj);
+	//return Array.prototype.slice.call(obj);
+	/*
+	var arr = [];
+	
+	for(let i = 0; i < obj.length; i++){
+		arr.push(obj[i]);
 	}
 
-console.log( newObj.sayHi() );
+	return arr;
+	*/
+}
 
-var newerObj = { 
-	fullName: "Harry Potter",}
+function invokeMax(fn, max){
+	var count = 0;
 
-function sayHi() { return `This person's name is ${this.fullName}`; }
+	return function(){
+		if(++count > max) return `Maxed Out!`;
+		var arr = [].slice.call(arguments);
 
-console.log( sayHi.call(obj));
-console.log( sayHi.call(newObj));
-console.log( sayHi.call(newerObj));
-	
+		return fn.apply(this, arr);
+	};
+
+}
+
+function guessingGame(amount){
+	var count  = 0;
+	var answer = Math.floor(Math.random() * 11);
+
+	return function(guess){
+		if(count++ === amount) { return `No more guesses the answer was ${answer}`; }
+		else if(count > amount) { return `You are all done playing!`; }
+		else if(answer > guess){ return "You're too low!"; }
+		else if(answer < guess){ return "You're too high!"; }
+		else if(answer === guess){ return "You got it!"; }
+	}
+
+}
