@@ -1,6 +1,9 @@
+p.header-text:hover, span.glyphicon:hover, .domain:hover {
+  cursor: pointer;
+}
+
 p.header-text:hover, .domain:hover {
   text-decoration: underline;
-  cursor: pointer;
 }
 
 p.message {
@@ -26,7 +29,7 @@ form {
   padding: 20px 20px;
 }
 
-a, label, #title, #url {
+a, label, p.message, #title, #url {
   font-size: 16px;
 }
 
@@ -38,7 +41,7 @@ a {
   color: #37474f;
 }
 
-li {
+li, .header-text, .header-link  {
   font-weight: bold;
 }
 
@@ -63,7 +66,6 @@ ol {
 
 .header-text, .header-link {
   display: inline-block;
-  font-weight: bold;
 }
 
 .form-name {

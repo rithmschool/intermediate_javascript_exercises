@@ -8,8 +8,11 @@
 $(function() {
 
   var $olFavorite = $('ol.favorite');
-
   var token = localStorage.getItem('token');
+
+  $olFavorite.on('click', 'span.favorited', function(event) {
+    removeFavorite(event);
+  });
 
   if (token) {
     getFavorites();
@@ -33,7 +36,6 @@ $(function() {
     .then(faves => {
       faves.forEach(function(ele) {
           addFavorite(ele);
-          addListenerToFavorites();
         });
       }
     ).fail(err => console.warn(err));
@@ -42,8 +44,8 @@ $(function() {
   // ===========================================================================
   // Function to create and add story to list
   function addFavorite(story) {
-    // console.log(story);
-    var {id, title, url} = story;
+    var {id, title, url, story_id} = story;
+    console.log(story);
     var $li = $('<li>');
 
     var $faveSpan = $('<span>');
@@ -69,17 +71,8 @@ $(function() {
 
   // ===========================================================================
   // Function to remove favorite
-  function addListenerToFavorites() {
-    $olFavorite.on('click', 'span.favorited', function(event) {
-      removeFavorite(event);
-    });
-  }
-
-  // ===========================================================================
-  // Function to remove favorite
   function removeFavorite(event) {
     var target = event.target;
-    console.log(target);
     var $parent = $(target).parent();
     var id = $parent.children().eq(3).text();
 
@@ -111,5 +104,4 @@ $(function() {
     $li.append($p);
     $olFavorite.append($li);
   }
-
 });

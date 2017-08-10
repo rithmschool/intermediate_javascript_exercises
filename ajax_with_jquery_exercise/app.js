@@ -51,22 +51,6 @@ $(function() {
   });
 
   // ===========================================================================
-  // Event listener to toggle between showing all links and only favorited links
-  // $faves.on('click', function() {
-  //   var $notFaves = $('ol').find('li > span.glyphicon-star-empty').parent();
-  //   $notFaves.toggleClass('hidden');
-  //   $olTop.toggleClass('no-list-nums');
-  //
-  //   if (!faveShow) {
-  //     $faves.text('all');
-  //   } else {
-  //     $faves.text('favorites');
-  //   }
-  //
-  //   faveShow = !faveShow;
-  // });
-
-  // ===========================================================================
   // Event listener for sign in form submission
   $signInForm.on('submit', function(event) {
     event.preventDefault();
