@@ -20,3 +20,7 @@ __BONUS__
 Good luck!
 
 
+list items 
+DOM:
+//nav bar
+//footer 
