@@ -73,6 +73,7 @@ $(function(){
 		$items.append($newLi);
 	}
 	
+
 	// function getStories(login ='', favorites=false){
 	// 	var url = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
 	//     $.get(url)
@@ -92,28 +93,22 @@ $(function(){
 	//     });
 	// }
 
-//mine
+//needs to return name,url,storyId
 	function getStories(login=''){
 		//gets array of numbers
-	    return $.get("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty")
-	  	.then(function(topstories){
-	  		var arr = [];
-	  		for(var i = 0; i < 20; i++){
-	  			var newUrl = `https://hacker-news.firebaseio.com/v0/item/${topstories[i]}.json?print=pretty`
-		    	$.get(newUrl).then(
-			    	function(newUrl){
-			    		arr.push(newUrl);
-			    		return arr;
-			    });  
-	  		}
+	    return $.ajax({
+	    	url: "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty",
+	    	method: "GET",
+	    	headers: {
+				"Content-Type": "application/json",
+				"Authorization": authorization
+			},
 	  	})
 	}
-	return getStories();
 
+	getStories()
 	//getStories();
 	//displayLink(newUrl.title,newUrl.url,newUrl.id);
-
-
 
 	function getFavorites(login=''){ 
 		//returns array of object (of favorites)
@@ -126,8 +121,6 @@ $(function(){
 			},
 		})
 	}
-
-	getStories();
 
 });
 
