@@ -41,7 +41,7 @@ function sample(){
 }
 ```
 
-Write a function called `invokeMax` which accepts a function and a maximum amount. `invokeMax` should return a function that when called increments a counter. If the counter is greater than the maximum amount, the inner function should return "Maxed Out"
+Write a function called `invokeMax` which accepts a function and a maximum amount. `invokeMax` should return a function that when called increments a counter. If the counter is greater than the maximum amount, the inner function should return "Maxed Out!"
 
 ```javascript
 function add(a,b){

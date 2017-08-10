@@ -1,0 +1,41 @@
+.card {
+  width: 270px;
+  height: 400px;
+  padding: 5px;
+  background-color: grey;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 2em;
+}
+
+.inner-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  line-height: 400px;
+}
+
+.front-card {
+  background-color: white;
+}
+
+.back-card {
+  background-color: lightgrey;
+}
+
+.hidden {
+  display: none;
+}
+
+.next-button {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 20px;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+}

@@ -99,6 +99,35 @@ describe("Array.prototype.map", function(){
   });
 });
 
+describe("Array.prototype.reduce", function(){
+  var arr = [1,2,3,4]
+  it("adds numbers without an initial value", function(){
+    expect(arr.reduce((acc,v) => acc+v)).to.equal(10)
+  });
+  it("adds numbers with an initial value", function() {
+    expect(arr.reduce((acc,v) => acc+v, 10)).to.equal(20)
+  })
+  it("has an index as the 3rd parameter", function() {
+    expect(arr.reduce((acc,v, i) => i === 3 ? "blah": null, 10)).to.equal("blah")
+  })
+  it("has an index array as the 4th parameter", function() {
+    expect(arr.reduce((acc,v, i, arr) => arr.length, 10)).to.equal(4)
+  })
+  it("can return any type of data", function() {
+    var init = {name: "Tim", age: "33", numbers: []};
+    var res = arr.reduce((acc,v, i, arr) => {
+      acc.numbers.push(v);
+      return acc;
+    }, init);
+    expect(res).to.equal(init)
+    expect(res.numbers).to.be.a("array");
+    expect(res.numbers).to.equal(init.numbers);
+    expect(res.numbers.length).to.equal(4);
+    expect(res.numbers).to.deep.equal(arr);
+  })
+
+});
+
 describe("String.prototype.reverse", function(){
   it("returns a new reversed string", function(){
     expect("test".reverse()).to.equal("tset");
