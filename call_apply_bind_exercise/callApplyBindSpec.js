@@ -28,7 +28,7 @@ describe("#invokeMax", function(){
    var addOnlyThreeTimes = invokeMax(add,3);
    expect(addOnlyThreeTimes(1,2)).to.equal(3) // 3
    expect(addOnlyThreeTimes(2,2)).to.equal(4) // 4
-   expect(addOnlyThreeTimes(1,2)).to.equal(3) // 3
+   expect(addOnlyThreeTimes(5,6)).to.equal(11) // 3
    expect(addOnlyThreeTimes(1,2)).to.equal("Maxed Out!")
    expect(addOnlyThreeTimes(1,2)).to.equal("Maxed Out!")
   });
