@@ -11,12 +11,15 @@ document.addEventListener("DOMContentLoaded", function() {
 	//Functions
 	function Game(){
 		this.player = 'X';
+		this.message = new Message();
 		this.board = new Board(this);
 		this.gameOn = true;
 	}
 	Game.prototype.reset = function(){
 		this.player = 'X';
 		this.board.clear();
+		this.message.clear();
+		this.board.changePlayer(this.player);
 		this.gameOn = true;
 	}
 	Game.prototype.play = function(row, col){
@@ -27,10 +30,12 @@ document.addEventListener("DOMContentLoaded", function() {
 			//check for win or tie
 			if(this.winLooseOrDraw()){
 				this.gameOn = false;
-				alert(this.winLooseOrDraw());
+				this.message.set(this.winLooseOrDraw());
 			}
 			//change players
 			this.player = (this.player === 'X'? 'O':'X');
+			this.board.changePlayer(this.player);
+			//this.board.
 		}
 	}
 	Game.prototype.winLooseOrDraw = function(){
@@ -87,9 +92,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			this.squares.push(row);
 		}
 
-		//help binding is not working
-		//var play = game.play.bind(this);
-		//console.log(this.game);
 		this.$board.on('click', '.square', function(e){
 			var [row, col] = e.target.id.split('_').slice(1);
 			this.game.play(row,col);
@@ -97,12 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	}
 	Board.prototype.clear = function(){
-		$('.squares').text('').removeClass('X O');
-		// for(let row = 0; row < 3; row++){
-		// 	for(let col = 0; col < 3; col++){
-		// 		this.squares[row][col].clear();
-		// 	}
-		// }
+		$('.square').text('').removeClass('X O');
 	}
 	Board.prototype.get = function(row, col){
 		return this.squares[row][col].get();
@@ -113,12 +110,13 @@ document.addEventListener("DOMContentLoaded", function() {
 	Board.prototype.play = function(row, col, player){
 		this.squares[row][col].set(player);
 	}
+	Board.prototype.changePlayer = function(player){
+		this.$board.removeClass('X O');
+		this.$board.addClass(player);
+	}
 
 	function Squares($jObj){
 		this.$jObj = $jObj;
-	}
-	Squares.prototype.clear = function(){
-		this.$jObj.text('');
 	}
 	Squares.prototype.isEmpty = function(){
 		return this.$jObj.text() === '';
@@ -129,6 +127,16 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 	Squares.prototype.get = function(){
 		return this.$jObj.text();
+	}
+
+	function Message(){
+		this.$message = $('#message');
+	}
+	Message.prototype.set = function(msg){
+		this.$message.text(msg);
+	}
+	Message.prototype.clear = function(msg){
+		this.$message.text('');
 	}
 
 });
