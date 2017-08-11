@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="app.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="content_column">
+			<div class="header border_round">
+			<div id="logo">
+				<img src="Files/logo.png" height="32" width="32" >
+			</div>
+			<div id="title_page">
+				<h2>Hack or Snooze</h2>
+			</div>
+			<div id="subFav_links">
+				<span><a href="#" id="link_submit" class="link_menu">submit</a></span>
+				<span>  |  </span>
+				<span><a href="#" id="link_fav" class="link_menu">favorites</a></span>
+			</div>
+		</div>
+		<div id="submission" style="display:none;">
+			<form id="form_submit">
+				<div class="input">
+					<label id="input_label1">title</label>
+					<input id="input_text1" class="border_round_sm" type="text" required>
+				</div>
+				<div class="input">
+					<label id="input_label2">url</label>
+					<input id="input_text2" class="border_round_sm" type="url" required>
+				</div>
+				<div id="button_div">
+					<input type="submit" id="button_submit">
+				</div>
+			</form>
+		</div>
+		<div id="article_links">
+			<ol id="list_links">
+				<li class="visible">
+					<input type="checkbox">
+					<span>Visualizing Algorithms</span>
+					<span class="tiny_text">(<a href="#" class="link_filter">www.funstuff.com</a>)</span>
+				</li>
+				<li class="visible">
+					<input type="checkbox">
+					<span>Beating a Dead Horse...literally.</span>
+					<span class="tiny_text">(<a href="#" class="link_filter">www.crueltybythenumbers.com</a>)</span>
+				</li>
+				<li class="visible">
+					<input type="checkbox">
+					<span>Good Times, Bad Times, Hella Times</span>
+					<span class="tiny_text">(<a href="#" class="link_filter">www.crazygarbage.com</a>)</span>
+				</li>
+			</ol>
+		</div>
+	</div>
+	<script src="app.js"></script>
+</html>

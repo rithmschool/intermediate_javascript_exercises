@@ -1,0 +1,110 @@
+function Person(firstName, lastName, favoriteColor, favoriteNumber) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.favoriteColor = favoriteColor;
+  this.favoriteNumber = favoriteNumber;
+  this.favoriteFoods = [];
+  this.family = [];
+}
+
+Person.prototype.fullName = function() {
+  return this.firstName + " " + this.lastName;
+}
+
+var p = new Person("Shana", "Malarkin", "Green", 38);
+console.log(p.fullName()); // Shana Malarkin
+
+Person.prototype.toString = function() {
+  return this.firstName + " " + this.lastName + ", Favorite Color: " + this.favoriteColor + 
+          ", Favorite Number: " + this.favoriteNumber;
+}
+
+//var p1 = new Person("Shana", "Malarkin", "Green", 38);
+console.log(p.toString()); // Shana Malarkin, Favorite Color: Green, Favorite Number: 38
+
+Person.prototype.addToFamily = function(object) {
+  if (object instanceof Person)
+    if (this.family.indexOf(object) === -1)
+      this.family.push(object);
+
+  return this.family.length;
+}
+
+Array.prototype.map = function(fn, thisArg) {
+//  if (thisArg) this = thisArg; How do we handle this?!
+  var newArray = [];
+
+  for (var i = 0; i < this.length; i++) {
+    newArray.push(fn(this[i], i, this));
+  }
+
+  return newArray;
+}
+
+String.prototype.reverse = function() {
+  var reverse = "";
+
+  for (var i = this.length - 1; i >= 0; i--) {
+    reverse = reverse.concat(this[i]);
+  }
+
+  return reverse;
+}
+
+Function.prototype.bind = function(thisArg, ...outerArgs) {
+  var _this = this;
+  return function() {
+    return _this.apply(thisArg, [...outerArgs, ...arguments]);
+  }
+}
+
+/*
+array = [1,2,3,4];
+array.reduce(function(acc, el) {
+  return `${acc}${el}`;
+}, "");
+// "1234"
+*/
+
+Array.prototype.reduce = function(fn, startVal) {
+  var startValue = startVal? startVal : this[0];
+  var i = startVal? 0 : 1;
+
+  for (i ; i < this.length; i++) {
+    startValue = fn(startValue, this[i], i, this);
+  }
+
+  return startValue;
+}
+
+
+var numArray = [1,2,3,4];
+console.log(numArray.reduce(function(acc, el) {
+  return `${acc}${el}`;
+}, ""));
+// "1234"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

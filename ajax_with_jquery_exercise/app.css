@@ -1,0 +1,131 @@
+.container {
+	display: flex;
+	justify-content: center;
+}
+
+.content_column {
+	background-color: #f4deab;
+}
+
+.header {
+	height: 48;
+	display: inline-flex;
+	align-items: center;
+	background-color: #f9571b;
+	width: 800px;
+}
+
+.border_round {
+	border-radius: 4px;
+}
+
+.border_round_sm {
+	border-radius: 2px;
+	border-width:1px;
+	border-style: solid;
+}
+
+#logo {
+	width: 32px;
+	height: 32px;
+	margin-left: 12px;
+}
+
+#title_page {
+	margin-left: 12px;
+	margin-right: 12px;
+}
+
+#fav_links {
+	margin-left: 24px;
+	padding-left: 12px;
+}
+
+.loginSignup_div {
+	margin-left: 128px;
+	padding-left: 12px;
+	margin-bottom: 32px;
+}
+
+#form_submit {
+	margin-top: 12px;
+	margin-bottom: 12px;
+}
+
+.input {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.inputA {
+	position: relative;
+	text-align: right;
+	left: 0px;
+}
+
+.inputB {
+	position: relative;
+	text-align: right;
+	left: 0px;
+}
+
+.input_textA {
+	position:relative;
+	left: 24px;
+	width: 128px;
+	height: 24px;
+}
+
+.input_textB {
+	position:relative;
+	left: 24px;
+	width: 128px;
+	height: 24px;
+}
+
+.button_submit {
+	position:relative;
+	left: 70px;
+	width: 64px;
+	height: 32px;
+}
+
+.visible {
+	visibility: visible;
+}
+
+.invisible {
+	visibility: hidden;
+}
+
+.displayNone {
+	display:none;
+}
+
+.displayBlock {
+	display:block;
+}
+
+.tiny_text {
+	font-size: 11px;
+}
+
+.link_menu{
+	text-decoration: none;
+}
+
+.signup_link {
+	position:relative;
+	right: -410px;
+}
+
+.login_link {
+	position:relative;
+	right: -420px;
+}
+
+.text_by {
+	position: relative;
+	left:22px;
+	font-size: 12px;
+}
