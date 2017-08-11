@@ -92,16 +92,17 @@ document.addEventListener("DOMContentLoaded", function() {
 		//console.log(this.game);
 		this.$board.on('click', '.square', function(e){
 			var [row, col] = e.target.id.split('_').slice(1);
-			game.play(row,col);
-		});
+			this.game.play(row,col);
+		}.bind(this));
 
 	}
 	Board.prototype.clear = function(){
-		for(let row = 0; row < 3; row++){
-			for(let col = 0; col < 3; col++){
-				this.squares[row][col].clear();
-			}
-		}
+		$('.squares').text('').removeClass('X O');
+		// for(let row = 0; row < 3; row++){
+		// 	for(let col = 0; col < 3; col++){
+		// 		this.squares[row][col].clear();
+		// 	}
+		// }
 	}
 	Board.prototype.get = function(row, col){
 		return this.squares[row][col].get();
@@ -124,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 	Squares.prototype.set = function(val){
 		this.$jObj.text(val);
+		this.$jObj.addClass(val);
 	}
 	Squares.prototype.get = function(){
 		return this.$jObj.text();
