@@ -10,14 +10,36 @@ function GameMaster(){
 	this.player = "X"
 }
 
+
+GameMaster.prototype.winLoseDraw = function(validity,x){
+	console.log(validity)
+	//if winning pattern
+	//if draw pattern
+	//else send to GameMaster.play
+}
+
 //shared variables
-GameMaster.prototype.play = function(sq){
-	sq.play(this.player);
-	if(this.player === "X"){
-		this.player = "O"
+GameMaster.prototype.validMove = function(validity,x){
+	if(validity.status === ""){
+		//validity: obj of "Square" (and hence it's property status)
+		//x = id of square
+		this.play(validity,x);
 	} else {
-		this.player = "X"
+		alert('If at first you do not succeed, try try again.')
 	}
+}
+
+
+GameMaster.prototype.play = function(validity,x){
+	validity.play(this.player);
+	if(this.player === "X"){
+		this.player = "O";
+		validity.status = "O"
+	} else {
+		this.player = "X";
+		validity.status = "X"
+	}
+	this.winLoseDraw(validity,x)
 }
 
 function Board(gameMaster){
@@ -33,7 +55,7 @@ function Square(x, gameMaster){
 	this.$position = $(`#square_${x}`)
 	this.gameMaster = gameMaster; 
 	this.$position.on("click", function(){
-		this.gameMaster.play(this);
+		this.gameMaster.validMove(this,x);   
 	}.bind(this));
 }
 

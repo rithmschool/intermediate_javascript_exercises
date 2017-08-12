@@ -1,22 +1,46 @@
 
 
 $(function(){
-	$("form").hide();
-
+	
 //VARIABLES
-	var $password = $("#password")
-	var $username = $("#username")
+	var $password = $("#password");
+	var $username = $("#username");
 	var $items = $("#items");
 	var authorization = "";
-
 //EVENTS
-	
-	//upon submit you get username/password/token
+	//login form is hidden when page loads
+	$("form").hide();
+	//when you click "login" the form toggles to be seen
+	$("#clicktoToggle").on("click", function(e){
+		$("form").toggle();
+	});
+
+	$('#favorites').on("click", function(e){
+		if(authorization === ""){
+			alert('Please login to see Favorites')
+		} else {
+			getFavorites(authorization);
+		}
+	})
+
 	$("button").on('click', function(e){
 		var username = $username.val();
 		var password = $password.val();
+		$("form").hide();
+		$('#clicktoToggle').text('logout');
+		getLogin(username,password);
+	})
 
-		//get token
+	$items.on('click', '.glyphicon-star-empty, .glyphicon-star', function(e) {
+			$(e.target).toggleClass("glyphicon-star glyphicon-star-empty");
+	});
+
+	getTop();
+	//when logout is clicked, need to remove token
+
+//FUNCTIONS
+
+	function getLogin(username,password){
 		$.ajax({
 		    method: "POST",
 		    headers: {
@@ -27,42 +51,18 @@ $(function(){
 		        'email': username, 
 		        'password': password
 			    })
-			})
+		})
 		.then(function(data) { 
 			localStorage.setItem('auth_token', data.auth_token);
 			authorization = data.auth_token
-			//have token, now need to hide form and change login to logout
-			$('#password').val('');
-			$('#username').val('');
-			$("form").hide();
-			$('#clicktoToggle').text('logout');
-			return getFavorites(data.auth_token)
-			//when logout is clicked, need to remove token
-
-		})
-		.then(function(favorites){
-			//returned promise of all favorites as objects in array (debugger)
-
 		})
 		.fail(err => console.warn(err))
+	}
 
-
-	})
-	
-	$items.on('click', '.glyphicon-star-empty, .glyphicon-star', function(e) {
-			$(e.target).toggleClass("glyphicon-star glyphicon-star-empty");
-		});
-
-	$("#clicktoToggle").on("click", function(e){
-		$("form").toggle();
-	});
-
-//FUNCTIONS
-
-	function displayLink(name="adele",url="http://wwww.google.com",storyId=0){
+	function displayLink(title="adele",url="http://wwww.google.com",storyId=0){
 		var shortUrl = url.slice(12);
 		var $newLi = $("<li>", {
-			html: `${name} (<a href="${url}">${shortUrl}</a>)`,
+			html: `${title} (<a href="${url}">${shortUrl}</a>)`,
 		});
 		var $star = $("<span>", {
 			class: "hideNoLogin glyphicon glyphicon-star-empty",
@@ -73,56 +73,51 @@ $(function(){
 		$items.append($newLi);
 	}
 	
+	//gets JSON data of top stories
+	
 
-	// function getStories(login ='', favorites=false){
-	// 	var url = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
-	//     $.get(url)
-	//     .then(function(res) {
-	//     	$items.empty();
-	//     	for(let i = 0; i < 20; i++){
-	// 	    	var newUrl = `https://hacker-news.firebaseio.com/v0/item/${res[i]}.json?print=pretty`
-	// 	    	$.get(newUrl).then(
-	// 		    	function(res){
-	// 		    		displayLink(res.title,res.url,res.id);
-	// 		    	});
-	// 	    }
-	//     })
-
-	//     .catch(function(error) {
-	//       console.warn("OH NOEZ, ERRORZ", error);
-	//     });
-	// }
-
-//needs to return name,url,storyId
-	function getStories(login=''){
-		//gets array of numbers
-	    return $.ajax({
-	    	url: "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty",
-	    	method: "GET",
-	    	headers: {
-				"Content-Type": "application/json",
-				"Authorization": authorization
-			},
-	  	})
+	//takes in promises from stories or favorites (if logged in) and gets in format of title, url, id
+	function getTop(){
+		$.getJSON('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty')
+	    .then(function(res) {
+	    	$items.empty();
+	    	for(let i = 0; i < 20; i++){
+		    	var newUrl = `https://hacker-news.firebaseio.com/v0/item/${res[i]}.json?print=pretty`
+		    	$.get(newUrl).then(
+			    	function(res){
+			    		displayLink(res.title,res.url,res.id);
+			    	});
+		    }
+	    })
+	    .catch(function(error) {
+	      console.warn("OH NOEZ, ERRORZ", error);
+	    });
 	}
 
-	getStories()
-	//getStories();
-	//displayLink(newUrl.title,newUrl.url,newUrl.id);
 
-	function getFavorites(login=''){ 
-		//returns array of object (of favorites)
-		return $.ajax({
+
+	function getFavorites(authorization){ 
+		//returns promise (object of data)
+		$.ajax({
 			url: "https://hn-favorites.herokuapp.com/stories.json",
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
 				"Authorization": authorization
-			},
+			}
+		})
+		.then(function(data) {
+			$items.empty();
+			//data is array of objects
+			for(var i = 0; i < data.length; i++){
+				displayLink(data[i].title, data[i].url, data[i].story_id)
+			}
 		})
 	}
-
+	
 });
+
+
 
 //displayLink(title,link, favor= false){
 
