@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hack or Snooze</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="hackorsnooze.js"></script>
+  <style>
+    body {
+      font-size: 1.5em;
+    }
+    #wrapper {
+      margin: 10px 10%;
+      background: #FBF8EF;
+    }
+    #header {
+      display: flex;
+      background: #F60;
+      justify-content: space-between;
+    }
+    h4 {
+      margin-left: 10px;
+      font-weight: bold;
+    }
+    #header > ul {
+      margin: 10px;
+    }
+    .nav > li {
+      display: inline;
+    }
+    .nav > li:hover {
+      text-decoration: underline;
+    }
+    #stories {
+      padding: 10px 0;
+      color: #999;
+    }
+    #stories div {
+      display: inline;
+    }
+    #stories li {
+      margin: 8px 0;
+    }
+    #stories .fav-icon {
+      display: none;
+    }
+    div.title {
+      color: #000;
+      font-size: 1.1em;
+    }
+    div.url {
+      font-size: 0.85em;
+    }
+    #form-container-wrapper {
+      display: none;
+    }
+    #form-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 10px 0 10px;
+    }
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="header">
+      <h4>Hack or Snooze</h4>
+      <ul class="nav">
+        <li id ="top-stories">Top Stories</li>
+        <li>|</li>
+        <li id="favorites">Favorites</li>
+      </ul>
+      <ul class="nav">
+        <li id="login">Login</li>
+      </ul>
+    </div>
+    <div id="form-container-wrapper">
+      <div id="form-container">
+        <form id="login-form" class="form-inline">
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail3">Email address</label>
+            <input type="email" class="form-control" name="email" id="exampleInputEmail3" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword3">Password</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-default">Log in</button>
+          <p class="help-block">Log in to an existing account.</p>
+        </form>
+        <form id="signup-form" class="form-inline">
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail3">Email address</label>
+            <input type="email" class="form-control" name="email" id="exampleInputEmail3" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword3">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-default">Sign up</button>
+          <p class="help-block">Sign up for a new account.</p>
+        </form></div>
+        <hr>
+      </div>
+      <div id="stories">
+        <ol id="links">
+        <!--<li> 
+          <div class="fav-icon">&#9734;</div>
+          <div class="title">Visualizing Algorithms</div>
+          <div class="url">(<a href="#">visualgo.net</a>)</div>
+        </li>-->
+      </ol>
+    </div>
+  </div>
+</body>
+</html>
