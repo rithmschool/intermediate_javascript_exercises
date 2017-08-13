@@ -8,14 +8,14 @@ var obj = {
     person: {
         sayHi: function(){
             return "This person's name is " + this.fullName
-        }
+        }.bind(obj)
     }
 }
 ```
 
 - List two examples of "array-like-objects" that we have seen.
-    -
-    -
+- The `arguments` object in functions
+- Any `HTMLCollection` object
 
 ### Functions to write:
 
