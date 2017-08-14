@@ -161,6 +161,9 @@ describe("#has", function(){
   it("should handle an array of keys as a parameter as well", function(){
     expect(has(object, ['a', 'b'])).to.equal(true)
   });
+  it("should return true if path is valid even with nested objects and >1 keys", function(){
+    expect(has({'x': {}, 'a': {'b':3, 'c':4}, 'b': 3}, ['a','c'])).to.equal(true)
+  });
 
 });
 
