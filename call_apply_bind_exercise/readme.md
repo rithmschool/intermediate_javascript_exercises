@@ -5,17 +5,15 @@ Fix the following code:
 ```javascript
 var obj = {
     fullName: "Harry Potter",
-    person: {
-        sayHi: function(){
-            return "This person's name is " + this.fullName
-        }
+    sayHi: function(){
+        return "This person's name is " + this.fullName;
     }
 }
 ```
 
 - List two examples of "array-like-objects" that we have seen.
-    -
-    -
+    - arguments
+    - sets
 
 ### Functions to write:
 

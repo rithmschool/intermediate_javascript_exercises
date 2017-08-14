@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hacker News Clone</title>
+	<!-- Link to stylesheet -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  	<!-- jQuery script link -->
+  	<!-- jQuery should be included before JavaScript script -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+
+    <!-- script to main.js -->
+	<script src="main.js"></script>
+</head>
+
+<body>
+  	<div class="container">
+  		<div class="row">
+	  		<div class="col col-md-4" style="height: 100px; background-color: red;">
+	  			<h3>Hack or Snooze</h3>
+	  		</div>
+	  		<div class="col col-md-4" style="height: 100px; background-color: red;">
+				<a href="#addItems" data-toggle="collapse">submit</a>
+	  		</div>	
+  		</div>
+  		
+	  	<form action="">
+	  		<div class="row collapse" id='addItems'>
+		  		<!-- <div class="col col-md-12" style="height: 200px; background-color: yellow;"> -->
+		  	<div class="form-group row">
+				<label for="newTitle" class="col-md-2 col-form-label">Title</label>
+				<div class="col-md-6">
+					<input class="form-control" type="text" value="Input new title..." id="newTitle">
+				</div>
+			</div>
+
+		  	<div class="form-group row">
+			  	<label for="urlToAdd" class="col-md-2 col-form-label">Email</label>
+			  	<div class="col-md-6">
+			    	<input class="form-control" type="email" value="bootstrap@example.com" id="urlToAdd">
+			  	</div>
+			</div>
+	
+		  	<div class="form-group row">
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+
+		  		<!-- </div> -->
+	  		</div>
+	  		<div class="row">
+		  		<div class="col col-md-8" style="height: 200px; background-color: lightgreen;">
+		  			<!-- <h3>Ordered List</h3> -->
+					<ol>
+					</ol>
+		  		</div>
+	  		</div>  		
+		</form>
+
+  	</div>
+
+
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
