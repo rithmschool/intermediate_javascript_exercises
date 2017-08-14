@@ -1,0 +1,92 @@
+.row {
+		background-color: #f6f6ef;
+	}
+
+	.borderless td, .borderless th {
+    border: none;
+  }
+  .navbar {
+  	background-color: #ff6600;
+  	margin-bottom: 0;
+  }
+  .navbar-text p {
+  	display: inline;
+  }
+
+  /*#loggedUser {
+  	display:inline-block; !important
+  	vertical-align: middle; !important
+  }*/
+
+  #loggedUser span {
+  	display: block;
+  }
+  
+
+.formdeco {
+	background-color: #f6f6ef;
+	padding-top: 10px;
+}
+.noShow {
+	/*padding-bottom: 0px;*/
+	display: none;
+	}
+
+	.loginOnly {
+		display: none;
+	}
+
+	li {
+		padding: 5px;
+	}
+	ol {
+		padding-top: 0px;
+		background-color: #f6f6ef;
+		/*text-decoration: none !important;
+  color: black !important;*/
+
+	}
+	section + ol {
+    margin-top: -20px;
+}
+ol {
+	padding-top: 20px;
+}
+
+.navbar-text span:hover {
+       cursor: pointer;
+       text-decoration: underline;
+}
+
+.navbar-right li {
+	padding-left: 0px;
+  /*margin-right: 10px;*/
+}
+
+.navbar ul {
+	margin-right: 0px;
+}
+
+ol a:link {
+  text-decoration: none !important;
+  /*color: inherit;*/
+}
+
+ol a {
+  color: black !important;
+}
+
+span.cuthead {
+	font: 8pt Verdana, Geneva, sans-serif !important;
+	/*font: italic small-caps normal 13px/150% Arial, Helvetica, sans-serif;
+	font-size: 8pt !important;
+	font-family: Verdana, Geneva, sans-serif !important;*/
+	/*color: #828282;*/
+
+}
+
+span.cuthead:hover {
+	cursor: pointer;
+	display: inline-block;
+  text-decoration: underline;
+}
