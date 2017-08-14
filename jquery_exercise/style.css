@@ -1,0 +1,82 @@
+body{
+	font-family: arial;
+	font-size: 13px;
+}
+
+.title{
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.center{
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
+
+.container{
+	background-color: #FFE4B5;
+}
+
+.logo{
+	vertical-align: -5px;
+	border:1px solid #ffffff;
+}
+
+nav{
+	background-color: #FF0000;
+}
+
+
+
+a{
+	text-decoration: none;
+	color: #000000;
+	padding: 5px;
+}
+
+nav table{
+	border: 0px solid #000000;
+	width: 100%;
+}
+
+
+
+section td{
+	border: 0px solid #000000;
+	vertical-align: top;
+	padding: 10px 0 0 0;
+	margin: 0;
+}
+
+
+section td:first-of-type{
+	padding-left: 5px;
+	text-align: right;
+}
+
+td div{
+	font-size: 10px;
+}
+
+footer{
+  padding: 30px;
+  text-align: center;
+}
+
+hr{
+	margin-right: -30px;
+	margin-left: -30px;
+	border-top: 2px solid #FF0000;
+}
+
+form{
+	padding-top: 20px;
+}
+
+.login{
+	text-align: right;
+	padding: 0;
+	margin: 0;
+
+}
