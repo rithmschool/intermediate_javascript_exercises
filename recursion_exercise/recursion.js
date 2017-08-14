@@ -51,9 +51,21 @@ function search(arr, val, currentIndex=0) {
 }
 
 function binarySearch(arr, val) {
-	// sort the array
+	// sort the array, or assume sorted
 	// find the middle, compare
-	// remove the middle and everything before or after it
+  // need some value to store current index of the original array
+  var pivot = Math.floor(arr.length/2);
+  if (arr[pivot] === val) {
+    return pivot;
+  }
+  if (arr[pivot] > val) {
+    return binarySearch(arr.slice(0, pivot), val);
+  }
+  if (arr[pivot] < val) {
+    return binarySearch(arr.slice(pivot), val);
+  }
+  return -1;
+	// remove the middle and everything before or after it,
 	// depending on the comparison
 	// repeat
 }
