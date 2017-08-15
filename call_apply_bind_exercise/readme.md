@@ -15,13 +15,15 @@ var obj = {
 
 ```
 var obj = {
-    fullName: "Harry Potter",
-    person: {
-        sayHi: function(){
-            return "This person's name is " + this.fullName
-        }.bind(obj)
-    }
+  fullName: "Harry Potter",
+  person: {
+     sayHi() {
+        return `This person's name is ${this.fullName}`;
+     }
+  }
 }
+
+obj.person.sayHi = obj.person.sayHi.bind(obj);
 ```
 
 - List two examples of "array-like-objects" that we have seen.
