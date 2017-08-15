@@ -8,7 +8,7 @@ body {
   width: 185px;
   height: 165px;
   margin: 3px;
-  background-color: #bfbfbf;
+  border: 7px solid #bfbfbf;
   vertical-align: top;
   font-size: 700%;
   color: red;
@@ -24,4 +24,17 @@ body {
 
 #message {
   font-size: 3em;
+}
+#board{
+  width: 600px;
+  height: 525px;
+  margin: auto;
+}
+.X{
+  color: green;
+  border: 5px solid green;
+}
+.O{
+  color: blue;
+  border: 5px solid blue;
 }

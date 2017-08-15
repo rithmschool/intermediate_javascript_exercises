@@ -73,6 +73,15 @@ describe("#takeRight", function(){
 describe("#union", function(){
   it("returns a new array of combined values.", function(){
     expect(union([2], [1, 2])).to.deep.equal([2, 1])
+    expect(union([2])).to.deep.equal([2])
+  });
+  it("takes arrays of other primetives", function(){
+    expect(union([2], ['one', 'two'])).to.deep.equal([2, 'one', 'two'])
+    expect(union(['one', 'two', 'three'], ['three', 'four'])).to.deep.equal(['one', 'two', 'three', 'four'])
+  });
+  it("takes arrays of objects", function(){
+    expect(union([[2]], ['one', [2], 'two', [2,3],{'number':4}])).to.deep.equal([[2], 'one', 'two', [2,3], {'number':4}])
+    expect(union(['one', 'two', 'three'], ['three', 'four'])).to.deep.equal(['one', 'two', 'three', 'four'])
   });
 });
 
@@ -110,18 +119,22 @@ describe("#cloneDeep", function(){
   it("should create a copy of an array when passed one", function(){
     expect(cloneDeep([1,2,3])).to.be.instanceof(Array);
   });
-  it("should create a copy of an array when passed one", function(){
+  it("should create a copy of an object when passed one", function(){
     expect(cloneDeep({})).to.be.instanceof(Object);
   });
   it("should create a deep copy of an array", function(){
     var objects = [{ 'a': 1 }, { 'b': 2 }];
     var deep = cloneDeep(objects);
     expect(deep[0] === objects[0]).to.equal(false)
+    expect(deep).to.deep.equal(objects)
   });
   it("should create a deep copy of an object", function(){
-    o = {}
-    o2 = cloneDeep(o)
+    var o = {}
+    var o2 = cloneDeep(o)
     expect(o === o2).to.equal(false)
+    o = {'k': 1, 'k2': [1,2,3,{'val': true, 'val1': 'string'},4,5,6], 'k3': 'finish'};
+    expect(cloneDeep(o)===o).to.equal(false)
+    expect(cloneDeep(o)).to.deep.equal(o)
   });
 });
 

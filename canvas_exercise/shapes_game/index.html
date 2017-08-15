@@ -10,33 +10,57 @@
 </head>
 <body>
   <div class="container">
-    <div class="col-xs-10 canvas-container">
-      <canvas id="shapes-game" height="750" width="800"></canvas>
-    </div>
-    <div class="col-xs-2 scores">
-      <h1>Score</h1>
-      <h3><span id="score-val">0</span></h3>
-      <h1>Timer</h1>
-      <h3><span id="time-remaining">30</span></h3>
-      <div class="legend">
-        <h1>Legend</h1>
-        <div class="legend-contents">
-          <div class="triangle-bottomleft-red">
-          </div>
-          <h4>Left</h4>
-          <div class="white-square">
-          </div>
-          <h4>Right</h4>
+
+    <div class="row">
+      <div class="col-md-10 col-xs-12 canvas-container">
+        <canvas id="shapes-game" class="col-xs-12"></canvas>
+      </div>
+
+      <div class="col-md-2 col-xs-12 key">
+       
+      <div class="col-md-12 col-xs-6">
+          <h1>Score</h1>
+          <h3><span id="score-val">0</span></h3>
+      </div>
+      <div class="col-md-12 col-xs-6">
+          <h1>Timer</h1>
+          <h3><span id="time-remaining">30</span></h3>
+      </div>
+
+    <div class="legend col-xs-12">
+
+      <h1 class="col-xs-12">Legend</h1>
+        
+      <div class="shape col-md-12 col-xs-6">
+        <div class="triangle-bottomleft-red">
+        </div>
+        <h4>Left</h4>
+      </div>
+
+      <div class="shape col-md-12 col-xs-6">
+        <div class="white-square">
+        </div>
+        <h4>Right</h4>
+      </div>
+
+        <div class="shape col-md-12 col-xs-6">
           <div class="triangle-bottomleft-black">
             <div class="triangle-inner-white"></div>
           </div>
           <h4>Up</h4>
-          <div class="red-square">
-          </div>
+        </div>
+        
+        <div class="shape col-md-12 col-xs-6">
+          <div class="red-square"></div>
           <h4>Down</h4>
         </div>
-      </div>
+
     </div>
+
+    </div>
+
+    </div>
+    
   </div>
 </body>
 </html>
