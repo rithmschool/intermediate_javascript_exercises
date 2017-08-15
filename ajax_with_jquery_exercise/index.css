@@ -1,6 +1,15 @@
 .row{
 	margin-bottom: 30px;
 }
+#btn_group{
+	width: 100%; 
+	display: flex; 
+	flex-direction: 
+	row; justify-content: space-around;
+}
+form button{
+	width: 100px;
+}
 .glyphicon{
 	margin: 5px;
 }
