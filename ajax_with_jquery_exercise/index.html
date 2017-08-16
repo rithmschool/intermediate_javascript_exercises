@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hack or Snooze</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-10 col-xs-offset-1">
+				<header>
+					<span><b>Hack or Snooze</b></span>
+					<span class="links">
+						<span id="favorites">favorites</span>
+					</span>
+					<button class="btn pull-right orange hide" id="logout">logout</button>
+					<button class="btn pull-right orange" id="login">login</button>
+					<button class="btn pull-right orange" id="sign-up">sign up</button>
+				</header>
+				<section>
+					<div class="row hide" id="login-form">
+					    <div class="col-xs-10">
+					        <form class="form">
+											<p class="auth">login</p>
+					            <div class="form-group">
+					                <label for="email">email</label>
+					                <input type="email" class="form-control" id="login-email" placeholder="email">
+					            </div>
+					            <div class="form-group">
+					                <label for="title">password</label>
+					                <input type="password" class="form-control" id="login-password" placeholder="password">
+					            </div>
+					            <div class="form-group">
+					                <button type="submit" class="btn btn-default">Login</button>
+					            </div>
+					        </form>
+					    </div>
+					</div>
+					<div class="row hide" id="sign-up-form">
+					    <div class="col-xs-10">
+					        <form class="form">
+					        		<p class="auth">sign up</p>
+					            <div class="form-group">
+					                <label for="username">email</label>
+					                <input type="email" class="form-control" id="sign-up-email" placeholder="email">
+					            </div>
+					            <div class="form-group">
+					                <label for="title">password</label>
+					                <input type="password" class="form-control" id="sign-up-password" placeholder="password">
+					            </div>
+					            <div class="form-group">
+					                <button type="submit" class="btn btn-default">Sign Up</button>
+					            </div>
+					        </form>
+					    </div>
+					</div>
+					<div id="error-msg" class="hide"></div>
+				</section>
+				<section>
+					<ol id="story-list">
+
+					</ol>
+					<ol id="favorites-list" class="hide">
+
+					</ol>	
+				</section>
+
+
+			</div>
+		</div>
+	</div>
+
+	<script
+	  src="http://code.jquery.com/jquery-3.2.1.min.js"
+	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous"></script>
+	<script src="script.js"></script>
+</body>
+</html>
