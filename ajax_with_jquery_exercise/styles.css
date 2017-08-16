@@ -1,0 +1,77 @@
+
+header {
+	background-color: #FF6600;
+	height: 50px;
+	font-size: 20px;
+	padding: 1rem;
+	margin-top: 10px;
+	border-radius: 2px;
+}
+
+section {
+	background-color: #F5F5EE;
+	border-radius: 2px;
+}
+
+.links {
+	font-size: 15px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+#submit:hover {
+	text-decoration: underline;
+}
+
+#favorites:hover {
+	text-decoration: underline;
+}
+
+.small{
+	color: gray;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+.small:hover {
+	text-decoration: underline;
+}
+
+.hide {
+	display: none;
+}
+
+.orange {
+	background-color: #FF6600;
+}
+
+.auth {
+	color: #FF6600;
+	font-weight: bold;
+	font-size: 18px;	
+}
+
+#error-msg {
+	color: red;
+	text-align: center;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+	margin-left: 5px;
+}
+
+a, a:hover, a:focus {
+	text-decoration: none;
+	color: black;
+}
+
+li {
+	padding: 5px;
+}
+
+form{
+	margin-top: 10px;
+	margin-left: 30px;
+}
