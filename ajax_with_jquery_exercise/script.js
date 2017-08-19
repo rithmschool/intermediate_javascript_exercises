@@ -17,68 +17,30 @@
   var loggedIn = $('.loggedIn')
   var auth_key;
   var favorites = JSON.parse(localStorage.getItem("favorites"));
-  var urls = {
-    topStories : 'https://hacker-news.firebaseio.com/v0/topstories',  // + .json
-    newsStories: 'https://hacker-news.firebaseio.com/v0/newstories', // + .json
-    bestStories: 'https://hacker-news.firebaseio.com/v0/beststories', // + .json
-    favorites :  'https://hn-favorites.herokuapp.com/stories',  // + .json  --> delete + ID.json
-    favoritesLogin: 'https://hn-favorites.herokuapp.com/login'
-  }
+
 
   $postUrlForm.hide()
   $loginSignUpForm.hide()
   // $loggedIn.hide()
 
-  generateContent(urls.topStories)
+  // generateContent(urls.topStories)
 
-  $navBtns.click(function(e){
-    console.log()
-  })
+var numberGetStories = 5;
+var lastStoryDisplayed = 0;
+var currentStoryIds;
 
+// getData('top', 'stories', function(stories){
+//   currentStoryIds = stories;
+//   selectStoryIds = stories.slice(numberStoriesDisplayed, numberStoriesDisplayed+numberGetStories)
 
-  function generateContent(url){
-    $.get(url+'.json')
-    .then(stories=> {
-      var getStoryDetails = stories.map(story =>
-           $.get(`https://hacker-news.firebaseio.com/v0/item/${story}.json`))
-            .slice(0+numberItemsDisplayed, 20 + numberItemsDisplayed)
-
-      return  Promise.all(getStoryDetails).then(storyDetails => {
-              storyDetails.forEach(storyDetail => {
-              newData(storyDetail.title, storyDetail.url || 'http://rithmschool.com', storyDetail.time, storyDetail.by, storyDetail.id)
-              })
-            }).catch(err => console.log("error"))
-      })
-      .fail(err => $('#main').append(
-        $('<h1>', {text: 'Uh oh.... something went wrong :(' })
-        )
-      )
-  }
+//   selectStoryIds.map(story =>
+//         getData('item', 'stories', function(storyDetail){
+//           newData(storyDetail.title, storyDetail.url || 'http://rithmschool.com', storyDetail.time, storyDetail.by, storyDetail.id)
+//         }, story)
+//     )
+// })
 
 
-  // Hide/Show URL form
-  // $togglePostFormBtn.click(function(e){
-  //   if($isPostFormVisible) $postUrlForm.show()
-  //    else $postUrlForm.hide()
-  //     $isPostFormVisible = !$isPostFormVisible;
-  // })
-
-
-
-  //Post Form
-  $postUrlForm.on('submit', function(e){
-    var $url=  $('#url'),
-    $titleVal =  $('#title');
-
-    e.preventDefault();
-
-    newData($titleVal, $url)
-
-    $url.val('')
-    $titleVal.val('')
-    $postUrlForm.hide()
-    $isPostFormVisible = false;
-  })
 
   //Hide/Show login sign up form
   $toggleLoginSignUpFormBtn.click(function(e){
