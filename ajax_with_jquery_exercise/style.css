@@ -1,0 +1,33 @@
+ol > li > p{
+  color: gray;
+  font-size: 10px;
+}
+.error{
+  color: red;
+}
+
+.display-hide{
+  display: none !important;
+}
+
+.pad-left{
+  padding-left: 20px;
+}
+.header{
+  background: orange;
+  border-radius: .2em;
+  margin-top: 2em;
+}
+a {
+  text-decoration: none !important;
+  color: black;
+}
+li > a {
+  color: gray;
+}
+.margin-bottom{
+  margin-bottom: 1em;
+}
+.main{
+  background: #fff7ea;
+}

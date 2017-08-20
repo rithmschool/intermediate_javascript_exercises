@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hacker News</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <style>
+    .pad-left{
+      padding-left: 2em;
+    }
+
+    .header{
+      background: orange;
+      border-radius: .2em;
+      margin-top: 2em;
+    }
+
+
+    a {
+      text-decoration: none !important;
+    }
+
+    li > a {
+      color: gray;
+    }
+
+    .margin-bottom{
+      margin-bottom: 1em;
+    }
+
+
+    #toggleForm, #favBtn{
+      color: black;
+      text-decoration: none;
+    }
+
+    .main{
+      background: #fff7ea;
+    }
+
+  </style>
+  <body>
+    <div class="container">
+      <div class="row" >
+        <div class="col-xs-12 header">
+          <h3> Hack or Snooze    <small class="pad-left"> <a href="#" id="toggleForm"> submit </a> | <a href="#"  id="favBtn"> favorites </a></small></h3>
+        </div>
+      </div>
+
+      <!-- Add new site -->
+      <div id="newSite" class="col-xs-12">
+      <br>
+        <form validate>
+          <div class="form-group">
+            <div class="row margin-bottom">
+               <div class="col-xs-1 col-xs-offset-1">
+                 <label>title</label>
+               </div>
+               <div class="col-xs-5">
+                <input type="text" id="title" class="form-control" placeholder="" required>
+               </div>
+            </div>
+            <div class="row margin-bottom">
+               <div class="col-xs-1 col-xs-offset-1">
+                 <label>url</label>
+               </div>
+               <div class="col-xs-5">
+                 <input type="url" id="url"  class="form-control" placeholder=""  required>
+               </div>
+            </div>
+            <div class="row margin-bottom">
+              <div class="col-xs-1 col-xs-offset-2">
+                <button type="submit" id="addUrl" class="btn btn-delete">Submit</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- End add new site -->
+      <div class="row main">
+        <div class="col-xs-12 main">
+          <ol>
+            <li>
+              <a href="#" class="glyphicon glyphicon-star-empty"></a>
+              Test line... will be deleted.
+              <a href="http://google.com" target="_blank"> (ietf.org) </a>
+            </li>
+            <li>
+              <a href="#" class="glyphicon glyphicon-star-empty"></a>
+              Test line... sdsdss.
+              <a href="http://google.com" target="_blank"> (ietf.org) </a>
+            </li>
+          </ol>
+        </div>
+      </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
