@@ -2,8 +2,9 @@
 
 
 function getFavoriteStoryIds(stories){
+  favoritesList = stories
   favoriteStoryIds = stories.reduce((acc, story) => {
-    acc[story.story_id] = story.id
+    acc[story.story_id] = story.id;
     return acc
   },{})
 }
@@ -12,13 +13,14 @@ function newData(title, url, time, author, id){
   $dataDisplay.append(
     `<li id=${id}>
       ${displayGliphicon(id)}
-      ${title} ${createUrl(url)}
-      <p>submitted ${time} by ${author}</p>
+      <span>${title}</span> ${createUrl(url)}
+      <p>submitted ${time} by <span> ${author} </span></p>
     </li>
     `)
 }
 
 function createUrl(url){
+  url = url || 'http://rithmschool.com'
   var rmHttp= url.indexOf('//')+2;
   var urlShort = url.slice(rmHttp,url.indexOf('/', rmHttp) === -1 ? url.length: url.indexOf('/', rmHttp));
   return `<a href=" ${url}" target="_blank"> (${urlShort}) </a>`
@@ -27,11 +29,14 @@ function createUrl(url){
 function displayGliphicon(input){
 
     if(input === 'justLogged'){
-      for(key in favoriteStoryIds){
-
-        $('.glyphicon').removeClass('glyphicon-star-empty')
-        $('.glyphicon').addClass('glyphicon-star')
-      }
+      $('ol li').each(function(){
+        var location = $(this).children().eq(0)
+        if(favoriteStoryIds[$(this).attr('id')]){
+          location.addClass('glyphicon-star')
+        } else {
+          location.addClass('glyphicon-star-empty')
+        }
+      })
       return
     }
 
