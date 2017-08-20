@@ -7,43 +7,8 @@
     <title>Hacker News</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
   </head>
-  <style>
-    ol > li > p{
-      color: gray;
-      font-size: 10px;
-    }
-    .error{
-      color: red;
-    }
-
-    .display-hide{
-      display: none !important;
-    }
-
-    .pad-left{
-      padding-left: 20px;
-    }
-    .header{
-      background: orange;
-      border-radius: .2em;
-      margin-top: 2em;
-    }
-    a {
-      text-decoration: none !important;
-      color: black;
-    }
-    li > a {
-      color: gray;
-    }
-    .margin-bottom{
-      margin-bottom: 1em;
-    }
-    .main{
-      background: #fff7ea;
-    }
-
-  </style>
   <body>
     <div class="container">
 
@@ -59,8 +24,7 @@
                 <li><a href="#" id="top"> top stories </a></li>
                 <li><a href="#" id="new"> new stories </a></li>
                 <li><a href="#" id="best"> best stories </a></li>
-                <li><a href="#" class="loggedIn display-hide" id="favorites"> favorites22 </a></li>
-                <!-- <li><a href="#" class="loggedIn"> submit</a></li> -->
+                <li><a href="#" class="loggedIn display-hide" id="favorites"> favorites</a></li>
               </ul>
             </small>
           </h3>
@@ -135,7 +99,7 @@
       <br>
         <div class="col-xs-12">
           <ol>
-            <li id="13474738">
+<!--             <li id="13474738">
               <a href="#" class="glyphicon"></a>
               Test line... will be deleted.
               <a href="http://google.com" target="_blank"> (ietf.org) </a><p class="pad-left">submitted TIME by AUTHOR</p>
@@ -144,15 +108,15 @@
               <a href="#" class="glyphicon"></a>
               Test line... sdsdss.
               <a href="http://google.com" target="_blank"> (ietf.org) </a><p class="pad-left">submitted TIME by AUTHOR</p>
-            </li>
+            </li> -->
           </ol>
         </div>
       </div>
       <!-- End Main Content -->
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="script_global_variables.js"></script>
     <script src="script_ajax.js"></script>
-    <script src="script_main_content.js"></script>
+    <script src="script_methods.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

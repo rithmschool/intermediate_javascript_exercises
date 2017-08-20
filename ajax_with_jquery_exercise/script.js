@@ -1,94 +1,33 @@
-"use strict"
+"use strict";
+//////EVENT LISTENERS //////
 
 // $(function(){
 
-  //URLs
-   var urls = {
-    topStories : 'https://hacker-news.firebaseio.com/v0/topstories.json',
-    newStories: 'https://hacker-news.firebaseio.com/v0/newstories.json',
-    bestStories: 'https://hacker-news.firebaseio.com/v0/beststories.json',
-    itemStories: 'https://hacker-news.firebaseio.com/v0/item/',      //  id + .json  --> get detail
-    favoritesStories :  'https://hn-favorites.herokuapp.com/stories.json',
-    favoritesAdd :  'https://hn-favorites.herokuapp.com/stories.json',
-    favoritesDelete :  'https://hn-favorites.herokuapp.com/stories/',  // id + .json  --> delete + ID.json
-    favoritesLogin: 'https://hn-favorites.herokuapp.com/login',
-    favoritesSignup: 'https://hn-favorites.herokuapp.com/signup'
-  }
-
-  //Error messages
-  var errorMsgs ={
-    //Ajax error messages
-    favorites : "Could not load favorites at this time. Please try logging in again.",
-    login : "Invalid username or password. Please try again.",
-    stories: "Could not load stories. Please check your internet connection or try back later."
-  }
-
-//Content Display Settings
-  var numberGetStories = 20;
-  var lastStoryDisplayed = 0;
-
-//Buttons
-  var $navLoginBtn = $('#loginSignUpBtn');
-  var $mainLoginForm = $('#loginSignUpForm');
-  var $dataDisplay = $('ol');
-  var $navBtns = $('ul');
-
-  //Login Sign Up Form Buttons
-  var $loginSignUpTabs = $('.nav-tabs');
-  var $formLogin =  $('#formLogin');
-  var $formSignUp =  $('#formSignUp');
-
-//Stored Items
-  var favoritesList;
-  var favoriteStoryIds;
-  var auth_key = localStorage.getItem("auth_key");
-  // var auth_key = false;
-  var currentStory = localStorage.getItem("current_story") || 'top';
-  var $errorMsgLoc = $('.error');
-
-  //On  page refresh validate auth_key by getting favorites then generate page
-  (function (){
-      if(auth_key === 'undefined' || !auth_key){
-        auth_key = false
-        displayStories()
-        return
-      }
-
-      getData('favorites', 'stories', function(result){
-        if(result.status > 299){
-          auth_key = false
-          displayStories()
-        } else {
-          getFavoriteStoryIds(result)
-          $('.loggedIn').toggleClass('display-hide')
-          displayStories()
-        }
-      })
-  })();
-
-  function displayStories(type=currentStory){
-    getData(type, 'stories', function(stories){
-      var selectStoryIds = stories.slice(lastStoryDisplayed, lastStoryDisplayed+numberGetStories)
-
-      selectStoryIds.map(story =>
-            getData('item', 'stories', function(storyDetail){
-              newData(storyDetail.title, storyDetail.url || 'http://rithmschool.com', storyDetail.time, storyDetail.by, storyDetail.id)
-            }, story)
-        )
-    })
-  }
+//On  page refresh validate auth_key by getting favorites then last viewed page or top stories
+  checkIfLoggedIn()
 
 
-// Signout hide, rest
+//// Top nav Login/Sign Up and  Sign out BUTTONS////
+  // Signout hide, reset
   $('#signOutBtn').click(function(){
-    var location = $('.glyphicon')
-    $('.loggedIn').toggleClass('display-hide')
+    var gliphicons = $('.glyphicon')
+
+    //reset to log out display
+    $loggedIn.toggleClass('display-hide')
+    gliphicons.removeClass("glyphicon-star-empty")
+    gliphicons.removeClass("glyphicon-star")
+
+    //clear stored data
     localStorage.removeItem('auth_key')
     auth_key = false;
     favoriteStoryIds = {};
 
-    location.removeClass("glyphicon-star-empty")
-    location.removeClass("glyphicon-star")
+    if(currentStory === 'favorites'){
+      currentStory = 'top'
+      displayStories()
+    }
+
+
   })
 
   // Hide/Show login form
@@ -98,7 +37,9 @@
 
   })
 
-  //login sign up toggle between tabs
+
+//// MAIN  Login / Sign up FORM ////
+  //Toggle between login and sign up.
   $loginSignUpTabs.on('click', function(){
     $formLogin.toggleClass('active')
     $formSignUp.toggleClass('active')
@@ -112,33 +53,42 @@
 
     e.preventDefault();
 
-    postData('favorites', $loginSignup ,
+    postData('favorites', $loginSignup , //login or signup request
       function(result){
-          if(result.status > 299){
+
+          if(result.status > 299){ //If error, display error message.
             $errorMsgLoc.text(errorMsgs.login)
           } else {
+            //store auth key
             localStorage.setItem("auth_key", result.auth_token)
             auth_key = result.auth_token
 
-            getData('favorites', 'stories', function(result){
-                getFavoriteStoryIds(result)
-                $('.loggedIn').toggleClass('display-hide')
-                displayGliphicon('justLogged')
-                $errorMsgLoc.text('')
-                $mainLoginForm.toggleClass('display-hide')
-            })
+            //get favorites
+            if($loginSignup === 'login' ){
+              getData('favorites', 'stories', function(result){ // get favories
+                  getFavoriteStoryIds(result) //Store favorites
+              })
+            }
+            $loggedIn.toggleClass('display-hide') // show logged in content (link to favorites, log out button)
+            displayGliphicon('justLogged') // display star gliphicon
+            $errorMsgLoc.text('') //clear error message
+            $mainLoginForm.toggleClass('display-hide') // hide login form
           }
       }
       ,$email.val(), $password.val())
 
-    //Reset form
+    //Clear email and password form.
     $email.val('')
     $password.val('')
   })
 
+//// END MAIN  Login / Sign up FORM ////
 
+
+/// TOP NAV BUTTONS ////
   $navBtns.click(function(e){
     currentStory = $(e.target).attr('id');
+    localStorage.setItem("current_story", currentStory)
 
     $dataDisplay.empty()
 
@@ -146,32 +96,13 @@
       favoritesList.forEach(story =>{
         newData(story.title, story.url, story.created, story.by, story.story_id)
       })
-
     } else {
-      if(auth_key === 'undefined' || !auth_key){
-        auth_key = false
-        displayStories(currentStory)
-        return
-      }
-
-      getData('favorites', 'stories', function(result){
-        if(result.status > 299){
-          auth_key = false
-          displayStories(currentStory)
-          $('.loggedIn').toggleClass('display-hide')
-        } else {
-          getFavoriteStoryIds(result)
-          displayStories(currentStory)
-        }
-      })
-
-      localStorage.setItem("current_story", currentStory)
+      checkIfLoggedIn()
     }
-
-
   })
+/// END TOP NAV BUTTONS ////
 
-  //Select Favorite *STAR*
+///Star Buttons - select favorites ///
   $dataDisplay.on('click', '.glyphicon', function(e){
     var location = $(e.target);
     var locationParent = location.parent().children();
@@ -179,7 +110,9 @@
 
     e.preventDefault();
 
+    //Add favorite
     if($(e.target).hasClass('glyphicon-star-empty')){
+       //Fav object. content scrapped from HTML
        var addFav = {
         hacker_news_story:{
             by: locationParent.eq(3).children().text().trim(),
@@ -193,7 +126,7 @@
               $errorMsgLoc.text(errorMsgs.favorites)
             } else {
               location.toggleClass('glyphicon-star-empty glyphicon-star')
-              //Success full add does not return ID. Must refresh favorites to get id,
+              //Returning 'undefined' should return ID. Must refresh favorites to get id,
                 getData('favorites', 'stories', function(result){
                 if(result.status > 299){
                   auth_key = false
@@ -204,6 +137,7 @@
             }
       }, addFav)
     } else {
+    //Remove favorite
         deleteData('favorites', 'delete', function(result){
             if(result.status > 299){
               $errorMsgLoc.text(errorMsgs.favorites)
@@ -217,8 +151,12 @@
     }
   })
 
+///End Star Buttons - select favorites ///
 
 
-  // })
+
+// })
+
+
 
 

@@ -1,7 +1,6 @@
-"use strict"
+"use strict";
 
-//Ajax requests
-
+/////Ajax requests////
 function getData(name, type, fn, id){
   var headers = name === 'favorites' ? {"Authorization": auth_key} : {};
   $.ajax({
