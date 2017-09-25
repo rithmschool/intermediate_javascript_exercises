@@ -2,7 +2,7 @@
 
 ## Getting started
 
-For this exercise you **MUST** use recursion to solve these problems. Some of them can be done without, but it is essential that you practice recursion and make the tests pass. 
+For this exercise you **MUST** use recursion to solve these problems. Some of them can be done without, but it is essential that you practice recursion and make the tests pass.
 
 - Write a function called `productOfArray` which takes in an array of numbers and returns the product of them all
 
@@ -69,7 +69,7 @@ search([1,2,3,4,5],5) // 4
 search([1,2,3,4,5],15) // -1
 ```
 
-- Refactor your search function to use a faster algorithm called binary search [https://www.youtube.com/watch?v=JQhciTuD3E8](https://www.youtube.com/watch?v=JQhciTuD3E8). 
+- Refactor your search function to use a faster algorithm called binary search [https://www.youtube.com/watch?v=JQhciTuD3E8](https://www.youtube.com/watch?v=JQhciTuD3E8).
 
 ```javascript
 binarySearch([1,2,3,4,5],5) // 4
@@ -106,4 +106,4 @@ stringifyNumbers()
 /*/
 ```
 
-Complete [this](https://www.codewars.com/kata/mutual-recursion/train/javascript) codewars problem! 
+Complete [this](https://www.codewars.com/kata/mutual-recursion/train/javascript) codewars problem!

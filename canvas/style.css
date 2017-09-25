@@ -1,0 +1,13 @@
+/*#my-canvas {
+  background-color: blue;
+  height: 400px;
+  width: 400px;
+}*/
+
+canvas {
+  border: 1px solid black;
+  /*background: mistyrose;*/
+}
+body {
+  margin: 0;
+}
